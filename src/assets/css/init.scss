@@ -1,0 +1,11 @@
+:root {
+  --main-color: #222d32;
+  --main-sub-color: #b60a04;
+  --main-color-yellow: #f7d400;
+  --main-color-black: #0c0c0c;
+}
+
+.main-box {
+  box-shadow: 0 0 13px 0 rgba(83, 83, 83, 0.13);
+  @apply bg-lightBlue rounded-15 p-15 box-border
+}
