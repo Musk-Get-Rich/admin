@@ -18,7 +18,7 @@ export const routes = [
         path: 'material-management',
         component: () => import("@/views/modules/MaterialType/index.vue"),
         meta: {
-          name: '资料管理',
+          name: '模板',
           icon: 'menu'
         }
       },
