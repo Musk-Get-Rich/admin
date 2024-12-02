@@ -14,40 +14,14 @@ export const routes = [
           icon: 'DashboardOutlined'
         },
       },
-    ]
-  },
-  {
-    path: '/forum',
-    component: layout,
-    meta: {
-      name: '论坛资料',
-      icon: 'menu'
-    },
-    children: [
-      {
-        path: 'award-management',
-        component: () => import("@/views/modules/AwardManagement"),
-        meta: {
-          name: '开奖管理',
-          icon: 'menu'
-        }
-      },
       {
         path: 'material-management',
-        component: () => import("@/views/modules/MaterialManagement"),
+        component: () => import("@/views/modules/MaterialType/index.vue"),
         meta: {
           name: '资料管理',
           icon: 'menu'
         }
       },
-      {
-        path: 'material-type',
-        component: () => import("@/views/modules/MaterialType"),
-        meta: {
-          name: '资料类型',
-          icon: 'menu'
-        }
-      }
     ]
-  }
+  },
 ]

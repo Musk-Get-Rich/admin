@@ -40,10 +40,10 @@
             :collapse="collapse"
             @onCollapse="val => collapse = val"
           />
-          <TagsView class="py-10 px-4"/>
+<!--          <TagsView class="py-10 px-4"/>-->
         </div>
-        <div class="layout-main flex flex-col">
-          <div class="w-full flex-1 pt-20 px-30 bg-[#ecf0f5] box-border main-wrapper overflow-auto" ref="mainRef">
+        <div class="layout-main flex-1 flex flex-col">
+          <div class="w-full flex-1 p-12 bg-[#ecf0f5] box-border main-wrapper overflow-auto" ref="mainRef">
             <router-view v-slot="{ Component }">
               <transition name="slide-fade" mode="out-in">
                 <component :is="Component"/>

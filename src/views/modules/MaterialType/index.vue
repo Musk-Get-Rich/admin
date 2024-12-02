@@ -3,7 +3,7 @@
     <avue-crud
       ref="tableRef"
       :table-loading="tableLoading"
-      :data="tableData"
+      :data="list"
       :option="option"
       v-model:page="pageObj"
       @refresh-change="getTableData"
@@ -50,6 +50,15 @@ import {useTableList} from "@/hook/useTableList.js";
 import {useTableSearch} from "@/hook/useTableSearch.js";
 import {apiGetMaterialTypeList} from "@/service/api/api.js";
 import {useMaterialType} from "@/views/modules/MaterialType/hook/useMaterialType.js";
+
+const list = [
+  {
+    title: 'test',
+    sort: '1',
+    canLink: '1',
+    createTime: '2024-12-02 00:00:00',
+  }
+]
 
 // 新增
 const handleAdd = () => {

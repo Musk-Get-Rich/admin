@@ -10,25 +10,16 @@
         v-for="(item, index) in routes"
       >
         <!-- 二级菜单 -->
-        <template v-if="item.meta">
-          <el-sub-menu
-            :key="index"
-            :index="String(index)"
+        <template v-if="item.children">
+          <el-menu-item
+            v-for="(sub, i) in item.children"
+            :key="sub.id"
+            :index="`${index}-${i}`"
+            @click="handleClick(`/${sub.path}`, `${index}-${i}`, sub)"
           >
-            <template #title>
-              <SvgIcon size="18" :name="item.meta.icon"/>
-              <span class="ml-12 text-14">{{ item.meta.name }}</span>
-            </template>
-            <el-menu-item
-              v-for="(sub, i) in item.children"
-              :key="sub.id"
-              :index="`${index}-${i}`"
-              @click="handleClick(`${item.path}/${sub.path}`, `${index}-${i}`, sub)"
-            >
-              <SvgIcon v-if="sub.icon" size="18" :name="sub.icon"/>
-              <span class="ml-8 text-14">{{ sub.meta.name }}</span>
-            </el-menu-item>
-          </el-sub-menu>
+            <SvgIcon v-if="sub.icon" size="18" :name="sub.icon"/>
+            <span class="ml-8 text-14">{{ sub.meta.name }}</span>
+          </el-menu-item>
         </template>
         <!-- 二级菜单 -->
 
