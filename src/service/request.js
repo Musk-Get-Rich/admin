@@ -26,9 +26,12 @@ instance.interceptors.request.use(config => {
 instance.interceptors.response.use(response => {
   const res = response.data
 
+  console.log(res);
+
   // 200 请求成功
-  if (res.code === 10000) {
-    return res
+  if (res.code == 1) {
+    console.log(res);
+    return res.info
   } else {
     ElMessage({
       message: res.msg || '请稍后重试',

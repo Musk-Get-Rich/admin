@@ -22,6 +22,8 @@ export const useUserStore = defineStore('userStore', () => {
       try {
         const res = await apiLogin(data)
 
+        console.log(res);
+
         token.value = res.token
 
         // 保存 token

@@ -1,10 +1,10 @@
 import request from "@/service/request.js";
 
 // 登录
-export const apiLogin = (data) => {
+export const apiLogin = (params) => {
   return request({
-    url: '/admin/admin/login',
-    method: "POST",
-    data
+    url: '/AgentBack/login',
+    method: "GET",
+    params
   })
 }

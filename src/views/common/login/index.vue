@@ -123,15 +123,9 @@ const login = debounce(async () => {
 
   try {
     const res = await useStore.login({
-      username: dataForm.userName,
-      password: dataForm.password,
+      loginaccount: dataForm.userName,
+      loginpassword: dataForm.password,
     })
-
-    console.log(dataForm.userName);
-
-    myUserName.value = dataForm.userName
-
-    console.log(myUserName.value);
 
     await router.push('/')
   } catch (err) {
