@@ -17,19 +17,6 @@ const router = createRouter({
       component: () => import("@/views/common/404/404.vue"),
     },
     ...routes
-    // {
-    //   path: '/',
-    //   name: 'main',
-    //   component: layout,
-    //   children: [
-    //     {
-    //       path: '',
-    //       name: 'home',
-    //       component: () => import("@/views/modules/dashBoard/index.vue")
-    //     },
-    //     ...routes,
-    //   ]
-    // }
   ],
   history: createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH),
 })
