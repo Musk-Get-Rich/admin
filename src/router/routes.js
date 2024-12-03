@@ -57,8 +57,8 @@ export const routes = [
     },
     children: [
       {
-        path: 'subordinate',
-        name: 'subordinate',
+        path: 'agent',
+        name: 'agent',
         component: () => import("@/views/modules/AgentManagement"),
         meta: {
           name: '下级管理',
