@@ -59,9 +59,9 @@ export const routes = [
       {
         path: 'subordinate',
         name: 'subordinate',
-        component: () => import("@/views/modules/dashBoard/index.vue"),
+        component: () => import("@/views/modules/AgentManagement"),
         meta: {
-          name: '下级(邀请有奖)',
+          name: '下级管理',
           inactiveIcon: 'Sidebar/Group1.png',
           activeIcon: 'Sidebar/Group2.png'
         },
@@ -77,5 +77,5 @@ export const routes = [
         },
       },
     ]
-  },
+  }
 ]
