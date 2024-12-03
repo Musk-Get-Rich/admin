@@ -1,58 +1,17 @@
 <template>
-  <div class="common-layout">
-    <el-container>
-      <el-aside :width="asideWidth" class="layout-aside">
-        <div class="flex flex-col h-screen overflow-hidden">
-          <div
-            class="py-20 border-b-solid border-b-1 border-b-#181f23 text-20 font-600 text-white text-center"
-            v-if="!collapse"
-          >
-            Six Admin
-          </div>
-          <div class="flex items-center px-14 py-24">
-            <img class="w-45 rounded-full" src="@/assets/images/author.png" alt="">
-            <div class="ml-12 text-14 text-white">
-              <div>{{ username }}</div>
-              <div class="flex items-center mt-6">
-                <div
-                  class="w-13 h-13 rounded-full mr-5"
-                  :class="[
-                    isOnline ? 'bg-[#18bc9c]' : 'bg-red'
-                  ]"
-                />
-                <div>
-                  {{ isOnline ? '在线' : '离线' }}
-                </div>
-              </div>
-            </div>
-          </div>
-          <Sidebar
-            ref="SidebarRef"
-            :collapse="collapse"
-            :active="active"
-          />
+  <div class="common-layout bg-#f4f5f9">
+    <div class="container h-full flex">
+      <Sidebar/>
+      <div class="flex-1 flex flex-col">
+        <div class="flex-1 p-30 box-border main-wrapper overflow-auto" ref="mainRef">
+          <router-view v-slot="{ Component }">
+            <transition name="slide-fade" mode="out-in">
+              <component :is="Component"/>
+            </transition>
+          </router-view>
         </div>
-      </el-aside>
-      <el-container class="!flex-col">
-        <div class="flex-shrink-0 layout-header bg-[#fff]">
-          <LayoutHeader
-            class="px-16 box-border py-14 border-b-solid border-b-1 border-b-#eee"
-            :collapse="collapse"
-            @onCollapse="val => collapse = val"
-          />
-<!--          <TagsView class="py-10 px-4"/>-->
-        </div>
-        <div class="layout-main flex-1 flex flex-col">
-          <div class="w-full flex-1 p-12 bg-[#ecf0f5] box-border main-wrapper overflow-auto" ref="mainRef">
-            <router-view v-slot="{ Component }">
-              <transition name="slide-fade" mode="out-in">
-                <component :is="Component"/>
-              </transition>
-            </router-view>
-          </div>
-        </div>
-      </el-container>
-    </el-container>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -67,14 +26,14 @@ import {dashBoard} from "@/config/routes.js";
 import {eventEmitter} from "@/utils/eventEmitter/index.js";
 import Breadcrumb from "@/components/Breadcrumb"
 import {useOnline} from "@/hook/useOnline.js";
-import TagsView from "@/components/TagsView"
 import {useDeviceStore} from "@/store/modules/device.store.js";
-import { storeToRefs } from "pinia";
+import {storeToRefs} from "pinia";
+
 
 const router = useRouter()
 const route = useRoute()
 
-const { isMobile } = storeToRefs(useDeviceStore())
+const {isMobile} = storeToRefs(useDeviceStore())
 
 const {isOnline} = useOnline()
 
@@ -117,6 +76,10 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.common-layout {
+  height: calc(100vh - 70px);
+}
+
 :deep(.el-card__body) {
   height: 100%;
 }
@@ -132,12 +95,6 @@ onMounted(() => {
 
 .layout-header {
   box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
-}
-
-.layout-main {
-  height: calc(100vh - 106px);
-  overflow: hidden;
-  background: #fff;
 }
 
 .slide-fade-enter-active,

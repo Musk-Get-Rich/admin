@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen pt-10vw box-border overflow-hidden bg-[#f0f3fc]">
+  <div class="w-screen pt-10vw box-border overflow-hidden wrapper">
     <div class="login-wrapper mx-auto rounded-4 overflow-hidden bg-white">
       <div class="relative w-full bg-[#899fe1]">
         <img class="w-full block" src="@/assets/images/login-head.png" alt="">
@@ -154,5 +154,11 @@ const login = debounce(async () => {
   .login-wrapper {
     width: 84%;
   }
+}
+
+.wrapper {
+  height: calc(100vh - 70px);
+  background: url("@/assets/images/login-bg.png") no-repeat;
+  background-size: cover;
 }
 </style>

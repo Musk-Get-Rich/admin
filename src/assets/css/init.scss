@@ -5,7 +5,16 @@
   --main-color-black: #0c0c0c;
 }
 
+.transition-400ms {
+  transition: all ease .4s;
+}
+
 .main-box {
   box-shadow: 0 0 13px 0 rgba(83, 83, 83, 0.13);
   @apply bg-lightBlue rounded-15 p-15 box-border
+}
+
+.container {
+  width: 1410px;
+  margin: 0 auto;
 }

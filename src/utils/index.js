@@ -171,6 +171,7 @@ export const formatTime = (date, fmt = 'YYYY-MM-DD hh:mm:ss') => {
 }
 
 export const imageSrc = (image) => {
+  console.log(`/src/assets/images/${image}`);
   return new URL(`/src/assets/images/${image}`, import.meta.url).href;
 }
 

@@ -4,6 +4,8 @@ import layout from "@/views/layout"
 import { eventEmitter } from "@/utils/eventEmitter/index.js";
 import { routes } from "@/router/routes.js";
 
+const routesList = routes.filter(item => item.type !== 'divider')
+
 const router = createRouter({
   routes: [
     {
@@ -16,7 +18,7 @@ const router = createRouter({
       name: '404',
       component: () => import("@/views/common/404/404.vue"),
     },
-    ...routes
+    ...routesList
   ],
   history: createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH),
 })

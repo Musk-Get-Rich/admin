@@ -1,4 +1,5 @@
 <template>
+  <Header/>
   <router-view></router-view>
   <DialogForm
     v-if="isShow"
@@ -13,6 +14,7 @@ import {useDialogFormStore} from "@/components/DialogForm/store/dialogForm.store
 import { storeToRefs } from "pinia"
 import router from "@/router/index.js";
 import {useDeviceStore} from "@/store/modules/device.store.js";
+import Header from "@/components/Header/index.vue"
 
 const { isShow, dialogFormParams } = storeToRefs(useDialogFormStore())
 

@@ -1,161 +1,67 @@
 <template>
-  <div class="py-4 flex-1 overflow-auto menu-wrapper">
-    <el-menu
-      :default-openeds="openeds"
-      class="el-menu-vertical-demo"
-      :collapse="collapse"
-      :default-active="defaultActive"
+  <div class="w-218 bg-white h-full overflow-auto py-30 box-border">
+    <div
+      v-for="_ in routes"
     >
-      <template
-        v-for="(item, index) in routes"
-      >
-        <!-- 二级菜单 -->
-        <template v-if="item.children">
-          <el-menu-item
-            v-for="(sub, i) in item.children"
-            :key="sub.id"
-            :index="`${index}-${i}`"
-            @click="handleClick(`/${sub.path}`, `${index}-${i}`, sub)"
-          >
-            <SvgIcon v-if="sub.icon" size="18" :name="sub.icon"/>
-            <span class="ml-8 text-14">{{ sub.meta.name }}</span>
-          </el-menu-item>
-        </template>
-        <!-- 二级菜单 -->
-
-        <template v-else>
-          <el-menu-item
-            :key="index"
-            :index="String(index)"
-            @click="handleClick(`/${item.children[0].path}`, index, item)"
-          >
-            <SvgIcon size="18" :name="item.children[0].meta.icon"/>
-            <span class="ml-8 text-14">{{ item.children[0].meta.name }}</span>
-          </el-menu-item>
-        </template>
+      <template v-if="_.type === 'divider'">
+        <div class="mb-10 h-1 w-185 mx-auto bg-#F4F5F9"></div>
       </template>
-
-    </el-menu>
+      <template v-else>
+        <div v-if="_.meta" class="pl-21 mb-10 text-#868D88 text-12">{{ _.meta.title }}</div>
+        <div
+          class="relative mb-10 cursor-pointer"
+          v-for="item in _.children"
+          @click="handleClick(`${_.path}/${item.path}`)"
+        >
+          <div
+            class="transition-400ms w-6 h-full absolute left-0 top-0 bg-green rounded-tr-20 rounded-br-20"
+            :class="[
+            route.path === `${_.path}/${item.path}` ? 'opacity-100' : 'opacity-0'
+          ]"
+          />
+          <div
+            class="transition-400ms flex items-center h-40 w-185 ml-21 rounded-8 px-5 box-border"
+            :class="[
+              route.path === `${_.path}/${item.path}` ? 'bg-#e9fbef' : ''
+            ]"
+          >
+            <img
+              v-show="route.path === `${_.path}/${item.path}`"
+              class="w-20"
+              :src="imageSrc(item.meta.activeIcon)"
+              alt=""
+            >
+            <img
+              v-show="!(route.path === `${_.path}/${item.path}`)"
+              class="w-20"
+              :src="imageSrc(item.meta.inactiveIcon)"
+              alt=""
+            >
+            <div
+              class="transition-400ms text-14 ml-8"
+              :class="[
+                route.path === `${_.path}/${item.path}` ? 'text-green' : 'text-black'
+              ]"
+            >{{ item.meta.name }}</div>
+          </div>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 <script setup>
-import {useRouter} from "vue-router";
-import {MENU_ACTIVE_INDEX, MENU_TYPE} from "@/config/storageKey.js";
-import {useSessionStorage} from "@vueuse/core";
-import {dashBoard} from "@/config/routes.js";
+import {useRoute, useRouter} from "vue-router";
 import {routes} from "@/router/routes.js";
-import {useTags} from "@/components/TagsView/hook/useTags.js";
-import {storeToRefs} from "pinia";
-import {useTagsStore} from "@/store/modules/tags.store.js";
-
-const props = defineProps({
-  collapse: Boolean,
-  active: {
-    type: Number,
-    required: true
-  }
-})
-
-const { addTag } = useTagsStore()
+import {imageSrc} from "@/utils/index.js";
 
 const router = useRouter()
+const route = useRoute()
 
-/**
- * 默认展示的菜单
- */
-const defaultActive = useSessionStorage(MENU_ACTIVE_INDEX, '0')
-
-// 菜单切换
-const openeds = ref(['0']) // 默认展开的索引
-
-const handleClick = (path, index, item) => {
-
-  setMenuActive(index)
-
-  addTag({
-    path,
-    name: item.meta ? item.meta.name : item.children[0].meta.name,
-    index
-  })
-
-  router.push({
-    path,
-  })
+const handleClick = (path) => {
+  router.push(path)
 }
-
-const setMenuActive = (index) => {
-  defaultActive.value = String(index)
-}
-
-defineExpose({
-  setMenuActive
-})
 </script>
 
 <style lang="scss" scoped>
-:deep(.el-menu) {
-  background: var(--main-color);
-  border-right: none;
 
-  .el-sub-menu {
-    overflow: hidden;
-  }
-
-  .el-sub-menu__title {
-    padding-right: 0;
-    color: #b8c7ce;
-    font-size: 14px;
-
-    &:hover {
-      background-color: #181f23;
-      color: #fff;
-    }
-  }
-
-  .el-sub-menu.is-active .el-sub-menu__title {
-    background-color: var(--main-color);
-    color: #fff;
-  }
-
-  .el-menu-item {
-    position: relative;
-    transition: ease .4s;
-    box-sizing: border-box;
-    color: #b8c7ce;
-    font-size: 14px;
-
-    &.is-active,
-    &:hover {
-      box-sizing: border-box;
-      //border-left: 4px solid deepskyblue;
-      background-color: #181f23;
-      color: #fff;
-    }
-
-    &.is-active::after,
-    &:hover::after {
-      opacity: 1;
-    }
-
-    //&.is-active {
-    //  &::after {
-    //    content: "";
-    //    position: absolute;
-    //    bottom: 6px;
-    //    left: 49px;
-    //    width: 50px;
-    //    height: 3px;
-    //    background: var(--main-color-yellow);
-    //  }
-    //}
-  }
-
-  .el-menu--collapse {
-
-  }
-}
-
-.menu-wrapper::-webkit-scrollbar {
-  display: none;
-}
 </style>
