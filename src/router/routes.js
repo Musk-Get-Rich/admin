@@ -77,5 +77,152 @@ export const routes = [
         },
       },
     ]
+  },
+  {
+    path: '/member',
+    component: layout,
+    meta: {
+      title: '会员记录',
+    },
+    children: [
+      {
+        path: 'depositWithdrawalRecords',
+        name: 'depositWithdrawalRecords',
+        component: () => import("@/views/modules/DepositWithdrawalRecords"),
+        meta: {
+          name: '存提款记录',
+          inactiveIcon: 'Sidebar/wallet.png',
+          activeIcon: 'Sidebar/wallet-1.png'
+        },
+      },
+      {
+        path: 'gameRecords',
+        name: 'gameRecords',
+        component: () => import("@/views/modules/GameRecords"),
+        meta: {
+          name: '游戏记录',
+          inactiveIcon: 'Sidebar/game.png',
+          activeIcon: 'Sidebar/game-1.png'
+        },
+      }
+    ]
+  },
+  {
+    path: '/report',
+    component: layout,
+    meta: {
+      title: '财务中心',
+    },
+    children: [
+      {
+        path: 'withdrawalApplication',
+        name: 'withdrawalApplication',
+        component: () => import("@/views/modules/WithdrawalApplication"),
+        meta: {
+          name: '提现申请',
+          inactiveIcon: 'Sidebar/card-send.png',
+          activeIcon: 'Sidebar/card-send-1.png'
+        },
+      },
+      {
+        path: 'playerDeposit',
+        name: 'playerDeposit',
+        component: () => import("@/views/modules/PlayerDeposit"),
+        meta: {
+          name: '玩家代存',
+          inactiveIcon: 'Sidebar/money-recive.png',
+          activeIcon: 'Sidebar/money-recive-1.png'
+        },
+      },
+      {
+        path: 'depositRecharge',
+        name: 'depositRecharge',
+        component: () => import("@/views/modules/DepositRecharge"),
+        meta: {
+          name: '代存充值',
+          inactiveIcon: 'Sidebar/money-change.png',
+          activeIcon: 'Sidebar/money-change-1.png'
+        },
+      },
+      {
+        path: 'bonus',
+        name: 'bonus',
+        component: () => import("@/views/modules/Bonus"),
+        meta: {
+          name: '彩金赠送',
+          inactiveIcon: 'Sidebar/Coins.png',
+          activeIcon: 'Sidebar/Coins-1.png'
+        },
+      },
+      {
+        path: 'accountChangeDetails',
+        name: 'accountChangeDetails',
+        component: () => import("@/views/modules/AccountChangeDetails"),
+        meta: {
+          name: '账变明细',
+          inactiveIcon: 'Sidebar/archive.png',
+          activeIcon: 'Sidebar/archive-1.png'
+        },
+      },
+    ]
+  },
+  {
+    path: '/report',
+    component: layout,
+    meta: {
+      title: '报表中心',
+    },
+    children: [
+      {
+        path: 'winLossReport',
+        name: 'winLossReport',
+        component: () => import("@/views/modules/WinLossReport"),
+        meta: {
+          name: '输赢报表',
+          inactiveIcon: 'Sidebar/chart.png',
+          activeIcon: 'Sidebar/chart-1.png'
+        },
+      },
+      {
+        path: 'commissionReport',
+        name: 'commissionReport',
+        component: () => import("@/views/modules/CommissionReport"),
+        meta: {
+          name: '佣金报表',
+          inactiveIcon: 'Sidebar/status-up.png',
+          activeIcon: 'Sidebar/status-up-1.png'
+        },
+      },
+      {
+        path: 'membershipReport',
+        name: 'membershipReport',
+        component: () => import("@/views/modules/MembershipReport"),
+        meta: {
+          name: '会员报表',
+          inactiveIcon: 'Sidebar/graph.png',
+          activeIcon: 'Sidebar/graph-1.png'
+        },
+      },
+      {
+        path: 'dailyDatReport',
+        name: 'dailyDatReport',
+        component: () => import("@/views/modules/DailyDatReport"),
+        meta: {
+          name: '每日数据报表',
+          inactiveIcon: 'Sidebar/presention-chart.png',
+          activeIcon: 'Sidebar/presention-chart-1.png'
+        },
+      },
+      {
+        path: 'retentionReport',
+        name: 'retentionReport',
+        component: () => import("@/views/modules/RetentionReport"),
+        meta: {
+          name: '留存报表',
+          inactiveIcon: 'Sidebar/chart-2.png',
+          activeIcon: 'Sidebar/chart-3.png'
+        },
+      },
+    ]
   }
 ]
