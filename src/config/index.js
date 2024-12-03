@@ -1,4 +1,4 @@
 /**
  * localStorage名称
  */
-export const LOCAL_STORAGE_NAME = 'six_admin_'
+export const LOCAL_STORAGE_NAME = 'gg88_admin_'
