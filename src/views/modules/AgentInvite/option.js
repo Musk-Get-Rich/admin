@@ -10,11 +10,14 @@ export default {
       prop: 'index',
     },
     {
-      label: '下级代理',
+      label: '推广员(会员)',
       prop: 'agentlinecode',
+      search: true,
+      searchLabel: '',
+      placeholder: '搜索标题',
     },
     {
-      label: '下线人数（需要维护）',
+      label: '裂变人数',
       prop: 'playcount',
     },
     {
@@ -22,12 +25,8 @@ export default {
       prop: 'employeestatus',
     },
     {
-      label: '备注',
+      label: '加入时间',
       prop: 'remark',
-    },
-    {
-      label: '团队业绩查询',
-      prop: 'content',
     },
   ]
 }

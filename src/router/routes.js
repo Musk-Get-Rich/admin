@@ -57,11 +57,21 @@ export const routes = [
     },
     children: [
       {
-        path: 'subordinate',
-        name: 'subordinate',
+        path: 'agent',
+        name: 'agent',
         component: () => import("@/views/modules/AgentManagement"),
         meta: {
           name: '下级管理',
+          inactiveIcon: 'Sidebar/Group1.png',
+          activeIcon: 'Sidebar/Group2.png'
+        },
+      },
+      {
+        path: 'invate',
+        name: 'invate',
+        component: () => import("@/views/modules/AgentInvite/index.vue"),
+        meta: {
+          name: '下线（邀请有奖）',
           inactiveIcon: 'Sidebar/Group1.png',
           activeIcon: 'Sidebar/Group2.png'
         },

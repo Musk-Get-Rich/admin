@@ -4,6 +4,7 @@ import {
   apiDeleteMaterialType
 } from "@/service/api/api.js";
 import { ElMessage, ElMessageBox } from "element-plus";
+import RichTextEditor from "@/components/RichTextEditor/RichTextEditor.vue";
 import { storeToRefs } from "pinia";
 import { useDeviceStore } from "@/store/modules/device.store.js";
 
@@ -22,64 +23,86 @@ export const useAgent = () => {
       labelPosition: 'right',
       column: [
         {
-          label: '代理账号',
+          label: '账号',
           prop: 'account',
-          placeholder: '请输入代理账号',
+          placeholder: '请输入账号',
           span: 24,
-          autocomplete: "new-password"
+          autocomplete: "new-password",
+          rules: [
+            {
+              required: true,
+              message: "请输入账号",
+              trigger: "blur"
+            },
+          ],
         },
         {
-          label: '密码',
+          label: '用户姓名',
+          prop: 'name',
+          placeholder: '请输入用户姓名',
+          span: 24,
+          autocomplete: "new-password",
+          rules: [
+            {
+              required: true,
+              message: "请输入用户姓名",
+              trigger: "blur"
+            },
+          ],
+        },
+        {
+          label: '登录密码',
           prop: 'password',
-          placeholder: '请输入密码',
+          placeholder: '请输入登录密码',
           span: 24,
           autocomplete: "new-password",
           type: 'password',
           rules: [
             {
               required: true,
-              message: "请输入密码",
+              message: "请输入登录密码",
               trigger: "blur"
             },
           ],
         },
         {
-          label: '姓名',
-          prop: 'name',
-          placeholder: '请输入姓名',
+          label: '重复密码',
+          prop: 'confirmPassword',
+          placeholder: '请输入重复密码',
           span: 24,
+          autocomplete: "new-password",
+          type: 'password',
           rules: [
             {
               required: true,
-              message: "请输入姓名",
+              message: "请输入重复密码",
               trigger: "blur"
             },
           ],
         },
         {
-          label: '佣金比例',
-          prop: 'rate',
-          placeholder: '请输入佣金比例',
+          label: '国家选择',
+          prop: 'country',
+          placeholder: '请选择国家',
           span: 24,
-        },
-        {
-          label: 'Telegram',
-          prop: 'telegram',
-          placeholder: '请输入Telegram',
-          span: 24,
-        },
-        {
-          label: '备注',
-          prop: 'remark',
-          placeholder: '请输备注',
-          span: 24,
-          type: 'textarea'
-        },
-        {
-          label: '其他联系方式',
-          prop: 'contract',
-          placeholder: '请输入其他联系方式',
-          span: 24,
+          type: 'select',
+          dicData: [
+            {
+              value: 'zh',
+              label: '中国'
+            },
+            {
+              value: 'en',
+              label: '美国'
+            }
+          ],
+          rules: [
+            {
+              required: true,
+              message: "请选择国家",
+              trigger: "blur"
+            },
+          ],
         },
       ]
     }

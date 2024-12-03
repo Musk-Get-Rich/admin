@@ -1,6 +1,6 @@
 import request from "@/service/request.js";
 import axios from "axios";
-import {BASEURL} from "@/service/config.js";
+import { BASEURL } from "@/service/config.js";
 
 // 获取资料类型
 export const apiGetMaterialTypeList = (params) => {
@@ -25,5 +25,14 @@ export const apiDeleteMaterialType = (id) => {
   return request({
     url: '/admin/admin/articleType/delete/' + id,
     method: "delete",
+  })
+}
+
+
+export const apiGetAgentList = (params) => {
+  return request({
+    url: '/AgentNew/ManageBlew',
+    method: "GET",
+    params
   })
 }
