@@ -7,6 +7,7 @@ import router from "@/router"
 import {loadSvg} from "./icons/index.js"
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import i18n from "@/i18n/index.js";
 
 import "./router/permission.js"
 
