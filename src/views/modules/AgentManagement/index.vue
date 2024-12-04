@@ -14,7 +14,7 @@
           <div class="border border-solid border-gray-300 py-8xl rounded-3xl my-5xl">
             <div class="grid grid-cols-4">
               <div class="flex flex-col justify-center items-center">
-                <div class="font-bold text-8xl color-green-400">AA1234</div>
+                <div class="font-bold text-8xl color-green">AA1234</div>
                 <div class="text-6xl text-gray-500 mt-5">主线账户</div>
               </div>
               <div class="flex flex-col justify-center items-center">
@@ -51,8 +51,6 @@
           </el-button>
         </template>
       </avue-crud>
-
-      <AgentAddOrEdit ref="agentAddOrEditRef" :type="type" :info="info" @refresh="onRefresh" @close="handleClose" />
     </el-card>
   </div>
 </template>
@@ -63,11 +61,9 @@ import { useTableList } from "@/hook/useTableList.js";
 import { useTableSearch } from "@/hook/useTableSearch.js";
 import { apiGetAgentList } from "@/service/api/api.js";
 import { useAgent } from "@/views/modules/AgentManagement/hook/useAgent.js";
-import AgentAddOrEdit from "@/views/modules/AgentManagement/components/AgentAddOrEdit.vue";
 import { computed } from "vue";
 
 const type = ref('')
-const agentAddOrEditRef = ref(null)
 
 const articleTypeId = ref('')
 
@@ -81,57 +77,36 @@ const createAgentBtnText = computed(() => {
   return `创建${text}级代理`
 })
 
-// 新增
-const handleAdd = () => {
-  type.value = 'add'
-
-  agentAddOrEditRef.value.show()
-  // useAgent().changeMaterial({
-  //   type: 'add',
-  //   materialTypeList: materialTypeList.value,
-  //   done() {
-  //     getTableData()
-  //   }
-  // })
-}
-
 const info = ref({})
 
-// 编辑
-const handleEdit = (data) => {
-  type.value = 'edit'
-
-  info.value = data
-
-  agentAddOrEditRef.value.show()
-
-  // useAgent().changeMaterial({
-  //   type: 'edit',
-  //   materialTypeList: materialTypeList.value,
-  //   data,
-  //   done() {
-  //     getTableData()
-  //   }
-  // })
-}
-
-// 删除
-const handleDelete = (id) => {
-  useAgent().deleteMaterial({
-    id,
+// 新增
+const handleEdit = () => {
+  useAgent().changeDatail({
+    type: 'edit',
     done() {
       getTableData()
     }
   })
 }
 
-const onRefresh = () => {
-  getTableData()
+// 新增
+const handleAdd = () => {
+  useAgent().changeDatail({
+    type: 'add',
+    done() {
+      getTableData()
+    }
+  })
 }
 
-const handleClose = () => {
-  type.value = ''
-  info.value = {}
+// 删除
+const handleDelete = (id) => {
+  useAgent().onDelete({
+    id,
+    done() {
+      getTableData()
+    }
+  })
 }
 
 const tableSearch = useTableSearch()
@@ -150,7 +125,6 @@ const {
 
 // 搜索
 const onSearch = (form, done) => {
-  if (articleTypeId.value) form['articleTypeId'] = articleTypeId.value
   tableSearch.search(form, getTableData, done)
 }
 

@@ -4,17 +4,14 @@
       <avue-crud ref="tableRef" :table-loading="tableLoading" :data="tableData" :option="option" v-model:page="pageObj"
         @refresh-change="getTableData" @search-change="onSearch" @search-reset="onSearchReset" @size-change="sizeChange"
         @current-change="currentChange">
-        <template #header>
+        <template #search>
           <el-row justify="space-between">
             <div>下级管理</div>
-            <el-button type="primary" icon="el-icon-plus" @click="handleAdd">
-              {{ createAgentBtnText }}
-            </el-button>
           </el-row>
           <div class="border border-solid border-gray-300 py-8xl rounded-3xl my-5xl">
             <div class="grid grid-cols-4">
               <div class="flex flex-col justify-center items-center">
-                <div class="font-bold text-8xl color-green-400">AA1234</div>
+                <div class="font-bold text-8xl color-green">AA1234</div>
                 <div class="text-6xl text-gray-500 mt-5">主线账户</div>
               </div>
               <div class="flex flex-col justify-center items-center">
@@ -23,14 +20,30 @@
               </div>
               <div class="flex flex-col justify-center items-center">
                 <div class="font-bold text-8xl">66</div>
-                <div class="text-6xl text-gray-500 mt-5">下线代理</div>
+                <div class="text-6xl text-gray-500 mt-5">推广人数</div>
               </div>
               <div class="flex flex-col justify-center items-center">
-                <div class="font-bold text-8xl">1999</div>
-                <div class="text-6xl text-gray-500 mt-5">下线会员</div>
+                <div class="font-bold text-8xl color-green">19/9</div>
+                <div class="text-6xl text-gray-500 mt-5">裂变人数</div>
               </div>
             </div>
           </div>
+        </template>
+        <template #menu-left>
+          <el-button type="primary" @click="handleAdd">
+            已开通推广员
+          </el-button>
+          <el-button @click="handleAdd">
+            备选推广员
+          </el-button>
+          <el-button @click="handleAdd">
+            全部
+          </el-button>
+        </template>
+        <template #menu-right>
+          <el-button type="primary" icon="el-icon-plus" @click="handleAdd">
+            创建内部推广号
+          </el-button>
         </template>
         <template #title="{ row }">
           <div class="overflow-auto h-150" v-html="row.title">
@@ -51,8 +64,6 @@
           </el-button>
         </template>
       </avue-crud>
-
-      <AgentAddOrEdit ref="agentAddOrEditRef" :type="type" :info="info" @refresh="onRefresh" @close="handleClose" />
     </el-card>
   </div>
 </template>
@@ -62,12 +73,10 @@ import option from "./option.js"
 import { useTableList } from "@/hook/useTableList.js";
 import { useTableSearch } from "@/hook/useTableSearch.js";
 import { apiGetAgentList } from "@/service/api/api.js";
-import { useAgent } from "@/views/modules/AgentManagement/hook/useAgent.js";
-import AgentAddOrEdit from "@/views/modules/AgentManagement/components/AgentAddOrEdit.vue";
+import { useAgent } from "@/views/modules/AgentInvite/hook/useAgent.js";
 import { computed } from "vue";
 
 const type = ref('')
-const agentAddOrEditRef = ref(null)
 
 const articleTypeId = ref('')
 
@@ -81,57 +90,36 @@ const createAgentBtnText = computed(() => {
   return `创建${text}级代理`
 })
 
-// 新增
-const handleAdd = () => {
-  type.value = 'add'
-
-  agentAddOrEditRef.value.show()
-  // useAgent().changeMaterial({
-  //   type: 'add',
-  //   materialTypeList: materialTypeList.value,
-  //   done() {
-  //     getTableData()
-  //   }
-  // })
-}
-
 const info = ref({})
 
-// 编辑
-const handleEdit = (data) => {
-  type.value = 'edit'
-
-  info.value = data
-
-  agentAddOrEditRef.value.show()
-
-  // useAgent().changeMaterial({
-  //   type: 'edit',
-  //   materialTypeList: materialTypeList.value,
-  //   data,
-  //   done() {
-  //     getTableData()
-  //   }
-  // })
-}
-
-// 删除
-const handleDelete = (id) => {
-  useAgent().deleteMaterial({
-    id,
+// 新增
+const handleEdit = () => {
+  useAgent().changeDatail({
+    type: 'edit',
     done() {
       getTableData()
     }
   })
 }
 
-const onRefresh = () => {
-  getTableData()
+// 新增
+const handleAdd = () => {
+  useAgent().changeDatail({
+    type: 'add',
+    done() {
+      getTableData()
+    }
+  })
 }
 
-const handleClose = () => {
-  type.value = ''
-  info.value = {}
+// 删除
+const handleDelete = (id) => {
+  useAgent().onDelete({
+    id,
+    done() {
+      getTableData()
+    }
+  })
 }
 
 const tableSearch = useTableSearch()

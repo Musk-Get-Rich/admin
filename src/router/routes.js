@@ -67,9 +67,19 @@ export const routes = [
         },
       },
       {
+        path: 'invate',
+        name: 'invate',
+        component: () => import("@/views/modules/AgentInvite/index.vue"),
+        meta: {
+          name: '下线（邀请有奖）',
+          inactiveIcon: 'Sidebar/Group1.png',
+          activeIcon: 'Sidebar/Group2.png'
+        },
+      },
+      {
         path: 'membershipManagement',
         name: 'membershipManagement',
-        component: () => import("@/views/modules/dashBoard/index.vue"),
+        component: () => import("@/views/modules/MemberManagement/index.vue"),
         meta: {
           name: '会员管理',
           inactiveIcon: 'Sidebar/2User.png',
