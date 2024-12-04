@@ -17,21 +17,20 @@
 </template>
 
 <script setup>
+import {_agentCommissionReport} from "@/service/api/agent.js";
+import { onMounted, ref } from 'vue';
 const form = ref({});
 
 const option = ref({
   menuSpan: 6,
-  labelWidth: 110,
+  labelWidth: 60,
   column: [
     {
-      label: "时间日期范围",
-      type: 'datetimerange',
-      prop: 'datetimerange',
-      format: 'YYYY-MM-DD HH:mm:ss',
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      startPlaceholder: '时间日期开始范围自定义',
-      endPlaceholder: '时间日期结束范围自定义',
-    }
+      label: "日期",
+      prop: "datetime",
+      type: "datetime",
+      span: 6
+    },
   ]
 });
 
@@ -51,6 +50,18 @@ const list = ref([
   { "title": "账户调整", "value": 0 },
 ])
 
+const obj = ref({
+  
+})
+
+const getAgentCommissionReport = async () => {
+  const res = await _agentCommissionReport(form.value)
+  obj.value = res.data
+}
+
+onMounted(() => {
+  getAgentCommissionReport()
+})
 </script>
 
 <style lang="scss" scoped>

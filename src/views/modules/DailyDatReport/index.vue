@@ -2,13 +2,23 @@
   <el-card>
     <avue-form v-model="form"
              :option="option"></avue-form>
-    <avue-crud :option="tableOption"
-             v-model="form"
-             :data="data"></avue-crud>
+    <avue-crud 
+      :option="tableOption"
+      v-model="form"
+      :data="data"
+      @refresh-change="getTableData"
+      @search-change="onSearch"
+      @search-reset="onSearchReset"
+      @size-change="sizeChange"
+      @current-change="currentChange"
+    ></avue-crud>
   </el-card>
 </template>
 
 <script setup>
+import {useTableList} from "@/hook/useTableList.js";
+import {_getAgentDayReport} from "@/service/api/agent.js";
+
 const form = ref({});
 
 const option = ref({
@@ -38,6 +48,7 @@ const data = ref([{
   firstBetNum: '1',
   firstAmount: '1',
 }])
+
 const tableOption = ref({
   labelWidth: 120,
   addBtn: false,
@@ -72,6 +83,18 @@ const tableOption = ref({
       label: '首投金额',
     }
   }
+})
+
+const {
+  tableRef,
+  tableLoading,
+  pageObj,
+  tableData,
+  getTableData,
+  sizeChange,
+  currentChange
+} = useTableList(_getAgentDayReport, {
+
 })
 </script>
 
