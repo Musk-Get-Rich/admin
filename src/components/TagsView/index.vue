@@ -27,7 +27,7 @@ import {useTagsStore} from "@/store/modules/tags.store.js";
 import {storeToRefs} from "pinia";
 import {useRoute, useRouter} from "vue-router";
 import {MENU_ACTIVE_INDEX, MENU_TYPE} from "@/config/storageKey.js";
-import {useSessionStorage} from "@vueuse/core";
+import {useStorage} from "@vueuse/core";
 
 const router = useRouter()
 const route = useRoute()
@@ -35,7 +35,7 @@ const route = useRoute()
 /**
  * slider菜单索引
  */
-const defaultActive = useSessionStorage(MENU_ACTIVE_INDEX, '0')
+const defaultActive = useStorage(MENU_ACTIVE_INDEX, '0')
 
 const {tagList} = storeToRefs(useTagsStore())
 const {deleteTag} = useTagsStore()

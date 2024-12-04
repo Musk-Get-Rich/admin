@@ -29,7 +29,7 @@ import boxLayout from '@/components/boxLayout/index.vue';
 import {ref, onMounted, watch} from 'vue';
 import * as echarts from 'echarts';
 import {useEchartsResize} from "@/hook/useEchartsResize.js";
-import {useSessionStorage} from "@vueuse/core";
+import {useStorage} from "@vueuse/core";
 import {MENU_COLLAPSE} from "@/config/storageKey.js";
 import {debounce} from "@/utils/index.js";
 
@@ -163,7 +163,7 @@ onMounted(() => {
 /**
  * 折叠菜单
  */
-const collapse = useSessionStorage(MENU_COLLAPSE, false)
+const collapse = useStorage(MENU_COLLAPSE, false)
 
 // 重新设置宽度
 watch(() => collapse.value, (val) => {

@@ -11,6 +11,7 @@ export default defineConfig({
       lightBlue: '#F3F8FF',
       yelllow: 'rgba(247, 212, 0, 1)',
       green: '#25d55b',
+      grey: '#868D88'
     }
   },
   presets: [presetWind(),

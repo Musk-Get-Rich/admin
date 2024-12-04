@@ -1,6 +1,6 @@
 class SessionCache {
   getCache(key) {
-    const val = window.sessionStorage.getItem(key)
+    const val = window.localStorage.getItem(key)
 
     if (val && val !== 'undefined') {
       return JSON.parse(val)
@@ -8,15 +8,15 @@ class SessionCache {
   }
 
   setCache(key, val) {
-    window.sessionStorage.setItem(key, JSON.stringify(val))
+    window.localStorage.setItem(key, JSON.stringify(val))
   }
 
   removeCache(key) {
-    window.sessionStorage.removeItem(key)
+    window.localStorage.removeItem(key)
   }
 
   clearCache() {
-    window.sessionStorage.clear()
+    window.localStorage.clear()
   }
 }
 

@@ -21,7 +21,7 @@
 import {useUserStore} from "@/store/modules/user.store.js";
 import Breadcrumb from "@/components/Breadcrumb/index.vue";
 import FullScreen from "@/components/FullScreen"
-import {useSessionStorage} from "@vueuse/core";
+import {useStorage} from "@vueuse/core";
 import {USERNAME} from "@/config/storageKey.js";
 import TagsView from "@/components/TagsView/index.vue";
 import {useTagsStore} from "@/store/modules/tags.store.js";
@@ -35,7 +35,7 @@ const props = defineProps({
 
 const { clearTagList } = useTagsStore()
 
-const username = useSessionStorage(USERNAME, '')
+const username = useStorage(USERNAME, '')
 
 const emit = defineEmits(['onCollapse'])
 

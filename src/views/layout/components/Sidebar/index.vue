@@ -1,5 +1,5 @@
 <template>
-  <div class="w-218 bg-white h-full overflow-auto py-30 box-border">
+  <div class="sidebar-wrapper w-218 bg-white h-full overflow-auto py-30 box-border">
     <div
       v-for="_ in routes"
     >
@@ -63,5 +63,7 @@ const handleClick = (path) => {
 </script>
 
 <style lang="scss" scoped>
-
+.sidebar-wrapper::-webkit-scrollbar {
+  display: none;
+}
 </style>

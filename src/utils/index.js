@@ -113,12 +113,12 @@ export const transformCategories = (data) => {
  * 获取缓存所有值
  * @returns {{}}
  */
-export const getAllSessionStorage = () => {
-  const keys = Object.keys(sessionStorage);
+export const getAllLocalStorage = () => {
+  const keys = Object.keys(localStorage);
   const allStorage = {};
 
   keys.forEach((key) => {
-    allStorage[key] = sessionStorage.getItem(key);
+    allStorage[key] = localStorage.getItem(key);
   });
 
   return allStorage;

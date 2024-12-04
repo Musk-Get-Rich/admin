@@ -1,4 +1,4 @@
-import {useSessionStorage} from "@vueuse/core";
+import {useStorage} from "@vueuse/core";
 import {MENU_COLLAPSE, MENU_SIDEBAR_INDEX, NAV_TITLE} from "@/config/storageKey.js";
 import {debounce} from "@/utils/index.js";
 
@@ -8,7 +8,7 @@ export const useEchartsResize = () => {
     /**
      * 折叠菜单
      */
-    const collapse = useSessionStorage(MENU_COLLAPSE, false)
+    const collapse = useStorage(MENU_COLLAPSE, false)
 
     // 重新设置宽度
     watch(() => collapse.value, (val) => {

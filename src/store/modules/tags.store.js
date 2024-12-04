@@ -1,10 +1,10 @@
 import {defineStore} from 'pinia'
 import {ref} from "vue";
-import {useSessionStorage} from "@vueuse/core";
+import {useStorage} from "@vueuse/core";
 import {ROUTER_TAGS_LIST} from "@/config/storageKey.js";
 
 export const useTagsStore = defineStore('tagsStore', () => {
-  const tagList = useSessionStorage(ROUTER_TAGS_LIST, [])
+  const tagList = useStorage(ROUTER_TAGS_LIST, [])
 
   const init = () => {
     const index = tagList.value.findIndex(val => val.path === '/dashboard')

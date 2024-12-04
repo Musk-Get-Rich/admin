@@ -4,7 +4,7 @@ import {apiLogin} from "@/service/api/user.js";
 import {getToken, removeToken, setToken} from "@/utils/cookie/index.js";
 import {ElMessage, ElMessageBox} from "element-plus";
 import router from "@/router"
-import {getAllSessionStorage} from "@/utils/index.js";
+import {getAllLocalStorage} from "@/utils/index.js";
 import {LOCAL_STORAGE_NAME} from "@/config/index.js";
 import {eventEmitter} from "@/utils/eventEmitter/index.js";
 
@@ -51,7 +51,7 @@ export const useUserStore = defineStore('userStore', () => {
 
     removeToken()
 
-    const keys = Object.keys(getAllSessionStorage())
+    const keys = Object.keys(getAllLocalStorage())
 
     keys.forEach(key => {
       if (key.indexOf(LOCAL_STORAGE_NAME) !== -1) {
