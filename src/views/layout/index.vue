@@ -1,9 +1,9 @@
 <template>
   <div class="common-layout bg-#f4f5f9">
     <div class="main-container h-full flex">
-      <Sidebar/>
-      <div class="flex-1 flex flex-col">
-        <div class="flex-1 p-30 box-border main-wrapper overflow-auto" ref="mainRef">
+      <Sidebar class="shrink-0"/>
+      <div class="flex-1">
+        <div class="py-20 pl-20 box-border main-wrapper overflow-auto" ref="mainRef">
           <router-view v-slot="{ Component }">
             <transition name="slide-fade" mode="out-in">
               <component :is="Component"/>
@@ -68,6 +68,12 @@ const mainRef = ref(null)
 
 .main-wrapper::-webkit-scrollbar {
   display: none;
+}
+
+@media screen and (max-width: 1410px) {
+  .main-wrapper {
+    @apply pr-20;
+  }
 }
 
 .title-item {

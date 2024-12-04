@@ -4,6 +4,7 @@
   --main-color-yellow: #f7d400;
   --main-color-black: #0c0c0c;
   --el-color-primary: #25d55b;
+  --el-table-tr-bg-color: #e7f4eb;
 }
 
 .transition-400ms {
@@ -18,4 +19,20 @@
 .main-container {
   max-width: 1410px;
   margin: 0 auto;
+}
+
+.avue-group--header {
+  .avue-form__group--flex {
+    .avue-form__row:not(:first-child) {
+      margin-left: 18px;
+    }
+
+    .el-form-item__label {
+      display: none;
+    }
+
+    .el-input__wrapper {
+      background: #f4f9f5;
+    }
+  }
 }

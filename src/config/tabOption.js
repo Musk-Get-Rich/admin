@@ -1,6 +1,6 @@
 export const globalOption = {
-  // searchBtnText: 'Search',
-  emptyBtnText: '清空',
+  searchBtnText: '查询',
+  emptyBtnText: '重置',
   maxHeight: window.innerHeight - 380,
   searchMenuPosition: "left",
   gridBtn: false,

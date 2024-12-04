@@ -12,6 +12,13 @@
       @size-change="sizeChange"
       @current-change="currentChange"
     >
+      <template #search>
+        <div class="flex mb-10">
+          <el-button>button</el-button>
+          <el-button>button</el-button>
+          <el-button>button</el-button>
+        </div>
+      </template>
       <template #menu-left>
         <el-button
           type="primary"
