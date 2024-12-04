@@ -29,4 +29,8 @@ export const ROUTER_TAGS_LIST = LOCAL_STORAGE_NAME + 'ROUTER_TAGS_LIST'
 
 export const ACCOUNT = LOCAL_STORAGE_NAME + 'ACCOUNT'
 
+export const LANGUAGE = 'admin-LANGUAGE'
+
+
+
 

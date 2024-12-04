@@ -74,7 +74,8 @@ const dataForm = reactive({
   password: '',
 })
 
-const rememberAccount = localStorage.getItem(ACCOUNT) || ''
+const key = 'rememberAccount'
+const rememberAccount = localStorage.getItem(key) || ''
 if(rememberAccount){
   const objectInfo = JSON.parse(rememberAccount)
   dataForm.userName =  objectInfo.userName
@@ -125,9 +126,10 @@ const login = debounce(async () => {
     })
 
     if(remember.value){
-      localStorage.setItem(ACCOUNT, JSON.stringify(dataForm))
+      console.log(remember.value);
+      localStorage.setItem(key, JSON.stringify(dataForm))
     } else {
-      localStorage.removeItem(ACCOUNT)
+      localStorage.removeItem(key)
     }
 
     await router.push('/')

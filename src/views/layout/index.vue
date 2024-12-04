@@ -36,7 +36,7 @@ const mainRef = ref(null)
 }
 
 :deep(.el-card__body) {
-  height: 100%;
+  //height: 100%;
 }
 
 .layout-aside {

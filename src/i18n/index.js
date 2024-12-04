@@ -3,8 +3,9 @@ import enLocale from "./modules/en";
 import zhcnLocale from "./modules/zh_CN.js";
 import zhTWLocale from "./modules/zh_TW.js"
 import {LOCAL_STORAGE_NAME} from "@/config/index.js";
+import {LANGUAGE} from "@/config/storageKey.js";
 
-const lang = localStorage.getItem(LOCAL_STORAGE_NAME + "language") || "CN";
+const lang = localStorage.getItem(LANGUAGE) || "zh-CN";
 export const langOptions = [
 	{
 		value: "en",
