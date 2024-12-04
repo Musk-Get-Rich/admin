@@ -1,9 +1,9 @@
 <template>
-  <div class="w-screen py-58 box-border overflow-auto wrapper">
+  <div class="w-screen py-58 max-md:py-25 box-border overflow-auto wrapper">
     <div class="main-container px-30">
-      <div class="bg-white p-20 rounded-30 shadow flex items-center">
-        <img class="w-540" src="@/assets/images/login/image.png" alt="">
-        <div class="flex-1 ml-60 pr-40">
+      <div class="max-md:flex-col bg-white p-20 rounded-30 shadow flex items-center">
+        <img class="max-lg:w-50% lg:w-520 max-md:w-full" src="@/assets/images/login/image.png" alt="">
+        <div class="flex-1 md:ml-5% md:pr-3% max-md:w-full max-md:mt-20">
           <div class="text-28 font-600 text-black">登录</div>
           <div class="mt-6 text-12 text-#868D88">您好，欢迎您！</div>
           <div class="mt-20">
