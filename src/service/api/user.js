@@ -1,4 +1,5 @@
 import request from "@/service/request.js";
+import {requestFunc} from "../request.js";
 
 // 登录
 export const apiLogin = (params) => {
@@ -7,4 +8,8 @@ export const apiLogin = (params) => {
     method: "GET",
     params
   })
+}
+
+export const _getUserInfo = () => {
+  return requestFunc('/AgentNew/takeEmployee')
 }

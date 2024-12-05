@@ -42,7 +42,7 @@ const time = [
   { title: '上月', value: 'last month' },
 ];
 
-const timeSelect = ref({});
+const timeSelect = ref(time[0]);
 const timeVal = ref([]);
 
 const selectTime = (item) => {
@@ -58,6 +58,7 @@ const selectTime = (item) => {
     timeVal.value = [dayjs().subtract(1, 'month').startOf('month').format('YYYY-MM-DD HH:mm:ss'), dayjs().subtract(1, 'month').endOf('month').format('YYYY-MM-DD HH:mm:ss')];
   }
 };
+
 
 const onClear = () => {
   timeVal.value = []

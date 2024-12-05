@@ -21,6 +21,10 @@ export const encryptApiParams = (params, noCrypto = false) => {
 		employeecode: userStore.userInfo.employeecode,
 		parentemployeecode: userStore.userInfo.parentemployeecode, // 用户编码
 	});
+
+	console.log(userStore.userInfo.employeecode);
+	console.log(userStore.userInfo.parentemployeecode);
+
 	// 步骤2: AES加密
 	const aesSecret = CryptoJS.enc.Utf8.parse(AES_KEY);
 	const encrypted = CryptoJS.AES.encrypt(stringParams, aesSecret, {

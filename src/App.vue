@@ -12,13 +12,17 @@ import { useUserStore } from "@/store/modules/user.store.js";
 import DialogForm from "@/components/DialogForm/DialogForm.vue";
 import {useDialogFormStore} from "@/components/DialogForm/store/dialogForm.store.js";
 import { storeToRefs } from "pinia"
-import router from "@/router/index.js";
 import {useDeviceStore} from "@/store/modules/device.store.js";
 import Header from "@/components/Header/index.vue"
+import {_getUserInfo} from "@/service/api/user.js";
 
 const { isShow, dialogFormParams } = storeToRefs(useDialogFormStore())
 
-const { token, clearUserInfo } = useUserStore()
+const userStore = useUserStore()
+
+if (userStore.token) {
+  userStore.changeUserInfo()
+}
 
 const { changeDevice } = useDeviceStore()
 

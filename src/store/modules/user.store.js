@@ -8,6 +8,7 @@ import {getAllLocalStorage} from "@/utils/index.js";
 import {LOCAL_STORAGE_NAME} from "@/config/index.js";
 import {eventEmitter} from "@/utils/eventEmitter/index.js";
 import {useStorage} from "@vueuse/core";
+import {_getUserInfo} from "@/service/api/user.js";
 
 const {getCache, setCache, removeCache} = LocalCache
 
@@ -44,6 +45,15 @@ export const useUserStore = defineStore('userStore', () => {
       } catch (err) {
         reject(err)
         ElMessage.error('请稍后重试')
+      }
+    })
+  }
+
+  const changeUserInfo = () => {
+    _getUserInfo().then(res => {
+      userInfo.value = {
+        ...userInfo.value,
+        ...res
       }
     })
   }
@@ -105,6 +115,7 @@ export const useUserStore = defineStore('userStore', () => {
     token,
     login,
     logout,
+    changeUserInfo,
     clearUserInfo,
   }
 }, {
