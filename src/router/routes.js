@@ -79,6 +79,9 @@ export const routes = [
     ]
   },
   {
+    type: 'divider'
+  },
+  {
     path: '/member',
     component: layout,
     meta: {
@@ -106,6 +109,9 @@ export const routes = [
         },
       }
     ]
+  },
+  {
+    type: 'divider'
   },
   {
     path: '/report',
@@ -165,6 +171,9 @@ export const routes = [
         },
       },
     ]
+  },
+  {
+    type: 'divider'
   },
   {
     path: '/report',
