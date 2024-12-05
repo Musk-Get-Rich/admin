@@ -1,4 +1,4 @@
-import request from "@/service/request.js";
+import request, { requestFunc } from "@/service/request.js";
 import axios from "axios";
 import { BASEURL } from "@/service/config.js";
 
@@ -28,11 +28,27 @@ export const apiDeleteMaterialType = (id) => {
   })
 }
 
-
+// 代理管理列表
 export const apiGetAgentList = (params) => {
-  return request({
-    url: '/AgentNew/ManageBlew',
-    method: "GET",
-    params
-  })
+  return requestFunc('/AgentNew/ManageBlew', params)
+}
+
+// 当前登录账号代理信息
+export const apiGetAgentInfo = (params) => {
+  return requestFunc('/AgentNew/AgentInfo', params)
+}
+
+// 检测代理名称是否存在
+export const apiCheckAgentAccount = (params) => {
+  return requestFunc('/User/checkAgentAccount', params)
+}
+
+// 新增代理
+export const apiRegisterAgent = (params) => {
+  return requestFunc('/AgentNew/registerAgent', params)
+}
+
+// 下线（邀请有奖）
+export const apiGetAgentInviteList = () => {
+  return requestFunc('/AgentNew/GetInviteReport', params)
 }

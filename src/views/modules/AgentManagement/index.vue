@@ -14,19 +14,19 @@
           <div class="border border-solid border-gray-300 py-8xl rounded-3xl my-5xl">
             <div class="grid grid-cols-4">
               <div class="flex flex-col justify-center items-center">
-                <div class="font-bold text-8xl color-green">AA1234</div>
+                <div class="font-bold text-8xl color-green">{{ agentInfo.agentlinecode }}</div>
                 <div class="text-6xl text-gray-500 mt-5">主线账户</div>
               </div>
               <div class="flex flex-col justify-center items-center">
-                <div class="font-bold text-8xl">内部线（丧彪）</div>
+                <div class="font-bold text-8xl">{{ agentInfo.loginaccount }}</div>
                 <div class="text-6xl text-gray-500 mt-5">团队名称</div>
               </div>
               <div class="flex flex-col justify-center items-center">
-                <div class="font-bold text-8xl">66</div>
+                <div class="font-bold text-8xl">{{ agentInfo.countAgent || 0 }}</div>
                 <div class="text-6xl text-gray-500 mt-5">下线代理</div>
               </div>
               <div class="flex flex-col justify-center items-center">
-                <div class="font-bold text-8xl">1999</div>
+                <div class="font-bold text-8xl">{{ agentInfo.countMember || 0 }}</div>
                 <div class="text-6xl text-gray-500 mt-5">下线会员</div>
               </div>
             </div>
@@ -59,17 +59,14 @@
 import option from "./option.js"
 import { useTableList } from "@/hook/useTableList.js";
 import { useTableSearch } from "@/hook/useTableSearch.js";
-import { apiGetAgentList } from "@/service/api/api.js";
+import { apiGetAgentList, apiGetAgentInfo } from "@/service/api/api.js";
 import { useAgent } from "@/views/modules/AgentManagement/hook/useAgent.js";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
-const type = ref('')
-
-const articleTypeId = ref('')
-
+const agentInfo = ref({})
 
 // 当前账号代理级别
-const agentLevel = computed(() => 2)
+const agentLevel = computed(() => Number(agentInfo.value?.agentlevel || 3))
 
 const createAgentBtnText = computed(() => {
   const chars = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
@@ -79,10 +76,15 @@ const createAgentBtnText = computed(() => {
 
 const info = ref({})
 
-// 新增
-const handleEdit = () => {
+// 编辑
+const handleEdit = (data) => {
   useAgent().changeDatail({
     type: 'edit',
+    params: {
+      agentLevel: agentLevel.value,
+      title: createAgentBtnText
+    },
+    data,
     done() {
       getTableData()
     }
@@ -93,6 +95,10 @@ const handleEdit = () => {
 const handleAdd = () => {
   useAgent().changeDatail({
     type: 'add',
+    params: {
+      agentLevel: agentLevel.value,
+      title: createAgentBtnText
+    },
     done() {
       getTableData()
     }
@@ -111,6 +117,16 @@ const handleDelete = (id) => {
 
 const tableSearch = useTableSearch()
 
+const getAgentInfo = async () =>{
+  const res = await apiGetAgentInfo()
+  agentInfo.value = res
+}
+
+const fetchList = (...rest) => {
+  getAgentInfo()
+  return apiGetAgentList(...rest)
+}
+
 const {
   tableRef,
   tableLoading,
@@ -119,7 +135,7 @@ const {
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(apiGetAgentList, {
+} = useTableList(fetchList, {
 
 })
 
@@ -129,7 +145,6 @@ const onSearch = (form, done) => {
 }
 
 const onSearchReset = () => {
-  articleTypeId.value = ''
   tableSearch.reset(getTableData)
 }
 </script>

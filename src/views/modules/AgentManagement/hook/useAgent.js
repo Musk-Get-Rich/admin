@@ -1,11 +1,13 @@
 import { useDialogFormStore } from "@/components/DialogForm/store/dialogForm.store.js";
 import {
-  apiChangeMaterialType,
-  apiDeleteMaterialType
+  apiRegisterAgent,
+  apiDeleteMaterialType,
+  apiCheckAgentAccount
 } from "@/service/api/api.js";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { storeToRefs } from "pinia";
 import { useDeviceStore } from "@/store/modules/device.store.js";
+import { computed } from "vue";
 
 export const useAgent = () => {
   const changeDatail = (config) => {
@@ -17,20 +19,43 @@ export const useAgent = () => {
 
     const title = type === "add" ? '新增' : '编辑'
 
+    const prependName = computed(() => {
+      return {
+        2: 'AB',
+        3: 'BB'
+      }[+config.params.agentLevel + 1]
+    })
+
     const option = {
       labelWidth: '110',
       labelPosition: 'right',
       column: [
         {
           label: '代理账号',
-          prop: 'account',
+          prop: 'loginaccount',
           placeholder: '请输入代理账号',
           span: 24,
-          autocomplete: "new-password"
+          autocomplete: "new-password",
+          prepend: prependName.value || 'BB',
+          disabled: !!config.data?.agentlinecode,
+          rules: [
+            {
+              trigger: 'blur',
+              asyncValidator: async (rule, value) => {
+                if (value) {
+                  await apiCheckAgentAccount({ loginaccount: value }).catch(() => {
+                    return Promise.reject('代理账号已存在')
+                  })
+                  return true
+                }
+                return Promise.reject('请输入代理账号')
+              },
+            }
+          ]
         },
         {
           label: '密码',
-          prop: 'password',
+          prop: 'loginpassword',
           placeholder: '请输入密码',
           span: 24,
           autocomplete: "new-password",
@@ -45,7 +70,7 @@ export const useAgent = () => {
         },
         {
           label: '姓名',
-          prop: 'name',
+          prop: 'displayalias',
           placeholder: '请输入姓名',
           span: 24,
           rules: [
@@ -91,12 +116,12 @@ export const useAgent = () => {
     useDialogFormStore().showDialog({
       dialog: {
         title: `${title}下级`,
-        width: isMobile.value ? '90%' : '30%'
+        width: isMobile.value ? '90%' : '40%'
       },
       data,
       option,
       submit(formData, done, cancel) {
-        apiChangeMaterialType({
+        apiRegisterAgent({
           ...formData,
         }, method).then(res => {
           ElMessage.success(`${title}成功`)
