@@ -1,92 +1,91 @@
 import axios from "axios";
-import {BASEURL, TIMEOUT} from "@/service/config.js";
+import router from "@/router/index.js";
+import { useUserStore } from "@/store/modules/user.store.js";
+import { encryptApiParams } from "./secret.js";
+import i18n from "@/i18n/index.js";
+import {LANGUAGE} from "@/config/storageKey.js";
 import { ElMessage } from 'element-plus'
-import {getToken} from "@/utils/cookie/index.js";
-import { eventEmitter } from "@/utils/eventEmitter/index.js";
-import { errorMessage } from "@/service/errorMessage.js";
 
-const instance = axios.create({
-  baseURL: BASEURL,
-  timeout: TIMEOUT,
+const t = i18n.global.t
+
+const baseURL = import.meta.env.VITE_BASE_API;
+
+const service = axios.create({
+  baseURL,
+  withCredentials: false,
+  timeout: 20 * 1000,
 });
 
 /**
- * 请求拦截
+ * 请求拦截器
  */
-instance.interceptors.request.use(config => {
-  config.headers['Authorization'] = getToken() // 请求头带上token
-  return config
-}, error => {
-  return Promise.reject(error)
-})
+service.interceptors.request.use(
+  (config) => {
+    const token = useUserStore().token;
+    if (token) {
+      config.headers["token"] = token;
+    }
+    config.headers["lang"] = localStorage.getItem(LANGUAGE);
+    config.headers["Content-Type"] = "application/json";
+    return config;
+  },
+  (error) => {
+    // 错误抛到业务代码
+    return Promise.reject(error);
+  }
+);
 
 /**
- * 响应拦截
+ * 响应拦截器
  */
-instance.interceptors.response.use(response => {
-  const res = response.data
+service.interceptors.response.use(
+  (response) => {
 
-  console.log(res);
+    if (response.data.code === "1") {
+      return response?.data.info;
+    } else if (response.data.code === "401") {
+      const { clearUserInfo } = useUserStore();
+      clearUserInfo();
+    } else {
+      console.log(123);
+      ElMessage({
+        message: response.msg || '请稍后重试',
+        type: 'error',
+        duration: 2 * 1000
+      })
+      return Promise.reject(response.data);
+    }
+  },
+  (error) => {
+    const { clearUserInfo } = useUserStore();
+    if (axios.isCancel(error)) {
+      console.log("repeated request: " + error.message);
+    } else {
+      let msg;
+      const status = error.response?.status;
+      switch (status) {
+        case 401:
+          msg = "登录已过期，请重新登录";
+          clearUserInfo();
+          router.push("/login");
+          break;
+        default:
+          msg = error.message || "服务错误";
+      }
 
-  // 200 请求成功
-  if (res.code == 1) {
-    console.log(res);
-    return res.info
-  } else {
-    ElMessage({
-      message: res.msg || '请稍后重试',
-      type: 'error',
-      duration: 2 * 1000
-    })
-    return Promise.reject(res)
+      error.data = {};
+      error.data.msg = error.message;
+    }
+    return Promise.reject(error.data);
   }
-}, error => {
-  switch (error.response.status) {
-    case 400:
-      ElMessage({
-        message: error.response.data,
-        type: 'error',
-        duration: 1500,
-        customClass: 'element-error-message-zindex'
-      })
-      break
-    case 401:
-      ElMessage({
-        message: 'Login expired',
-        type: 'error',
-        duration: 3000,
-        customClass: 'element-error-message-zindex',
-        onClose: async function () {
-          eventEmitter.emit('Login_Expired')
-        }
-      })
-      break
-    case 405:
-      ElMessage({
-        message: 'The http request method is incorrect',
-        type: 'error',
-        duration: 1500,
-        customClass: 'element-error-message-zindex'
-      })
-      break
-    case 500:
-      ElMessage({
-        message: 'There was a problem with the server, 请稍后重试',
-        type: 'error',
-        duration: 1500,
-        customClass: 'element-error-message-zindex'
-      })
-      break
-    case 501:
-      ElMessage({
-        message: 'The server does not support a feature required by the current request',
-        type: 'error',
-        duration: 1500,
-        customClass: 'element-error-message-zindex'
-      })
-      break
-  }
-  return Promise.reject(error)
-})
+);
 
-export default instance
+// sendUserCode 是否携带用户编码传递
+export const requestFunc = (path, data) => {
+  console.log(data);
+  return service.get(path + "?" + encryptApiParams({
+    ...data,
+  }));
+};
+
+export default service;

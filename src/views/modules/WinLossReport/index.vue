@@ -1,33 +1,15 @@
 <template>
   <el-card>
-    <avue-form
-      v-model="form"
-      :option="option"
+    <TimeSelect/>
+    <avue-crud
+      :option="tableOption"
+      :data="data"
     />
-    <avue-crud :option="tableOption"
-             v-model="form"
-             :data="data"></avue-crud>
   </el-card>
 </template>
 
 <script setup>
-const form = ref({});
-
-const option = ref({
-  menuSpan: 6,
-  labelWidth: 110,
-  column: [
-    {
-      label: "时间日期范围",
-      type: 'datetimerange',
-      prop: 'datetimerange',
-      format: 'YYYY-MM-DD HH:mm:ss',
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      startPlaceholder: '时间日期开始范围自定义',
-      endPlaceholder: '时间日期结束范围自定义',
-    }
-  ]
-});
+import TimeSelect from "@/components/TimeSelect"
 
 const data = ref([{
   depositAmount: 9999,
@@ -52,13 +34,13 @@ const tableOption = ref({
     withdrawalAmount: {
       label: '取款金额',
     },
-    winLoss:{
+    winLoss: {
       label: '净输赢',
     },
-    totalBonusAmount:{
+    totalBonusAmount: {
       label: '红利总数',
     },
-    fee:{
+    fee: {
       label: '红利总数',
     },
     platformFee: {
@@ -67,7 +49,7 @@ const tableOption = ref({
     memberDeposit: {
       label: '会员代款',
     },
-    gameInstructions:{
+    gameInstructions: {
       label: '游戏说明',
     },
     other: {

@@ -56,10 +56,8 @@
   </div>
 </template>
 <script setup>
-import {encrypt} from "@/utils/index.js";
 import {useUserStore} from "@/store/modules/user.store.js";
 import {useRouter} from "vue-router";
-import {ACCOUNT, USERNAME} from "@/config/storageKey.js";
 
 const router = useRouter()
 
@@ -126,7 +124,6 @@ const login = debounce(async () => {
     })
 
     if(remember.value){
-      console.log(remember.value);
       localStorage.setItem(key, JSON.stringify(dataForm))
     } else {
       localStorage.removeItem(key)

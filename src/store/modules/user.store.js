@@ -7,11 +7,14 @@ import router from "@/router"
 import {getAllLocalStorage} from "@/utils/index.js";
 import {LOCAL_STORAGE_NAME} from "@/config/index.js";
 import {eventEmitter} from "@/utils/eventEmitter/index.js";
+import {useStorage} from "@vueuse/core";
 
 const {getCache, setCache, removeCache} = LocalCache
 
 export const useUserStore = defineStore('userStore', () => {
   const token = ref(getToken() || '')
+
+  const userInfo = useStorage(LOCAL_STORAGE_NAME + 'userInfo', {})
 
   /**
    * 请求登录
@@ -21,6 +24,8 @@ export const useUserStore = defineStore('userStore', () => {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await apiLogin(data)
+
+        userInfo.value = res
 
         console.log(res);
 
@@ -96,6 +101,7 @@ export const useUserStore = defineStore('userStore', () => {
   })
 
   return {
+    userInfo,
     token,
     login,
     logout,

@@ -51,11 +51,16 @@ const list = ref([
 ])
 
 const obj = ref({
-  
+
 })
 
 const getAgentCommissionReport = async () => {
-  const res = await _agentCommissionReport(form.value)
+  const res = await _agentCommissionReport({
+    pageNum: 1,
+    pageSize: 10,
+    startDate: '2024-12-03+00:00:00',
+    endDate: '2024-12-09+23:59:59'
+  })
   obj.value = res.data
 }
 

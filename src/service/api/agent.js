@@ -1,23 +1,15 @@
 import request from "@/service/request.js";
-import axios from "axios";
-import { BASEURL } from "@/service/config.js";
+import { requestFunc } from "../request.js";
 
 // 获取佣金
 export const _agentCommissionReport = (params) => {
-  return request({
-    url: '/AgentNew/AgentCommissionReport',
-    method: "GET",
-    params
-  })
+  return requestFunc('/AgentNew/AgentCommissionReport', params)
 }
 
 // 获取会员报表
 export const _getMemberReport = (params) => {
-  return request({
-    url: '/AgentNew/GetMemberReport',
-    method: "GET",
-    params
-  })
+  console.log(params);
+  return requestFunc('/AgentNew/GetMemberReport', params)
 }
 
 // 获取代理日报表
