@@ -1,13 +1,14 @@
-import {useDialogFormStore} from "@/components/DialogForm/store/dialogForm.store.js";
-// import {apiChangeMaterial, apiDeleteMaterial} from "@/service/api/api.js";
-import {ElMessage, ElMessageBox} from "element-plus";
-import { year } from "@/config/data.js"
-import RichTextEditor from "@/components/RichTextEditor/RichTextEditor.vue";
-import {storeToRefs} from "pinia";
-import {useDeviceStore} from "@/store/modules/device.store.js";
+import { useDialogFormStore } from "@/components/DialogForm/store/dialogForm.store.js";
+import {
+  apiChangeMaterialType,
+  apiDeleteMaterialType
+} from "@/service/api/api.js";
+import { ElMessage, ElMessageBox } from "element-plus";
+import { storeToRefs } from "pinia";
+import { useDeviceStore } from "@/store/modules/device.store.js";
 
 export const useAgent = () => {
-  const changeMaterial = (config) => {
+  const changeDatail = (config) => {
     const { isMobile } = storeToRefs(useDeviceStore())
 
     const type = config.type
@@ -16,81 +17,72 @@ export const useAgent = () => {
 
     const title = type === "add" ? '新增' : '编辑'
 
-    const option = shallowRef({
-      labelWidth: '90',
-      labelPosition: 'left',
+    const option = {
+      labelWidth: '110',
+      labelPosition: 'right',
       column: [
         {
-          label: '年份',
-          prop: 'year',
-          type: 'select',
-          dicData: year,
+          label: '代理账号',
+          prop: 'account',
+          placeholder: '请输入代理账号',
           span: 24,
+          autocomplete: "new-password"
+        },
+        {
+          label: '密码',
+          prop: 'password',
+          placeholder: '请输入密码',
+          span: 24,
+          autocomplete: "new-password",
+          type: 'password',
           rules: [
             {
               required: true,
-              message: "请选择年份",
+              message: "请输入密码",
               trigger: "blur"
             },
           ],
         },
         {
-          label: '开奖期数',
-          prop: 'period',
-          type: 'number',
-          span: 24,
-          placeholder: '请输入开奖期数',
-          min: 1,
-          max: 365,
-          rules: [{
-            required: true,
-            message: "请输入开奖期数",
-            trigger: "blur"
-          }]
-        },
-        {
-          label: '资料类型',
-          prop: 'articleTypeId',
-          type: 'select',
-          dicData: config.materialTypeList,
+          label: '姓名',
+          prop: 'name',
+          placeholder: '请输入姓名',
           span: 24,
           rules: [
             {
               required: true,
-              message: "请选择资料类型",
+              message: "请输入姓名",
               trigger: "blur"
             },
           ],
         },
         {
-          label: '标题',
-          prop: 'title',
+          label: '佣金比例',
+          prop: 'rate',
+          placeholder: '请输入佣金比例',
           span: 24,
-          type: 'custom',
-          component: markRaw(RichTextEditor),
-          rules: [
-            {
-              required: true,
-              message: "请输入标题",
-              trigger: "blur"
-            },
-          ],
         },
         {
-          label: '内容',
-          prop: 'content',
+          label: 'Telegram',
+          prop: 'telegram',
+          placeholder: '请输入Telegram',
           span: 24,
-          type: 'custom',
-          component: markRaw(RichTextEditor),
         },
         {
-          label: '排序',
-          prop: 'sort',
+          label: '备注',
+          prop: 'remark',
+          placeholder: '请输备注',
           span: 24,
-          type: 'number',
+          type: 'textarea'
+        },
+        {
+          label: '其他联系方式',
+          prop: 'contract',
+          placeholder: '请输入其他联系方式',
+          span: 24,
         },
       ]
-    })
+    }
 
     const data = {
       ...config.data
@@ -98,31 +90,28 @@ export const useAgent = () => {
 
     useDialogFormStore().showDialog({
       dialog: {
-        title: `${title}资料`,
-        width: isMobile.value ? '90%' : '60%'
+        title: `${title}下级`,
+        width: isMobile.value ? '90%' : '30%'
       },
       data,
       option,
       submit(formData, done, cancel) {
-        const articleTypeName = (config.materialTypeList.find(item => item.value === formData.articleTypeId)).label
+        apiChangeMaterialType({
+          ...formData,
+        }, method).then(res => {
+          ElMessage.success(`${title}成功`)
 
-        // apiChangeMaterial({
-        //   ...formData,
-        //   articleTypeName
-        // }, method).then(res => {
-        //   ElMessage.success(`${title}成功`)
+          done()
 
-        //   done()
-
-        //   config.done && config.done()
-        // }).catch(err => {
-        //   cancel()
-        // })
+          config.done && config.done()
+        }).catch(err => {
+          cancel()
+        })
       }
     })
   }
 
-  const deleteMaterial = ({id, done}) => {
+  const onDelete = ({ id, done }) => {
     ElMessageBox.confirm(
       '您确定要删除吗?',
       'Warning',
@@ -133,16 +122,15 @@ export const useAgent = () => {
       }
     )
       .then(async () => {
-        // apiDeleteMaterial(id).then(res => {
-        //   ElMessage.success(`删除成功`)
-
-        //   done && done()
-        // })
+        apiDeleteMaterialType(id).then(res => {
+          ElMessage.success(`删除成功`)
+          done && done()
+        })
       })
   }
 
   return {
-    changeMaterial,
-    deleteMaterial
+    changeDatail,
+    onDelete
   }
 }
