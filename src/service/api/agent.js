@@ -20,3 +20,8 @@ export const _getAgentDayReport = (params) => {
     params
   })
 }
+
+// 输赢报表
+export const _getProfitLossReport = (params) => {
+  return requestFunc('/AgentNew/GetProfitLossReport', params)
+}
