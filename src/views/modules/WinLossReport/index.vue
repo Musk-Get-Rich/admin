@@ -1,7 +1,9 @@
 <template>
   <el-card>
-    <avue-form v-model="form"
-             :option="option"></avue-form>
+    <avue-form
+      v-model="form"
+      :option="option"
+    />
     <avue-crud :option="tableOption"
              v-model="form"
              :data="data"></avue-crud>
