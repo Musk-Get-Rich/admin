@@ -10,7 +10,7 @@ import { useDeviceStore } from "@/store/modules/device.store.js";
 import { computed } from "vue";
 
 export const useAgent = () => {
-  const changeDatail = (config) => {
+  const changeDetail = (config) => {
     const { isMobile } = storeToRefs(useDeviceStore())
 
     const type = config.type
@@ -23,7 +23,7 @@ export const useAgent = () => {
       return {
         2: 'AB',
         3: 'BB'
-      }[+config.params.agentLevel + 1]
+      }[+config.params.agentLevel + 1] || 'BB'
     })
 
     const option = {
@@ -36,14 +36,14 @@ export const useAgent = () => {
           placeholder: '请输入代理账号',
           span: 24,
           autocomplete: "new-password",
-          prepend: prependName.value || 'BB',
+          prepend: prependName.value,
           disabled: !!config.data?.agentlinecode,
           rules: [
             {
               trigger: 'blur',
               asyncValidator: async (rule, value) => {
                 if (value) {
-                  await apiCheckAgentAccount({ loginaccount: value }).catch(() => {
+                  await apiCheckAgentAccount({ loginaccount: `${prependName.value}${value}` }).catch(() => {
                     return Promise.reject('代理账号已存在')
                   })
                   return true
@@ -83,13 +83,13 @@ export const useAgent = () => {
         },
         {
           label: '佣金比例',
-          prop: 'rate',
+          prop: 'dividend',
           placeholder: '请输入佣金比例',
           span: 24,
         },
         {
           label: 'Telegram',
-          prop: 'telegram',
+          prop: 'otherimname1',
           placeholder: '请输入Telegram',
           span: 24,
         },
@@ -102,7 +102,7 @@ export const useAgent = () => {
         },
         {
           label: '其他联系方式',
-          prop: 'contract',
+          prop: 'otherimno1',
           placeholder: '请输入其他联系方式',
           span: 24,
         },
@@ -123,6 +123,7 @@ export const useAgent = () => {
       submit(formData, done, cancel) {
         apiRegisterAgent({
           ...formData,
+          loginaccount: `${prependName.value}${formData.loginaccount}`
         }, method).then(res => {
           ElMessage.success(`${title}成功`)
 
@@ -155,7 +156,7 @@ export const useAgent = () => {
   }
 
   return {
-    changeDatail,
+    changeDetail,
     onDelete
   }
 }

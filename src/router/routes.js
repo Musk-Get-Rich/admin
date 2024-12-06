@@ -67,8 +67,8 @@ export const routes = [
         },
       },
       {
-        path: 'invate',
-        name: 'invate',
+        path: 'invite',
+        name: 'invite',
         component: () => import("@/views/modules/AgentInvite/index.vue"),
         meta: {
           name: '下线（邀请有奖）',

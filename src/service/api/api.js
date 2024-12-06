@@ -49,6 +49,6 @@ export const apiRegisterAgent = (params) => {
 }
 
 // 下线（邀请有奖）
-export const apiGetAgentInviteList = () => {
+export const apiGetAgentInviteList = (params) => {
   return requestFunc('/AgentNew/GetInviteReport', params)
 }

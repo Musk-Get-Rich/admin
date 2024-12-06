@@ -11,33 +11,27 @@
           <div class="border border-solid border-gray-300 py-8xl rounded-3xl my-5xl">
             <div class="grid grid-cols-4">
               <div class="flex flex-col justify-center items-center">
-                <div class="font-bold text-8xl color-green">AA1234</div>
+                <div class="font-bold text-8xl color-green">{{ agentInfo.agentlinecode }}</div>
                 <div class="text-6xl text-gray-500 mt-5">主线账户</div>
               </div>
               <div class="flex flex-col justify-center items-center">
-                <div class="font-bold text-8xl">内部线（丧彪）</div>
+                <div class="font-bold text-8xl">{{ agentInfo.loginaccount }}</div>
                 <div class="text-6xl text-gray-500 mt-5">团队名称</div>
               </div>
               <div class="flex flex-col justify-center items-center">
-                <div class="font-bold text-8xl">66</div>
+                <div class="font-bold text-8xl">{{ agentInfo.countAgent || 0 }}</div>
                 <div class="text-6xl text-gray-500 mt-5">推广人数</div>
               </div>
               <div class="flex flex-col justify-center items-center">
-                <div class="font-bold text-8xl color-green">19/9</div>
+                <div class="font-bold text-8xl color-green">19/{{ agentInfo.countMember || 0 }}</div>
                 <div class="text-6xl text-gray-500 mt-5">裂变人数</div>
               </div>
             </div>
           </div>
         </template>
         <template #menu-left>
-          <el-button type="primary" @click="handleAdd">
-            已开通推广员
-          </el-button>
-          <el-button @click="handleAdd">
-            备选推广员
-          </el-button>
-          <el-button @click="handleAdd">
-            全部
+          <el-button v-for="t in types" :key="t.value" :type="t.value === type ? 'primary' : ''" @click="clickType(t.value)">
+            {{ t.label }}
           </el-button>
         </template>
         <template #menu-right>
@@ -72,25 +66,28 @@
 import option from "./option.js"
 import { useTableList } from "@/hook/useTableList.js";
 import { useTableSearch } from "@/hook/useTableSearch.js";
-import { apiGetAgentList } from "@/service/api/api.js";
+import { apiGetAgentInfo, apiGetAgentInviteList } from "@/service/api/api.js";
 import { useAgent } from "@/views/modules/AgentInvite/hook/useAgent.js";
-import { computed } from "vue";
+import { computed, ref } from "vue";
+
+const agentInfo = ref({})
 
 const type = ref('')
 
-const articleTypeId = ref('')
-
-
-// 当前账号代理级别
-const agentLevel = computed(() => 2)
-
-const createAgentBtnText = computed(() => {
-  const chars = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
-  const text = chars[agentLevel.value + 1]
-  return `创建${text}级代理`
-})
-
-const info = ref({})
+const types = [
+  {
+    value: '1',
+    label: '已开通推广员'
+  },
+  {
+    value: '2',
+    label: '备选推广员'
+  },
+  {
+    value: '',
+    label: '全部'
+  }
+]
 
 // 新增
 const handleEdit = () => {
@@ -124,6 +121,15 @@ const handleDelete = (id) => {
 
 const tableSearch = useTableSearch()
 
+
+const getAgentInfo = async () =>{
+  agentInfo.value = await apiGetAgentInfo()
+}
+const fetchList = (params) => {
+  getAgentInfo()
+  params.type = type.value
+  return apiGetAgentInviteList(params)
+}
 const {
   tableRef,
   tableLoading,
@@ -132,18 +138,23 @@ const {
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(apiGetAgentList, {
+} = useTableList(fetchList, {
 
 })
 
+const clickType = (value) => {
+  type.value = value
+  getTableData()
+}
+
 // 搜索
 const onSearch = (form, done) => {
-  if (articleTypeId.value) form['articleTypeId'] = articleTypeId.value
+  if (type.value) form['type'] = type.value
   tableSearch.search(form, getTableData, done)
 }
 
 const onSearchReset = () => {
-  articleTypeId.value = ''
+  type.value = ''
   tableSearch.reset(getTableData)
 }
 </script>

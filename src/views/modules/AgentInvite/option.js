@@ -4,17 +4,16 @@ export default {
   ...globalOption,
   stripe: false,
   searchMenuSpan: 6, // 搜索框宽度
+  index: true,
+  refreshBtn: false,
+  columnBtn: false,
   column: [
-    {
-      label: '序号',
-      prop: 'index',
-    },
     {
       label: '推广员(会员)',
       prop: 'agentlinecode',
       search: true,
       searchLabel: '',
-      placeholder: '搜索标题',
+      placeholder: '会员账号',
     },
     {
       label: '裂变人数',
