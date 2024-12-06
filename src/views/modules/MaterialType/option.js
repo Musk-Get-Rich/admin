@@ -10,6 +10,7 @@ export default {
       label: '标题',
       prop: 'title',
       search: true,
+      searchLabel: '',
       searchPlaceholder: '请输入标题'
     },
     // {
@@ -20,6 +21,7 @@ export default {
       label: '排序',
       prop: 'sort',
       search: true,
+      searchLabel: '',
       searchPlaceholder: '请输入排序'
     },
     {

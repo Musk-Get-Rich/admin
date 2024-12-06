@@ -18,8 +18,8 @@
         v-model="timeVal"
         type="datetimerange"
         range-separator="To"
-        start-placeholder="Start date"
-        end-placeholder="End date"
+        :start-placeholder="$t('开始时间')"
+        :end-placeholder="$t('结束时间')"
       />
       <div class="flex-1 shrink-0 flex items-center ml-20">
         <el-button type="primary" icon="search">查询</el-button>

@@ -6,6 +6,7 @@
     class="!rounded-12 !px-30 !pb-30"
   >
     <avue-form
+      class="dialog-wrapper"
       ref="formRef"
       :option="option"
       :modelValue="params.data"
