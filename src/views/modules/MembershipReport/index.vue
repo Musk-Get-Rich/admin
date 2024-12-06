@@ -7,17 +7,15 @@
       :option="option"
       v-model:page="pageObj"
       @refresh-change="getTableData"
-      @search-change="onSearch"
-      @search-reset="onSearchReset"
       @size-change="sizeChange"
       @current-change="currentChange"
     >
       <template #search>
+        <el-row justify="space-between mb-20">
+          <div>下级管理</div>
+        </el-row>
         <div class="flex mb-10">
-          <el-button>今日</el-button>
-          <el-button>昨日</el-button>
-          <el-button>本月</el-button>
-          <el-button>上月</el-button>
+          <Search />
         </div>
       </template>
       <template #title-header="{column}">
@@ -61,6 +59,7 @@ import {useTableList} from "@/hook/useTableList.js";
 import {useTableSearch} from "@/hook/useTableSearch.js";
 import {_getMemberReport} from "@/service/api/agent.js";
 import {useMaterialType} from "./hook/useMaterialType.js";
+import Search from "./components/Search.vue";
 
 const list = [
   {
@@ -105,15 +104,6 @@ const {
 } = useTableList(_getMemberReport, {
 
 })
-
-// 搜索
-const onSearch = (form, done) => {
-  tableSearch.search(form, getTableData, done)
-}
-
-const onSearchReset = () => {
-  tableSearch.reset(getTableData)
-}
 </script>
 
 <style lang="scss" scoped>

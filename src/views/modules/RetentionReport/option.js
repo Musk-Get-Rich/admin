@@ -5,30 +5,41 @@ export default {
   stripe: false,
   searchMenuSpan: 10, // 搜索框宽度
   searchSpan: 6,
-  column: [
-    {
-      label: '标题',
-      prop: 'title',
-      search: true,
-      searchPlaceholder: '请输入标题'
+  searchBtn: false,
+  emptyBtn: false,
+  column: {
+    date: {
+      label: '日期',
     },
-    // {
-    //   label: '内容',
-    //   prop: 'content',
-    // },
-    {
-      label: '排序',
-      prop: 'sort',
-      search: true,
-      searchPlaceholder: '请输入排序'
+    registerNum: {
+      label: '注册',
     },
-    {
-      label: '是否跳转',
-      prop: 'canLink',
+    one:{
+      label: '次留',
     },
-    {
-      label: '发布时间',
-      prop: 'createTime',
+    tow:{
+      label: '2留',
     },
-  ]
+    three: {
+      label: '3留',
+    },
+    four: {
+      label: '4留',
+    },
+    five:{
+      label: '5留',
+    },
+    six: {
+      label: '6留',
+    },
+    seven: {
+      label: '7留',
+    },
+    eight: {
+      label: '8留',
+    },
+    nine: {
+      label: '9留',
+    }
+  }
 }

@@ -1,31 +1,34 @@
 <template>
   <el-card>
-    <avue-form v-model="form"
-             :option="option"></avue-form>
-    <avue-crud :option="tableOption"
-             v-model="form"
-             :data="data"></avue-crud>
+    <avue-crud 
+      :option="option"
+      v-model="form"
+      :data="data"
+      @refresh-change="getTableData"
+      @search-change="onSearch"
+      @search-reset="onSearchReset"
+      @size-change="sizeChange"
+      @current-change="currentChange"
+    >
+      <template #search>
+        <el-row justify="space-between mb-20">
+          <div>每日数据报表</div>
+        </el-row>
+        <div class="flex mb-10">
+          <Search />
+        </div>
+      </template>
+    </avue-crud>
   </el-card>
 </template>
 
 <script setup>
-const form = ref({});
+import option from "./option.js"
+import {useTableList} from "@/hook/useTableList.js";
+import {_getAgentDayReport} from "@/service/api/agent.js";
+import Search from "./components/Search.vue";
 
-const option = ref({
-  menuSpan: 6,
-  labelWidth: 110,
-  column: [
-    {
-      label: "时间日期范围",
-      type: 'datetimerange',
-      prop: 'datetimerange',
-      format: 'YYYY-MM-DD HH:mm:ss',
-      valueFormat: 'YYYY-MM-DD HH:mm:ss',
-      startPlaceholder: '时间日期开始范围自定义',
-      endPlaceholder: '时间日期结束范围自定义',
-    }
-  ]
-});
+const form = ref({});
 
 const data = ref([{
   date: '1',
@@ -40,46 +43,17 @@ const data = ref([{
   eight: '1',
   nine: '1',
 }])
-const tableOption = ref({
-  labelWidth: 120,
-  addBtn: false,
-  menu: false,
-  header: false,
-  column: {
-    date: {
-      label: '日期',
-    },
-    registerNum: {
-      label: '注册',
-    },
-    one:{
-      label: '次留',
-    },
-    tow:{
-      label: '2留',
-    },
-    three: {
-      label: '3留',
-    },
-    four: {
-      label: '4留',
-    },
-    five:{
-      label: '5留',
-    },
-    six: {
-      label: '6留',
-    },
-    seven: {
-      label: '7留',
-    },
-    eight: {
-      label: '8留',
-    },
-    nine: {
-      label: '9留',
-    }
-  }
+
+const {
+  tableRef,
+  tableLoading,
+  pageObj,
+  tableData,
+  getTableData,
+  sizeChange,
+  currentChange
+} = useTableList(_getAgentDayReport, {
+
 })
 </script>
 

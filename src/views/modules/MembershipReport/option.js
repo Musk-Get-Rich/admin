@@ -5,14 +5,12 @@ export default {
   stripe: false,
   searchMenuSpan: 10, // 搜索框宽度
   searchSpan: 6,
-  menu: false,
+  searchBtn: false,
+  emptyBtn: false,
   column: [
     {
       label: '会员账号',
       prop: 'loginaccount',
-      search: true,
-      searchPlaceholder: '请输入会员账号',
-      searchSpan: 5
     },
     {
       label: '存款金额',
