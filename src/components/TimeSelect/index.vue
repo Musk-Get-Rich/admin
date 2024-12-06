@@ -33,7 +33,7 @@
 import { ref } from 'vue';
 import dayjs from 'dayjs';
 
-const emit = defineEmits(['search'])
+const emit = defineEmits(['search', 'clear'])
 
 const form = ref({});
 
@@ -61,10 +61,16 @@ const selectTime = (item) => {
   }
 };
 
+selectTime(timeSelect.value)
+
 
 const onClear = () => {
   timeVal.value = []
-  timeSelect.value = {}
+  timeSelect.value = time[0]
+
+  selectTime(timeSelect.value)
+
+  emit('clear')
 }
 
 const onSearch = () => {

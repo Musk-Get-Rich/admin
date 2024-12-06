@@ -1,9 +1,9 @@
 <template>
   <div class="common-layout bg-#f4f5f9">
-    <div class="main-container h-full flex">
+    <div class="max-w-1430 mx-auto h-full flex">
       <Sidebar class="shrink-0"/>
       <div class="flex-1">
-        <div class="py-20 pl-20 box-border main-wrapper overflow-auto" ref="mainRef">
+        <div class="p-20 box-border main-wrapper overflow-auto" ref="mainRef">
           <router-view v-slot="{ Component }">
             <transition name="slide-fade" mode="out-in">
               <component :is="Component"/>

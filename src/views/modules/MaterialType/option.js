@@ -36,5 +36,9 @@ export default {
       label: '发布时间',
       prop: 'createTime',
     },
+    {
+      label: '发布时间',
+      prop: 'createTime',
+    },
   ]
 }
