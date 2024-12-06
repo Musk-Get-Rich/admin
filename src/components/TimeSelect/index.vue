@@ -22,7 +22,7 @@
         :end-placeholder="$t('结束时间')"
       />
       <div class="flex-1 shrink-0 flex items-center ml-20">
-        <el-button type="primary" icon="search">查询</el-button>
+        <el-button type="primary" icon="search" @click="onSearch">查询</el-button>
         <el-button icon="delete" @click="onClear">重置</el-button>
       </div>
     </div>
@@ -32,6 +32,8 @@
 <script setup>
 import { ref } from 'vue';
 import dayjs from 'dayjs';
+
+const emit = defineEmits(['search'])
 
 const form = ref({});
 
@@ -63,6 +65,13 @@ const selectTime = (item) => {
 const onClear = () => {
   timeVal.value = []
   timeSelect.value = {}
+}
+
+const onSearch = () => {
+  emit('search', {
+    startDate: dayjs(timeVal.value[0]).format('YYYY-MM-DD HH:mm:ss'),
+    endDate: dayjs(timeVal.value[1]).format('YYYY-MM-DD HH:mm:ss'),
+  })
 }
 </script>
 

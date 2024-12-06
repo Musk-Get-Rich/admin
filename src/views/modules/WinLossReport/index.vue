@@ -1,6 +1,6 @@
 <template>
   <el-card>
-    <TimeSelect/>
+    <TimeSelect @search="onSearch"/>
     <avue-crud
       ref="tableRef"
       :table-loading="tableLoading"
@@ -74,6 +74,11 @@ const toggleExpand = (row, type) => {
 
   expandType.value = type
   tableRef.value.toggleRowExpansion(row);
+}
+
+// 搜索
+const onSearch = (val) => {
+  getTableData(val)
 }
 </script>
 
