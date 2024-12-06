@@ -3,7 +3,8 @@
     <div class="max-w-1430 mx-auto h-full flex">
       <Sidebar class="shrink-0"/>
       <div class="flex-1">
-        <div class="p-20 box-border main-wrapper overflow-auto" ref="mainRef">
+        <div class="p-20 box-border h-full main-wrapper overflow-auto" ref="mainRef">
+          <Announcement/>
           <router-view v-slot="{ Component }">
             <transition name="slide-fade" mode="out-in">
               <component :is="Component"/>
@@ -20,7 +21,7 @@ import Sidebar from './components/Sidebar/index.vue'
 import {onBeforeRouteUpdate, useRoute, useRouter} from "vue-router";
 import {useDeviceStore} from "@/store/modules/device.store.js";
 import {storeToRefs} from "pinia";
-
+import Announcement from "@/components/Announcement"
 
 const router = useRouter()
 

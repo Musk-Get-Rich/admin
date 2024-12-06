@@ -7,12 +7,13 @@
     <avue-crud
       ref="tableRef"
       :table-loading="tableLoading"
-      :data="tableData"
+      :data="list"
       :option="option"
       v-model:page="pageObj"
       @refresh-change="getTableData"
       @size-change="sizeChange"
       @current-change="currentChange"
+      @expand-change="expandChange"
     >
       <template #bonusDetail="{ row }">
         <div class="flex items-center justify-around">
@@ -36,12 +37,12 @@
       <template #expand="{ row }">
         <div class="px-10">
           <Other
-            v-if="expandType === 'other'"
-            :tableData="level2TableList"
+            v-if="row.expandType === 'other'"
+            :tableData="row.otherList"
           />
           <BonusDetail
-            v-if="expandType === 'bonusDetail'"
-            :tableData="level2TableList"
+            v-if="row.expandType === 'bonusDetail'"
+            :tableData="row.bonusDetailList"
           />
         </div>
       </template>
@@ -60,6 +61,75 @@ import {_getProfitLossReport} from "@/service/api/agent.js";
 import Other from "./components/other/index.vue"
 import BonusDetail from "./components/bonusDetail/index.vue"
 
+const list = [
+  {
+    "activityMoney": 0,
+    "betMoney": 27601.4,
+    "bonusDetail": {
+      "agentBonus": 0,
+      "bonus": 0,
+      "bonusSystem": 0,
+      "depositBonus": 0,
+      "fs": 0,
+      "inviteMoney": 0,
+      "platFee": 0,
+      "redPacket": 0,
+      "vipBonus": 0
+    },
+    "depositFee": 1334.61,
+    "depositMoney": 133460.96,
+    "employeecode": "E0001R27",
+    "escrow": 0,
+    "loginaccount": "agent0031",
+    "netMoney": -13816.94,
+    "platFee": 1381.69,
+    "profitLoss": 11100.64,
+    "profitlossOtherVo": {
+      "betNum": 0,
+      "depositNum": 0,
+      "firstDepositCount": 0,
+      "liveNum": 0,
+      "registerNum": 0,
+      "validplayNum": 0
+    },
+    "validbetMoney": 27665.59,
+    "withdrawMoney": 0
+  },
+  {
+    "activityMoney": 0,
+    "betMoney": 27601.4,
+    "bonusDetail": {
+      "agentBonus": 0,
+      "bonus": 0,
+      "bonusSystem": 0,
+      "depositBonus": 0,
+      "fs": 0,
+      "inviteMoney": 0,
+      "platFee": 0,
+      "redPacket": 0,
+      "vipBonus": 0
+    },
+    "depositFee": 1334.61,
+    "depositMoney": 133460.96,
+    "employeecode": "E0001R27",
+    "escrow": 0,
+    "loginaccount": "agent003",
+    "netMoney": -13816.94,
+    "platFee": 1381.69,
+    "profitLoss": 11100.64,
+    "profitlossOtherVo": {
+      "betNum": 0,
+      "depositNum": 0,
+      "firstDepositCount": 0,
+      "liveNum": 0,
+      "registerNum": 0,
+      "validplayNum": 0
+    },
+    "validbetMoney": 27665.59,
+    "withdrawMoney": 0
+  }
+]
+
 const {
   tableRef,
   tableLoading,
@@ -70,14 +140,27 @@ const {
   currentChange
 } = useTableList(_getProfitLossReport, {})
 
-const expandType = ref('')
-const level2TableList = ref([])
 const toggleExpand = (row, type) => {
-  level2TableList.value = type === 'other' ? [row.profitlossOtherVo] : [row.bonusDetail]
+  row.otherList = [row.profitlossOtherVo]
+  row.bonusDetailList = [row.bonusDetail]
 
-  expandType.value = type
-  tableRef.value.toggleRowExpansion(row);
+  if (!row.expandStatus) {
+    tableRef.value.toggleRowExpansion(row);
+  } else if (row.expandStatus && type === row.expandType) {
+    tableRef.value.toggleRowExpansion(row);
+  }
+
+  row.expandType = type
 }
+
+const expandChange = (row) => {
+  row.expandStatus = !row.expandStatus
+  console.log(row.expandStatus);
+  if (!row.expandType) {
+    row.expandType = 'bonusDetail'
+    row.bonusDetailList = [row.bonusDetail]
+  }
+};
 
 // 搜索
 const onSearch = (val) => {
