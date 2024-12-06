@@ -243,5 +243,93 @@ export const routes = [
         },
       },
     ]
+  },
+  {
+    path: '/promotion',
+    component: layout,
+    meta: {
+      title: '推广专区',
+    },
+    children: [
+      {
+        path: 'promotionUrl',
+        name: 'promotionUrl',
+        component: () => import("@/views/modules/PromotionUrl"),
+        meta: {
+          name: '推广网址（会员）',
+          inactiveIcon: 'Sidebar/link.png',
+          activeIcon: 'Sidebar/link-1.png'
+        },
+      },
+      {
+        path: 'promotionMaterial',
+        name: 'promotionMaterial',
+        component: () => import("@/views/modules/PromotionMaterial"),
+        meta: {
+          name: '推广素材',
+          inactiveIcon: 'Sidebar/gallery.png',
+          activeIcon: 'Sidebar/gallery-1.png'
+        },
+      }
+    ]
+  },
+  {
+    path: '/personalCenter',
+    component: layout,
+    meta: {
+      title: '个人中心',
+    },
+    children: [
+      {
+        path: 'personalData',
+        name: 'personalData',
+        component: () => import("@/views/modules/PersonalData"),
+        meta: {
+          name: '个人资料',
+          inactiveIcon: 'Sidebar/tag-user.png',
+          activeIcon: 'Sidebar/tag-user-1.png'
+        },
+      },
+      {
+        path: 'contactUs',
+        name: 'contactUs',
+        component: () => import("@/views/modules/ContactUs"),
+        meta: {
+          name: '联系我们',
+          inactiveIcon: 'Sidebar/device-message.png',
+          activeIcon: 'Sidebar/device-message-1.png'
+        },
+      },
+      {
+        path: 'vipExclusive',
+        name: 'vipExclusive',
+        component: () => import("@/views/modules/VipExclusive"),
+        meta: {
+          name: 'VIP专享',
+          inactiveIcon: 'Sidebar/crown.png',
+          activeIcon: 'Sidebar/crown-1.png'
+        },
+      },
+      {
+        path: 'commissionDescription',
+        name: 'commissionDescription',
+        component: () => import("@/views/modules/CommissionDescription"),
+        meta: {
+          name: '佣金说明',
+          inactiveIcon: 'Sidebar/dollar-square.png',
+          activeIcon: 'Sidebar/dollar-square-1.png'
+        },
+      },
+      {
+        path: 'helpCenter',
+        name: 'helpCenter',
+        component: () => import("@/views/modules/HelpCenter"),
+        meta: {
+          name: '帮助中心',
+          inactiveIcon: 'Sidebar/bookmark.png',
+          activeIcon: 'Sidebar/bookmark-1.png'
+        },
+      },
+    ]
   }
 ]
