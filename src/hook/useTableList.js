@@ -31,7 +31,7 @@ export function useTableList(ajaxFn, params, immediate = true) {
 
     await ajaxFn(argObj)
       .then((res) => {
-        tableData.value = Array.isArray(res.data) ? res.data : res.rows;
+        tableData.value = Array.isArray(res.data) ? res.data : res.record;
         pageTotal.value = res.total
         tableLoading.value = false
       })
