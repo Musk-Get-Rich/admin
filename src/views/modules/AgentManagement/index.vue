@@ -119,9 +119,13 @@ const getAgentInfo = async () =>{
   agentInfo.value = await apiGetAgentInfo()
 }
 
-const fetchList = (...rest) => {
+const fetchList = (params) => {
   getAgentInfo()
-  return apiGetAgentList(...rest)
+  return apiGetAgentList({
+    ...params,
+    employeecode: undefined,
+    parentemployeecode: undefined,
+  })
 }
 
 const {
