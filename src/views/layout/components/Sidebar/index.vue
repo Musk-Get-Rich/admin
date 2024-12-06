@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-wrapper w-218 bg-white h-full overflow-auto py-30 box-border">
     <div
-      v-for="_ in routes"
+      v-for="_ in routeList"
     >
       <template v-if="_.type === 'divider'">
         <div class="mb-10 h-1 w-185 mx-auto bg-#F4F5F9"></div>
@@ -53,9 +53,41 @@
 import {useRoute, useRouter} from "vue-router";
 import {routes} from "@/router/routes.js";
 import {imageSrc} from "@/utils/index.js";
+import {apiGetAgentInfo} from "@/service/api/api.js";
+import {onMounted, ref} from "vue";
 
 const router = useRouter()
 const route = useRoute()
+const agentInfo = ref({})
+
+const routeList = computed(() => {
+  return [...routes].map(a => {
+    const r = { ...a }
+    if (r.path?.indexOf('managementCenter') > -1) {
+      r.children = r.children?.filter(rr => {
+        if (rr.name === 'agent') {
+          return Number(agentInfo.value.agentlevel) < 2
+        }
+        if (rr.name === 'invite') {
+          return Number(agentInfo.value.agentlevel) >= 2
+        }
+        return true
+      })
+    }
+    return r
+  })
+})
+const getAgentInfo = async () =>{
+  agentInfo.value = await apiGetAgentInfo()
+}
+
+watch(routeList, () => {
+  console.log(routeList.value, 999999, agentInfo.value)
+})
+
+onMounted(() => {
+  getAgentInfo()
+})
 
 const handleClick = (path) => {
   router.push(path)

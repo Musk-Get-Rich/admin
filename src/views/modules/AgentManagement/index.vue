@@ -59,7 +59,7 @@
 import option from "./option.js"
 import { useTableList } from "@/hook/useTableList.js";
 import { useTableSearch } from "@/hook/useTableSearch.js";
-import { apiGetAgentList, apiGetAgentInfo } from "@/service/api/api.js";
+import { apiGetAgentInfo, apiGetAgentList } from "@/service/api/api.js";
 import { useAgent } from "@/views/modules/AgentManagement/hook/useAgent.js";
 import { computed, ref } from "vue";
 
@@ -74,11 +74,9 @@ const createAgentBtnText = computed(() => {
   return `创建${text}级代理`
 })
 
-const info = ref({})
-
 // 编辑
 const handleEdit = (data) => {
-  useAgent().changeDatail({
+  useAgent().changeDetail({
     type: 'edit',
     params: {
       agentLevel: agentLevel.value,
@@ -93,7 +91,7 @@ const handleEdit = (data) => {
 
 // 新增
 const handleAdd = () => {
-  useAgent().changeDatail({
+  useAgent().changeDetail({
     type: 'add',
     params: {
       agentLevel: agentLevel.value,
@@ -118,8 +116,7 @@ const handleDelete = (id) => {
 const tableSearch = useTableSearch()
 
 const getAgentInfo = async () =>{
-  const res = await apiGetAgentInfo()
-  agentInfo.value = res
+  agentInfo.value = await apiGetAgentInfo()
 }
 
 const fetchList = (...rest) => {

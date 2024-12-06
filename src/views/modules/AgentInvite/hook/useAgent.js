@@ -113,7 +113,7 @@ export const useAgent = () => {
 
     useDialogFormStore().showDialog({
       dialog: {
-        title: `${title}下级`,
+        title: `${title}下线`,
         width: isMobile.value ? '90%' : '30%'
       },
       data,

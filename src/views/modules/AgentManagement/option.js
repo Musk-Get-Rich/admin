@@ -10,7 +10,7 @@ export default {
   column: [
     {
       label: '下级代理',
-      prop: 'agentlinecode',
+      prop: 'loginaccount',
     },
     {
       label: '下线人数（需要维护）',
