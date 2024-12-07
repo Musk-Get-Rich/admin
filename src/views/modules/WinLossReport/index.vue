@@ -1,6 +1,10 @@
 <template>
   <el-card>
+<<<<<<< HEAD
     <div class="mb-30 text-black text-20">会员管理</div>
+=======
+    <Title name="输赢报表" />
+>>>>>>> 781f28af67fcf9b2f16de02974063ede59226f76
     <TimeSelect
       @search="onSearch"
       @clear="onRefresh"
@@ -61,6 +65,7 @@ import {useTableList} from "@/hook/useTableList.js";
 import {_getProfitLossReport} from "@/service/api/agent.js";
 import Other from "./components/other/index.vue"
 import BonusDetail from "./components/bonusDetail/index.vue"
+import Title from "@/components/Title/index.vue";
 
 const list = [
   {

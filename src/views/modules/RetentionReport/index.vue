@@ -11,9 +11,7 @@
       @current-change="currentChange"
     >
       <template #search>
-        <el-row justify="space-between mb-20">
-          <div>每日数据报表</div>
-        </el-row>
+        <Title name="留存报表" />
         <div class="flex mb-10">
           <Search />
         </div>
@@ -27,6 +25,7 @@ import option from "./option.js"
 import {useTableList} from "@/hook/useTableList.js";
 import {_getAgentDayReport} from "@/service/api/agent.js";
 import Search from "./components/Search.vue";
+import Title from "@/components/Title/index.vue";
 
 const form = ref({});
 

@@ -1,6 +1,7 @@
 <template>
   <el-card>
-    <div class="flex mb-20 py-20 border-b-1 border-b-solid border-gray-300">
+    <Title name="佣金报表" />
+    <div class="flex mb-20 py-20 border-b-solid border-gray-300">
       <el-button type="primary">个人佣金</el-button>
       <el-button>团队业绩查明</el-button>
     </div>
@@ -17,6 +18,8 @@
 <script setup>
 import {_agentCommissionReport} from "@/service/api/agent.js";
 import { onMounted, ref } from 'vue';
+import Title from "@/components/Title/index.vue";
+
 const form = ref({});
 
 const option = ref({
