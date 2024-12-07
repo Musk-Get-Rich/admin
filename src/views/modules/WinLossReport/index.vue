@@ -1,10 +1,6 @@
 <template>
   <el-card>
-<<<<<<< HEAD
-    <div class="mb-30 text-black text-20">会员管理</div>
-=======
     <Title name="输赢报表" />
->>>>>>> 781f28af67fcf9b2f16de02974063ede59226f76
     <TimeSelect
       @search="onSearch"
       @clear="onRefresh"
