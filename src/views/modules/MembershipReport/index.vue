@@ -13,7 +13,7 @@
       <template #search>
         <Title name="会员报表" />
         <div class="flex mb-10">
-          <Search />
+          <Search @search="onSearch" @refresh="onRefresh"/>
         </div>
       </template>
       <template #title-header="{column}">
@@ -59,6 +59,7 @@ import {_getMemberReport} from "@/service/api/agent.js";
 import {useMaterialType} from "./hook/useMaterialType.js";
 import Search from "./components/Search.vue";
 import Title from "@/components/Title/index.vue";
+import {apiMembershipReport} from "@/service/api/api.js";
 
 const list = [
   {
@@ -100,9 +101,18 @@ const {
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(_getMemberReport, {
+} = useTableList(apiMembershipReport, {
 
 })
+
+// 搜索
+const onSearch = (val) => {
+  getTableData(val)
+}
+
+const onRefresh = () => {
+  getTableData({})
+}
 </script>
 
 <style lang="scss" scoped>

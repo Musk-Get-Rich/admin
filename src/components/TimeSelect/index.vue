@@ -79,6 +79,7 @@ const onSearch = () => {
     endDate: dayjs(timeVal.value[1]).format('YYYY-MM-DD HH:mm:ss'),
   })
 }
+onSearch()
 </script>
 
 <style lang="scss" scoped>

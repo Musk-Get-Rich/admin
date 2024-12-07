@@ -63,7 +63,8 @@ export const apiGetTopNotice = (params) => {
   return requestFunc('/Notic/Notic', params)
 }
 
-//
-export const apiCommissionReport = (params) => {
-  return requestFunc('/AgentNew/AgentCommissionReport', params)
+// 会员报表
+export const apiMembershipReport = (params) => {
+  console.log(params);
+  return requestFunc('/AgentNew/GetMemberReport', params)
 }
