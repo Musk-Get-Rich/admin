@@ -1,6 +1,6 @@
 <template>
   <div class="text-black">
-    <div class="theme-shadow rounded-8 p-30 bg-white">
+    <el-card class="mb-30">
       <div class="flex items-center">
         <div class="w-8 h-8 bg-green rounded-full"></div>
         <div class="text-20 ml-10">本月数据概览</div>
@@ -10,13 +10,13 @@
           <div class="text-18">佣金：<span class="text-green">0.00</span></div>
           <div class="text-12 text-grey ml-30">每天凌晨3:00更新数据</div>
         </div>
-        <el-progress class="w-300" color="#25d55b" :stroke-width="10" :percentage="70" />
+        <el-progress class="w-300" color="#25d55b" :stroke-width="10" :percentage="70"/>
         <div class="py-8 px-21 text-12 bg-#e9fbef rounded-4">
           佣金结算说明
         </div>
       </div>
-    </div>
-    <div class="theme-shadow rounded-8 p-25 bg-white mt-30 text-14">
+    </el-card>
+    <el-card class="mb-30">
       <div class="flex items-center">
         <div class="flex-1">
           <div class="flex items-center">
@@ -141,23 +141,21 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="mt-30 theme-shadow rounded-8 p-30 bg-white">
-      <div class="flex items-center">
+    </el-card>
+    <el-card>
+      <div class="flex items-center mb-30">
         <div class="w-8 h-8 bg-green rounded-full"></div>
         <div class="text-20 ml-10">渠道质量转化漏斗</div>
       </div>
-      <div class="flex items-center mt-40 justify-between">
-        <div class="flex items-center">
-          <div class="text-18">佣金：<span class="text-green">0.00</span></div>
-          <div class="text-12 text-grey ml-30">每天凌晨3:00更新数据</div>
+      <div class="flex">
+        <div class="flex-1">
+          <LineChart/>
         </div>
-        <el-progress class="w-300" color="#25d55b" :stroke-width="10" :percentage="70" />
-        <div class="py-8 px-21 text-12 bg-#e9fbef rounded-4">
-          佣金结算说明
+        <div class="flex-1 ml-30">
+          <PieChart/>
         </div>
       </div>
-    </div>
+    </el-card>
     <div class="mt-30 text-14 text-grey">
       <div class="text-16 text-red">相关说明：</div>
       <br>
@@ -180,8 +178,10 @@
 
 <script setup>
 import {useI18n} from "vue-i18n";
+import LineChart from "@/views/modules/dashBoard/components/LineChart.vue";
+import PieChart from "@/views/modules/dashBoard/components/PieChart.vue";
 
-const { locale } = useI18n()
+const {locale} = useI18n()
 </script>
 
 <style lang="scss" scoped>

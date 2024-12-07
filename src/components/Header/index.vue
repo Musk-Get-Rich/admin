@@ -8,14 +8,14 @@
         <div class="flex" v-show="token">
           <div class="flex items-center cursor-pointer mr-20">
             <img class="w-24 mr-8" src="@/assets/images/header/2User.png" alt="">
-            <div>123123</div>
+            <div>{{ userInfo.loginaccount }}</div>
           </div>
           <div class="flex items-center cursor-pointer mr-20">
             <img class="w-24 mr-8" src="@/assets/images/header/moneys.png" alt="">
             <div class="flex items-center">
               代理余额
-              <div class="ml-16 mr-8 text-16 text-green">$0</div>
-              <img class="w-16" src="@/assets/images/header/Swap3.png" alt="">
+              <div class="ml-16 mr-8 text-16 text-green">${{ userInfo.balance || 0 }}</div>
+              <img @click="onRefreshUserInfo" class="w-16" src="@/assets/images/header/Swap3.png" alt="">
             </div>
           </div>
           <div class="flex items-center cursor-pointer mr-20">
@@ -23,8 +23,8 @@
             <div class="flex items-center">
               彩金余额
               <img class="w-16 ml-8" src="@/assets/images/header/Infocircle.png" alt="">
-              <div class="ml-16 mr-8 text-16 text-#E1B743">$0</div>
-              <img class="w-16" src="@/assets/images/header/Swap3.png" alt="">
+              <div class="ml-16 mr-8 text-16 text-#E1B743">${{ userInfo.giftUsd || 0 }}</div>
+              <img @click="onRefreshUserInfo" class="w-16" src="@/assets/images/header/Swap3.png" alt="">
             </div>
           </div>
           <div class="flex items-center cursor-pointer mr-20">
@@ -32,7 +32,7 @@
             <div class="flex items-center">
               会员登录
               <img class="w-16 ml-8" src="@/assets/images/header/Infocircle.png" alt="">
-              <div class="ml-16 mr-8 text-16 text-#43ACE1">0</div>
+              <div class="ml-16 mr-8 text-16 text-#43ACE1">{{ userInfo.onlinecount || 0 }}</div>
             </div>
           </div>
           <div
@@ -80,9 +80,9 @@ import {imageSrc} from "@/utils/index.js";
 
 const {locale} = useI18n()
 
-const {token} = storeToRefs(useUserStore())
+const {token, userInfo} = storeToRefs(useUserStore())
 
-const {logout} = useUserStore()
+const {logout, changeUserInfo} = useUserStore()
 
 const language = {
   'zh-CN': {
@@ -102,6 +102,28 @@ const language = {
   },
 }
 
+// 刷新用户数据
+const isRefresh = ref(false)
+const onRefreshUserInfo = () => {
+  if (isRefresh.value) return
+  isRefresh.value = true
+  changeUserInfo().then(() => {
+
+    // 2秒内不能再点击
+    setTimeout(() => {
+      isRefresh.value = false
+    }, 1000)
+  }).catch(err => {
+    isRefresh.value = false
+  })
+  const img = event.target;
+  img.classList.add('rotate');
+  // 移除类以便下次点击时可以重新应用动画
+  img.addEventListener('animationend', () => {
+    img.classList.remove('rotate');
+  });
+}
+
 const changeLanguage = (val) => {
   locale.value = val.value
 
@@ -112,5 +134,18 @@ const changeLanguage = (val) => {
 <style lang="scss" scoped>
 .header-wrapper {
   box-shadow: 0 1px 14px 4px rgba(0, 0, 0, .05);
+}
+
+.rotate {
+  animation: rotate 1s ease-in-out;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

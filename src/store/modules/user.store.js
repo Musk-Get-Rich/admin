@@ -9,6 +9,7 @@ import {LOCAL_STORAGE_NAME} from "@/config/index.js";
 import {eventEmitter} from "@/utils/eventEmitter/index.js";
 import {useStorage} from "@vueuse/core";
 import {_getUserInfo} from "@/service/api/user.js";
+import {apiGetAgentInfo} from "@/service/api/api.js";
 
 const {getCache, setCache, removeCache} = LocalCache
 
@@ -27,8 +28,6 @@ export const useUserStore = defineStore('userStore', () => {
         const res = await apiLogin(data)
 
         userInfo.value = res
-
-        console.log(res);
 
         token.value = res.token
 
@@ -50,11 +49,18 @@ export const useUserStore = defineStore('userStore', () => {
   }
 
   const changeUserInfo = () => {
-    _getUserInfo().then(res => {
-      userInfo.value = {
-        ...userInfo.value,
-        ...res
-      }
+    return new Promise((resolve, reject) => {
+      Promise.all([_getUserInfo(), apiGetAgentInfo()]).then(res => {
+        userInfo.value = {
+          ...userInfo.value,
+          ...res[0],
+          ...res[1],
+        }
+
+        resolve(true)
+      }).catch(err => {
+        reject(err)
+      })
     })
   }
 
