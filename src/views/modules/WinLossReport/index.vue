@@ -1,5 +1,6 @@
 <template>
   <el-card>
+    <Title name="输赢报表" />
     <TimeSelect
       @search="onSearch"
       @clear="onRefresh"
@@ -60,6 +61,7 @@ import {useTableList} from "@/hook/useTableList.js";
 import {_getProfitLossReport} from "@/service/api/agent.js";
 import Other from "./components/other/index.vue"
 import BonusDetail from "./components/bonusDetail/index.vue"
+import Title from "@/components/Title/index.vue";
 
 const list = [
   {

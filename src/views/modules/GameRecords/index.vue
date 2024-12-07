@@ -11,9 +11,7 @@
       @current-change="currentChange"
     >
       <template #search>
-        <el-row justify="space-between mb-20">
-          <div>游戏记录</div>
-        </el-row>
+        <Title name="游戏记录" />
         <div class="flex mb-10">
           <Search />
         </div>
@@ -45,6 +43,7 @@ import {useTableSearch} from "@/hook/useTableSearch.js";
 import {_getMemberReport} from "@/service/api/agent.js";
 import {useMaterialType} from "./hook/useMaterialType.js";
 import Search from "./components/Search.vue";
+import Title from "@/components/Title/index.vue";
 
 const list = [
   {
