@@ -148,16 +148,15 @@ const fetchList = (params) => {
       employeecode: undefined,
     })
   } else {
-    return apiGetVipList({
-      ...params,
-      isnormal: 0,
-      employeecode: undefined,
-    })
-    // return apiGetVipMaintainList({
+    // return apiGetVipList({
     //   ...params,
-    //   isnormal: type.value,
+    //   isnormal: 0,
     //   employeecode: undefined,
     // })
+    return apiGetVipMaintainList({
+      ...params,
+      employeecode: undefined,
+    })
   }
 }
 
