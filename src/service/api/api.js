@@ -52,3 +52,18 @@ export const apiRegisterAgent = (params) => {
 export const apiGetAgentInviteList = (params) => {
   return requestFunc('/AgentNew/GetInviteReport', params)
 }
+
+// 获取首页数据
+export const apiGetHomeData = (params) => {
+  return requestFunc('/AgentNew/AgentSumInfo', params)
+}
+
+// 顶部通知
+export const apiGetTopNotice = (params) => {
+  return requestFunc('/Notic/Notic', params)
+}
+
+//
+export const apiCommissionReport = (params) => {
+  return requestFunc('/AgentNew/AgentCommissionReport', params)
+}

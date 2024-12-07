@@ -22,7 +22,14 @@
             <img class="w-24 mr-8" src="@/assets/images/header/dollar-circle.png" alt="">
             <div class="flex items-center">
               彩金余额
-              <img class="w-16 ml-8" src="@/assets/images/header/Infocircle.png" alt="">
+              <el-tooltip
+                class="box-item"
+                effect="dark"
+                content="彩金余额-根据代理上个月的有效会员发放，只能用于活动，不能用于非法提现。"
+                placement="top"
+              >
+                <img class="w-16 ml-8" src="@/assets/images/header/Infocircle.png" alt="">
+              </el-tooltip>
               <div class="ml-16 mr-8 text-16 text-#E1B743">${{ userInfo.giftUsd || 0 }}</div>
               <img @click="onRefreshUserInfo" class="w-16" src="@/assets/images/header/Swap3.png" alt="">
             </div>
@@ -31,7 +38,14 @@
             <img class="w-24 mr-8" src="@/assets/images/header/monitor-mobbile.png" alt="">
             <div class="flex items-center">
               会员登录
-              <img class="w-16 ml-8" src="@/assets/images/header/Infocircle.png" alt="">
+              <el-tooltip
+                class="box-item"
+                effect="dark"
+                content="登录会员-当前登录人数"
+                placement="top"
+              >
+                <img class="w-16 ml-8" src="@/assets/images/header/Infocircle.png" alt="">
+              </el-tooltip>
               <div class="ml-16 mr-8 text-16 text-#43ACE1">{{ userInfo.onlinecount || 0 }}</div>
             </div>
           </div>

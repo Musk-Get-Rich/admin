@@ -1,5 +1,6 @@
 <template>
   <el-card>
+    <div class="mb-30 text-black text-20">会员管理</div>
     <TimeSelect
       @search="onSearch"
       @clear="onRefresh"

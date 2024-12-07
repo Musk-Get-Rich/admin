@@ -1,11 +1,9 @@
 <template>
   <el-card>
-    <div class="flex mb-20 py-20 border-b-solid border-gray-300">
+    <div class="flex mb-20 py-20 border-b-1 border-b-solid border-gray-300">
       <el-button type="primary">个人佣金</el-button>
-      <el-button type="primary">团队业绩查明</el-button>
+      <el-button>团队业绩查明</el-button>
     </div>
-    <avue-form v-model="form"
-             :option="option"></avue-form>
     <div class="mt-20 flex flex-wrap justify-between">
       <div class="border-solid border-gray-200 w-230 h-127 rounded-8px flex flex-col justify-center items-center mb-10"
       v-for="(item,index) in list" :key="index">
