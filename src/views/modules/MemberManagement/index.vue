@@ -9,7 +9,7 @@
           <div>会员管理</div>
         </el-row>
         <div class="border border-b-solid border-gray-300 py-6xl my-6xl">
-          <el-button v-for="t in types" :key="t.value" :type="t.value === type ? 'primary' : ''" @click="type = t.value">
+          <el-button v-for="t in types" :key="t.value" :type="t.value === type ? 'primary' : ''" @click="onTypeChange(t.value)">
             {{ t.label }}
           </el-button>
         </div>
@@ -57,99 +57,109 @@
           </el-popover>
         </div>
       </template>
-      <template #title="{ row }">
-        <div class="overflow-auto h-150" v-html="row.title">
-
+      <template #employeelevelname="scope">
+        <div>{{ scope.row.employeelevelname }}</div>
+        <div class="color-green">cn</div>
+      </template>
+      <template #loginaccount="scope">
+        <div class="flex justify-center items-center">
+          <div>{{ scope.row.loginaccount }}</div>
+          <img class="w-20 h-20 object-cover" src="@/assets/images/login/shield-tick.png" alt="">
         </div>
       </template>
-      <template #content="{ row }">
-        <div class="overflow-auto h-150" v-html="row.title">
-
+      <template #isnormal="scope">
+        <div>
+          <div>{{ isnormalOptions.find(a => String(a.value) === String(scope.row.isnormal))?.label  }}</div>
+          <div class="text-4xl">
+            <span>上级：</span>
+            <span class="color-green">无</span>
+          </div>
         </div>
+      </template>
+      <template #hasDeposit="scope">
+        <span>{{ scope.row.accumulateddeposit || 0 }} / {{ scope.row.accumulatedwithdraw }}</span>
       </template>
       <template #menu="{ row }">
-        <el-button icon="el-icon-edit" @click="handleEdit(row)">
-          编辑
-        </el-button>
-        <el-button type="primary" icon="el-icon-delete" @click="handleDelete(row.id)">
-          删除
-        </el-button>
+        <div class="grid grid-cols-2 gap-4 w-full">  
+          <div v-for="item in menuList" :key="item.id" class="p-4">  
+            <div class="p-3 cursor-pointer" @click="menuClick">  
+              <img class="w-20 h-20 object-cover" :src="item.icon" :alt="item.name">  
+            </div>  
+          </div>  
+        </div> 
       </template>
     </avue-crud>
   </el-card>
 </template>
 
 <script setup>
-import option from "./option.js"
+import option, { isnormalOptions } from "./option.js"
 import { useTableList } from "@/hook/useTableList.js";
 import { useTableSearch } from "@/hook/useTableSearch.js";
-import { apiGetAgentList } from "@/service/api/api.js";
+import { apiGetVipList, apiGetVipMaintainList } from "@/service/api/api.js";
 import { useAgent } from "@/views/modules/AgentManagement/hook/useAgent.js";
 import { computed } from "vue";
 import { InfoFilled } from '@element-plus/icons-vue';
 
+import dollarCircle from '@/assets/images/login/dollar-circle.png'  
+import coins from '@/assets/images/login/Coins.png'  
+import shieldTick from '@/assets/images/login/shield-tick.png'  
+import chart from '@/assets/images/login/chart.png'  
+import note from '@/assets/images/login/note.png'  
+import addCircle from '@/assets/images/login/add-circle.png'  
+import { ElMessageBox } from "element-plus";
+
+const menuList = [  
+  { id: 1, icon: dollarCircle },  
+  { id: 2, icon: coins },  
+  { id: 3, icon: shieldTick },  
+  { id: 4, icon: chart },  
+  { id: 5, icon: note },  
+  { id: 6, icon: addCircle }  
+]  
+
 const types = [
   {
-    value: '0',
+    value: 1,
     label: '会员管理'
   },
   {
-    value: '1',
+    value: 0,
     label: '需要维护'
   }
 ]
 
-const type = ref('0')
+const type = ref(1)
+
 
 const customOptions = computed(() => {
   return {
     ...option,
-    column: option.column.filter(c => !['phoneOrEmail', 'reason'].includes(c.prop) || type.value === '1')
+    column: option.column.filter(c => !['phoneOrEmail', 'reasontype'].includes(c.prop) || type.value === 0)
   }
 })
 
-const articleTypeId = ref('')
-
-// 当前账号代理级别
-const agentLevel = computed(() => 2)
-
-const createAgentBtnText = computed(() => {
-  const chars = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
-  const text = chars[agentLevel.value + 1]
-  return `创建${text}级代理`
-})
-
-// 新增
-const handleEdit = () => {
-  useAgent().changeDatail({
-    type: 'edit',
-    done() {
-      getTableData()
-    }
-  })
-}
-
-// 新增
-const handleAdd = () => {
-  useAgent().changeDatail({
-    type: 'add',
-    done() {
-      getTableData()
-    }
-  })
-}
-
-// 删除
-const handleDelete = (id) => {
-  useAgent().onDelete({
-    id,
-    done() {
-      getTableData()
-    }
-  })
-}
-
 const tableSearch = useTableSearch()
+
+const fetchList = (params) => {
+  if (type.value === 1) {
+    return apiGetVipList({
+      ...params,
+      employeecode: undefined,
+    })
+  } else {
+    return apiGetVipList({
+      ...params,
+      isnormal: 0,
+      employeecode: undefined,
+    })
+    // return apiGetVipMaintainList({
+    //   ...params,
+    //   isnormal: type.value,
+    //   employeecode: undefined,
+    // })
+  }
+}
 
 const {
   tableRef,
@@ -159,9 +169,22 @@ const {
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(apiGetAgentList, {
+} = useTableList(fetchList, {
 
 })
+
+const onTypeChange = (value) => {
+  type.value = value;
+  getTableData();
+}
+
+const menuClick = () => {
+  ElMessageBox.alert('敬请期待', '温馨提示', {
+    confirmButtonText: 'OK',
+    callback: (action) => {
+    },
+  })
+}
 
 // 搜索
 const onSearch = (form, done) => {
@@ -169,7 +192,6 @@ const onSearch = (form, done) => {
 }
 
 const onSearchReset = () => {
-  articleTypeId.value = ''
   tableSearch.reset(getTableData)
 }
 </script>

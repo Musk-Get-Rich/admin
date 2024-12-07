@@ -68,6 +68,7 @@ import { useTableList } from "@/hook/useTableList.js";
 import { useTableSearch } from "@/hook/useTableSearch.js";
 import { apiGetAgentInfo, apiGetAgentInviteList } from "@/service/api/api.js";
 import { useAgent } from "@/views/modules/AgentInvite/hook/useAgent.js";
+import { ElMessageBox } from "element-plus";
 import { computed, ref } from "vue";
 
 const agentInfo = ref({})
@@ -101,12 +102,17 @@ const handleEdit = () => {
 
 // 新增
 const handleAdd = () => {
-  useAgent().changeDatail({
-    type: 'add',
-    done() {
-      getTableData()
-    }
+  ElMessageBox.alert('敬请期待', '温馨提示', {
+    confirmButtonText: 'OK',
+    callback: (action) => {
+    },
   })
+  // useAgent().changeDatail({
+  //   type: 'add',
+  //   done() {
+  //     getTableData()
+  //   }
+  // })
 }
 
 // 删除

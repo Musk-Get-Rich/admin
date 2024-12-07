@@ -1,34 +1,57 @@
 import { globalOption } from "@/config/tabOption.js";
 
+const levelOptions = Array.from({ length: 12 }).map((_, i) => ({
+  label: `VIP${i + 1}`,
+  value: String(i + 1).padStart(4, '0')
+}))
+
+export const isnormalOptions = [
+  {
+    "label": "静止户",
+    "value": 0
+  },
+  {
+    "label": "正常户",
+    "value": 1
+  }
+]
+
+export const reasonTypes = [
+  {
+    "label": "注册未充值",
+    "value": "REGISTERNODEPOSIT "
+  },
+  {
+    "label": "超过1周没登录",
+    "value": "NOLOGINWEEK"
+  },
+  {
+    "label": "超过1周未充值的",
+    "value": "NODEPOSITWEEK"
+  }
+]
+
 export default {
   ...globalOption,
   stripe: false,
   searchMenuSpan: 6, // 搜索框宽度
   refreshBtn: false,
   columnBtn: false,
+  menuWidth: 100,
   column: [
     {
       label: '等级',
-      prop: 'level',
+      prop: 'employeelevelname',
       search: true,
       searchLabel: '',
       placeholder: '请选择等级',
       type: 'select',
       searchOrder: 3,
-      dicData: [
-        {
-          label: '一级',
-          value: 1
-        },
-        {
-          label: '二级',
-          value: 2
-        }
-      ]
+      dicData: levelOptions
     },
     {
       label: '账号姓名',
-      prop: 'name',
+      prop: 'loginaccount',
       search: true,
       searchLabel: '',
       placeholder: '请输入会员账号',
@@ -36,7 +59,7 @@ export default {
     },
     {
       label: '存款/提款',
-      prop: 'level',
+      prop: 'hasDeposit',
       search: true,
       searchLabel: '',
       placeholder: '是否存款',
@@ -49,13 +72,13 @@ export default {
         },
         {
           label: '否',
-          value: 2
+          value: 0
         }
       ]
     },
     {
       label: '净输赢',
-      prop: 'employeestatus',
+      prop: 'winlose',
     },
     {
       label: '手机号/邮箱',
@@ -63,77 +86,31 @@ export default {
     },
     {
       label: '创建时间',
-      prop: 'remark',
+      prop: 'logindatetime',
     },
     {
       label: '最后登录',
-      prop: 'content',
+      prop: 'lastlogintime',
     },
     {
       label: '状态',
-      prop: 'status',
+      prop: 'isnormal',
       type: 'select',
       search: true,
       searchLabel: '',
       placeholder: '状态',
       searchOrder: 2,
-      dicData: [
-        {
-          "label": "静止户",
-          "value": "静止户"
-        },
-        {
-          "label": "正常户",
-          "value": "正常户"
-        },
-        {
-          "label": "停权户",
-          "value": "停权户"
-        },
-        {
-          "label": "密码锁定",
-          "value": "密码锁定"
-        },
-        {
-          "label": "内部试玩",
-          "value": "内部试玩"
-        },
-        {
-          "label": "沉默户",
-          "value": "沉默户"
-        },
-        {
-          "label": "注销",
-          "value": "注销"
-        }
-      ]
+      dicData: isnormalOptions
     },
     {
       label: '维护原因',
-      prop: 'reason',
+      prop: 'reasontype',
       search: true,
       searchLabel: '',
       placeholder: '维护原因',
       type: 'select',
       searchOrder: 1,
-      dicData: [
-        {
-          "label": "注册没充值",
-          "value": "noRecharge"
-        },
-        {
-          "label": "超过1周没登录",
-          "value": "noLoginWeek"
-        },
-        {
-          "label": "超过1周没充值的",
-          "value": "noRechargeWeek"
-        },
-        {
-          "label": "可注销",
-          "value": "canDelete"
-        }
-      ]
+      dicData: reasonTypes
     },
   ]
 }
