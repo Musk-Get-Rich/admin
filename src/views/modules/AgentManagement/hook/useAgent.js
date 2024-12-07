@@ -1,6 +1,7 @@
 import { useDialogFormStore } from "@/components/DialogForm/store/dialogForm.store.js";
 import {
   apiRegisterAgent,
+  apiEditAgent,
   apiDeleteMaterialType,
   apiCheckAgentAccount
 } from "@/service/api/api.js";
@@ -121,9 +122,11 @@ export const useAgent = () => {
       data,
       option,
       submit(formData, done, cancel) {
-        apiRegisterAgent({
+        const api = type === 'add' ? apiRegisterAgent : apiEditAgent
+        api({
           ...formData,
-          loginaccount: `${prependName.value}${formData.loginaccount}`
+          // parentemployeecode: undefined,
+          loginaccount: `${prependName.value}${formData.loginaccount}`,
         }, method).then(res => {
           ElMessage.success(`${title}成功`)
 
@@ -138,21 +141,26 @@ export const useAgent = () => {
   }
 
   const onDelete = ({ id, done }) => {
-    ElMessageBox.confirm(
-      '您确定要删除吗?',
-      'Warning',
-      {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning',
-      }
-    )
-      .then(async () => {
-        apiDeleteMaterialType(id).then(res => {
-          ElMessage.success(`删除成功`)
-          done && done()
-        })
-      })
+    // ElMessageBox.confirm(
+    //   '您确定要删除吗?',
+    //   'Warning',
+    //   {
+    //     confirmButtonText: '确定',
+    //     cancelButtonText: '取消',
+    //     type: 'warning',
+    //   }
+    // )
+    //   .then(async () => {
+    //     apiDeleteMaterialType(id).then(res => {
+    //       ElMessage.success(`删除成功`)
+    //       done && done()
+    //     })
+    //   })
+    ElMessageBox.alert('敬请期待', '温馨提示', {
+      confirmButtonText: 'OK',
+      callback: (action) => {
+      },
+    })
   }
 
   return {
