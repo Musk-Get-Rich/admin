@@ -41,7 +41,7 @@ export default {
   column: [
     {
       label: '等级',
-      prop: 'employeelevelname',
+      prop: 'employeelevelcode',
       search: true,
       searchLabel: '',
       placeholder: '请选择等级',

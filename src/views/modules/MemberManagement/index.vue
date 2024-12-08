@@ -6,7 +6,7 @@
     >
       <template #search>
         <el-row justify="space-between">
-          <div>会员管理</div>
+          <Title name="会员管理" />
         </el-row>
         <div class="border border-b-solid border-gray-300 py-6xl my-6xl">
           <el-button v-for="t in types" :key="t.value" :type="t.value === type ? 'primary' : ''" @click="onTypeChange(t.value)">
@@ -57,7 +57,7 @@
           </el-popover>
         </div>
       </template>
-      <template #employeelevelname="scope">
+      <template #employeelevelcode="scope">
         <div>{{ scope.row.employeelevelname }}</div>
         <div class="color-green">cn</div>
       </template>
@@ -100,6 +100,7 @@ import { apiGetVipList, apiGetVipMaintainList } from "@/service/api/api.js";
 import { useAgent } from "@/views/modules/AgentManagement/hook/useAgent.js";
 import { computed } from "vue";
 import { InfoFilled } from '@element-plus/icons-vue';
+import Title from "@/components/Title/index.vue";
 
 import dollarCircle from '@/assets/images/login/dollar-circle.png'  
 import coins from '@/assets/images/login/Coins.png'  
@@ -108,6 +109,7 @@ import chart from '@/assets/images/login/chart.png'
 import note from '@/assets/images/login/note.png'  
 import addCircle from '@/assets/images/login/add-circle.png'  
 import { ElMessageBox } from "element-plus";
+import { useUserStore } from "@/store/modules/user.store.js";
 
 const menuList = [  
   { id: 1, icon: dollarCircle },  
@@ -141,11 +143,14 @@ const customOptions = computed(() => {
 
 const tableSearch = useTableSearch()
 
+const userStore = useUserStore()
+
 const fetchList = (params) => {
   if (type.value === 1) {
     return apiGetVipList({
       ...params,
       employeecode: undefined,
+      parentemployeecode: userStore.userInfo.employeecode
     })
   } else {
     // return apiGetVipList({
@@ -156,6 +161,7 @@ const fetchList = (params) => {
     return apiGetVipMaintainList({
       ...params,
       employeecode: undefined,
+      parentemployeecode: userStore.userInfo.employeecode
     })
   }
 }

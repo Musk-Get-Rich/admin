@@ -35,7 +35,7 @@ export function useTableList(ajaxFn, params, immediate = true) {
 
         console.log(tableData.value);
 
-        pageTotal.value = res.total || res.result
+        pageTotal.value = res.total || res.results
         tableLoading.value = false
       })
       .catch(() => {

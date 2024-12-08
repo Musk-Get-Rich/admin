@@ -6,7 +6,7 @@
         @current-change="currentChange">
         <template #header>
           <el-row justify="space-between">
-            <div>下级管理</div>
+            <Title name="下级管理" />
             <el-button type="primary" icon="el-icon-plus" @click="handleAdd">
               {{ createAgentBtnText }}
             </el-button>
@@ -46,9 +46,9 @@
           <el-button icon="el-icon-edit" @click="handleEdit(row)">
             编辑
           </el-button>
-          <el-button type="primary" icon="el-icon-delete" @click="handleDelete(row.id)">
+          <!-- <el-button type="primary" icon="el-icon-delete" @click="handleDelete(row.id)">
             删除
-          </el-button>
+          </el-button> -->
         </template>
       </avue-crud>
     </el-card>
@@ -62,8 +62,12 @@ import { useTableSearch } from "@/hook/useTableSearch.js";
 import { apiGetAgentInfo, apiGetAgentList } from "@/service/api/api.js";
 import { useAgent } from "@/views/modules/AgentManagement/hook/useAgent.js";
 import { computed, ref } from "vue";
+import Title from "@/components/Title/index.vue";
+import { useUserStore } from "@/store/modules/user.store.js";
 
 const agentInfo = ref({})
+
+const userStore = useUserStore()
 
 // 当前账号代理级别
 const agentLevel = computed(() => Number(agentInfo.value?.agentlevel || 3))
@@ -124,7 +128,7 @@ const fetchList = (params) => {
   return apiGetAgentList({
     ...params,
     employeecode: undefined,
-    parentemployeecode: undefined,
+    parentemployeecode: userStore.userInfo.employeecode
   })
 }
 

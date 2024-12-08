@@ -6,7 +6,7 @@
         @current-change="currentChange">
         <template #search>
           <el-row justify="space-between">
-            <div>下级管理</div>
+              <Title name="下级管理" />
           </el-row>
           <div class="border border-solid border-gray-300 py-8xl rounded-3xl my-5xl">
             <div class="grid grid-cols-4">
@@ -39,22 +39,18 @@
             创建内部推广号
           </el-button>
         </template>
-        <template #title="{ row }">
-          <div class="overflow-auto h-150" v-html="row.title">
-
-          </div>
+        <template #playcount="{ row }">
+          <!-- <div><span class="color-green">0</span> / <span class="color-green">0</span></div> -->
         </template>
-        <template #content="{ row }">
-          <div class="overflow-auto h-150" v-html="row.title">
-
-          </div>
+        <template #employeestatus="{ row }">
+          <!-- <span class="color-green">已开通</span> -->
         </template>
         <template #menu="{ row }">
-          <el-button icon="el-icon-edit" @click="handleEdit(row)">
-            编辑
+          <el-button text type="warning" @click="handleChangePwd(row)">
+            修改密码
           </el-button>
-          <el-button type="primary" icon="el-icon-delete" @click="handleDelete(row.id)">
-            删除
+          <el-button text type="primary" @click="handleQueryTeamResult(row.id)">
+            团队业绩查询
           </el-button>
         </template>
       </avue-crud>
@@ -70,8 +66,12 @@ import { apiGetAgentInfo, apiGetAgentInviteList } from "@/service/api/api.js";
 import { useAgent } from "@/views/modules/AgentInvite/hook/useAgent.js";
 import { ElMessageBox } from "element-plus";
 import { computed, ref } from "vue";
+import Title from "@/components/Title/index.vue";
+import { useUserStore } from "@/store/modules/user.store.js";
 
 const agentInfo = ref({})
+
+const userStore = useUserStore()
 
 const type = ref('')
 
@@ -90,13 +90,18 @@ const types = [
   }
 ]
 
-// 新增
-const handleEdit = () => {
-  useAgent().changeDatail({
-    type: 'edit',
-    done() {
-      getTableData()
-    }
+// 修改密码
+const handleChangePwd = () => {
+  // useAgent().changeDatail({
+  //   type: 'edit',
+  //   done() {
+  //     getTableData()
+  //   }
+  // })
+  ElMessageBox.alert('敬请期待', '温馨提示', {
+    confirmButtonText: 'OK',
+    callback: (action) => {
+    },
   })
 }
 
@@ -116,12 +121,11 @@ const handleAdd = () => {
 }
 
 // 删除
-const handleDelete = (id) => {
-  useAgent().onDelete({
-    id,
-    done() {
-      getTableData()
-    }
+const handleQueryTeamResult = (id) => {
+  ElMessageBox.alert('敬请期待', '温馨提示', {
+    confirmButtonText: 'OK',
+    callback: (action) => {
+    },
   })
 }
 
@@ -134,7 +138,11 @@ const getAgentInfo = async () =>{
 const fetchList = (params) => {
   getAgentInfo()
   params.type = type.value
-  return apiGetAgentInviteList(params)
+  return apiGetAgentInviteList({
+    ...params,
+    employeecode: undefined,
+    parentemployeecode: userStore.userInfo.employeecode
+  })
 }
 const {
   tableRef,

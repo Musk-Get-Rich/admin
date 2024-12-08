@@ -2,15 +2,18 @@ import { useDialogFormStore } from "@/components/DialogForm/store/dialogForm.sto
 import {
   apiRegisterAgent,
   apiEditAgent,
-  apiDeleteMaterialType,
   apiCheckAgentAccount
 } from "@/service/api/api.js";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { storeToRefs } from "pinia";
 import { useDeviceStore } from "@/store/modules/device.store.js";
 import { computed } from "vue";
+import { useUserStore } from "@/store/modules/user.store.js";
 
 export const useAgent = () => {
+
+  const userStore = useUserStore()
+  
   const changeDetail = (config) => {
     const { isMobile } = storeToRefs(useDeviceStore())
 
@@ -85,8 +88,15 @@ export const useAgent = () => {
         {
           label: '佣金比例',
           prop: 'dividend',
-          placeholder: '请输入佣金比例',
+          placeholder: `请输入佣金比例(不能大于${userStore.userInfo.dividend})`,
           span: 24,
+          rules: [
+            {
+              required: true,
+              message: `请输入佣金比例`,
+              trigger: "blur"
+            },
+          ],
         },
         {
           label: 'Telegram',
@@ -122,11 +132,13 @@ export const useAgent = () => {
       data,
       option,
       submit(formData, done, cancel) {
+        console.log(userStore.userInfo, 'userStore.userInfouserStore.userInfo')
         const api = type === 'add' ? apiRegisterAgent : apiEditAgent
         api({
           ...formData,
-          // parentemployeecode: undefined,
           loginaccount: `${prependName.value}${formData.loginaccount}`,
+          parentemployeecode: userStore.userInfo.employeecode,
+          employeecode: data?.employeecode,
         }, method).then(res => {
           ElMessage.success(`${title}成功`)
 
