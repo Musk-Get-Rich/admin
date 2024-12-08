@@ -23,5 +23,6 @@ export const _getAgentDayReport = (params) => {
 
 // 输赢报表
 export const _getProfitLossReport = (params) => {
+  console.log(params);
   return requestFunc('/AgentNew/GetProfitLossReport', params)
 }

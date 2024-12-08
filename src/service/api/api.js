@@ -65,6 +65,5 @@ export const apiGetTopNotice = (params) => {
 
 // 会员报表
 export const apiMembershipReport = (params) => {
-  console.log(params);
   return requestFunc('/AgentNew/GetMemberReport', params)
 }

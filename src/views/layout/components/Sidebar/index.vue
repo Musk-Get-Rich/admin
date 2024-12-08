@@ -81,10 +81,6 @@ const getAgentInfo = async () =>{
   agentInfo.value = await apiGetAgentInfo()
 }
 
-watch(routeList, () => {
-  console.log(routeList.value, 999999, agentInfo.value)
-})
-
 onMounted(() => {
   getAgentInfo()
 })

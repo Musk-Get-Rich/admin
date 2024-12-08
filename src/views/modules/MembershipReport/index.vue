@@ -60,6 +60,9 @@ import {useMaterialType} from "./hook/useMaterialType.js";
 import Search from "./components/Search.vue";
 import Title from "@/components/Title/index.vue";
 import {apiMembershipReport} from "@/service/api/api.js";
+import searchTime from "@/config/time.js";
+
+const { startDate, endDate } = searchTime
 
 const list = [
   {
@@ -102,7 +105,8 @@ const {
   sizeChange,
   currentChange
 } = useTableList(apiMembershipReport, {
-
+  startDate,
+  endDate,
 })
 
 // 搜索

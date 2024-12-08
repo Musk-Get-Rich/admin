@@ -62,6 +62,9 @@ import {_getProfitLossReport} from "@/service/api/agent.js";
 import Other from "./components/other/index.vue"
 import BonusDetail from "./components/bonusDetail/index.vue"
 import Title from "@/components/Title/index.vue";
+import searchTime from "@/config/time.js"
+
+const { startData, endData } = searchTime
 
 const {
   tableRef,
@@ -71,7 +74,10 @@ const {
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(_getProfitLossReport, {})
+} = useTableList(_getProfitLossReport, {
+  startData,
+  endData,
+})
 
 const toggleExpand = (row, type) => {
   row.otherList = [row.profitlossOtherVo]

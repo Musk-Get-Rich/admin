@@ -82,7 +82,6 @@ service.interceptors.response.use(
 
 // sendUserCode 是否携带用户编码传递
 export const requestFunc = (path, data) => {
-  console.log(data);
   return service.get(path + "?" + encryptApiParams({
     ...data,
   }));

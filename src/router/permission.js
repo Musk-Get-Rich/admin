@@ -5,8 +5,6 @@ import { useUserStore } from "@/store/modules/user.store.js";
 router.beforeEach(async (to, from) => {
   const userStore = useUserStore()
 
-  console.log(userStore.userInfo);
-
   if (userStore.userInfo.employeecode && userStore.token) { // 已登录
     return true
   } else { // 未登录

@@ -16,14 +16,13 @@ export const encryptApiParams = (params, noCrypto = false) => {
 	}
 	// 步骤1: 将业务参数转换为键值对字符串
 	const stringParams = qs.stringify({
-		employeecode: userStore.userInfo.employeecode,
-		parentemployeecode: userStore.userInfo.parentemployeecode, // 用户编码
+		// employeecode: userStore.userInfo.employeecode,
+		parentemployeecode: userStore.userInfo.employeecode, // 用户编码
 		...params,
 		brandcode: BRANDCODE,
 	});
 
-	console.log(userStore.userInfo.employeecode, stringParams);
-	console.log(userStore.userInfo.parentemployeecode);
+	console.log(stringParams);
 
 	// 步骤2: AES加密
 	const aesSecret = CryptoJS.enc.Utf8.parse(AES_KEY);
