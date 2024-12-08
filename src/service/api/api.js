@@ -80,5 +80,8 @@ export const apiGetTopNotice = (params) => {
 
 // 会员报表
 export const apiMembershipReport = (params) => {
-  return requestFunc('/AgentNew/GetMemberReport', params)
+  return requestFunc('/AgentNew/GetMemberReport', {
+    ...params,
+    // employeecode: undefined
+  })
 }
