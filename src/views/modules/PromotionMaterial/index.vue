@@ -2,7 +2,7 @@
   <div>
     <el-card>
       <Title name="推广素材" />
-      <div class="flex pb-20 border-b-solid border-gray-200">
+      <div class="flex pb-20 mb-20 border-b-solid border-gray-200">
         <Search />
       </div>
       <el-row v-for="i in 3" class="!w-full h-344px border-double border-gray-200 rounded-3xl shadow-gray-500 py-20 px-20 mb-20">
