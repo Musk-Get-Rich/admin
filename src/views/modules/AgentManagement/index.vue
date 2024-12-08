@@ -63,8 +63,11 @@ import { apiGetAgentInfo, apiGetAgentList } from "@/service/api/api.js";
 import { useAgent } from "@/views/modules/AgentManagement/hook/useAgent.js";
 import { computed, ref } from "vue";
 import Title from "@/components/Title/index.vue";
+import { useUserStore } from "@/store/modules/user.store.js";
 
 const agentInfo = ref({})
+
+const userStore = useUserStore()
 
 // 当前账号代理级别
 const agentLevel = computed(() => Number(agentInfo.value?.agentlevel || 3))
@@ -125,7 +128,7 @@ const fetchList = (params) => {
   return apiGetAgentList({
     ...params,
     employeecode: undefined,
-    parentemployeecode: undefined,
+    parentemployeecode: userStore.userInfo.employeecode
   })
 }
 

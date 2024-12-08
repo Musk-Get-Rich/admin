@@ -67,8 +67,11 @@ import { useAgent } from "@/views/modules/AgentInvite/hook/useAgent.js";
 import { ElMessageBox } from "element-plus";
 import { computed, ref } from "vue";
 import Title from "@/components/Title/index.vue";
+import { useUserStore } from "@/store/modules/user.store.js";
 
 const agentInfo = ref({})
+
+const userStore = useUserStore()
 
 const type = ref('')
 
@@ -138,6 +141,7 @@ const fetchList = (params) => {
   return apiGetAgentInviteList({
     ...params,
     employeecode: undefined,
+    parentemployeecode: userStore.userInfo.employeecode
   })
 }
 const {
