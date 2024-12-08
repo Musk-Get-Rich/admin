@@ -66,10 +66,10 @@ const routeList = computed(() => {
     if (r.path?.indexOf('managementCenter') > -1) {
       r.children = r.children?.filter(rr => {
         if (rr.name === 'agent') {
-          return Number(agentInfo.value.agentlevel) < 2
+          return Number(agentInfo.value.agentlevel) < 3
         }
         if (rr.name === 'invite') {
-          return Number(agentInfo.value.agentlevel) >= 2
+          return Number(agentInfo.value.agentlevel) >= 3
         }
         return true
       })

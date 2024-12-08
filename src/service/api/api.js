@@ -48,6 +48,21 @@ export const apiRegisterAgent = (params) => {
   return requestFunc('/AgentNew/registerAgent', params)
 }
 
+// 编辑代理
+export const apiEditAgent = (params) => {
+  return requestFunc('/AgentNew/editAgent', params)
+}
+
+// 获取会员管理列表
+export const apiGetVipList = (params) => {
+  return requestFunc('/AgentNew/ManagePlay', params)
+}
+
+// 获取需维护会员管理列表
+export const apiGetVipMaintainList = (params) => {
+  return requestFunc('/AgentNew/ManageMaintainPlay', params)
+}
+
 // 下线（邀请有奖）
 export const apiGetAgentInviteList = (params) => {
   return requestFunc('/AgentNew/GetInviteReport', params)
