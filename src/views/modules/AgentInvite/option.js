@@ -10,7 +10,7 @@ export default {
   column: [
     {
       label: '推广员(会员)',
-      prop: 'agentlinecode',
+      prop: 'loginaccount',
       search: true,
       searchLabel: '',
       placeholder: '会员账号',
@@ -25,7 +25,7 @@ export default {
     },
     {
       label: '加入时间',
-      prop: 'remark',
+      prop: 'logindate',
     },
   ]
 }

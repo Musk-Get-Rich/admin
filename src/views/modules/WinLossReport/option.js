@@ -6,7 +6,10 @@ export default {
   searchMenuSpan: 10, // 搜索框宽度
   searchSpan: 6,
   expand: true,
+  expandWidth: 1,
   expandRowKeys: [1],
+  expandClassName: 'invisible',
+  expandLabelClassName: 'invisible',
   rowKey: 'loginaccount',
   menu: false,
   column: [

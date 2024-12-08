@@ -6,7 +6,7 @@
         @current-change="currentChange">
         <template #header>
           <el-row justify="space-between">
-            <div>下级管理</div>
+            <Title name="下级管理" />
             <el-button type="primary" icon="el-icon-plus" @click="handleAdd">
               {{ createAgentBtnText }}
             </el-button>
@@ -62,6 +62,7 @@ import { useTableSearch } from "@/hook/useTableSearch.js";
 import { apiGetAgentInfo, apiGetAgentList } from "@/service/api/api.js";
 import { useAgent } from "@/views/modules/AgentManagement/hook/useAgent.js";
 import { computed, ref } from "vue";
+import Title from "@/components/Title/index.vue";
 
 const agentInfo = ref({})
 

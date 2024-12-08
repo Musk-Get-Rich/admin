@@ -125,7 +125,7 @@ export const useAgent = () => {
         const api = type === 'add' ? apiRegisterAgent : apiEditAgent
         api({
           ...formData,
-          // parentemployeecode: undefined,
+          parentemployeecode: undefined,
           loginaccount: `${prependName.value}${formData.loginaccount}`,
         }, method).then(res => {
           ElMessage.success(`${title}成功`)
