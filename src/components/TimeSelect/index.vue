@@ -20,6 +20,7 @@
         range-separator="To"
         :start-placeholder="$t('开始时间')"
         :end-placeholder="$t('结束时间')"
+        :disabled-date="selectLastThreeMonth"
       />
       <div class="flex-1 shrink-0 flex items-center ml-20">
         <el-button type="primary" icon="search" @click="onSearch">查询</el-button>
@@ -32,6 +33,7 @@
 <script setup>
 import { ref } from 'vue';
 import dayjs from 'dayjs';
+import { selectLastThreeMonth } from "@/utils/index.js";
 
 const emit = defineEmits(['search', 'clear'])
 
@@ -62,7 +64,6 @@ const selectTime = (item) => {
 };
 
 selectTime(timeSelect.value)
-
 
 const onClear = () => {
   timeVal.value = []

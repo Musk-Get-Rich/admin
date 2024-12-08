@@ -178,3 +178,12 @@ export const imageSrc = (image) => {
 export const replenishStr = (str, len, val) => {
   return str.padStart(len, val)
 }
+
+// 只能选择过去三个月
+export const selectLastThreeMonth = (time) => {
+  const now = new Date();
+  const threeMonthsAgo = new Date();
+  threeMonthsAgo.setMonth(now.getMonth() - 3);
+
+  return time.getTime() < threeMonthsAgo.getTime() || time.getTime() > now.getTime();
+}
