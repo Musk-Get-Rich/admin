@@ -1,9 +1,7 @@
 <template>
   <div>
     <el-card>
-      <el-row justify="space-between mb-20">
-        <div class="text-20">VIP专享</div>
-      </el-row>
+      <Title name="VIP专享" />
       <el-row v-for="i in 3" class="!w-full h-240px border-double border-gray-200 rounded-3xl shadow-gray-500 py-20 px-20 mb-20">
         <el-col :span="18" class="h-full bg-gray-300"></el-col>
         <el-col :span="6" class="h-full flex flex-col items-center justify-center">
@@ -17,6 +15,7 @@
 </template>
 
 <script setup>
+import Title from "@/components/Title/index.vue";
 
 </script>
 
