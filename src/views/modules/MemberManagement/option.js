@@ -37,7 +37,14 @@ export default {
   searchMenuSpan: 6, // 搜索框宽度
   refreshBtn: false,
   columnBtn: false,
+  menu: false,
   menuWidth: 100,
+  expand: true,
+  expandWidth: 1,
+  expandRowKeys: [1],
+  expandClassName: 'invisible',
+  expandLabelClassName: 'invisible',
+  rowKey: 'loginaccount',
   column: [
     {
       label: '等级',
@@ -111,6 +118,14 @@ export default {
       type: 'select',
       searchOrder: 1,
       dicData: reasonTypes
+    },
+    {
+      label: '操作',
+      prop: '_actions',
+    },
+    {
+      label: '其它参考',
+      prop: 'other',
     },
   ]
 }

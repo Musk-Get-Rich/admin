@@ -1,15 +1,16 @@
 <template>
   <el-card>
-    <avue-crud ref="tableRef" :key="JSON.stringify(customOptions)" :table-loading="tableLoading" :data="tableData" :option="customOptions" v-model:page="pageObj"
-               @refresh-change="getTableData" @search-change="onSearch" @search-reset="onSearchReset" @size-change="sizeChange"
-               @current-change="currentChange"
-    >
+    <avue-crud ref="tableRef" :key="JSON.stringify(customOptions)" :table-loading="tableLoading" :data="tableData"
+      :option="customOptions" v-model:page="pageObj" @refresh-change="getTableData" @search-change="onSearch"
+      @search-reset="onSearchReset" @size-change="sizeChange" @current-change="currentChange"
+      @expand-change="expandChange">
       <template #search>
         <el-row justify="space-between">
           <Title name="会员管理" />
         </el-row>
         <div class="border border-b-solid border-gray-300 py-6xl my-6xl">
-          <el-button v-for="t in types" :key="t.value" :type="t.value === type ? 'primary' : ''" @click="onTypeChange(t.value)">
+          <el-button v-for="t in types" :key="t.value" :type="t.value === type ? 'primary' : ''"
+            @click="onTypeChange(t.value)">
             {{ t.label }}
           </el-button>
         </div>
@@ -17,14 +18,12 @@
       <template #name-header="{ column }">
         <div class="flex justify-center items-center">
           <span>{{ (column || {}).label }}</span>
-          <el-popover
-              placement="top-start"
-              :width="200"
-              trigger="hover"
-          >
+          <el-popover placement="top-start" :width="200" trigger="hover">
             <template #reference>
               <span class="color-coolgray flex justify-center items-center">
-                <el-icon color="coolGray"><InfoFilled /></el-icon>
+                <el-icon color="coolGray">
+                  <InfoFilled />
+                </el-icon>
               </span>
             </template>
             <div>
@@ -37,14 +36,12 @@
       <template #status-header="{ column }">
         <div class="flex justify-center items-center">
           <span>{{ (column || {}).label }}</span>
-          <el-popover
-              placement="top-start"
-              :width="200"
-              trigger="hover"
-          >
+          <el-popover placement="top-start" :width="200" trigger="hover">
             <template #reference>
               <span class="color-coolgray flex justify-center items-center">
-                <el-icon color="coolGray"><InfoFilled /></el-icon>
+                <el-icon color="coolGray">
+                  <InfoFilled />
+                </el-icon>
               </span>
             </template>
             <div>
@@ -69,7 +66,7 @@
       </template>
       <template #isnormal="scope">
         <div>
-          <div>{{ isnormalOptions.find(a => String(a.value) === String(scope.row.isnormal))?.label  }}</div>
+          <div>{{ isnormalOptions.find(a => String(a.value) === String(scope.row.isnormal))?.label }}</div>
           <div class="text-4xl">
             <span>上级：</span>
             <span class="color-green">无</span>
@@ -79,14 +76,22 @@
       <template #hasDeposit="scope">
         <span>{{ scope.row.accumulateddeposit || 0 }} / {{ scope.row.accumulatedwithdraw }}</span>
       </template>
-      <template #menu="{ row }">
-        <div class="grid grid-cols-2 gap-4 w-full">  
-          <div v-for="item in menuList" :key="item.id" class="p-4">  
-            <div class="p-3 cursor-pointer" @click="menuClick">  
-              <img class="w-20 h-20 object-cover" :src="item.icon" :alt="item.name">  
-            </div>  
-          </div>  
-        </div> 
+      <template #other="{ row }">
+        <img @click="toggleExpand(row, 'other')" class="w-24" src="@/assets/images/add-circle.png" alt="">
+      </template>
+      <template #expand="{ row }">
+        <div class="px-10">
+          <Other :tableData="row.otherList" />
+        </div>
+      </template>
+      <template #_actions="{ row }">
+        <div class="grid grid-cols-2 gap-4 w-full">
+          <div v-for="item in menuList" :key="item.id" class="p-4">
+            <div class="p-3 cursor-pointer" @click="menuClick">
+              <img class="w-20 h-20 object-cover" :src="item.icon" :alt="item.name">
+            </div>
+          </div>
+        </div>
       </template>
     </avue-crud>
   </el-card>
@@ -97,28 +102,28 @@ import option, { isnormalOptions } from "./option.js"
 import { useTableList } from "@/hook/useTableList.js";
 import { useTableSearch } from "@/hook/useTableSearch.js";
 import { apiGetVipList, apiGetVipMaintainList } from "@/service/api/api.js";
-import { useAgent } from "@/views/modules/AgentManagement/hook/useAgent.js";
 import { computed } from "vue";
 import { InfoFilled } from '@element-plus/icons-vue';
 import Title from "@/components/Title/index.vue";
 
-import dollarCircle from '@/assets/images/login/dollar-circle.png'  
-import coins from '@/assets/images/login/Coins.png'  
-import shieldTick from '@/assets/images/login/shield-tick.png'  
-import chart from '@/assets/images/login/chart.png'  
-import note from '@/assets/images/login/note.png'  
-import addCircle from '@/assets/images/login/add-circle.png'  
+import dollarCircle from '@/assets/images/login/dollar-circle.png'
+import coins from '@/assets/images/login/Coins.png'
+import shieldTick from '@/assets/images/login/shield-tick.png'
+import chart from '@/assets/images/login/chart.png'
+import note from '@/assets/images/login/note.png'
+import addCircle from '@/assets/images/login/add-circle.png'
 import { ElMessageBox } from "element-plus";
 import { useUserStore } from "@/store/modules/user.store.js";
+import Other from "./components/other/index.vue"
 
-const menuList = [  
-  { id: 1, icon: dollarCircle },  
-  { id: 2, icon: coins },  
-  { id: 3, icon: shieldTick },  
-  { id: 4, icon: chart },  
-  { id: 5, icon: note },  
-  { id: 6, icon: addCircle }  
-]  
+const menuList = [
+  { id: 1, icon: dollarCircle },
+  { id: 2, icon: coins },
+  { id: 3, icon: shieldTick },
+  { id: 4, icon: chart },
+  { id: 5, icon: note },
+  { id: 6, icon: addCircle }
+]
 
 const types = [
   {
@@ -177,6 +182,17 @@ const {
 } = useTableList(fetchList, {
 
 })
+
+const toggleExpand = (row) => {
+  row.otherList = [{}];
+
+  tableRef.value.toggleRowExpansion(row);
+}
+
+const expandChange = (row) => {
+  row.expandStatus = !row.expandStatus
+  console.log(row.expandStatus);
+};
 
 const onTypeChange = (value) => {
   type.value = value;
