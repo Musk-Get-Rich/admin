@@ -64,7 +64,7 @@ import BonusDetail from "./components/bonusDetail/index.vue"
 import Title from "@/components/Title/index.vue";
 import searchTime from "@/config/time.js"
 
-const { startData, endData } = searchTime
+const { startDate, endDate } = searchTime
 
 const {
   tableRef,
@@ -75,13 +75,12 @@ const {
   sizeChange,
   currentChange
 } = useTableList(_getProfitLossReport, {
-  startData,
-  endData,
+  startDate,
+  endDate,
 })
 
 const toggleExpand = (row, type) => {
   row.otherList = [row.profitlossOtherVo]
-  row.bonusDetailList = [row.bonusDetail]
 
   if (!row.expandStatus) {
     tableRef.value.toggleRowExpansion(row);
@@ -94,7 +93,6 @@ const toggleExpand = (row, type) => {
 
 const expandChange = (row) => {
   row.expandStatus = !row.expandStatus
-  console.log(row.expandStatus);
   if (!row.expandType) {
     row.expandType = 'bonusDetail'
     row.bonusDetailList = [row.bonusDetail]
@@ -107,7 +105,10 @@ const onSearch = (val) => {
 }
 
 const onRefresh = () => {
-  getTableData({})
+  getTableData({
+    startDate,
+    endDate,
+  })
 }
 </script>
 

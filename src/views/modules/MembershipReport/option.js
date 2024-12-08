@@ -7,6 +7,7 @@ export default {
   searchSpan: 6,
   searchBtn: false,
   emptyBtn: false,
+  menuWidth: 80,
   column: [
     {
       label: '会员账号',
@@ -34,7 +35,7 @@ export default {
     },
     {
       label: '其他',
-      prop: 'reviseMoney',
+      prop: 'other',
     },
     {
       label: '会员代存',

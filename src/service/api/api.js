@@ -82,6 +82,6 @@ export const apiGetTopNotice = (params) => {
 export const apiMembershipReport = (params) => {
   return requestFunc('/AgentNew/GetMemberReport', {
     ...params,
-    // employeecode: undefined
+    employeecode: undefined
   })
 }

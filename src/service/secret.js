@@ -20,6 +20,7 @@ export const encryptApiParams = (params, noCrypto = false) => {
 		parentemployeecode: userStore.userInfo.employeecode, // 用户编码
 		...params,
 		brandcode: BRANDCODE,
+		enterprisecode: ENTERPRISE_CODE,
 	});
 
 	console.log(stringParams);
@@ -29,7 +30,6 @@ export const encryptApiParams = (params, noCrypto = false) => {
 	const encrypted = CryptoJS.AES.encrypt(stringParams, aesSecret, {
 		mode: CryptoJS.mode.ECB,
 		padding: CryptoJS.pad.Pkcs7,
-		enterprisecode: ENTERPRISE_CODE,
 	}).toString();
 	const encodedParams = encrypted.toString();
 
