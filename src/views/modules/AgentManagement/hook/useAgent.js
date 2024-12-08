@@ -87,6 +87,13 @@ export const useAgent = () => {
           prop: 'dividend',
           placeholder: '请输入佣金比例',
           span: 24,
+          rules: [
+            {
+              required: true,
+              message: "请输入佣金比例",
+              trigger: "blur"
+            },
+          ],
         },
         {
           label: 'Telegram',

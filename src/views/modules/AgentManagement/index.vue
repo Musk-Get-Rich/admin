@@ -46,9 +46,9 @@
           <el-button icon="el-icon-edit" @click="handleEdit(row)">
             编辑
           </el-button>
-          <el-button type="primary" icon="el-icon-delete" @click="handleDelete(row.id)">
+          <!-- <el-button type="primary" icon="el-icon-delete" @click="handleDelete(row.id)">
             删除
-          </el-button>
+          </el-button> -->
         </template>
       </avue-crud>
     </el-card>
