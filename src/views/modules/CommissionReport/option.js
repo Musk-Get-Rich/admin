@@ -8,39 +8,51 @@ export default {
   menu: false,
   column: [
     {
-      label: '存款金额',
-      prop: 'depositMoney',
+      label: '新增有效',
+      prop: 'newplayvalid',
     },
     {
       label: '取款金额',
-      prop: 'withdrawMoney',
+      prop: 'withdrawall',
     },
     {
       label: '净输赢',
-      prop: 'profitLoss',
+      prop: 'profit',
     },
     {
-      label: '红利总计',
+      label: '上月结余',
       prop: 'bonusDetail',
     },
     {
-      label: '存取手续费',
+      label: '佣金结算参考',
       prop: 'depositFee',
     },
     {
-      label: '平台费',
-      prop: 'platFee',
-    },
-    {
-      label: '会员代存',
-      prop: 'escrow',
-    },
-    {
       label: '游戏输赢',
-      prop: 'netMoney',
+      prop: 'winlose',
     },
     {
-      label: '其它',
+      label: '返水',
+      prop: 'fs',
+    },
+    {
+      label: '可结佣金',
+      prop: 'commissionday',
+    },
+    {
+      label: '红利',
+      prop: 'proamount',
+    },
+    {
+      label: '平台费',
+      prop: 'other',
+    },
+    {
+      label: '存提手续费',
+      prop: 'other',
+    },
+    {
+      label: '佣金比例',
       prop: 'other',
     },
   ]

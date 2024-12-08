@@ -8,7 +8,7 @@
     <avue-crud
       ref="tableRef"
       :table-loading="tableLoading"
-      :data="tableData"
+      :data="list"
       :option="option"
       v-model:page="pageObj"
       @refresh-change="getTableData"
@@ -23,7 +23,7 @@
 <script setup>
 import {_agentCommissionReport} from "@/service/api/agent.js";
 import Title from "@/components/Title/index.vue";
-import option from "@/views/modules/WinLossReport/option.js";
+import option from "./option.js";
 import {useTableList} from "@/hook/useTableList.js";
 
 const {
@@ -34,8 +34,26 @@ const {
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(_agentCommissionReport, {
+} = useTableList(_agentCommissionReport, {})
 
+function transformData(data) {
+  const transformed = [];
+  data.forEach(item => {
+    for (const key in item) {
+      if (!isNaN(key)) { // 确保键是月份
+        const details = item[key];
+        details.month = key;
+        transformed.push(details);
+      }
+    }
+  });
+  return transformed;
+}
+
+const list = ref([])
+
+watch(() => tableData.value, (val) => {
+  list.value = transformData(val)
 })
 </script>
 
