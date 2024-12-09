@@ -19,9 +19,7 @@
           </div>
         </div>
       </div>
-      <el-row class="pb-30 border-b-solid border-gray-200 mt-60 mb-20">
-        <el-button v-for="(btn,index) in btns" :key="index" :type="btn === currentBtn ? 'primary' : ''" @click="handleClick(btn)">{{ btn }}</el-button>
-      </el-row>
+      <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
       <Cryptocurrency v-if="currentBtn === '提款至虚拟币'"/>
       <Record v-if="currentBtn === '记录'"/>
     </el-card>
@@ -31,7 +29,8 @@
 <script setup>
 import Title from "@/components/Title/index.vue";
 import Cryptocurrency from './components/Cryptocurrency.vue';
-import Record from './components/Record.vue'
+import Record from './components/Record.vue';
+import Tabs from "@/components/Tabs";
 
 const currentBtn = ref('提款至虚拟币')
 

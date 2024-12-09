@@ -2,9 +2,7 @@
   <div>
     <el-card>
       <Title name="推广网址" />
-      <el-row class="pb-30 border-b-solid border-gray-200 mb-20">
-        <el-button v-for="(btn,index) in btns" :key="index" :type="btn === currentBtn ? 'primary' : ''" @click="handleClick(btn)">{{ btn }}</el-button>
-      </el-row>
+      <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
       <el-row>
         <DedicatedDomainMonitoring v-if="currentBtn === '专属域名监控'"></DedicatedDomainMonitoring>
         <DedicatedWebsite v-if="currentBtn === '专用网址'"></DedicatedWebsite>
@@ -17,10 +15,11 @@
 
 <script setup>
 import Title from "@/components/Title/index.vue";
-import DedicatedDomainMonitoring from './components/DedicatedDomainMonitoring.vue'
-import DedicatedWebsite from './components/DedicatedWebsite.vue'
-import PromotionAddress from './components/PromotionAddress.vue'
-import ShortLinkStatistics from './components/ShortLinkStatistics.vue'
+import DedicatedDomainMonitoring from './components/DedicatedDomainMonitoring.vue';
+import DedicatedWebsite from './components/DedicatedWebsite.vue';
+import PromotionAddress from './components/PromotionAddress.vue';
+import ShortLinkStatistics from './components/ShortLinkStatistics.vue';
+import Tabs from "@/components/Tabs";
 
 const currentBtn = ref('推广网址')
 

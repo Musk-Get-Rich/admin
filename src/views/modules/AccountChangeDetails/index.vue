@@ -1,9 +1,7 @@
 <template>
   <el-card>
     <Title name="账变明细" />
-    <el-row class="pb-30 border-b-solid border-gray-200 mb-20">
-      <el-button v-for="(btn,index) in btns" :key="index" :type="btn === currentBtn ? 'primary' : ''" @click="handleClick(btn)">{{ btn }}</el-button>
-    </el-row>
+    <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
     <el-row></el-row>
       <CommissionWallet v-if="currentBtn === '佣金钱包'"></CommissionWallet>
       <LotteryWallet v-if="currentBtn === '彩金钱包'"></LotteryWallet>
@@ -12,8 +10,9 @@
 
 <script setup>
 import Title from "@/components/Title/index.vue";
-import CommissionWallet from './components/CommissionWallet.vue'
-import LotteryWallet from './components/LotteryWallet.vue'
+import CommissionWallet from './components/CommissionWallet.vue';
+import LotteryWallet from './components/LotteryWallet.vue';
+import Tabs from "@/components/Tabs";
 
 const currentBtn = ref('佣金钱包')
 

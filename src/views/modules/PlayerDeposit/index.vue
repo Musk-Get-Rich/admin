@@ -2,9 +2,7 @@
   <div>
     <el-card>
       <Title name="玩家代存" />
-      <el-row class="pb-30 border-b-solid border-gray-200 mt-60 mb-20">
-        <el-button v-for="(btn,index) in btns" :key="index" :type="btn === currentBtn ? 'primary' : ''" @click="handleClick(btn)">{{ btn }}</el-button>
-      </el-row>
+      <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
       <PlayerDeposit v-if="currentBtn === '玩家代存'"></PlayerDeposit>
       <DepositRecords v-if="currentBtn === '代存记录'"></DepositRecords>
     </el-card>
@@ -15,6 +13,7 @@
 import Title from "@/components/Title/index.vue";
 import PlayerDeposit from './components/PlayerDeposit.vue';
 import DepositRecords from './components/DepositRecords.vue';
+import Tabs from "@/components/Tabs";
 
 const currentBtn = ref('玩家代存')
 
