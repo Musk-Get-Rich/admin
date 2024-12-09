@@ -77,7 +77,7 @@ const {
 } = useTableList(_getProfitLossReport, {
   startDate,
   endDate,
-})
+}, 'record')
 
 const toggleExpand = (row, type) => {
   row.otherList = [row.profitlossOtherVo]

@@ -31,11 +31,7 @@ export function useTableList(ajaxFn, params, key, immediate = true) {
 
     await ajaxFn(argObj)
       .then((res) => {
-        tableData.value = res[key];
-
-        console.log(res, 'res');
-
-        console.log(tableData.value);
+        tableData.value = Array.isArray(res) ? res : res[key];
 
         pageTotal.value = res.total || res.results
         tableLoading.value = false

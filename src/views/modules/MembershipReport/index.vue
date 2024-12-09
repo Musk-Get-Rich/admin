@@ -77,7 +77,7 @@ const {
 } = useTableList(apiMembershipReport, {
   startDate,
   endDate,
-})
+}, 'rows')
 
 // 搜索
 const onSearch = (val) => {
