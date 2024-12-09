@@ -187,3 +187,22 @@ export const selectLastThreeMonth = (time) => {
 
   return time.getTime() < threeMonthsAgo.getTime() || time.getTime() > now.getTime();
 }
+
+export const deepClone = (obj) => {
+  // 检查是否是对象或数组
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+
+  // 创建一个新对象或数组
+  const copy = Array.isArray(obj) ? [] : {};
+
+  // 递归复制对象的每个属性
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      copy[key] = deepClone(obj[key]);
+    }
+  }
+
+  return copy;
+}

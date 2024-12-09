@@ -8,6 +8,12 @@ export default {
   searchBtn: false,
   emptyBtn: false,
   menuWidth: 80,
+  expand: true,
+  expandWidth: 1,
+  expandRowKeys: [1],
+  expandClassName: 'invisible',
+  expandLabelClassName: 'invisible',
+  rowKey: 'loginaccount',
   column: [
     {
       label: '会员账号',

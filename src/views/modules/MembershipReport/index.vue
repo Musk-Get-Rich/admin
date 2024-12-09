@@ -11,7 +11,7 @@
       @current-change="currentChange"
     >
       <template #search>
-        <Title name="会员报表" />
+        <Title name="会员报表"/>
         <div class="flex mb-10">
           <Search @search="onSearch" @refresh="onRefresh"/>
         </div>
@@ -44,12 +44,13 @@
         >
       </template>
       <template #expand="{ row }">
-      <div class="px-10">
-        <Other
-          :tableData="row.otherList"
-        />
-      </div>
-    </template>
+        <div class="px-10">
+          <Page1 :tableData="otherList"/>
+<!--          <div class="mt-12">-->
+<!--            <Page2 :tableData="row.otherList"/>-->
+<!--          </div>-->
+        </div>
+      </template>
     </avue-crud>
   </el-card>
 </template>
@@ -61,10 +62,11 @@ import Search from "./components/Search.vue";
 import Title from "@/components/Title/index.vue";
 import {apiMembershipReport} from "@/service/api/api.js";
 import searchTime from "@/config/time.js";
-import Other from "@/views/modules/WinLossReport/components/other/index.vue";
-import BonusDetail from "@/views/modules/WinLossReport/components/bonusDetail/index.vue";
+import Page1 from "@/views/modules/MembershipReport/other/page1.vue";
+import {deepClone} from "@/utils/index.js";
+// import Page2 from "@/views/modules/MembershipReport/other/page2.vue";
 
-const { startDate, endDate } = searchTime
+const {startDate, endDate} = searchTime
 
 const {
   tableRef,
@@ -89,6 +91,19 @@ const onRefresh = () => {
     startDate,
     endDate,
   })
+}
+
+const otherList = ref([])
+const toggleExpand = (row, type) => {
+  otherList.value = [deepClone(row)]
+
+  if (!row.expandStatus) {
+    tableRef.value.toggleRowExpansion(row);
+  } else if (row.expandStatus && type === row.expandType) {
+    tableRef.value.toggleRowExpansion(row);
+  }
+
+  row.expandType = type
 }
 </script>
 

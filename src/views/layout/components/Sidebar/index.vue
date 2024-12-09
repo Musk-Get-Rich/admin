@@ -8,43 +8,46 @@
       </template>
       <template v-else>
         <div v-if="_.meta" class="pl-21 mb-10 text-#868D88 text-12">{{ _.meta.title }}</div>
-        <div
-          class="relative mb-10 cursor-pointer"
-          v-for="item in _.children"
-          @click="handleClick(`${_.path}/${item.path}`)"
-        >
+        <template v-for="item in _.children">
           <div
-            class="transition-400ms w-6 h-full absolute left-0 top-0 bg-green rounded-tr-20 rounded-br-20"
-            :class="[
+            class="relative mb-10 cursor-pointer"
+            @click="handleClick(`${_.path}/${item.path}`)"
+            v-if="item.meta?.auth ? item.meta.auth <= userStore.userInfo.agentlevel : true"
+          >
+            <div
+              class="transition-400ms w-6 h-full absolute left-0 top-0 bg-green rounded-tr-20 rounded-br-20"
+              :class="[
             route.path === `${_.path}/${item.path}` ? 'opacity-100' : 'opacity-0'
           ]"
-          />
-          <div
-            class="transition-400ms flex items-center h-40 w-185 ml-21 rounded-8 px-5 box-border"
-            :class="[
+            />
+            <div
+              class="transition-400ms flex items-center h-40 w-185 ml-21 rounded-8 px-5 box-border"
+              :class="[
               route.path === `${_.path}/${item.path}` ? 'bg-#e9fbef' : ''
             ]"
-          >
-            <img
-              v-show="route.path === `${_.path}/${item.path}`"
-              class="w-20"
-              :src="imageSrc(item.meta.activeIcon)"
-              alt=""
             >
-            <img
-              v-show="!(route.path === `${_.path}/${item.path}`)"
-              class="w-20"
-              :src="imageSrc(item.meta.inactiveIcon)"
-              alt=""
-            >
-            <div
-              class="transition-400ms text-14 ml-8"
-              :class="[
+              <img
+                v-show="route.path === `${_.path}/${item.path}`"
+                class="w-20"
+                :src="imageSrc(item.meta.activeIcon)"
+                alt=""
+              >
+              <img
+                v-show="!(route.path === `${_.path}/${item.path}`)"
+                class="w-20"
+                :src="imageSrc(item.meta.inactiveIcon)"
+                alt=""
+              >
+              <div
+                class="transition-400ms text-14 ml-8"
+                :class="[
                 route.path === `${_.path}/${item.path}` ? 'text-green' : 'text-black'
               ]"
-            >{{ item.meta.name }}</div>
+              >{{ item.meta.name }}
+              </div>
+            </div>
           </div>
-        </div>
+        </template>
       </template>
     </div>
   </div>
@@ -55,6 +58,9 @@ import {routes} from "@/router/routes.js";
 import {imageSrc} from "@/utils/index.js";
 import {apiGetAgentInfo} from "@/service/api/api.js";
 import {onMounted, ref} from "vue";
+import {useUserStore} from "@/store/modules/user.store.js";
+
+const userStore = useUserStore()
 
 const router = useRouter()
 const route = useRoute()
@@ -62,7 +68,7 @@ const agentInfo = ref({})
 
 const routeList = computed(() => {
   return [...routes].map(a => {
-    const r = { ...a }
+    const r = {...a}
     if (r.path?.indexOf('managementCenter') > -1) {
       r.children = r.children?.filter(rr => {
         if (rr.name === 'agent') {
@@ -77,7 +83,7 @@ const routeList = computed(() => {
     return r
   })
 })
-const getAgentInfo = async () =>{
+const getAgentInfo = async () => {
   agentInfo.value = await apiGetAgentInfo()
 }
 

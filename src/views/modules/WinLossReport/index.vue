@@ -110,6 +110,37 @@ const onRefresh = () => {
     endDate,
   })
 }
+
+const level = 2
+
+const list = [
+  {
+    title: '菜单一',
+    children: [
+      {
+        title: 'test1',
+        auth: 1
+      },
+      {
+        title: 'test2',
+        auth: 3
+      },
+    ]
+  },
+  {
+    title: '菜单一',
+    children: [
+      {
+        title: 'test4',
+        auth: 2
+      },
+      {
+        title: 'test5',
+        auth: 2
+      },
+    ]
+  },
+]
 </script>
 
 <style lang="scss" scoped>

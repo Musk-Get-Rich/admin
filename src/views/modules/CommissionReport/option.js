@@ -19,14 +19,14 @@ export default {
       label: '净输赢',
       prop: 'profit',
     },
-    {
-      label: '上月结余',
-      prop: 'bonusDetail',
-    },
-    {
-      label: '佣金结算参考',
-      prop: 'depositFee',
-    },
+    // {
+    //   label: '上月结余',
+    //   prop: 'bonusDetail',
+    // },
+    // {
+    //   label: '佣金结算参考',
+    //   prop: 'depositFee',
+    // },
     {
       label: '游戏输赢',
       prop: 'winlose',
@@ -45,15 +45,15 @@ export default {
     },
     {
       label: '平台费',
-      prop: 'other',
+      prop: 'otherfee',
     },
-    {
-      label: '存提手续费',
-      prop: 'other',
-    },
-    {
-      label: '佣金比例',
-      prop: 'other',
-    },
+    // {
+    //   label: '存提手续费',
+    //   prop: 'other',
+    // },
+    // {
+    //   label: '佣金比例',
+    //   prop: 'other',
+    // },
   ]
 }

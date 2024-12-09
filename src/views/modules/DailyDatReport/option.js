@@ -7,32 +7,33 @@ export default {
   searchSpan: 6,
   searchBtn: false,
   emptyBtn: false,
+  menu: false,
   column: {
     reportday: {
       label: '日期',
     },
-    registerNum: {
+    newplay: {
       label: '注册人数',
     },
-    activeNum:{
+    liveplay:{
       label: '活跃人数',
     },
-    betAmount:{
+    betamount:{
       label: '投注金额',
     },
-    betNum: {
+    betnum: {
       label: '投注人数',
     },
-    addNum: {
+    newplayvalid: {
       label: '新增有效',
     },
-    firstTimeNum:{
+    firstwithdrawalnum:{
       label: '首提人数',
     },
-    firstBetNum: {
+    firstbetnum: {
       label: '首投人数',
     },
-    firstAmount: {
+    betnetamount: {
       label: '首投金额',
     }
   }

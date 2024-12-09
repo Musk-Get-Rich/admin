@@ -9,18 +9,18 @@
           :start-placeholder="$t('开始时间')"
           :end-placeholder="$t('结束时间')"
         />
-        <el-select
-          v-model="value"
-          placeholder="请选择代理"
-          style="width: 240px"
-        >
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
+<!--        <el-select-->
+<!--          v-model="value"-->
+<!--          placeholder="请选择代理"-->
+<!--          style="width: 240px"-->
+<!--        >-->
+<!--          <el-option-->
+<!--            v-for="item in options"-->
+<!--            :key="item.value"-->
+<!--            :label="item.label"-->
+<!--            :value="item.value"-->
+<!--          />-->
+<!--        </el-select>-->
         <div class="flex-1 shrink-0 flex items-center ml-20">
           <el-button type="primary" icon="search">查询</el-button>
           <el-button icon="delete" @click="onClear">重置</el-button>
@@ -32,35 +32,7 @@
 <script setup>
 import { ref } from 'vue';
 
-const form = ref({});
-
 const timeVal = ref([]);
-
-const value = ref('')
-
-const options = [
-  {
-    value: 'Option1',
-    label: 'Option1',
-  },
-  {
-    value: 'Option2',
-    label: 'Option2',
-  },
-  {
-    value: 'Option3',
-    label: 'Option3',
-  },
-  {
-    value: 'Option4',
-    label: 'Option4',
-  },
-  {
-    value: 'Option5',
-    label: 'Option5',
-  },
-]
-
 
 const onClear = () => {
   timeVal.value = []

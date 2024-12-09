@@ -1,6 +1,7 @@
 <template>
   <el-card>
     <avue-crud
+      :table-loading="tableLoading"
       :option="option"
       v-model="form"
       :data="tableData"
@@ -10,9 +11,9 @@
     >
       <template #search>
         <Title name="每日数据报表" />
-        <div class="flex mb-10">
-          <Search />
-        </div>
+<!--        <div class="flex mb-10">-->
+<!--          <Search />-->
+<!--        </div>-->
       </template>
     </avue-crud>
   </el-card>
@@ -24,6 +25,9 @@ import {useTableList} from "@/hook/useTableList.js";
 import Search from "./components/Search.vue";
 import Title from "@/components/Title/index.vue";
 import {apiAgentDailyReport} from "@/service/api/api.js";
+import searchTime from "@/config/time.js";
+
+const { startDate, endDate } = searchTime
 
 const form = ref({});
 
@@ -35,7 +39,10 @@ const {
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(apiAgentDailyReport, {})
+} = useTableList(apiAgentDailyReport, {
+  startDate,
+  endDate,
+}, 'results')
 </script>
 
 <style lang="scss" scoped>

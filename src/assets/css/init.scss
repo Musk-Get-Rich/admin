@@ -60,3 +60,17 @@
 .invisible {
   visibility: hidden;
 }
+
+.expand {
+  .avue-crud__empty, .el-empty {
+    padding: 0;
+  }
+
+  .el-empty {
+    padding-top: 12px;
+  }
+
+  .el-empty__description {
+    margin-top: 0;
+  }
+}
