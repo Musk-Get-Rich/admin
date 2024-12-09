@@ -274,7 +274,7 @@ export const routes = [
         name: 'promotionUrl',
         component: () => import("@/views/modules/PromotionUrl"),
         meta: {
-          // auth: [1,2],
+          auth: [1,2],
           name: '推广网址（会员）',
           inactiveIcon: 'Sidebar/link.png',
           activeIcon: 'Sidebar/link-1.png'
