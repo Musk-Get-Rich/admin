@@ -106,6 +106,7 @@ export const routes = [
         name: 'depositWithdrawalRecords',
         component: () => import("@/views/modules/DepositWithdrawalRecords"),
         meta: {
+          auth: [3],
           name: '存提款记录',
           inactiveIcon: 'Sidebar/wallet.png',
           activeIcon: 'Sidebar/wallet-1.png'
@@ -116,6 +117,7 @@ export const routes = [
         name: 'gameRecords',
         component: () => import("@/views/modules/GameRecords"),
         meta: {
+          auth: [3],
           name: '游戏记录',
           inactiveIcon: 'Sidebar/game.png',
           activeIcon: 'Sidebar/game-1.png'
@@ -138,6 +140,7 @@ export const routes = [
         name: 'withdrawalApplication',
         component: () => import("@/views/modules/WithdrawalApplication"),
         meta: {
+          auth: [1,2,3],
           name: '提现申请',
           inactiveIcon: 'Sidebar/card-send.png',
           activeIcon: 'Sidebar/card-send-1.png'
@@ -148,6 +151,7 @@ export const routes = [
         name: 'playerDeposit',
         component: () => import("@/views/modules/PlayerDeposit"),
         meta: {
+          auth: [3],
           name: '玩家代存',
           inactiveIcon: 'Sidebar/money-recive.png',
           activeIcon: 'Sidebar/money-recive-1.png'
@@ -158,6 +162,7 @@ export const routes = [
         name: 'depositRecharge',
         component: () => import("@/views/modules/DepositRecharge"),
         meta: {
+          auth: [2,3],
           name: '代存充值',
           inactiveIcon: 'Sidebar/money-change.png',
           activeIcon: 'Sidebar/money-change-1.png'
@@ -168,6 +173,7 @@ export const routes = [
         name: 'bonus',
         component: () => import("@/views/modules/Bonus"),
         meta: {
+          auth: [2,3],
           name: '彩金赠送',
           inactiveIcon: 'Sidebar/Coins.png',
           activeIcon: 'Sidebar/Coins-1.png'
@@ -178,6 +184,7 @@ export const routes = [
         name: 'accountChangeDetails',
         component: () => import("@/views/modules/AccountChangeDetails"),
         meta: {
+          auth: [1,2,3],
           name: '账变明细',
           inactiveIcon: 'Sidebar/archive.png',
           activeIcon: 'Sidebar/archive-1.png'
@@ -200,6 +207,7 @@ export const routes = [
         name: 'winLossReport',
         component: () => import("@/views/modules/WinLossReport"),
         meta: {
+          auth: [1,2,3],
           name: '输赢报表',
           inactiveIcon: 'Sidebar/chart.png',
           activeIcon: 'Sidebar/chart-1.png'
@@ -210,6 +218,7 @@ export const routes = [
         name: 'commissionReport',
         component: () => import("@/views/modules/CommissionReport"),
         meta: {
+          auth: [1,2,3],
           name: '佣金报表',
           inactiveIcon: 'Sidebar/status-up.png',
           activeIcon: 'Sidebar/status-up-1.png'
@@ -220,6 +229,7 @@ export const routes = [
         name: 'membershipReport',
         component: () => import("@/views/modules/MembershipReport"),
         meta: {
+          auth: [3],
           name: '会员报表',
           inactiveIcon: 'Sidebar/graph.png',
           activeIcon: 'Sidebar/graph-1.png'
@@ -230,6 +240,7 @@ export const routes = [
         name: 'dailyDatReport',
         component: () => import("@/views/modules/DailyDatReport"),
         meta: {
+          auth: [1,2,3],
           name: '每日数据报表',
           inactiveIcon: 'Sidebar/presention-chart.png',
           activeIcon: 'Sidebar/presention-chart-1.png'
@@ -240,6 +251,7 @@ export const routes = [
         name: 'retentionReport',
         component: () => import("@/views/modules/RetentionReport"),
         meta: {
+          auth: [1,2,3],
           name: '留存报表',
           inactiveIcon: 'Sidebar/chart-2.png',
           activeIcon: 'Sidebar/chart-3.png'
@@ -259,6 +271,7 @@ export const routes = [
         name: 'promotionUrl',
         component: () => import("@/views/modules/PromotionUrl"),
         meta: {
+          auth: [1,2],
           name: '推广网址（会员）',
           inactiveIcon: 'Sidebar/link.png',
           activeIcon: 'Sidebar/link-1.png'
@@ -269,6 +282,7 @@ export const routes = [
         name: 'promotionMaterial',
         component: () => import("@/views/modules/PromotionMaterial"),
         meta: {
+          auth: [1,2],
           name: '推广素材',
           inactiveIcon: 'Sidebar/gallery.png',
           activeIcon: 'Sidebar/gallery-1.png'
@@ -288,6 +302,7 @@ export const routes = [
         name: 'personalData',
         component: () => import("@/views/modules/PersonalData"),
         meta: {
+          auth: [1,2,3],
           name: '个人资料',
           inactiveIcon: 'Sidebar/tag-user.png',
           activeIcon: 'Sidebar/tag-user-1.png'
@@ -298,6 +313,7 @@ export const routes = [
         name: 'contactUs',
         component: () => import("@/views/modules/ContactUs"),
         meta: {
+          auth: [1,2,3],
           name: '联系我们',
           inactiveIcon: 'Sidebar/device-message.png',
           activeIcon: 'Sidebar/device-message-1.png'
@@ -308,6 +324,7 @@ export const routes = [
         name: 'vipExclusive',
         component: () => import("@/views/modules/VipExclusive"),
         meta: {
+          auth: [1,2,3],
           name: 'VIP专享',
           inactiveIcon: 'Sidebar/crown.png',
           activeIcon: 'Sidebar/crown-1.png'
@@ -318,6 +335,7 @@ export const routes = [
         name: 'commissionDescription',
         component: () => import("@/views/modules/CommissionDescription"),
         meta: {
+          auth: [1,2,3],
           name: '佣金说明',
           inactiveIcon: 'Sidebar/dollar-square.png',
           activeIcon: 'Sidebar/dollar-square-1.png'
@@ -328,6 +346,7 @@ export const routes = [
         name: 'helpCenter',
         component: () => import("@/views/modules/HelpCenter"),
         meta: {
+          auth: [1,2,3],
           name: '帮助中心',
           inactiveIcon: 'Sidebar/bookmark.png',
           activeIcon: 'Sidebar/bookmark-1.png'
