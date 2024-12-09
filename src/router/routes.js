@@ -83,7 +83,7 @@ export const routes = [
         name: 'membershipManagement',
         component: () => import("@/views/modules/MemberManagement/index.vue"),
         meta: {
-          auth: [1, 2],
+          auth: [1, 2, 3],
           name: '会员管理',
           inactiveIcon: 'Sidebar/2User.png',
           activeIcon: 'Sidebar/2User-1.png'
