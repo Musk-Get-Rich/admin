@@ -5,21 +5,21 @@ export const routes = [
     path: '/',
     redirect: '/top/home'
   },
-  {
-    path: '/template',
-    component: layout,
-    children: [
-      {
-        path: 'material-management',
-        component: () => import("@/views/modules/MaterialType/index.vue"),
-        meta: {
-          name: '模板',
-          inactiveIcon: 'Sidebar/home.png',
-          activeIcon: 'Sidebar/home-1.png'
-        }
-      },
-    ]
-  },
+  // {
+  //   path: '/template',
+  //   component: layout,
+  //   children: [
+  //     {
+  //       path: 'material-management',
+  //       component: () => import("@/views/modules/MaterialType/index.vue"),
+  //       meta: {
+  //         name: '模板',
+  //         inactiveIcon: 'Sidebar/home.png',
+  //         activeIcon: 'Sidebar/home-1.png'
+  //       }
+  //     },
+  //   ]
+  // },
   {
     path: '/top',
     component: layout,
@@ -271,7 +271,7 @@ export const routes = [
         name: 'promotionUrl',
         component: () => import("@/views/modules/PromotionUrl"),
         meta: {
-          auth: [1,2],
+          // auth: [1,2],
           name: '推广网址（会员）',
           inactiveIcon: 'Sidebar/link.png',
           activeIcon: 'Sidebar/link-1.png'

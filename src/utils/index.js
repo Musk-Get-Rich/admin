@@ -4,6 +4,9 @@ import LocalCache from "@/utils/cache/index.js";
 import {USER_MENU_LIST} from "@/config/storageKey.js";
 import dayjs from "dayjs";
 const {getCache} = LocalCache
+import { ElMessage } from "element-plus";
+import useClipboard from "vue-clipboard3";
+import i18n from '@/i18n'
 
 /**
  * post请求数据处理
@@ -206,3 +209,19 @@ export const deepClone = (obj) => {
 
   return copy;
 }
+
+// 复制
+const {toClipboard} = useClipboard();
+
+export const copy = async (val) => {
+  try {
+    await toClipboard(val);
+
+    ElMessage({
+      message: i18n.global.t('复制成功'),
+      type: 'success',
+    })
+  } catch (e) {
+    console.error(e);
+  }
+};

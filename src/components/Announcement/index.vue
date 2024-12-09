@@ -4,7 +4,7 @@
       <img class="w-20 shrink-0" src="@/assets/images/volume-high.png" alt="">
       <div class="notice-wrapper flex-1 max-w-1172 flex ml-15 text-grey text-18">
         <div class="scrolling-content max-w-1172 overflow-hidden">
-          123
+
         </div>
       </div>
     </div>

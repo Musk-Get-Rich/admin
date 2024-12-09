@@ -90,6 +90,13 @@ export const apiMembershipReport = (params) => {
 export const apiAgentDailyReport = (params) => {
   return requestFunc('/AgentNew/GetAgentDayReport', {
     ...params,
-    employeecode: undefined
+  })
+}
+
+// 推广网站
+
+export const apiPromotionWebsite = (params) => {
+  return requestFunc('/AgentNew/GetAgentSite', {
+    ...params,
   })
 }

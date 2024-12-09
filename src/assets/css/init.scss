@@ -74,3 +74,9 @@
     margin-top: 0;
   }
 }
+
+.text-overflow-1 {
+  white-space: nowrap; /* 不换行 */
+  overflow: hidden; /* 隐藏超出部分 */
+  text-overflow: ellipsis; /* 用省略号表示被截断的内容 */
+}
