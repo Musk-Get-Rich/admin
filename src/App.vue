@@ -57,7 +57,7 @@ function setViewport() {
 changeDevice(isMobile())
 
 // 调用设置函数
-setViewport();
+// setViewport();
 </script>
 
 <style lang="scss">
