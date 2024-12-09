@@ -7,7 +7,7 @@
       </div>
       <el-row v-for="i in 3" class="!w-full h-344px border-double border-gray-200 rounded-3xl shadow-gray-500 py-20 px-20 mb-20">
         <el-col :span="12" class="w-full h-full flex items-center justify-center p-10">
-          <img v-if="i === 1" class="h-100%" src="@/assets/images/promotion/activity1.png" alt="">
+          <img v-if="i === 1" class="w-100%" src="@/assets/images/promotion/activity1.png" alt="">
           <img v-if="i === 2" class="h-100%" src="@/assets/images/promotion/activity2.png" alt="">
           <img v-if="i === 3" class="h-100%" src="@/assets/images/promotion/activity3.png" alt="">
         </el-col>
