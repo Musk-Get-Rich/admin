@@ -1,6 +1,6 @@
 <template>
   <div class="!w-full">
-    <el-row v-for="i in 3" class="!w-full h-240px border-double border-gray-200 rounded-3xl shadow-gray-500 py-20 px-20 mb-20">
+    <el-row v-for="i in 3" class="!w-full h-240px border-double border-gray-200 border-1 rounded-3xl shadow-gray-500 py-20 px-20 mb-20">
       <el-col :span="8" class="h-full bg-gray-300 rounded-3xl"></el-col>
       <el-col :offset="1" :span="15" class="h-full flex flex-col items-center justify-center">
         <el-row class="!w-full">
@@ -49,7 +49,7 @@ import { Connection, Refresh, ArrowDown } from '@element-plus/icons-vue'
 
 const list = [
   {
-    title: '长链接', 
+    title: '长链接',
     value: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     url: ''
   },

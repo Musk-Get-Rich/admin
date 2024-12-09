@@ -16,13 +16,13 @@
       <el-row>
         <el-col class="mt-20" :span="24">联系信息</el-col>
         <el-col :span="24">
-          <div class="mt-20 flex flex-col items-center border-t-solid border-l-solid border-r-solid border-gray-200">
+          <div class="mt-20 flex flex-col items-center border-t-1 border-r-1 border-t-solid border-l-1 border-l-solid border-r-solid border-gray-200">
             <div class="w-full h-70px bg-#E7F4EB flex items-center justify-center">
               <div class="w-33% flex justify-center">联系方式</div>
               <div class="w-33% flex justify-center">联系号码</div>
               <div class="w-33% flex justify-center">操作</div>
             </div>
-            <div class="w-full h-46px flex justify-center items-center border-b-solid border-gray-200" v-for="(item,index) in tableData" :key="index">
+            <div class="w-full h-46px flex justify-center items-center border-b-1 border-b-solid border-gray-200" v-for="(item,index) in tableData" :key="index">
               <div class="w-33% flex justify-center">{{ item.contactDetails }}</div>
               <div class="w-33% flex justify-center">{{ item.phone }}</div>
               <div class="w-33% flex justify-center text-#25D55B">编辑</div>

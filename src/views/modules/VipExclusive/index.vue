@@ -2,7 +2,7 @@
   <div>
     <el-card>
       <Title name="VIP专享" />
-      <el-row v-for="i in 3" class="!w-full h-240px border-double border-gray-200 rounded-3xl shadow-gray-500 py-20 px-20 mb-20">
+      <el-row v-for="i in 3" class="!w-full h-240px border-double border-gray-200 border-1 rounded-3xl shadow-gray-500 py-20 px-20 mb-20">
         <el-col :span="18" class="h-full bg-gray-300"></el-col>
         <el-col :span="6" class="h-full flex flex-col items-center justify-center">
           <span class="font-size-34 font-500">代理彩金</span>
