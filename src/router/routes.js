@@ -246,18 +246,21 @@ export const routes = [
           activeIcon: 'Sidebar/presention-chart-1.png'
         },
       },
-      {
-        path: 'retentionReport',
-        name: 'retentionReport',
-        component: () => import("@/views/modules/RetentionReport"),
-        meta: {
-          auth: [1,2,3],
-          name: '留存报表',
-          inactiveIcon: 'Sidebar/chart-2.png',
-          activeIcon: 'Sidebar/chart-3.png'
-        },
-      },
+      // {
+      //   path: 'retentionReport',
+      //   name: 'retentionReport',
+      //   component: () => import("@/views/modules/RetentionReport"),
+      //   meta: {
+      //     auth: [1,2,3],
+      //     name: '留存报表',
+      //     inactiveIcon: 'Sidebar/chart-2.png',
+      //     activeIcon: 'Sidebar/chart-3.png'
+      //   },
+      // },
     ]
+  },
+  {
+    type: 'divider'
   },
   {
     path: '/promotion',
@@ -289,6 +292,9 @@ export const routes = [
         },
       }
     ]
+  },
+  {
+    type: 'divider'
   },
   {
     path: '/personalCenter',
