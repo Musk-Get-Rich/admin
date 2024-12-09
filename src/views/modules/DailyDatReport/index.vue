@@ -1,12 +1,10 @@
 <template>
   <el-card>
-    <avue-crud 
+    <avue-crud
       :option="option"
       v-model="form"
-      :data="data"
+      :data="tableData"
       @refresh-change="getTableData"
-      @search-change="onSearch"
-      @search-reset="onSearchReset"
       @size-change="sizeChange"
       @current-change="currentChange"
     >
@@ -23,23 +21,11 @@
 <script setup>
 import option from "./option.js"
 import {useTableList} from "@/hook/useTableList.js";
-import {_getAgentDayReport} from "@/service/api/agent.js";
 import Search from "./components/Search.vue";
 import Title from "@/components/Title/index.vue";
+import {apiAgentDailyReport} from "@/service/api/api.js";
 
 const form = ref({});
-
-const data = ref([{
-  date: '1',
-  registerNum: '1',
-  activeNum: '1',
-  betAmount: '1',
-  betNum: '1',
-  addNum: '1',
-  firstTimeNum: '1',
-  firstBetNum: '1',
-  firstAmount: '1',
-}])
 
 const {
   tableRef,
@@ -49,9 +35,7 @@ const {
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(_getAgentDayReport, {
-
-})
+} = useTableList(apiAgentDailyReport, {})
 </script>
 
 <style lang="scss" scoped>

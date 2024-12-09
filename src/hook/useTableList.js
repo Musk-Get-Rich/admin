@@ -31,7 +31,9 @@ export function useTableList(ajaxFn, params, immediate = true) {
 
     await ajaxFn(argObj)
       .then((res) => {
-        tableData.value = Array.isArray(res.data) ? res.data : res.record || res.rows || res;
+        tableData.value = res.data || res.record || res.results || res.rows || res;
+
+        console.log(res, 'res');
 
         console.log(tableData.value);
 

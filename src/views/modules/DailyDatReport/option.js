@@ -8,7 +8,7 @@ export default {
   searchBtn: false,
   emptyBtn: false,
   column: {
-    date: {
+    reportday: {
       label: '日期',
     },
     registerNum: {

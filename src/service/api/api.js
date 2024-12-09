@@ -85,3 +85,11 @@ export const apiMembershipReport = (params) => {
     employeecode: undefined
   })
 }
+
+// 代理日报表
+export const apiAgentDailyReport = (params) => {
+  return requestFunc('/AgentNew/GetAgentDayReport', {
+    ...params,
+    employeecode: undefined
+  })
+}
