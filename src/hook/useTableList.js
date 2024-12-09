@@ -1,7 +1,7 @@
 import {computed, nextTick, ref} from "vue"
 import {getObjType} from "@/utils"
 
-export function useTableList(ajaxFn, params, key, immediate = true) {
+export function useTableList(ajaxFn, params, key = 'rows', immediate = true) {
   const tableRef = ref() // 如要使用avue自带方法需绑定table的Ref
   const pageNum = ref(1)
   const pageSize = ref(10)

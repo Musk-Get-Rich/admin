@@ -154,7 +154,7 @@ const {
   currentChange
 } = useTableList(fetchList, {
 
-})
+}, 'record')
 
 const clickType = (value) => {
   type.value = value
