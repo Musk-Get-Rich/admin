@@ -7,7 +7,7 @@
           <el-col :span="24" class="mb-10 text-#25D55B">
             长链接：
           </el-col>
-          <el-row class="!w-full h-46px flex justify-between items-center  bg-#25D55B1A px-20px !rounded-4xl mb-20">
+          <el-row class="!w-full h-46px flex justify-between items-center  bg-#25D55B1A px-20px rounded-8px mb-20">
             <span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
             <div class="flex">
               <el-button type="success" round>复制
@@ -23,7 +23,7 @@
           <el-col :span="24" class="mb-10 text-#32ACFF">
             短链接：
           </el-col>
-          <el-row class="!w-full h-46px flex justify-between items-center  bg-#32ACFF1A px-20px !rounded-4xl">
+          <el-row class="!w-full h-46px flex justify-between items-center  bg-#32ACFF1A px-20px rounded-8px">
             <span>aaaaaaaaaaaaaaaa</span>
             <div class="flex items-center">
               <div class="flex mr-10 items-center">
