@@ -1,60 +1,27 @@
 <template>
   <el-card>
     <Title name="佣金报表"/>
-    <div class="flex mb-20 pb-20 border-b-1 border-b-solid border-gray-300">
-      <el-button type="primary">个人佣金</el-button>
-      <el-button>团队业绩查明</el-button>
-    </div>
-    <avue-crud
-      ref="tableRef"
-      :table-loading="tableLoading"
-      :data="list"
-      :option="option"
-      v-model:page="pageObj"
-      @refresh-change="getTableData"
-      @size-change="sizeChange"
-      @current-change="currentChange"
-    >
-
-    </avue-crud>
+    <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
+    <PersonalCommission v-if="currentBtn === '个人佣金'"></PersonalCommission>
+    <TeamCommission v-if="currentBtn === '团队业绩查明'"></TeamCommission>
   </el-card>
 </template>
 
 <script setup>
-import {_agentCommissionReport} from "@/service/api/agent.js";
 import Title from "@/components/Title/index.vue";
-import option from "./option.js";
-import {useTableList} from "@/hook/useTableList.js";
+import Tabs from "@/components/Tabs";
+import PersonalCommission from './components/PersonalCommission.vue';
+import TeamCommission from './components/TeamCommission.vue';
 
-const {
-  tableRef,
-  tableLoading,
-  pageObj,
-  tableData,
-  getTableData,
-  sizeChange,
-  currentChange
-} = useTableList(_agentCommissionReport, {})
+const currentBtn = ref('个人佣金')
 
-function transformData(data) {
-  const transformed = [];
-  data.forEach(item => {
-    for (const key in item) {
-      if (!isNaN(key)) { // 确保键是月份
-        const details = item[key];
-        details.month = key;
-        transformed.push(details);
-      }
-    }
-  });
-  return transformed;
+const btns = ref(['个人佣金','团队业绩查明'])
+
+const handleClick = (btn) => {
+  console.log(btn)
+  currentBtn.value = btn
 }
 
-const list = ref([])
-
-watch(() => tableData.value, (val) => {
-  list.value = transformData(val)
-})
 </script>
 
 <style lang="scss" scoped>
