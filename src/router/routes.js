@@ -61,6 +61,7 @@ export const routes = [
         name: 'agent',
         component: () => import("@/views/modules/AgentManagement"),
         meta: {
+          auth: [1, 2],
           name: '下级管理',
           inactiveIcon: 'Sidebar/Group1.png',
           activeIcon: 'Sidebar/Group2.png'
@@ -71,6 +72,7 @@ export const routes = [
         name: 'invite',
         component: () => import("@/views/modules/AgentInvite/index.vue"),
         meta: {
+          auth: [3],
           name: '下线（邀请有奖）',
           inactiveIcon: 'Sidebar/Group1.png',
           activeIcon: 'Sidebar/Group2.png'
@@ -81,6 +83,7 @@ export const routes = [
         name: 'membershipManagement',
         component: () => import("@/views/modules/MemberManagement/index.vue"),
         meta: {
+          auth: [1, 2],
           name: '会员管理',
           inactiveIcon: 'Sidebar/2User.png',
           activeIcon: 'Sidebar/2User-1.png'

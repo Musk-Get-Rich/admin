@@ -12,7 +12,7 @@
           <div
             class="relative mb-10 cursor-pointer"
             @click="handleClick(`${_.path}/${item.path}`)"
-            v-if="item.meta?.auth ? item.meta.auth <= userStore.userInfo.agentlevel : true"
+            v-if="item.meta?.auth ? item.meta.auth.includes(userStore.userInfo.agentlevel / 1) : true"
           >
             <div
               class="transition-400ms w-6 h-full absolute left-0 top-0 bg-green rounded-tr-20 rounded-br-20"
