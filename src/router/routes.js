@@ -92,13 +92,15 @@ export const routes = [
     ]
   },
   {
-    type: 'divider'
+    type: 'divider',
+    auth: [3],
   },
   {
     path: '/member',
     component: layout,
     meta: {
       title: '会员记录',
+      auth: [3],
     },
     children: [
       {
@@ -260,12 +262,14 @@ export const routes = [
     ]
   },
   {
-    type: 'divider'
+    type: 'divider',
+    auth: [3],
   },
   {
     path: '/promotion',
     component: layout,
     meta: {
+      auth: [3],
       title: '推广专区',
     },
     children: [
@@ -274,7 +278,7 @@ export const routes = [
         name: 'promotionUrl',
         component: () => import("@/views/modules/PromotionUrl"),
         meta: {
-          auth: [1,2],
+          auth: [3],
           name: '推广网址（会员）',
           inactiveIcon: 'Sidebar/link.png',
           activeIcon: 'Sidebar/link-1.png'
@@ -285,7 +289,7 @@ export const routes = [
         name: 'promotionMaterial',
         component: () => import("@/views/modules/PromotionMaterial"),
         meta: {
-          auth: [1,2],
+          auth: [3],
           name: '推广素材',
           inactiveIcon: 'Sidebar/gallery.png',
           activeIcon: 'Sidebar/gallery-1.png'
