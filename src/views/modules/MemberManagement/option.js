@@ -35,7 +35,7 @@ export default {
   ...globalOption,
   stripe: false,
   searchMenuSpan: 6, // 搜索框宽度
-  refreshBtn: false,
+  // refreshBtn: false,
   columnBtn: false,
   menu: false,
   menuWidth: 100,

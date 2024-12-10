@@ -69,7 +69,7 @@
           <div>{{ isnormalOptions.find(a => String(a.value) === String(scope.row.isnormal))?.label }}</div>
           <div class="text-4xl">
             <span>上级：</span>
-            <span class="color-green">无</span>
+            <span class="color-green">{{ scope.row.parentemployeeaccount ? scope.row.parentemployeeaccount : '无' }}</span>
           </div>
         </div>
       </template>
