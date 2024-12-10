@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-wrapper w-218 bg-white h-full overflow-auto py-30 box-border">
     <div
-      v-for="_ in routeList"
+      v-for="_ in routes"
     >
       <template v-if="_.type === 'divider' && (_?.auth ? _.auth.includes(userStore.userInfo.agentlevel / 1) : true)">
         <div class="mb-10 h-1 w-185 mx-auto bg-#F4F5F9"></div>
@@ -12,7 +12,7 @@
           <div
             class="relative mb-10 cursor-pointer"
             @click="handleClick(`${_.path}/${item.path}`)"
-            v-if="item.meta?.auth ? item.meta.auth.includes(userStore.userInfo.agentlevel / 1) : true"
+            v-if="!item.meta?.hidden && (item.meta?.auth ? item.meta.auth.includes(userStore.userInfo.agentlevel / 1) : true)"
           >
             <div
               class="transition-400ms w-6 h-full absolute left-0 top-0 bg-green rounded-tr-20 rounded-br-20"
@@ -66,23 +66,6 @@ const router = useRouter()
 const route = useRoute()
 const agentInfo = ref({})
 
-const routeList = computed(() => {
-  return [...routes].map(a => {
-    const r = {...a}
-    if (r.path?.indexOf('managementCenter') > -1) {
-      r.children = r.children?.filter(rr => {
-        if (rr.name === 'agent') {
-          return Number(agentInfo.value.agentlevel) < 3
-        }
-        if (rr.name === 'invite') {
-          return Number(agentInfo.value.agentlevel) >= 3
-        }
-        return true
-      })
-    }
-    return r
-  })
-})
 const getAgentInfo = async () => {
   agentInfo.value = await apiGetAgentInfo()
 }
