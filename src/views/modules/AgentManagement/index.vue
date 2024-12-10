@@ -7,7 +7,7 @@
         <template #header>
           <el-row justify="space-between">
             <Title name="下级管理" />
-            <el-button type="primary" icon="el-icon-plus" @click="handleAdd">
+            <el-button v-if="agentLevel < 3" type="primary" icon="el-icon-plus" @click="handleAdd">
               {{ createAgentBtnText }}
             </el-button>
           </el-row>
@@ -71,7 +71,6 @@ const userStore = useUserStore()
 
 // 当前账号代理级别
 const agentLevel = computed(() => Number(agentInfo.value?.agentlevel || 3))
-
 const createAgentBtnText = computed(() => {
   const chars = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
   const text = chars[agentLevel.value + 1]
@@ -121,6 +120,7 @@ const tableSearch = useTableSearch()
 
 const getAgentInfo = async () =>{
   agentInfo.value = await apiGetAgentInfo()
+  console.log('agentInfores', agentInfo.value);
 }
 
 const fetchList = (params) => {
