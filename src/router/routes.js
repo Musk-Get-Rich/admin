@@ -89,6 +89,29 @@ export const routes = [
           activeIcon: 'Sidebar/2User-1.png'
         },
       },
+      {
+        path: 'memberDeleteApply',
+        name: 'memberDeleteApply',
+        component: () => import("@/views/modules/MemberDeleteApply/index.vue"),
+        meta: {
+          auth: [1, 2, 3],
+          name: '会员注销申请',
+          inactiveIcon: 'Sidebar/2User.png',
+          activeIcon: 'Sidebar/2User-1.png'
+        },
+      },
+      {
+        path: 'memberDeleteApply/records',
+        name: 'memberDeleteApplyRecords',
+        component: () => import("@/views/modules/MemberDeleteApply/records/index.vue"),
+        meta: {
+          hidden: true,
+          auth: [1, 2, 3],
+          name: '会员注销申请',
+          inactiveIcon: 'Sidebar/2User.png',
+          activeIcon: 'Sidebar/2User-1.png'
+        },
+      },
     ]
   },
   {
