@@ -16,7 +16,7 @@ export default {
     //   prop: 'redPacket',
     // },
     {
-      label: '代理彩金',
+      label: '活动优惠',
       prop: 'agentBonus',
     },
     {
@@ -32,7 +32,7 @@ export default {
     //   prop: 'platFee',
     // },
     {
-      label: '彩金系统',
+      label: 'VIP系统',
       prop: 'bonusSystem',
     },
     // {
