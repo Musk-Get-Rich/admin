@@ -27,23 +27,23 @@ const submitForm = (formEl) => {
 <template>
   <el-card>
     <el-row justify="space-between">
-      <Title name="会员注销申请" />
+      <Title name="会员转线申请" />
     </el-row>
     <div class="grid grid-cols-3 gap-10">
       <div class="flex flex-col justify-center p-8xl border border-solid border-gray-300 rounded-3xl">
         <div class="font-bold text-8xl">{{ info.loginaccount || 0 }}</div>
-        <div class="text-6xl text-gray-400 mt-5">本月注销</div>
+        <div class="text-6xl text-gray-400 mt-5">本月转线</div>
       </div>
       <div class="flex flex-col justify-center p-8xl border border-solid border-gray-300 rounded-3xl">
         <div class="font-bold text-8xl">{{ info.loginaccount || 0 }}</div>
         <div class="flex justify-between text-6xl text-gray-400 mt-5">
-          <span>注销记录</span>
-          <el-button type="success" size="small" round plain @click="router.push('/managementCenter/memberDeleteApply/records')">查看记录</el-button>
+          <span>转线记录</span>
+          <el-button type="success" size="small" round plain @click="router.push('/managementCenter/memberLineChange/records')">查看详情</el-button>
         </div>
       </div>
       <div class="flex flex-col justify-center p-8xl border border-solid border-gray-300 rounded-3xl">
-        <div class="font-bold text-8xl">{{ info.countAgent || 0 }}</div>
-        <div class="text-6xl text-gray-400 mt-5">注销率</div>
+        <div class="font-bold text-8xl">{{ info.countAgent || 0 }}%</div>
+        <div class="text-6xl text-gray-400 mt-5">转线率</div>
       </div>
     </div>
     <div class="mt-5xl py-6xl border border-t-dashed border-gray-300">
@@ -90,17 +90,36 @@ const submitForm = (formEl) => {
               <el-input v-model="formData.account" />
             </el-form-item>
             <el-form-item
-                prop="reason"
-                label="原因说明"
+                prop="link"
+                label="引导链接"
                 :rules="[
                   {
                     required: true,
-                    message: '请输入原因说明',
+                    message: '请输入引导链接',
                     trigger: 'blur',
                   },
                 ]"
             >
-              <el-input v-model="formData.reason" />
+              <el-input v-model="formData.link" />
+            </el-form-item>
+            <el-form-item
+                prop="terminal"
+                label="终端"
+                :rules="[
+                  {
+                    required: true,
+                    message: '请输入终端',
+                    trigger: 'blur',
+                  },
+                ]"
+            >
+              <el-input v-model="formData.terminal" />
+            </el-form-item>
+            <el-form-item
+                prop="remark"
+                label="备注"
+            >
+              <el-input v-model="formData.remark" />
             </el-form-item>
             <el-form-item class="pl-80">
               <el-button type="primary" @click="submitForm(formRef)">提交申请</el-button>
@@ -113,19 +132,11 @@ const submitForm = (formEl) => {
           备注说明
         </div>
         <div class="text-5xl color-grey">
-          <div class="my-6">1、输入需注销的会员账号系统将会识别是否符合注销条件（<span class="color-green">√代表符合注销条件</span>，<span class="color-red">X代表不符合注销条件）</span></div>
-          <div class="my-6">2、符合注销条件的会员需提供与会员的对话记录，至少包含2项会员绑定的信息截图（姓名、绑定银行/加密货币地址尾号、邮箱、手机尾号）</div>
-          <div class="my-6">3、发起申请后即可在注销记录查看申请状态</div>
-          <div class="my-6">4、相关部门审核通过后，需会员登录账号在“我的”页面，退出按钮下方点击“一键注销”即可完成账号注销</div>
-          <div class="my-6">5、完成注销后的会员即可重新注册并绑定已注销的账号信息</div>
-          <div class="my-6">6、注销条件：</div>
-          <div class="my-6">A、注册后1周无充值用户（包括送彩金不充值的也可以申请注销）</div>
-          <div class="my-6">B、20天无登录用户，可申请注销。</div>
-          <div class="my-6">C、30天无充值用户，无游戏用户，可申请注销</div>
-          <div class="my-6">D、充值用户45天无进行游戏，可申请注销</div>
+          <div class="my-6">1、会员是在总线的，不在其他代理线下。 </div>
+          <div class="my-6">2、充值少于6,000。 </div>
+          <div class="my-6">3、提供登陆信息图片和其他证明在你线下的图片。输入需注销的会员账号系统将会识别是否符合</div>
         </div>
       </div>
     </div>
-
   </el-card>
 </template>
