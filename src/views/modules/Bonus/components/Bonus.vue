@@ -6,37 +6,40 @@
       <span class="text-28px">HKD:0</span>
     </div>
     <div class="text-#3A3541 text-16px mt-30">会员账号</div>
-    <div class="text-#868D88 text-16px mt-30">
-      请从 <span class="text-#25D55B">会员管理</span> 输入账号进行处理
+    <div class="text-#868D88 text-16px mt-12">
+      请从 <span
+      class="text-#25D55B cursor-pointer"
+      @click="$router.push('/managementCenter/membershipManagement')"
+    >会员管理</span> 输入账号进行处理
     </div>
     <div class="text-#3A3541 text-16px mt-40">存款金额</div>
-    <div class="flex items-center mt-20">
-      <div class="w-115px h-46px text-16px mr-10 border-solid border-#DBDCDE rounded-8px flex items-center justify-center text-#3A3541" v-for="item in numList" :key="item">
+    <div class="flex items-center mt-12">
+      <div class="w-115px h-46px text-16px mr-10 border-1 cursor-pointer border-solid border-#DBDCDE rounded-8px flex items-center justify-center text-#3A3541" v-for="item in numList" :key="item">
         {{ item }}
       </div>
     </div>
     <div class="flex flex-col mt-20">
       <span>自定义金额</span>
-      <div class="flex items-center mt-20">
+      <div class="flex items-center mt-12">
         <el-input size="large" v-model="input" style="width: 300px;height: 46px;" placeholder="请输入存款金额" />
         <span class="text-#F93131 ml-10">此处金额为会员(所属地区)当地法币</span>
       </div>
     </div>
     <div class="flex flex-col mt-20">
       <span>流水限制</span>
-      <div class="flex items-center mt-20">
+      <div class="flex items-center mt-12">
         <el-input size="large" v-model="input" style="width: 300px;height: 46px;" placeholder="" />
         <span class="text-#F93131 ml-10">按倍数算，输入2就是2倍流水</span>
       </div>
     </div>
     <div class="flex flex-col mt-20">
-      <span class="mb-20">备注</span>
+      <span class="mb-12">备注</span>
       <el-input size="large" v-model="input" style="width: 300px;height: 46px;" placeholder="20个字" />
     </div>
     <div class="flex flex-col mt-20 w-300px">
-      <span class="mb-20">支付密码</span>
+      <span class="mb-12">支付密码</span>
       <el-input size="large" v-model="input" style="width: 300px;height: 46px;" placeholder="请输入密码" />
-      <div class="w-100% text-right mt-20 text-#25D55B">忘记密码?</div>
+      <div class="w-100% text-right mt-20 text-#25D55B cursor-pointer">忘记密码?</div>
     </div>
     <div class="w-300px h-46px flex items-center justify-center rounded-30px bg-#8D8D8D text-white mt-30 mb-50">确认提款</div>
     <div class="text-#F93131 mt-30 mb-20">代存规则</div>

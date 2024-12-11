@@ -87,7 +87,19 @@
       <template #_actions="{ row }">
         <div class="grid grid-cols-2 gap-4 w-full">
           <div v-for="item in menuList" :key="item.id" class="p-4">
-            <div class="p-3 cursor-pointer" @click="menuClick">
+            <template v-if="item.tooltip">
+              <el-tooltip
+                class="box-item"
+                effect="dark"
+                :content="item.tooltip"
+                placement="top"
+              >
+                <div class="p-3 cursor-pointer" @click="menuClick(item)">
+                  <img class="w-20 h-20 object-cover" :src="item.icon" :alt="item.name">
+                </div>
+              </el-tooltip>
+            </template>
+            <div v-else class="p-3 cursor-pointer" @click="menuClick(item)">
               <img class="w-20 h-20 object-cover" :src="item.icon" :alt="item.name">
             </div>
           </div>
@@ -115,10 +127,13 @@ import addCircle from '@/assets/images/login/add-circle.png'
 import { ElMessageBox } from "element-plus";
 import { useUserStore } from "@/store/modules/user.store.js";
 import Other from "./components/other/index.vue"
+import {useRouter} from "vue-router";
+
+const router = useRouter()
 
 const menuList = [
   { id: 1, icon: dollarCircle },
-  { id: 2, icon: coins },
+  { id: 2, icon: coins, tooltip: '彩金赠送', path: '/report/bonus' },
   { id: 3, icon: shieldTick },
   { id: 4, icon: chart },
   { id: 5, icon: note },
@@ -137,7 +152,6 @@ const types = [
 ]
 
 const type = ref(1)
-
 
 const customOptions = computed(() => {
   return {
@@ -199,12 +213,23 @@ const onTypeChange = (value) => {
   getTableData();
 }
 
-const menuClick = () => {
-  ElMessageBox.alert('敬请期待', '温馨提示', {
-    confirmButtonText: 'OK',
-    callback: (action) => {
-    },
-  })
+const menuClick = (item) => {
+  if (item.path) {
+    if (item.id === 2) {
+      router.push({
+        path: item.path,
+        query: {
+          loginaccount: item.loginaccount
+        }
+      })
+    }
+  } else {
+    ElMessageBox.alert('敬请期待', '温馨提示', {
+      confirmButtonText: 'OK',
+      callback: (action) => {
+      },
+    })
+  }
 }
 
 // 搜索
