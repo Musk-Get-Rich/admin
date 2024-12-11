@@ -33,7 +33,7 @@
               </el-tooltip>
             </div>
           </div>
-          <div class="mt-15 theme-shadow p-25 rounded-8 text-16">
+          <div class="mt-15 theme-shadow p-25 rounded-8 text-16 text-center">
             <div class="grid grid-cols-3 gap-x-40 gap-y-30">
               <div class="flex items-center justify-center flex-col">
                 <img class="w-48" src="@/assets/images/home/Group1597886556.png" alt="">
@@ -78,7 +78,7 @@
               </el-tooltip>
             </div>
           </div>
-          <div class="mt-15 theme-shadow p-25 rounded-8 text-16">
+          <div class="mt-15 theme-shadow p-25 rounded-8 text-16 text-center">
             <div class="grid grid-cols-3 gap-x-40 gap-y-30">
               <div class="flex items-center justify-center flex-col">
                 <img class="w-48" src="@/assets/images/home/Group1597886561.png" alt="">
@@ -138,7 +138,7 @@
               </el-tooltip>
             </div>
           </div>
-          <div class="mt-15 theme-shadow p-25 rounded-8 text-16">
+          <div class="mt-15 theme-shadow p-25 rounded-8 text-16 text-center">
             <div class="grid grid-cols-3 gap-x-40 gap-y-30">
               <div class="flex items-center justify-center flex-col">
                 <img class="w-48" src="@/assets/images/home/Group1597886567.png" alt="">

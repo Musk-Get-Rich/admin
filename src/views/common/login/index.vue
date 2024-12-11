@@ -130,6 +130,8 @@ const login = debounce(async () => {
     }
 
     await router.push('/')
+
+    await useStore.changeUserInfo()
   } catch (err) {
     console.log(err);
   }

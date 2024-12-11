@@ -1,51 +1,82 @@
 <template>
-  <div>
+  <div class="text-14">
     <div class="text-#3A3541 text-16px">付款账户</div>
-    <div class="w-188px h-126px bg-#25D55B rounded-8px mt-30 text-#FFFFFF flex flex-col justify-center box-border pl-20">
-      <span class="text-16px mb-10">付款账户</span>
-      <span class="text-28px">HKD:0</span>
+    <div
+      class="w-188px h-126px bg-#25D55B rounded-8px mt-20 text-#FFFFFF flex flex-col justify-center box-border pl-20">
+      <span class="mb-10">付款账户</span>
+      <span class="text-28px">HKD: {{ userInfo.giftUsd }}</span>
     </div>
-    <div class="text-#3A3541 text-16px mt-30">会员账号</div>
-    <div class="text-#868D88 text-16px mt-12">
-      请从 <span
-      class="text-#25D55B cursor-pointer"
-      @click="$router.push('/managementCenter/membershipManagement')"
-    >会员管理</span> 输入账号进行处理
+    <div class="text-#3A3541 mt-30">会员账号</div>
+    <div class="mt-12">
+      <el-input
+        class="!w-280"
+        v-show="form.loginaccount"
+        v-model="form.loginaccount"
+        disabled
+        placeholder="Please input"
+      />
+      <div
+        v-show="!(form.loginaccount)"
+        class="text-#868D88"
+      >
+        请从 <span
+        class="text-#25D55B cursor-pointer"
+        @click="$router.push('/managementCenter/membershipManagement')"
+      >会员管理</span> 输入账号进行处理
+      </div>
     </div>
-    <div class="text-#3A3541 text-16px mt-40">存款金额</div>
+    <div class="text-#3A3541 mt-40">存款金额</div>
     <div class="flex items-center mt-12">
-      <div class="w-115px h-46px text-16px mr-10 border-1 cursor-pointer border-solid border-#DBDCDE rounded-8px flex items-center justify-center text-#3A3541" v-for="item in numList" :key="item">
+      <div
+        class="transition-400ms w-110px h-46px text-16px mr-10 border-1 cursor-pointer border-solid border-#DBDCDE rounded-8px flex items-center justify-center text-#3A3541"
+        v-for="item in numList" :key="item"
+        @click="form.money = item"
+        :class="{
+          'border-green': form.money == item
+        }"
+      >
         {{ item }}
       </div>
     </div>
     <div class="flex flex-col mt-20">
       <span>自定义金额</span>
       <div class="flex items-center mt-12">
-        <el-input size="large" v-model="input" style="width: 300px;height: 46px;" placeholder="请输入存款金额" />
+        <el-input type="number" class="!w-280" v-model="form.money" placeholder="请输入存款金额"/>
         <span class="text-#F93131 ml-10">此处金额为会员(所属地区)当地法币</span>
       </div>
     </div>
     <div class="flex flex-col mt-20">
       <span>流水限制</span>
       <div class="flex items-center mt-12">
-        <el-input size="large" v-model="input" style="width: 300px;height: 46px;" placeholder="" />
+        <el-input type="number" class="!w-280" v-model="form.lsbs" placeholder="请输入流水限制"/>
         <span class="text-#F93131 ml-10">按倍数算，输入2就是2倍流水</span>
       </div>
     </div>
     <div class="flex flex-col mt-20">
       <span class="mb-12">备注</span>
-      <el-input size="large" v-model="input" style="width: 300px;height: 46px;" placeholder="20个字" />
+      <el-input class="!w-280" v-model="form.desc" placeholder="20个字"/>
     </div>
     <div class="flex flex-col mt-20 w-300px">
       <span class="mb-12">支付密码</span>
-      <el-input size="large" v-model="input" style="width: 300px;height: 46px;" placeholder="请输入密码" />
+      <el-input class="!w-280" v-model="form.fundpassword" placeholder="请输入支付密码"/>
       <div class="w-100% text-right mt-20 text-#25D55B cursor-pointer">忘记密码?</div>
     </div>
-    <div class="w-300px h-46px flex items-center justify-center rounded-30px bg-#8D8D8D text-white mt-30 mb-50">确认提款</div>
+    <el-button
+      class="w-300px !h-46px mt-30 mb-50"
+      round
+      color="#25d55b"
+      :disabled="disabled"
+      @click="onSubmit"
+    >
+      <span class="text-white">确认赠送</span>
+    </el-button>
     <div class="text-#F93131 mt-30 mb-20">代存规则</div>
     <el-row>
       <el-col class="flex items-center mt-5" :span="24" v-for="(item,index) in textList" :key="item">
-        <div class="w-20 h-20 bg-#25D55B rounded-full text-white flex items-center justify-center mr-5">{{ index+1 }}</div>
+        <div class="w-20 h-20 bg-#25D55B rounded-full text-white flex items-center justify-center mr-5">{{
+            index + 1
+          }}
+        </div>
         <div class="text-#868D88">{{ item }}</div>
       </el-col>
     </el-row>
@@ -53,7 +84,40 @@
 </template>
 
 <script setup>
-const numList = [18,50,100,200,500]
+import {useRoute} from "vue-router";
+import {storeToRefs} from "pinia";
+import {useUserStore} from "@/store/modules/user.store.js";
+import {apiBonus} from "@/service/api/agent.js";
+
+const {userInfo} = storeToRefs(useUserStore())
+
+const numList = [18, 50, 100, 200, 500]
+
+const route = useRoute()
+
+const form = ref({
+  loginaccount: '',
+  money: '',
+  lsbs: '',
+  desc: '',
+  fundpassword: ''
+})
+
+form.value.loginaccount = route.query.loginaccount || ''
+
+const disabled = computed(() => {
+  return form.value.loginaccount.length === 0 ||
+    form.value.money.length === 0 ||
+    form.value.lsbs.length === 0 ||
+    form.value.desc.length === 0 ||
+    form.value.fundpassword.length === 0
+})
+
+const onSubmit = () => {
+  apiBonus(form.value).then(res => {
+    console.log(res);
+  })
+}
 
 const textList = [
   '代存余额需提前充值，只接收ERC20/TRC20充值，1USDT=1USD',
@@ -63,7 +127,6 @@ const textList = [
   '请注意代存金额以及会员账号，代存错误无法追回',
   '代存余额可向同属上级的其他代理转账，转账成功后无法追回'
 ]
-
 </script>
 
 <style lang="scss" scoped>

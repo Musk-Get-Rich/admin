@@ -47,9 +47,9 @@ service.interceptors.response.use(
       const { clearUserInfo } = useUserStore();
       clearUserInfo();
     } else {
-      console.log(123);
+      console.log(response);
       ElMessage({
-        message: response.msg || '请稍后重试',
+        message: response.data.info || '请稍后重试',
         type: 'error',
         duration: 2 * 1000
       })

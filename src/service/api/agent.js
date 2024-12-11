@@ -26,3 +26,8 @@ export const _getProfitLossReport = (params) => {
   console.log(params);
   return requestFunc('/AgentNew/GetProfitLossReport', params)
 }
+
+// 赠送彩金
+export const apiBonus = (params) => {
+  return requestFunc('/AgentNew/SendGiftBonus', params)
+}

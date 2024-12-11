@@ -13,7 +13,8 @@ import { useUserStore } from "@/store/modules/user.store.js";
 export const useAgent = () => {
 
   const userStore = useUserStore()
-  
+  console.log(userStore.userInfo.dividend);
+
   const changeDetail = (config) => {
     const { isMobile } = storeToRefs(useDeviceStore())
 
@@ -90,6 +91,9 @@ export const useAgent = () => {
           prop: 'dividend',
           placeholder: `请输入佣金比例(不能大于${userStore.userInfo.dividend})`,
           span: 24,
+          type: 'number',
+          max: 1,
+          step: 0.1,
           rules: [
             {
               required: true,

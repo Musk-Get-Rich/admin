@@ -1,9 +1,7 @@
 <template>
   <div>
     <el-card>
-      <el-row justify="space-between mb-20">
-        <div class="text-20">个人资料</div>
-      </el-row>
+      <Title name="个人资料" />
       <el-row v-for="(item,index) in list" :key="index">
         <el-col class="mt-20" :span="24">{{ item.title }}</el-col>
         <el-col :offset="2" class="mt-20 flex items-center" :span="24" v-for="i in item.items" :key="i.label">
@@ -35,6 +33,8 @@
 </template>
 
 <script setup>
+import Title from "@/components/Title/index.vue";
+
 const list = ref([
   {
     title: '个人资料',
