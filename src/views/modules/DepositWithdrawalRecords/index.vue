@@ -3,7 +3,7 @@
     <avue-crud
       ref="tableRef"
       :table-loading="tableLoading"
-      :data="list"
+      :data="tableData"
       :option="option"
       v-model:page="pageObj"
       @refresh-change="getTableData"
@@ -13,7 +13,7 @@
       <template #search>
         <Title name="存提款记录" />
         <div class="flex mb-10">
-          <Search />
+          <Search @search="onSearch" @refresh="onRefresh"/>
         </div>
       </template>
       <template #title-header="{column}">
@@ -39,43 +39,12 @@
 <script setup>
 import option from "./option.js"
 import {useTableList} from "@/hook/useTableList.js";
-import {useTableSearch} from "@/hook/useTableSearch.js";
-import {_getMemberReport} from "@/service/api/agent.js";
-import {useMaterialType} from "./hook/useMaterialType.js";
+import {_getDepositRecord} from "@/service/api/game.js";
 import Search from "./components/Search.vue";
 import Title from "@/components/Title/index.vue";
+import searchTime from "@/config/time.js";
 
-const list = [
-  {
-    title: 'test',
-    sort: '1',
-    canLink: '1',
-    createTime: '2024-12-02 00:00:00',
-  }
-]
-
-// 编辑
-const handleEdit = (data) => {
-  useMaterialType().changeMaterialType({
-    type: 'edit',
-    data,
-    done() {
-      getTableData()
-    }
-  })
-}
-
-// 删除
-const handleDelete = (id) => {
-  useMaterialType().deleteMaterialType({
-    id,
-    done() {
-      getTableData()
-    }
-  })
-}
-
-const tableSearch = useTableSearch()
+const { startDate, endDate } = searchTime
 
 const {
   tableRef,
@@ -85,9 +54,22 @@ const {
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(_getMemberReport, {
+} = useTableList(_getDepositRecord, {
+  startDate,
+  endDate,
+}, 'rows')
 
-})
+// 搜索
+const onSearch = (val) => {
+  getTableData(val)
+}
+
+const onRefresh = () => {
+  getTableData({
+    startDate,
+    endDate,
+  })
+}
 </script>
 
 <style lang="scss" scoped>
