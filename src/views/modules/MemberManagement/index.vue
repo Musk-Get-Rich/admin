@@ -94,12 +94,12 @@
                 :content="item.tooltip"
                 placement="top"
               >
-                <div class="p-3 cursor-pointer" @click="menuClick(item)">
+                <div class="p-3 cursor-pointer" @click="menuClick(item, row)">
                   <img class="w-20 h-20 object-cover" :src="item.icon" :alt="item.name">
                 </div>
               </el-tooltip>
             </template>
-            <div v-else class="p-3 cursor-pointer" @click="menuClick(item)">
+            <div v-else class="p-3 cursor-pointer" @click="menuClick(item, row)">
               <img class="w-20 h-20 object-cover" :src="item.icon" :alt="item.name">
             </div>
           </div>
@@ -213,13 +213,14 @@ const onTypeChange = (value) => {
   getTableData();
 }
 
-const menuClick = (item) => {
+const menuClick = (item, data) => {
   if (item.path) {
     if (item.id === 2) {
+      console.log(item);
       router.push({
         path: item.path,
         query: {
-          loginaccount: item.loginaccount
+          loginaccount: data.loginaccount
         }
       })
     }
