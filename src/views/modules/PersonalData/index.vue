@@ -4,11 +4,29 @@
       <Title name="个人资料" />
       <el-row v-for="(item,index) in list" :key="index">
         <el-col class="mt-20" :span="24">{{ item.title }}</el-col>
-        <el-col :offset="2" class="mt-20 flex items-center" :span="24" v-for="i in item.items" :key="i.label">
+        <el-col
+          :offset="2"
+          class="mt-20 flex items-center"
+          :span="24"
+          v-for="i in item.items"
+          :key="i.label"
+        >
           <span class="mr-20 block w-70px">{{ i.label }}</span>
-          <el-input v-model="i.value" size="large" style="width: 240px" placeholder="Please input" />
-          <el-button v-if="i.isEdit" class="ml-20 !text-white !px-30" round type="success" size="large" color="#25D55B">修改</el-button>
-          <el-button v-if="i.isReset" class="ml-20 !border-double !border-gray-200 !px-30" round type="danger" size="large" color="#ffffff">重置</el-button>
+          <el-input class="!w-280" readonly v-model="i.value" size="large"/>
+          <el-button
+            v-if="i.isEdit"
+            class="ml-20 !text-white !px-30"
+            round
+            type="success"
+            color="#25D55B"
+            @click="handleChange(i)"
+          >修改</el-button>
+          <el-button
+            v-if="i.isReset"
+            class="ml-20 !border-double !border-gray-200 !px-30"
+            round
+            type="danger"
+            color="#fff">重置</el-button>
         </el-col>
       </el-row>
       <el-row>
@@ -34,6 +52,17 @@
 
 <script setup>
 import Title from "@/components/Title/index.vue";
+import {useChangePassword} from "@/views/modules/PersonalData/hook/changePassword.js";
+
+const changeFundPassword = () => {
+  useChangePassword().change()
+}
+
+const handleChange = (data) => {
+  if (data.type === 'fundPassword') {
+    changeFundPassword()
+  }
+}
 
 const list = ref([
   {
@@ -72,7 +101,8 @@ const list = ref([
         label: '支付密码',
         value: '*******',
         isEdit: true,
-        isReset: true
+        isReset: true,
+        type: 'fundPassword'
       },
     ]
   },

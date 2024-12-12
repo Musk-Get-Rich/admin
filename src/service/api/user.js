@@ -13,3 +13,8 @@ export const apiLogin = (params) => {
 export const _getUserInfo = () => {
   return requestFunc('/AgentNew/takeEmployee')
 }
+
+// 修改资金密码
+export const apiChangePassword = (params) => {
+  return requestFunc('/AgentNew/updatefpwd', params)
+}

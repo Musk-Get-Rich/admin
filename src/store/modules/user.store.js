@@ -57,8 +57,6 @@ export const useUserStore = defineStore('userStore', () => {
           ...res[1],
         }
 
-        console.log(userInfo.value);
-
         resolve(true)
       }).catch(err => {
         reject(err)
