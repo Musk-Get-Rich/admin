@@ -11,8 +11,8 @@
           v-for="i in item.items"
           :key="i.label"
         >
-          <span class="mr-20 block w-70px">{{ i.label }}</span>
-          <el-input class="!w-280" readonly v-model="i.value" size="large"/>
+          <div class="text-14 mr-20 block w-70px">{{ i.label }}</div>
+          <el-input class="!w-280 !text-14" readonly v-model="i.value" size="large"/>
           <el-button
             v-if="i.isEdit"
             class="ml-20 !text-white !px-30"
@@ -38,7 +38,11 @@
               <div class="w-33% flex justify-center">联系号码</div>
               <div class="w-33% flex justify-center">操作</div>
             </div>
-            <div class="w-full h-46px flex justify-center items-center border-b-1 border-b-solid border-gray-200" v-for="(item,index) in tableData" :key="index">
+            <div
+              class="w-full h-46px flex justify-center items-center border-b-1 border-b-solid border-gray-200 text-14"
+              v-for="(item,index) in tableData"
+              :key="index"
+            >
               <div class="w-33% flex justify-center">{{ item.contactDetails }}</div>
               <div class="w-33% flex justify-center">{{ item.phone }}</div>
               <div class="w-33% flex justify-center text-#25D55B">编辑</div>
@@ -53,6 +57,9 @@
 <script setup>
 import Title from "@/components/Title/index.vue";
 import {useChangePassword} from "@/views/modules/PersonalData/hook/changePassword.js";
+import {useUserStore} from "@/store/modules/user.store.js";
+
+const userStore = useUserStore()
 
 const changeFundPassword = () => {
   useChangePassword().change()
@@ -64,7 +71,7 @@ const handleChange = (data) => {
   }
 }
 
-const list = ref([
+const list = computed(() => [
   {
     title: '个人资料',
     items: [
@@ -99,7 +106,7 @@ const list = ref([
       },
       {
         label: '支付密码',
-        value: '*******',
+        value: userStore.userInfo.fundpassword === 'false' ? '未设置支付密码' : '******',
         isEdit: true,
         isReset: true,
         type: 'fundPassword'

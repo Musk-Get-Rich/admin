@@ -41,25 +41,25 @@
     <div class="flex flex-col mt-20">
       <span>自定义金额</span>
       <div class="flex items-center mt-12">
-        <el-input type="number" class="!w-280" v-model="form.money" placeholder="请输入存款金额"/>
+        <el-input size="large" type="number" class="!w-280" v-model="form.money" placeholder="请输入存款金额"/>
         <span class="text-#F93131 ml-10">此处金额为会员(所属地区)当地法币</span>
       </div>
     </div>
     <div class="flex flex-col mt-20">
       <span>流水限制</span>
       <div class="flex items-center mt-12">
-        <el-input type="number" class="!w-280" v-model="form.lsbs" placeholder="请输入流水限制"/>
+        <el-input size="large" type="number" class="!w-280" v-model="form.lsbs" placeholder="请输入流水限制"/>
         <span class="text-#F93131 ml-10">按倍数算，输入2就是2倍流水</span>
       </div>
     </div>
     <div class="flex flex-col mt-20">
       <span class="mb-12">备注</span>
-      <el-input class="!w-280" v-model="form.desc" placeholder="20个字"/>
+      <el-input size="large" maxlength="20" class="!w-280" v-model="form.desc" placeholder="20个字"/>
     </div>
     <div class="flex flex-col mt-20 w-300px">
       <span class="mb-12">支付密码</span>
-      <el-input class="!w-280" v-model="form.fundpassword" placeholder="请输入支付密码"/>
-      <div class="w-100% text-right mt-20 text-#25D55B cursor-pointer">忘记密码?</div>
+      <el-input size="large" maxlength="6" type="password" class="!w-280" v-model="form.fundpassword" placeholder="请输入支付密码"/>
+      <div @click="$router.push('/personalCenter/personalData')" class="w-100% text-right mt-20 text-#25D55B cursor-pointer">忘记密码?</div>
     </div>
     <el-button
       class="w-300px !h-46px mt-30 mb-50"
@@ -67,6 +67,7 @@
       color="#25d55b"
       :disabled="disabled"
       @click="onSubmit"
+      :loading="loading"
     >
       <span class="text-white">确认赠送</span>
     </el-button>
@@ -113,9 +114,14 @@ const disabled = computed(() => {
     form.value.fundpassword.length === 0
 })
 
+const loading = ref(false)
 const onSubmit = () => {
+  loading.value = true
   apiBonus(form.value).then(res => {
+    loading.value = false
     console.log(res);
+  }).catch(err => {
+    loading.value = false
   })
 }
 
