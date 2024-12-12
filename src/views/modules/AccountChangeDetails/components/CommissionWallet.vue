@@ -2,7 +2,7 @@
   <avue-crud
     ref="tableRef"
     :table-loading="tableLoading"
-    :data="list"
+    :data="tableData"
     :option="option"
     v-model:page="pageObj"
     @refresh-change="getTableData"
@@ -52,10 +52,25 @@
 import option from "../optionCommission.js"
 import {useTableList} from "@/hook/useTableList.js";
 import {useTableSearch} from "@/hook/useTableSearch.js";
-import {_getMemberReport} from "@/service/api/agent.js";
 import {useMaterialType} from "../hook/useMaterialType.js";
 import Search from "../components/Search.vue";
-import {apiMembershipReport} from "@/service/api/api.js";
+import searchTime from "@/config/time.js";
+import {apiAccountChangeRecords} from "@/service/api/user.js";
+
+const { startDate, endDate } = searchTime
+
+const {
+  tableRef,
+  tableLoading,
+  pageObj,
+  tableData,
+  getTableData,
+  sizeChange,
+  currentChange
+} = useTableList(apiAccountChangeRecords, {
+  startDate,
+  endDate,
+}, 'rows')
 
 const list = [
   {
@@ -88,18 +103,6 @@ const handleDelete = (id) => {
 }
 
 const tableSearch = useTableSearch()
-
-const {
-  tableRef,
-  tableLoading,
-  pageObj,
-  tableData,
-  getTableData,
-  sizeChange,
-  currentChange
-} = useTableList(apiMembershipReport, {
-
-})
 
 // 搜索
 const onSearch = (val) => {

@@ -18,3 +18,8 @@ export const _getUserInfo = () => {
 export const apiChangePassword = (params) => {
   return requestFunc('/AgentNew/updatefpwd', params)
 }
+
+// 账变记录
+export const apiAccountChangeRecords = (params) => {
+  return requestFunc('/AgentNew/GetDepositRecord', params)
+}

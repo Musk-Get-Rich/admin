@@ -31,3 +31,8 @@ export const _getProfitLossReport = (params) => {
 export const apiBonus = (params) => {
   return requestFunc('/AgentNew/SendGiftBonus', params)
 }
+
+// 玩家钱包操作
+export const apiPlayerWalletOperation = (params) => {
+  return requestFunc('/AgentNew/DoTrans', params)
+}

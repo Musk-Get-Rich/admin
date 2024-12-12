@@ -132,7 +132,7 @@ import {useRouter} from "vue-router";
 const router = useRouter()
 
 const menuList = [
-  { id: 1, icon: dollarCircle },
+  { id: 1, icon: dollarCircle, tooltip: '玩家代存', path: '/report/playerDeposit' },
   { id: 2, icon: coins, tooltip: '彩金赠送', path: '/report/bonus' },
   { id: 3, icon: shieldTick },
   { id: 4, icon: chart },
@@ -215,8 +215,14 @@ const onTypeChange = (value) => {
 
 const menuClick = (item, data) => {
   if (item.path) {
-    if (item.id === 2) {
-      console.log(item);
+    if (item.id === 2) { // 彩金赠送
+      router.push({
+        path: item.path,
+        query: {
+          loginaccount: data.loginaccount
+        }
+      })
+    } else if (item.id === 1) {
       router.push({
         path: item.path,
         query: {

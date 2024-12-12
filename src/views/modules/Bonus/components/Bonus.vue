@@ -14,6 +14,7 @@
         v-model="form.loginaccount"
         disabled
         placeholder="Please input"
+        size="large"
       />
       <div
         v-show="!(form.loginaccount)"
@@ -58,8 +59,11 @@
     </div>
     <div class="flex flex-col mt-20 w-300px">
       <span class="mb-12">支付密码</span>
-      <el-input size="large" maxlength="6" type="password" class="!w-280" v-model="form.fundpassword" placeholder="请输入支付密码"/>
-      <div @click="$router.push('/personalCenter/personalData')" class="w-100% text-right mt-20 text-#25D55B cursor-pointer">忘记密码?</div>
+      <el-input size="large" maxlength="6" type="password" class="!w-280" v-model="form.fundpassword"
+                placeholder="请输入支付密码"/>
+      <div @click="$router.push('/personalCenter/personalData')"
+           class="w-100% text-right mt-20 text-#25D55B cursor-pointer">忘记密码?
+      </div>
     </div>
     <el-button
       class="w-300px !h-46px mt-30 mb-50"
@@ -89,6 +93,7 @@ import {useRoute} from "vue-router";
 import {storeToRefs} from "pinia";
 import {useUserStore} from "@/store/modules/user.store.js";
 import {apiBonus} from "@/service/api/agent.js";
+import {ElMessage} from "element-plus";
 
 const {userInfo} = storeToRefs(useUserStore())
 
@@ -119,7 +124,14 @@ const onSubmit = () => {
   loading.value = true
   apiBonus(form.value).then(res => {
     loading.value = false
-    console.log(res);
+    ElMessage.success(res || '赠送成功')
+
+    form.value = {
+      money: '',
+      lsbs: '',
+      desc: '',
+      fundpassword: ''
+    }
   }).catch(err => {
     loading.value = false
   })

@@ -2,7 +2,7 @@
   <div>
     <el-card>
       <Title name="提现申请" />
-      <div class="w-529px h-173px rounded-3xl shadow shadow-#00000026">
+      <div class="w-529px h-173px rounded-3xl theme-shadow">
         <div class="w-full h-46px bg-#25D55B rounded-t-3xl flex items-center pl-20 box-border">
           <img class="w-25 h-25 mr-5" src="@/assets/images/withdrawal/wallet.png" alt="">
           <span class="text-white">佣金钱包</span>

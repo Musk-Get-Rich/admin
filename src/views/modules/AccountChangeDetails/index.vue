@@ -1,10 +1,9 @@
 <template>
   <el-card>
-    <Title name="账变明细" />
+    <Title name="账变明细"/>
     <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
-    <el-row></el-row>
-      <CommissionWallet v-if="currentBtn === '佣金钱包'"></CommissionWallet>
-      <LotteryWallet v-if="currentBtn === '彩金钱包'"></LotteryWallet>
+    <CommissionWallet v-if="currentBtn === '佣金钱包'"></CommissionWallet>
+    <LotteryWallet v-if="currentBtn === '彩金钱包'"></LotteryWallet>
   </el-card>
 </template>
 
@@ -16,7 +15,7 @@ import Tabs from "@/components/Tabs";
 
 const currentBtn = ref('佣金钱包')
 
-const btns = ref(['佣金钱包','彩金钱包'])
+const btns = ref(['佣金钱包', '彩金钱包'])
 
 const handleClick = (btn) => {
   console.log(btn)
