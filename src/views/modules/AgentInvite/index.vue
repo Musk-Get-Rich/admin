@@ -68,8 +68,10 @@ import { ElMessageBox } from "element-plus";
 import { computed, ref } from "vue";
 import Title from "@/components/Title/index.vue";
 import { useUserStore } from "@/store/modules/user.store.js";
+import {useRouter} from "vue-router";
 
 const agentInfo = ref({})
+const router = useRouter()
 
 const userStore = useUserStore()
 
@@ -122,10 +124,8 @@ const handleAdd = () => {
 
 // 删除
 const handleQueryTeamResult = (id) => {
-  ElMessageBox.alert('敬请期待', '温馨提示', {
-    confirmButtonText: 'OK',
-    callback: (action) => {
-    },
+  router.push({
+    path: '/report/commissionReport'
   })
 }
 

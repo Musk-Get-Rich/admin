@@ -51,6 +51,10 @@ export const useAgent = () => {
                   await apiCheckAgentAccount({ loginaccount: `${prependName.value}${value}` }).catch(() => {
                     return Promise.reject('代理账号已存在')
                   })
+
+                  if (/[^0-9a-zA-Z]/.test(value)) {
+                    return Promise.reject('代理账号只支持字母数字')
+                  }
                   return true
                 }
                 return Promise.reject('请输入代理账号')

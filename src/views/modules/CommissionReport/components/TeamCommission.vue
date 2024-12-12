@@ -15,17 +15,17 @@
 
 <script setup>
 import {_agentCommissionReport} from "@/service/api/agent.js";
-import option from "../personalOption.js";
+import option from "../teamOption.js";
 import {useTableList} from "@/hook/useTableList.js";
 
 const {
-tableRef,
-tableLoading,
-pageObj,
-tableData,
-getTableData,
-sizeChange,
-currentChange
+  tableRef,
+  tableLoading,
+  pageObj,
+  tableData,
+  getTableData,
+  sizeChange,
+  currentChange
 } = useTableList(_agentCommissionReport, {})
 
 function transformData(data) {
@@ -48,7 +48,3 @@ watch(() => tableData.value, (val) => {
 list.value = transformData(val)
 })
 </script>
-
-<style lang="scss" scoped>
-
-</style>

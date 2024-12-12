@@ -1,22 +1,40 @@
 <script setup>
 import Title from "@/components/Title/index.vue";
 import Upload from "@/components/Upload/index.vue";
-import { ref } from "vue";
+import {onMounted, ref} from "vue";
 import { useRouter } from "vue-router";
+import { apiAgentChangeApply, apiAgentChangeStatistics } from "@/service/api/api.js";
+import { ElMessage } from "element-plus";
 
 const router = useRouter()
 const info = ref({})
 const formRef = ref();
 const formData = reactive({
-  account: '',
-  reason: ''
+  linkurl: '',
+  loginaccount: '',
+  remark: '',
+  opreatetype: '1'
 })
 
-const submitForm = (formEl) => {
+onMounted(() => {
+  apiAgentChangeStatistics({
+    opreatetype: '1'
+  }).then(res => {
+    info.value = res
+  })
+})
+
+const submitForm = async (formEl) => {
   if (!formEl) return
-  formEl.validate((valid) => {
+  formEl.validate(async (valid) => {
     if (valid) {
-      console.log('submit!')
+      const res = await apiAgentChangeApply({ ...formData })
+      formEl.resetFields()
+      formData.linkurl = ''
+      ElMessage({
+        message: res || '操作成功',
+        type: 'success',
+      })
     } else {
       console.log('error submit!')
     }
@@ -31,18 +49,18 @@ const submitForm = (formEl) => {
     </el-row>
     <div class="grid grid-cols-3 gap-10">
       <div class="flex flex-col justify-center p-8xl border border-solid border-gray-300 rounded-3xl">
-        <div class="font-bold text-8xl">{{ info.loginaccount || 0 }}</div>
+        <div class="font-bold text-8xl">{{ info.monthNum || 0 }}</div>
         <div class="text-6xl text-gray-400 mt-5">本月注销</div>
       </div>
       <div class="flex flex-col justify-center p-8xl border border-solid border-gray-300 rounded-3xl">
-        <div class="font-bold text-8xl">{{ info.loginaccount || 0 }}</div>
+        <div class="font-bold text-8xl">{{ info.allNum || 0 }}</div>
         <div class="flex justify-between text-6xl text-gray-400 mt-5">
           <span>注销记录</span>
           <el-button type="success" size="small" round plain @click="router.push('/managementCenter/memberDeleteApply/records')">查看记录</el-button>
         </div>
       </div>
       <div class="flex flex-col justify-center p-8xl border border-solid border-gray-300 rounded-3xl">
-        <div class="font-bold text-8xl">{{ info.countAgent || 0 }}</div>
+        <div class="font-bold text-8xl">{{ info.monthRatio || "0.00%" }}</div>
         <div class="text-6xl text-gray-400 mt-5">注销率</div>
       </div>
     </div>
@@ -50,15 +68,15 @@ const submitForm = (formEl) => {
       <div class="flex justify-between">
         <div class="text-6xl">
           <div>
-            <span>上传图片 (0/5)</span>
+            <span>上传图片 ({{ formData.linkurl.split(',').filter(a => !!a).length || 0 }}/5)</span>
             <span class="text-5xl color-gray">文件格式为png,jpg,jpeg且大小不超过15MB</span>
           </div>
           <div class="mt-5xl">
-            <Upload />
+            <Upload v-model:images="formData.linkurl" />
           </div>
         </div>
         <div>
-          <div class="flex items-center text-6xl color-green">
+          <div class="flex items-center text-6xl color-green cursor-pointer">
             <span>教程说明</span>
             <img class="w-16 h-16 shrink-0 ml-5" src="@/assets/images/member/FAQ-Circle.png" alt="" />
           </div>
@@ -77,7 +95,7 @@ const submitForm = (formEl) => {
               class="w-[70%]"
           >
             <el-form-item
-                prop="account"
+                prop="loginaccount"
                 label="会员账号"
                 :rules="[
                   {
@@ -87,10 +105,10 @@ const submitForm = (formEl) => {
                   },
                 ]"
             >
-              <el-input v-model="formData.account" />
+              <el-input v-model="formData.loginaccount" />
             </el-form-item>
             <el-form-item
-                prop="reason"
+                prop="remark"
                 label="原因说明"
                 :rules="[
                   {
@@ -100,7 +118,7 @@ const submitForm = (formEl) => {
                   },
                 ]"
             >
-              <el-input v-model="formData.reason" />
+              <el-input v-model="formData.remark" />
             </el-form-item>
             <el-form-item class="pl-80">
               <el-button type="primary" @click="submitForm(formRef)">提交申请</el-button>
