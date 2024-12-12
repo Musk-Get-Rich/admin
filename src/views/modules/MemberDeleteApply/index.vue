@@ -9,6 +9,9 @@ import { ElMessage } from "element-plus";
 const router = useRouter()
 const info = ref({})
 const formRef = ref();
+const dialogHelpVisible = ref(false);
+const carouselRef = ref();
+
 const formData = reactive({
   linkurl: '',
   loginaccount: '',
@@ -76,7 +79,7 @@ const submitForm = async (formEl) => {
           </div>
         </div>
         <div>
-          <div class="flex items-center text-6xl color-green cursor-pointer">
+          <div class="flex items-center text-6xl color-green cursor-pointer" @click="dialogHelpVisible = true">
             <span>教程说明</span>
             <img class="w-16 h-16 shrink-0 ml-5" src="@/assets/images/member/FAQ-Circle.png" alt="" />
           </div>
@@ -144,6 +147,34 @@ const submitForm = async (formEl) => {
         </div>
       </div>
     </div>
-
+    <el-dialog v-model="dialogHelpVisible" title="会员注销教程" width="800">
+      <div>
+        <div>
+          <el-carousel ref="carouselRef" indicator-position="outside" height="350px" trigger="click" arrow="never" :autoplay="false">
+            <el-carousel-item>
+              <div class="flex flex-col">
+                <img class="w-full" src="@/assets/images/member/MemberDeleteHelp1.png" alt="" />
+                <div class="mt-15">
+                  <div>1.输入会员账号，√代表会员符合注销。</div>
+                  <div>2.上传与会员的对话截图，至少包含2项会员绑定的信息即可提交申请注销</div>
+                </div>
+              </div>
+            </el-carousel-item>
+            <el-carousel-item>
+              <div class="flex flex-col">
+                <img class="w-full" src="@/assets/images/member/MemberDeleteHelp2.png" alt="" />
+                <div class="mt-15">
+                  <div>3.审核通过后，<span class="text-red">需会员登录账号</span>在“我的”页面<span class="text-red">点击一键注销</span>即可完成账号注销</div>
+                </div>
+              </div>
+            </el-carousel-item>
+          </el-carousel>
+        </div>
+        <div class="flex justify-center">
+          <el-button @click="carouselRef.prev()">上一步</el-button>
+          <el-button type="primary" @click="carouselRef.next()">下一步</el-button>
+        </div>
+      </div>
+    </el-dialog>
   </el-card>
 </template>

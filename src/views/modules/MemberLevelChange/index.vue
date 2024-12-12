@@ -5,10 +5,13 @@ import {onMounted, ref} from "vue";
 import { useRouter } from "vue-router";
 import { apiAgentLevelChange, apiAgentLevelStatistics } from "@/service/api/api.js";
 import { ElMessage } from "element-plus";
+import Helper from './helper/index.vue'
 
 const router = useRouter()
 const info = ref({})
 const formRef = ref();
+const helperRef = ref();
+
 const formData = reactive({
   picurl: '',
   loginaccount: '',
@@ -76,7 +79,7 @@ const submitForm = (formEl) => {
           </div>
         </div>
         <div>
-          <div class="flex items-center text-6xl color-green cursor-pointer">
+          <div class="flex items-center text-6xl color-green cursor-pointer" @click="helperRef.showDialog()">
             <span>教程说明</span>
             <img class="w-16 h-16 shrink-0 ml-5" src="@/assets/images/member/FAQ-Circle.png" alt="" />
           </div>
@@ -169,5 +172,6 @@ const submitForm = (formEl) => {
         </div>
       </div>
     </div>
+    <Helper ref="helperRef" />
   </el-card>
 </template>
