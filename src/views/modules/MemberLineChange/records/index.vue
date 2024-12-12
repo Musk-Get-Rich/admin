@@ -5,7 +5,7 @@
       <span class="pl-10 border border-l-solid border-grey">转线记录</span>
     </div>
     <div class="flex my-5xl w-[50%]">
-      <el-input v-model="formData.account" placeholder="会员账号" class="mr-10"></el-input>
+      <el-input v-model="formData.loginaccount" placeholder="会员账号" class="mr-10"></el-input>
       <el-select v-model="formData.status" placeholder="全部">
         <el-option
             v-for="item in statusOptions"
@@ -34,35 +34,25 @@
 
 <script setup>
 import TimeSelect from "@/components/TimeSelect"
-import option from "./option.js";
+import option, {statusOptions} from "./option.js";
 import {useTableList} from "@/hook/useTableList.js";
-import {_getProfitLossReport} from "@/service/api/agent.js";
 import searchTime from "@/config/time.js"
 import { useRouter } from "vue-router";
+import {apiAgentChangeLog} from "@/service/api/api.js";
 
 const router = useRouter()
 const { startDate, endDate } = searchTime
 
 const formData = reactive({
-  account: '',
+  loginaccount: '',
   status: ''
 })
 
-const statusOptions = [
-  {
-    label: '审核中',
-    value: '0'
-  },
-  {
-    label: '已注销',
-    value: '1'
-  }
-]
-
 const fetchList = (params) => {
-  return _getProfitLossReport({
+  return apiAgentChangeLog({
     ...params,
-    ...formData
+    ...formData,
+    opreatetype: '2'
   })
 }
 
@@ -84,7 +74,7 @@ const {
 } = useTableList(fetchList, {
   startDate,
   endDate,
-}, 'record')
+}, 'results')
 
 // 搜索
 const onSearch = (val) => {

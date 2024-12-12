@@ -68,6 +68,36 @@ export const apiGetAgentInviteList = (params) => {
   return requestFunc('/AgentNew/GetInviteReport', params)
 }
 
+// 会员注销/转线申请
+export const apiAgentChangeApply = (params) => {
+  return requestFunc('/AgentNew/DoChangeLog', params)
+}
+
+// 会员注销/转线申请 汇总记录
+export const apiAgentChangeStatistics = (params) => {
+  return requestFunc('/AgentNew/SumChangeLog', params)
+}
+
+// 会员注销/转线申请 汇总记录
+export const apiAgentChangeLog = (params) => {
+  return requestFunc('/AgentNew/GetChangeLog', params)
+}
+
+// 会员调级申请
+export const apiAgentLevelChange = (params) => {
+  return requestFunc('/AgentNew/DoLevelApply', params)
+}
+
+// 会员调级申请汇总
+export const apiAgentLevelStatistics = (params) => {
+  return requestFunc('/AgentNew/SumApplyLog', params)
+}
+
+// 会员调级申请记录
+export const apiAgentLevelLog = (params) => {
+  return requestFunc('/AgentNew/GetLevelApplyLog', params)
+}
+
 // 获取首页数据
 export const apiGetHomeData = (params) => {
   return requestFunc('/AgentNew/AgentSumInfo', params)

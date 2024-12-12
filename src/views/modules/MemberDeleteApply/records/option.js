@@ -1,5 +1,20 @@
 import { globalOption } from "@/config/tabOption.js";
 
+export const statusOptions = [
+  {
+    label: '审核中',
+    value: 0
+  },
+  {
+    label: '已注销',
+    value: 1
+  },
+  {
+    label: '已拒绝',
+    value: 2
+  }
+]
+
 export default {
   ...globalOption,
   stripe: false,
@@ -10,27 +25,28 @@ export default {
   column: [
     {
       label: '提交时间',
-      prop: 'depositMoney',
+      prop: 'createtime',
     },
     {
       label: '用户名',
-      prop: 'withdrawMoney',
+      prop: 'loginaccount',
     },
     {
       label: '昵称',
-      prop: 'profitLoss',
+      prop: 'uppercode',
     },
     {
       label: '注册时间',
-      prop: 'bonusDetail',
+      prop: 'updatetime',
     },
     {
       label: '状态',
-      prop: 'depositFee',
+      prop: 'status',
+      dicData: statusOptions
     },
     {
       label: '审核备注',
-      prop: 'platFee',
+      prop: 'remark',
     }
   ]
 }

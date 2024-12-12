@@ -6,54 +6,43 @@ export default {
   searchMenuSpan: 10, // 搜索框宽度
   searchSpan: 6,
   menu: false,
+  index: true,
   column: [
     {
-      label: '新增有效',
+      label: '名字',
       prop: 'newplayvalid',
     },
     {
-      label: '取款金额',
+      label: '下级人数',
       prop: 'withdrawall',
     },
     {
-      label: '净输赢',
+      label: '活跃人数',
       prop: 'profit',
     },
     {
-      label: '上月结余',
+      label: '新注册',
       prop: 'bonusDetail',
     },
     {
-      label: '佣金结算参考',
+      label: '新增首存',
       prop: 'depositFee',
     },
     {
-      label: '游戏输赢',
+      label: '新增有效',
       prop: 'winlose',
     },
     {
-      label: '返水',
+      label: '净输赢',
       prop: 'fs',
     },
     {
-      label: '可结佣金',
+      label: '上月结余',
       prop: 'commissionday',
     },
     {
-      label: '红利',
+      label: '结算参考',
       prop: 'proamount',
-    },
-    {
-      label: '平台费',
-      prop: 'other',
-    },
-    {
-      label: '存提手续费',
-      prop: 'other',
-    },
-    {
-      label: '佣金比例',
-      prop: 'other',
     },
   ]
 }

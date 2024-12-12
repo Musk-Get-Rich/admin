@@ -17,7 +17,7 @@
     <template #default>
       <slot name="default">
         <el-icon>
-          <Plus/>
+          <Plus />
         </el-icon>
       </slot>
     </template>
@@ -53,10 +53,10 @@
 </template>
 
 <script setup>
-import {ACTION} from "@/service/config.js";
-import {getToken} from "@/utils/cookie/index.js";
-import {useVModels} from "@vueuse/core";
-import {handleImagePath} from "@/utils/index.js";
+import { ACTION } from "@/service/config.js";
+import { getToken } from "@/utils/cookie/index.js";
+import { useVModels } from "@vueuse/core";
+import { handleImagePath } from "@/utils/index.js";
 
 const props = defineProps({
   limit: {
@@ -90,11 +90,14 @@ const dialogVisible = ref(false)
 const fileList = ref([])
 
 // 待解决图片问题
-if (props.images) {
-  const urls = props.images.split(',').map(url => ({url}))
-
-  fileList.value = urls
-}
+watch(() => props.images, () => {
+  console.log('props.images', props.images)
+  if (props.images) {
+    fileList.value = props.images.split(',').map(url => ({url}))
+  } else {
+    fileList.value = []
+  }
+})
 
 // watchEffect(() => {
 //   if (props.images) {
@@ -126,7 +129,7 @@ const handleError = () => {
 const changeImages = () => {
   images.value = fileList.value.map(item => {
     if (item?.response) {
-      return handleImagePath(item.response.data)
+      return handleImagePath(item?.response?.url)
     } else {
       // item.url 是编辑状态下
       return handleImagePath(item?.url)

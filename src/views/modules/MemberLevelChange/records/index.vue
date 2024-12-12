@@ -34,11 +34,11 @@
 
 <script setup>
 import TimeSelect from "@/components/TimeSelect"
-import option from "./option.js";
+import option, {statusOptions} from "./option.js";
 import {useTableList} from "@/hook/useTableList.js";
-import {_getProfitLossReport} from "@/service/api/agent.js";
 import searchTime from "@/config/time.js"
 import { useRouter } from "vue-router";
+import {apiAgentLevelLog} from "@/service/api/api.js";
 
 const router = useRouter()
 const { startDate, endDate } = searchTime
@@ -48,19 +48,8 @@ const formData = reactive({
   status: ''
 })
 
-const statusOptions = [
-  {
-    label: '审核中',
-    value: '0'
-  },
-  {
-    label: '已注销',
-    value: '1'
-  }
-]
-
 const fetchList = (params) => {
-  return _getProfitLossReport({
+  return apiAgentLevelLog({
     ...params,
     ...formData
   })
@@ -84,7 +73,7 @@ const {
 } = useTableList(fetchList, {
   startDate,
   endDate,
-}, 'record')
+}, 'results')
 
 // 搜索
 const onSearch = (val) => {
