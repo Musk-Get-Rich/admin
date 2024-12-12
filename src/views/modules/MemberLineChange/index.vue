@@ -9,6 +9,9 @@ import { ElMessage } from "element-plus";
 const router = useRouter()
 const info = ref({})
 const formRef = ref();
+const dialogHelpVisible = ref(false);
+const carouselRef = ref();
+
 const formData = reactive({
   linkurl: '',
   loginaccount: '',
@@ -77,7 +80,7 @@ const submitForm = (formEl) => {
           </div>
         </div>
         <div>
-          <div class="flex items-center text-6xl color-green cursor-pointer">
+          <div class="flex items-center text-6xl color-green cursor-pointer" @click="dialogHelpVisible = true">
             <span>教程说明</span>
             <img class="w-16 h-16 shrink-0 ml-5" src="@/assets/images/member/FAQ-Circle.png" alt="" />
           </div>
@@ -157,5 +160,35 @@ const submitForm = (formEl) => {
         </div>
       </div>
     </div>
+    <el-dialog v-model="dialogHelpVisible" title="会员注销教程" width="800">
+      <div>
+        <div>
+          <el-carousel ref="carouselRef" indicator-position="outside" height="350px" trigger="click" arrow="never" :autoplay="false">
+            <el-carousel-item>
+              <div class="flex flex-col">
+                <img class="w-full" src="@/assets/images/member/MemberLineChangeHelp1.png" alt="" />
+                <div class="mt-15">
+                  <div>1.上传与会员的对话截图，至少包含注册链接、会员账号、日期。 </div>
+                  <div>2.输入需转线的会员账号。</div>
+                </div>
+              </div>
+            </el-carousel-item>
+            <el-carousel-item>
+              <div class="flex flex-col">
+                <img class="w-full" src="@/assets/images/member/MemberLineChangeHelp2.png" alt="" />
+                <div class="mt-15">
+                  <div>3.输入发给会员的注册链接。</div>
+                  <div>4.选择会员设备类型（此项可以随意选择）完成以上步骤后即可提交申请</div>
+                </div>
+              </div>
+            </el-carousel-item>
+          </el-carousel>
+        </div>
+        <div class="flex justify-center">
+          <el-button @click="carouselRef.prev()">上一步</el-button>
+          <el-button type="primary" @click="carouselRef.next()">下一步</el-button>
+        </div>
+      </div>
+    </el-dialog>
   </el-card>
 </template>
