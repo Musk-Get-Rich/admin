@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar-wrapper w-218 bg-white h-full overflow-auto py-30 box-border">
     <div
-      v-for="_ in routes"
+      v-for="_ in routes.filter(r => !r.meta?.hidden)"
     >
       <template v-if="_.type === 'divider' && (_?.auth ? _.auth.includes(userStore.userInfo.agentlevel / 1) : true)">
         <div class="mb-10 h-1 w-185 mx-auto bg-#F4F5F9"></div>
@@ -11,20 +11,20 @@
         <template v-for="item in _.children">
           <div
             class="relative mb-10 cursor-pointer"
-            @click="handleClick(`${_.path}/${item.path}`)"
+            @click="handleClick(item.redirectPath ? item.redirectPath : `${_.path}/${item.path}`)"
             v-if="!item.meta?.hidden && (item.meta?.auth ? item.meta.auth.includes(userStore.userInfo.agentlevel / 1) : true)"
           >
             <div
               class="transition-400ms w-6 h-full absolute left-0 top-0 bg-green rounded-tr-20 rounded-br-20"
               :class="[
-            route.path === `${_.path}/${item.path}` ? 'opacity-100' : 'opacity-0'
-          ]"
+                route.path === `${_.path}/${item.path}` ? 'opacity-100' : 'opacity-0'
+              ]"
             />
             <div
               class="transition-400ms flex items-center h-40 w-185 ml-21 rounded-8 px-5 box-border"
               :class="[
-              route.path === `${_.path}/${item.path}` ? 'bg-#e9fbef' : ''
-            ]"
+                route.path === `${_.path}/${item.path}` ? 'bg-#e9fbef' : ''
+              ]"
             >
               <img
                 v-show="route.path === `${_.path}/${item.path}`"
