@@ -15,7 +15,7 @@ export const _getUserInfo = () => {
 }
 
 // 修改资金密码
-export const apiChangePassword = (params) => {
+export const apiChangePaymentPassword = (params) => {
   return requestFunc('/AgentNew/updatefpwd', params)
 }
 

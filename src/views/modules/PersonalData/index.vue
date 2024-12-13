@@ -45,7 +45,7 @@
             >
               <div class="w-33% flex justify-center">{{ item.contactDetails }}</div>
               <div class="w-33% flex justify-center">{{ item.phone }}</div>
-              <div class="w-33% flex justify-center text-#25D55B">编辑</div>
+              <div @click="handleChange(item)" class="w-33% flex justify-center text-#25D55B">编辑</div>
             </div>
           </div>
         </el-col>
@@ -56,18 +56,39 @@
 
 <script setup>
 import Title from "@/components/Title/index.vue";
+import {useChangePaymentPassword} from "@/views/modules/PersonalData/hook/changePaymentPassword.js";
 import {useChangePassword} from "@/views/modules/PersonalData/hook/changePassword.js";
+import {useChangeOtherContacts} from "@/views/modules/PersonalData/hook/changeOtherContacts.js";
+import {useChangeTelegram} from "@/views/modules/PersonalData/hook/changeTelegram.js";
 import {useUserStore} from "@/store/modules/user.store.js";
 
 const userStore = useUserStore()
 
-const changeFundPassword = () => {
+const changePaymentPassword = () => {
+  useChangePaymentPassword().change()
+}
+
+const changePassword = () => {
   useChangePassword().change()
+}
+
+const changeOtherContacts = () => {
+  useChangeOtherContacts().change()
+}
+
+const changeTelegram = () => {
+  useChangeTelegram().change()
 }
 
 const handleChange = (data) => {
   if (data.type === 'fundPassword') {
-    changeFundPassword()
+    changePaymentPassword()
+  } else if (data.type === 'password') {
+    changePassword()
+  } else if (data.type === 'other') {
+    changeOtherContacts()
+  } else if (data.type === 'telegram') {
+    changeTelegram()
   }
 }
 
@@ -77,13 +98,13 @@ const list = computed(() => [
     items: [
       {
         label: '姓名',
-        value: '用户姓名***',
+        value: userStore.userInfo.displayalias,
         isEdit: false,
         isReset: false
       },
       {
         label: '代理账号',
-        value: 'BBBBBBBBBBBBBBA',
+        value: userStore.userInfo.displayalias,
         isEdit: false,
         isReset: false
       },
@@ -91,7 +112,8 @@ const list = computed(() => [
         label: '登录密码',
         value: '*******',
         isEdit: true,
-        isReset: true
+        isReset: false,
+        type: 'password'
       },
     ]
   },
@@ -100,15 +122,15 @@ const list = computed(() => [
     items: [
       {
         label: '邮箱地址',
-        value: '365*****225@qq.com',
+        value: userStore.userInfo.email || '未设置邮箱',
         isEdit: false,
-        isReset: true
+        isReset: false
       },
       {
         label: '支付密码',
         value: userStore.userInfo.fundpassword === 'false' ? '未设置支付密码' : '******',
         isEdit: true,
-        isReset: true,
+        isReset: false,
         type: 'fundPassword'
       },
     ]
@@ -118,11 +140,13 @@ const list = computed(() => [
 const tableData = ref([
   {
     contactDetails: 'Telegram',
-    phone: '--',
+    phone: userStore.userInfo.otherimname1 || '--',
+    type: 'telegram'
   },
   {
     contactDetails: '其他联系方式',
-    phone: '365*****225@qq.com',
+    phone: userStore.userInfo.otherimno1 || '--',
+    type: 'other'
   }
 ])
 </script>
