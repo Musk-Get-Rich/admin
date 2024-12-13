@@ -423,7 +423,7 @@ export const routes = [
       {
         path: 'helpCenter',
         name: 'helpCenter',
-        component: () => import("@/views/modules/HelpCenter"),
+        redirectPath: '/helpCenter',
         meta: {
           auth: [1,2,3],
           name: '帮助中心',
@@ -432,5 +432,17 @@ export const routes = [
         },
       },
     ]
+  },
+  {
+    path: '/helpCenter',
+    name: 'helpCenter',
+    component: () => import("@/views/modules/HelpCenter"),
+    meta: {
+      auth: [1,2,3],
+      name: '帮助中心',
+      inactiveIcon: 'Sidebar/bookmark.png',
+      activeIcon: 'Sidebar/bookmark-1.png',
+      hidden: true,
+    },
   }
 ]
