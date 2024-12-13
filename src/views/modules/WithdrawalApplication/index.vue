@@ -15,7 +15,7 @@
           <div class="w-2px h-67px bg-#F4F5F9"></div>
           <div class="w-49% flex flex-col items-center text-#868D88">
               <span class="text-28px mb-10">0</span>
-              <span>可用余额(HKD)</span>
+              <span>不可用余额(HKD)</span>
           </div>
         </div>
       </div>

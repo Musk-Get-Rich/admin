@@ -27,7 +27,11 @@
 </template>
 
 <script setup>
+import {apiUserUSDTList} from "@/service/api/api.js";
 
+apiUserUSDTList().then(res => {
+  console.log(res);
+})
 </script>
 
 <style lang="scss" scoped>

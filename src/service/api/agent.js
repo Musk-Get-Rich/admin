@@ -36,3 +36,8 @@ export const apiBonus = (params) => {
 export const apiPlayerWalletOperation = (params) => {
   return requestFunc('/AgentNew/DoTrans', params)
 }
+
+// 查询记录
+export const apiMoneyLog = (params) => {
+  return requestFunc('/AgentNew/DoTransLog', params)
+}

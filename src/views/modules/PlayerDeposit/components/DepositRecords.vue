@@ -61,8 +61,17 @@ import Search from "./Search.vue";
 import {apiMembershipReport} from "@/service/api/api.js";
 import searchTime from "@/config/time.js";
 import Other from "@/views/modules/WinLossReport/components/other/index.vue";
+import {apiMoneyLog} from "@/service/api/agent.js";
 
 const { startDate, endDate } = searchTime
+
+apiMoneyLog({
+  startDate,
+  endDate,
+  opreatetype: 4
+}).then(res => {
+  console.log(res);
+})
 
 const {
   tableRef,

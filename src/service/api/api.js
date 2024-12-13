@@ -130,3 +130,17 @@ export const apiPromotionWebsite = (params) => {
     ...params,
   })
 }
+
+// usdt
+export const apiUSDTInfo = (params) => {
+  return requestFunc('/AgentNew/getRechargeUsdInfo', {
+    ...params,
+  })
+}
+
+// 获取usdt提现列表
+export const apiUserUSDTList = (params) => {
+  return requestFunc('/AgentNew/UBankCards', {
+    ...params,
+  })
+}
