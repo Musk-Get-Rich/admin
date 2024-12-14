@@ -29,12 +29,13 @@
     <div class="text-#3A3541 mt-40">存款金额</div>
     <div class="flex items-center mt-12">
       <div
-        class="transition-400ms w-110px h-46px text-16px mr-10 border-1 cursor-pointer border-solid border-#DBDCDE rounded-8px flex items-center justify-center text-#3A3541"
-        v-for="item in numList" :key="item"
+        class="transition-400ms w-110px h-46px text-16px mr-10 border-1 cursor-pointer border-solid rounded-8px flex items-center justify-center"
+        v-for="item in numList"
+        :key="item"
         @click="form.money = item"
-        :class="{
-          'border-green': form.money == item
-        }"
+        :class="[
+          form.money === item ? 'border-green text-green' : 'border-#DBDCDE text-#3A3541',
+        ]"
       >
         {{ item }}
       </div>
@@ -96,6 +97,7 @@ import {apiBonus} from "@/service/api/agent.js";
 import {ElMessage} from "element-plus";
 
 const {userInfo} = storeToRefs(useUserStore())
+const {changeUserInfo} = useUserStore()
 
 const numList = [18, 50, 100, 200, 500]
 
@@ -126,7 +128,10 @@ const onSubmit = () => {
     loading.value = false
     ElMessage.success(res || '赠送成功')
 
+    changeUserInfo()
+
     form.value = {
+      ...form.value,
       money: '',
       lsbs: '',
       desc: '',

@@ -3,8 +3,8 @@
     <el-card>
       <Title name="代存充值" />
       <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
-      <Recharge v-if="currentBtn === '充值'"></Recharge>
-      <RechargeRecord v-if="currentBtn === '充值记录'"></RechargeRecord>
+      <Recharge v-show="currentBtn === '充值'"></Recharge>
+      <RechargeRecord v-show="currentBtn === '充值记录'"></RechargeRecord>
     </el-card>
   </div>
 </template>

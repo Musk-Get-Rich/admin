@@ -129,9 +129,9 @@ const login = debounce(async () => {
       localStorage.removeItem(key)
     }
 
-    await router.push('/')
-
     await useStore.changeUserInfo()
+
+    await router.push('/')
   } catch (err) {
     console.log(err);
   }

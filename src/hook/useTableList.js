@@ -9,6 +9,7 @@ export function useTableList(ajaxFn, params, key = 'rows', immediate = true) {
   const tableLoading = ref(true)
   const paramsRef = ref()
   const tableData = ref([])
+  const originData = ref(null)
 
   // 数据请求
   const getTableData = async (arg) => {
@@ -31,6 +32,8 @@ export function useTableList(ajaxFn, params, key = 'rows', immediate = true) {
 
     await ajaxFn(argObj)
       .then((res) => {
+        originData.value = res
+
         tableData.value = Array.isArray(res) ? res : res[key];
 
         pageTotal.value = res.total || res.results
@@ -85,6 +88,7 @@ export function useTableList(ajaxFn, params, key = 'rows', immediate = true) {
     tableLoading,
     pageObj,
     tableData,
+    originData,
     sizeChange,
     currentChange,
     searchReset,

@@ -28,13 +28,13 @@
     <div class="text-#3A3541 text-16px mt-40">存款金额</div>
     <div class="flex items-center mt-15">
       <div
-        class="transition-400ms w-115px h-46px cursor-pointer text-16px mr-10 border-1 border-solid border-#DBDCDE rounded-8px flex items-center justify-center text-#3A3541"
+        class="transition-400ms w-115px h-46px cursor-pointer text-16px mr-10 border-1 border-solid rounded-8px flex items-center justify-center"
         v-for="item in numList"
         :key="item"
         @click="form.depositNum = item"
-        :class="{
-          '!border-green': form.depositNum == item
-        }"
+        :class="[
+          form.depositNum === item ? 'border-green text-green' : 'border-#DBDCDE text-#3A3541',
+        ]"
       >
         {{ item }}
       </div>
@@ -90,6 +90,7 @@ import {apiBonus, apiPlayerWalletOperation} from "@/service/api/agent.js";
 import {ElMessage} from "element-plus";
 
 const { userInfo } = storeToRefs(useUserStore())
+const { changeUserInfo } = useUserStore()
 
 const route = useRoute()
 
@@ -101,8 +102,8 @@ const form = ref({
   lsbs: '',
   desc: '',
   fundpassword: '',
-  opreatetype: 4,
-  usdtype: 'USDT'
+  opreateType: 4,
+  // usdtype: 'USDT'
 })
 
 form.value.loginaccount = route.query.loginaccount || ''
@@ -122,7 +123,10 @@ const onSubmit = () => {
     loading.value = false
     ElMessage.success(res || '充值成功')
 
+    changeUserInfo()
+
     form.value = {
+      ...form.value,
       depositNum: '',
       lsbs: '',
       desc: '',

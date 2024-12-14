@@ -1,7 +1,11 @@
 <template>
   <div class="flex flex-col">
     <div class="mb-30">
-      <el-input v-model="input" style="width: 240px" placeholder="会员账号" />
+      <el-input
+        class="max-w-280"
+        v-model="form.employeepaymentaccount"
+        placeholder="会员账号"
+      />
     </div>
     <TimeSelect
       @search="onSearch"
@@ -16,31 +20,21 @@ import TimeSelect from "@/components/TimeSelect"
 const emit = defineEmits(['search', 'refresh'])
 
 const form = ref({
-  username: ''
+  employeepaymentaccount: ''
 })
-
-const value = ref('')
-
-const options = [
-  {
-    value: 'Option1',
-    label: 'Option1',
-  },
-  {
-    value: 'Option2',
-    label: 'Option2',
-  }
-]
 
 // 搜索
 const onSearch = (val) => {
   // getTableData(val)
-  emit('search', val)
+  emit('search', {
+    ...val,
+    ...form.value,
+  })
 }
 
 const onRefresh = () => {
   emit('refresh')
-  // getTableData({})
+  form.value.employeepaymentaccount = ''
 }
 </script>
 

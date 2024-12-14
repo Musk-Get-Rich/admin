@@ -29,15 +29,22 @@
     <div class="text-#3A3541 text-16px mt-40">协议类型</div>
     <div class="flex items-center mt-15">
       <div
-        class="w-115px h-46px text-16px mr-10 border-1 border-solid border-#DBDCDE rounded-8px flex items-center justify-center text-#3A3541"
-        v-for="item in numList" :key="item">
-        {{ item }}
+        class="transition-400ms cursor-pointer w-115px h-46px text-16px mr-10 border-1 border-solid rounded-8px flex items-center justify-center"
+        v-for="item in numList"
+        :key="item.value"
+        :class="[
+          chain.protocol === item.protocol ? 'border-green text-green' : 'border-#DBDCDE text-#3A3541',
+        ]"
+        @click="chain = item"
+      >
+        {{ item.protocol }}
       </div>
     </div>
-    <div
-      class="w-391px h-46px border-1 border-solid border-#DBDEDC bg-#F4F9F5 rounded-8px flex items-center justify-between mt-20 px-20">
-      <span class="text-16px">DSGSGDGDFHDFBFGVBGFXGFGGFGNXGBBGG</span>
-      <img class="w-24px h-24px" src="@/assets/images/finance/copy.png" alt="">
+    <div class="flex">
+      <div class="h-46px border-1 border-solid border-#DBDEDC bg-#F4F9F5 rounded-8px flex items-center justify-between mt-20 px-20">
+        <span class="text-16px mr-12">{{ currentUSDTRechargeAddress.waddress }}</span>
+        <img class="w-24px h-24px" src="@/assets/images/finance/copy.png" alt="">
+      </div>
     </div>
     <div class="flex flex-col mt-15">
       <span>存款个数</span>
@@ -77,7 +84,20 @@ import {storeToRefs} from "pinia";
 import {useUserStore} from "@/store/modules/user.store.js";
 import {apiUSDTInfo} from "@/service/api/api.js";
 
-const numList = ['ERC20', 'TRC20']
+const numList = [
+  {
+    usdtype: 'USDT',
+    protocol: 'ERC20',
+    opreateChannel: 3
+  },
+  {
+    usdtype: 'USDT',
+    protocol: 'TRC20',
+    opreateChannel: 3
+  },
+]
+
+const chain = ref(numList[0])
 
 const {userInfo} = storeToRefs(useUserStore())
 
@@ -91,8 +111,17 @@ const form = ref({
   usdtype: 'USDT'
 })
 
-apiUSDTInfo().then(res => {
-  console.log(res);
+const currentUSDTRechargeAddress = ref({})
+const getUSDTRechargeAddress = () => {
+  apiUSDTInfo(chain.value).then(res => {
+    currentUSDTRechargeAddress.value = res
+    console.log(res);
+  })
+}
+getUSDTRechargeAddress()
+
+watch(() => chain.value, () => {
+  getUSDTRechargeAddress()
 })
 
 const textList = [

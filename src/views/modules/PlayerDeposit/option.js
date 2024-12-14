@@ -12,23 +12,23 @@ export default {
   column: [
     {
       label: '会员账号',
-      prop: 'loginaccount',
+      prop: 'employeepaymentaccount',
     },
     {
       label: '单号',
-      prop: 'depositMoney',
+      prop: 'ordernumber',
     },
     {
       label: '金额',
-      prop: 'withdrawMoney',
+      prop: 'orderamount',
     },
     {
       label: '状态',
-      prop: 'computeMoney',
+      prop: 'orderstatus',
     },
     {
       label: '备注',
-      prop: 'betmoney',
+      prop: 'employeepaymentname',
     },
   ]
 }

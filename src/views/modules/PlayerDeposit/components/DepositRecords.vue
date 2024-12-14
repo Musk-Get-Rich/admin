@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-#3A3541 text-16px mt-30 mb-30">总计：$0.00</div>
+    <div class="text-#3A3541 text-16px mt-30 mb-30">总计：${{ originData?.sumorderamount ?? 0 }}</div>
     <avue-crud
       ref="tableRef"
       :table-loading="tableLoading"
@@ -58,36 +58,30 @@
 import option from "../option.js"
 import {useTableList} from "@/hook/useTableList.js";
 import Search from "./Search.vue";
-import {apiMembershipReport} from "@/service/api/api.js";
 import searchTime from "@/config/time.js";
 import Other from "@/views/modules/WinLossReport/components/other/index.vue";
 import {apiMoneyLog} from "@/service/api/agent.js";
 
 const { startDate, endDate } = searchTime
 
-apiMoneyLog({
-  startDate,
-  endDate,
-  opreatetype: 4
-}).then(res => {
-  console.log(res);
-})
-
 const {
   tableRef,
   tableLoading,
   pageObj,
   tableData,
+  originData,
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(apiMembershipReport, {
+} = useTableList(apiMoneyLog, {
   startDate,
   endDate,
+  opreatetype: 4
 })
 
 // 搜索
 const onSearch = (val) => {
+  console.log(val);
   getTableData(val)
 }
 
