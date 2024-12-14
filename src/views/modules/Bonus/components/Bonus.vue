@@ -118,7 +118,7 @@ const disabled = computed(() => {
     form.value.money.length === 0 ||
     form.value.lsbs.length === 0 ||
     form.value.desc.length === 0 ||
-    form.value.fundpassword.length === 0
+    form.value.fundpassword.length !== 6
 })
 
 const loading = ref(false)

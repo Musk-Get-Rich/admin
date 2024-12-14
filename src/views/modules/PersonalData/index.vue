@@ -45,7 +45,7 @@
             >
               <div class="w-33% flex justify-center">{{ item.contactDetails }}</div>
               <div class="w-33% flex justify-center">{{ item.phone }}</div>
-              <div @click="handleChange(item)" class="w-33% flex justify-center text-#25D55B">编辑</div>
+              <div @click="handleChange(item)" class="w-33% flex justify-center text-#25D55B cursor-pointer">编辑</div>
             </div>
           </div>
         </el-col>

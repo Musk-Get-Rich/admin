@@ -6,26 +6,26 @@
       <span class="text-16px mb-10">付款账户</span>
       <span class="text-28px">HKD:{{ userInfo.balance }}</span>
     </div>
-    <div class="text-#3A3541 text-16px mt-30">会员账号</div>
-    <div class="mt-12">
-      <el-input
-        class="!w-280"
-        v-show="form.loginaccount"
-        v-model="form.loginaccount"
-        disabled
-        placeholder="Please input"
-        size="large"
-      />
-      <div
-        v-show="!(form.loginaccount)"
-        class="text-#868D88"
-      >
-        请从 <span
-        class="text-#25D55B cursor-pointer"
-        @click="$router.push('/managementCenter/membershipManagement')"
-      >会员管理</span> 输入账号进行处理
-      </div>
-    </div>
+<!--    <div class="text-#3A3541 text-16px mt-30">会员账号</div>-->
+<!--    <div class="mt-12">-->
+<!--      <el-input-->
+<!--        class="!w-280"-->
+<!--        v-show="form.loginaccount"-->
+<!--        v-model="form.loginaccount"-->
+<!--        disabled-->
+<!--        placeholder="Please input"-->
+<!--        size="large"-->
+<!--      />-->
+<!--      <div-->
+<!--        v-show="!(form.loginaccount)"-->
+<!--        class="text-#868D88"-->
+<!--      >-->
+<!--        请从 <span-->
+<!--        class="text-#25D55B cursor-pointer"-->
+<!--        @click="$router.push('/managementCenter/membershipManagement')"-->
+<!--      >会员管理</span> 输入账号进行处理-->
+<!--      </div>-->
+<!--    </div>-->
     <div class="text-#3A3541 text-16px mt-40">协议类型</div>
     <div class="flex items-center mt-15">
       <div
@@ -43,29 +43,57 @@
     <div class="flex">
       <div class="h-46px border-1 border-solid border-#DBDEDC bg-#F4F9F5 rounded-8px flex items-center justify-between mt-20 px-20">
         <span class="text-16px mr-12">{{ currentUSDTRechargeAddress.waddress }}</span>
-        <img class="w-24px h-24px" src="@/assets/images/finance/copy.png" alt="">
+        <img
+          @click="copy(currentUSDTRechargeAddress.waddress)"
+          class="w-24px"
+          src="@/assets/images/finance/copy.png"
+          alt=""
+        >
       </div>
     </div>
     <div class="flex flex-col mt-15">
       <span>存款个数</span>
       <div class="flex items-center mt-15">
-        <el-input class="!w-280" size="large" v-model="form.depositNum" placeholder="请输入存入个数"/>
-        <span class="ml-10">预计到账0</span>
+        <el-input
+          type="number"
+          class="!w-280"
+          size="large"
+          v-model="form.depositNum"
+          placeholder="请输入存入个数"
+        />
+        <span class="ml-10">预计到账{{ (form.depositNum / 1) * (currentUSDTRechargeAddress?.echrate / 1) }}</span>
       </div>
     </div>
-    <div class="flex items-center mt-15 rounded-8px border-1 border-solid border-#25D55B w-142px">
-      <img class="w-142px h-142px" src="@/assets/images/finance/code.png" alt="">
+    <div class="flex items-center mt-15 rounded-8px">
+<!--      <img class="w-142px h-142px" src="@/assets/images/finance/code.png" alt="">-->
+      <QRCodeVue3
+        :width="152"
+        :height="152"
+        :value="usdtAddress"
+        :key="usdtAddress"
+        :qr-options="{ typeNumber: 0, mode: 'Byte', errorCorrectionLevel: 'L' }"
+        :image-options="{ hideBackgroundDots: true, imageSize: 0.4 }"
+        :corners-square-options="{ type: 'extra-rounded', color: '#000' }"
+        :corners-dot-options="{ type: undefined, color: '#000' }"
+        :dots-options="{ type: 'extra-rounded', color: '#000', gradient: { type: 'linear', rotation: 0, colorStops: [{ offset: 0, color: '#000' }, { offset: 1, color: '#000' }] } }"
+      />
     </div>
     <div class="flex flex-col">
-      <span class="text-#3A3541 mt-15">最低存款=10USDT</span>
-      <span class="text-#3A3541 my-10">当前参考汇率：1USDT=1</span>
+      <span class="text-#3A3541 mt-15">最低存款10USDT</span>
+      <span class="text-#3A3541 my-10">当前参考汇率：1USDT={{ currentUSDTRechargeAddress?.echrate }}</span>
       <span class="text-#F93131">注：</span>
       <span class="text-#F93131 my-10">请使用您的USDT钱包扫描二维码</span>
     </div>
-    <div
-      class="w-300px h-46px flex items-center justify-center rounded-30px bg-#25D55B text-white mt-30 mb-50 cursor-pointer">
-      确认提款
-    </div>
+    <el-button
+      class="w-300px !h-46px mt-30 mb-50"
+      round
+      color="#25d55b"
+      :disabled="disabled"
+      @click="onSubmit"
+      :loading="loading"
+    >
+      <span class="text-white">提交申请</span>
+    </el-button>
     <div class="text-#F93131 mt-30 mb-15">代存规则</div>
     <el-row>
       <el-col class="flex items-center mt-5" :span="24" v-for="(item,index) in textList" :key="item">
@@ -83,6 +111,10 @@
 import {storeToRefs} from "pinia";
 import {useUserStore} from "@/store/modules/user.store.js";
 import {apiUSDTInfo} from "@/service/api/api.js";
+import {copy} from "@/utils/index.js";
+import QRCodeVue3 from 'qrcode-vue3'
+import {apiPlayerWalletOperation} from "@/service/api/agent.js";
+import {ElMessage} from "element-plus";
 
 const numList = [
   {
@@ -100,16 +132,45 @@ const numList = [
 const chain = ref(numList[0])
 
 const {userInfo} = storeToRefs(useUserStore())
+const {changeUserInfo} = useUserStore()
 
 const form = ref({
-  loginaccount: '',
   depositNum: '',
-  lsbs: '',
-  desc: '',
-  fundpassword: '',
-  opreatetype: 4,
+  opreateType: 3,
   usdtype: 'USDT'
 })
+
+const disabled = computed(() => {
+  return form.value.depositNum.length === 0 ||
+    form.value.depositNum / 1 < 10
+})
+
+const loading = ref(false)
+const onSubmit = () => {
+  loading.value = true
+  apiPlayerWalletOperation({
+    ...form.value,
+    protocol: currentUSDTRechargeAddress.value.protocol,
+    opreateChannel: currentUSDTRechargeAddress.value.opreateChannel,
+    usdtype: currentUSDTRechargeAddress.value.usdtype
+  }).then(res => {
+    loading.value = false
+    console.log(res);
+    // ElMessage.success(res || '充值成功')
+
+    changeUserInfo()
+
+    form.value = {
+      depositNum: '',
+      opreateType: 3,
+      usdtype: 'USDT'
+    }
+  }).catch(err => {
+    loading.value = false
+  })
+}
+
+const usdtAddress = computed(() => currentUSDTRechargeAddress.value.waddress || '')
 
 const currentUSDTRechargeAddress = ref({})
 const getUSDTRechargeAddress = () => {

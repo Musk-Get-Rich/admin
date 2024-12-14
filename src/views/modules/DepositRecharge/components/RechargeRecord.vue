@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-#3A3541 text-16px mt-30 mb-30">总计：$0.00</div>
+    <div class="text-#3A3541 text-16px mt-30 mb-30">总计：${{ originData?.sumorderamount ?? 0 }}</div>
     <avue-crud
       ref="tableRef"
       :table-loading="tableLoading"
@@ -16,40 +16,6 @@
           <Search @search="onSearch" @refresh="onRefresh"/>
         </div>
       </template>
-      <template #menu="{ row }">
-        <el-tooltip
-          effect="dark"
-          content="游戏记录"
-          placement="top"
-        >
-          <img
-            class="w-20"
-            src="@/assets/images/login/note.png"
-            alt=""
-            @click="$router.push({
-            path: '/member/gameRecords',
-            query: {
-              name: row.loginaccount
-            }
-          })"
-          >
-        </el-tooltip>
-      </template>
-      <template #other="{ row }">
-        <img
-          @click="toggleExpand(row, 'other')"
-          class="w-24"
-          src="@/assets/images/add-circle.png"
-          alt=""
-        >
-      </template>
-      <template #expand="{ row }">
-        <div class="px-10">
-          <Other
-            :tableData="row.otherList"
-          />
-        </div>
-      </template>
     </avue-crud>
   </div>
 </template>
@@ -58,9 +24,9 @@
 import option from "../option.js"
 import {useTableList} from "@/hook/useTableList.js";
 import Search from "./Search.vue";
-import {apiMembershipReport} from "@/service/api/api.js";
 import searchTime from "@/config/time.js";
 import Other from "@/views/modules/WinLossReport/components/other/index.vue";
+import {apiMoneyLog} from "@/service/api/agent.js";
 
 const { startDate, endDate } = searchTime
 
@@ -69,16 +35,19 @@ const {
   tableLoading,
   pageObj,
   tableData,
+  originData,
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(apiMembershipReport, {
+} = useTableList(apiMoneyLog, {
   startDate,
   endDate,
+  opreatetype: 3
 })
 
 // 搜索
 const onSearch = (val) => {
+  console.log(val);
   getTableData(val)
 }
 

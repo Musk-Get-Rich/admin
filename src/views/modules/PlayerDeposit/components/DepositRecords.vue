@@ -16,40 +16,6 @@
           <Search @search="onSearch" @refresh="onRefresh"/>
         </div>
       </template>
-      <template #menu="{ row }">
-        <el-tooltip
-          effect="dark"
-          content="游戏记录"
-          placement="top"
-        >
-          <img
-            class="w-20"
-            src="@/assets/images/login/note.png"
-            alt=""
-            @click="$router.push({
-            path: '/member/gameRecords',
-            query: {
-              name: row.loginaccount
-            }
-          })"
-          >
-        </el-tooltip>
-      </template>
-      <template #other="{ row }">
-        <img
-          @click="toggleExpand(row, 'other')"
-          class="w-24"
-          src="@/assets/images/add-circle.png"
-          alt=""
-        >
-      </template>
-      <template #expand="{ row }">
-        <div class="px-10">
-          <Other
-            :tableData="row.otherList"
-          />
-        </div>
-      </template>
     </avue-crud>
   </div>
 </template>
