@@ -25,7 +25,6 @@ import option from "../option.js"
 import {useTableList} from "@/hook/useTableList.js";
 import Search from "./Search.vue";
 import searchTime from "@/config/time.js";
-import Other from "@/views/modules/WinLossReport/components/other/index.vue";
 import {apiMoneyLog} from "@/service/api/agent.js";
 
 const { startDate, endDate } = searchTime
@@ -42,7 +41,7 @@ const {
 } = useTableList(apiMoneyLog, {
   startDate,
   endDate,
-  opreatetype: 3
+  opreatetype: 1
 })
 
 // 搜索

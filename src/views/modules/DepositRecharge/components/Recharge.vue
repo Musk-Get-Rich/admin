@@ -60,8 +60,9 @@
           size="large"
           v-model="form.depositNum"
           placeholder="请输入存入个数"
+          min="0"
         />
-        <span class="ml-10">预计到账{{ (form.depositNum / 1) * (currentUSDTRechargeAddress?.echrate / 1) }}</span>
+        <span class="ml-10">预计到账{{ fullAmount }}</span>
       </div>
     </div>
     <div class="flex items-center mt-15 rounded-8px">
@@ -79,7 +80,7 @@
       />
     </div>
     <div class="flex flex-col">
-      <span class="text-#3A3541 mt-15">最低存款10USDT</span>
+      <span class="text-#3A3541 mt-15">最低存款{{ Math.ceil(100 / currentUSDTRechargeAddress?.echrate) }}USDT</span>
       <span class="text-#3A3541 my-10">当前参考汇率：1USDT={{ currentUSDTRechargeAddress?.echrate }}</span>
       <span class="text-#F93131">注：</span>
       <span class="text-#F93131 my-10">请使用您的USDT钱包扫描二维码</span>
@@ -136,9 +137,11 @@ const {changeUserInfo} = useUserStore()
 
 const form = ref({
   depositNum: '',
-  opreateType: 3,
-  usdtype: 'USDT'
+  opreateType: 1,
 })
+
+// 预计到账
+const fullAmount = computed(() => Math.floor(form.value.depositNum / 1 * currentUSDTRechargeAddress.value?.echrate / 1))
 
 const disabled = computed(() => {
   return form.value.depositNum.length === 0 ||
@@ -150,13 +153,14 @@ const onSubmit = () => {
   loading.value = true
   apiPlayerWalletOperation({
     ...form.value,
-    protocol: currentUSDTRechargeAddress.value.protocol,
-    opreateChannel: currentUSDTRechargeAddress.value.opreateChannel,
-    usdtype: currentUSDTRechargeAddress.value.usdtype
+    depositNum: fullAmount.value,
+    opreateChannel: 3,
+    usdtype: currentUSDTRechargeAddress.value.usdtype,
+    walletId: currentUSDTRechargeAddress.value.walletId,
   }).then(res => {
     loading.value = false
     console.log(res);
-    // ElMessage.success(res || '充值成功')
+    ElMessage.success('充值信息已提交')
 
     changeUserInfo()
 

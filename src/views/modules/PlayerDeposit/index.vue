@@ -4,7 +4,7 @@
       <Title name="玩家代存" />
       <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
       <PlayerDeposit v-show="currentBtn === '玩家代存'"></PlayerDeposit>
-      <DepositRecords v-show="currentBtn === '代存记录'"></DepositRecords>
+      <DepositRecords v-if="currentBtn === '代存记录'"></DepositRecords>
     </el-card>
   </div>
 </template>
