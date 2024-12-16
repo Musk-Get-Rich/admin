@@ -23,3 +23,9 @@ export const apiChangePaymentPassword = (params) => {
 export const apiAccountChangeRecords = (params) => {
   return requestFunc('/AgentNew/GetDepositRecord', params)
 }
+
+// 添加加密货币钱包
+export const apiAddUSDTWallet = (params) => {
+  console.log(params);
+  return requestFunc('/AgentNew/AddUWallet', params)
+}
