@@ -1,14 +1,6 @@
 <template>
   <div>
-    <el-row>
-      <el-table :data="tableData" :header-cell-style="{background:'#E7F4EB',height: '60px'}">
-        <el-table-column prop="date" label="请选择" />
-        <el-table-column prop="name" label="加密货币名称" />
-        <el-table-column prop="state" label="加密货币地址" />
-        <el-table-column prop="city" label="协议" />
-        <el-table-column prop="address" label="操作" />
-      </el-table>
-    </el-row>
+    <usdtList/>
     <div
       @click="handleAddUSDTAddress"
       class="w-150px h-36px flex items-center justify-center rounded-30px text-14 cursor-pointer border-1 border-solid border-#25D55B mt-30 mb-40 text-#25D55B">
@@ -38,10 +30,8 @@
 </template>
 
 <script setup>
-import {apiUserUSDTList} from "@/service/api/api.js";
 import { useAddUSDTAddress } from "@/views/modules/WithdrawalApplication/hook/useAddUSDTAddress.js";
-import {apiPlayerWalletOperation} from "@/service/api/agent.js";
-import {ElMessage} from "element-plus";
+import usdtList from "./usdtList/index.vue"
 
 const form = ref({
   depositNum: ''
@@ -59,12 +49,7 @@ const disabled = computed(() => {
 const loading = ref(false)
 const onSubmit = () => {
   loading.value = true
-
 }
-
-apiUserUSDTList().then(res => {
-  console.log(res);
-})
 </script>
 
 <style lang="scss" scoped>

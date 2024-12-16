@@ -140,7 +140,7 @@ export const apiUSDTInfo = (params) => {
 
 // 获取usdt提现列表
 export const apiUserUSDTList = (params) => {
-  return requestFunc('/AgentNew/UBankCards', {
+  return requestFunc('/AgentNew/UWalletAddress', {
     ...params,
   })
 }
