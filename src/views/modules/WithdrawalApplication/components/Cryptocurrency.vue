@@ -16,12 +16,19 @@
       </template>
       <template #radio="{ row }">
         <el-radio
-          v-model="form.usdtAccount"
-          :value="row.paymentaccount"
+          v-model="form.informationcode"
+          :value="row.informationcode"
         />
       </template>
       <template #menu="{ row }">
-        <img class="w-20" src="@/assets/images/delete.png" alt="">
+        <el-tooltip
+          class="box-item"
+          effect="dark"
+          :content="$t('需要删除请联系客服')"
+          placement="top"
+        >
+          <img class="w-20" src="@/assets/images/delete.png" alt="">
+        </el-tooltip>
       </template>
     </avue-crud>
     <div
@@ -32,12 +39,12 @@
     </div>
     <div class="flex flex-col mb-20">
       <span class="mb-10">提款金额</span>
-      <el-input class="!w-280" size="large" v-model="input" placeholder="请输入提款金额" />
+      <el-input type="number" class="!w-280" size="large" v-model="form.depositNum" placeholder="请输入提款金额" />
     </div>
     <div class="flex flex-col w-300px">
       <span class="mb-10">支付密码</span>
-      <el-input class="!w-280" size="large" v-model="input" placeholder="请输入支付密码" />
-      <div class="w-100% text-right mt-20 text-#25D55B">忘记密码?</div>
+      <el-input class="!w-280" size="large" v-model="form.fundpassword" placeholder="请输入支付密码" />
+      <div class="w-100% text-right mt-20 text-#25D55B cursor-pointer">忘记密码?</div>
     </div>
     <el-button
       class="w-300px !h-46px mt-30 mb-50"
@@ -57,30 +64,52 @@ import { useAddUSDTAddress } from "@/views/modules/WithdrawalApplication/hook/us
 import option from "./option.js";
 import {useTableList} from "@/hook/useTableList.js";
 import {apiUserUSDTList} from "@/service/api/api.js";
+import {apiPlayerWalletOperation} from "@/service/api/agent.js";
+import {ElMessage} from "element-plus";
 
 const form = ref({
   depositNum: '',
-  usdtAccount: ''
+  informationcode: '',
+  opreateType: 7,
+  fundpassword: '',
+  usdtype: 'USDT',
+})
+
+const disabled = computed(() => {
+  return form.value.depositNum.length === 0 ||
+    form.value.informationcode.length === 0 ||
+    form.value.fundpassword.length < 6
 })
 
 const rowClick = (row) => {
-  console.log(row);
-  form.value.usdtAccount = row.paymentaccount;
-  console.log(form.value);
+  console.log(row.informationcode);
+  form.value.informationcode = row.informationcode;
 };
 
 const handleAddUSDTAddress = () => {
   useAddUSDTAddress(getTableData).addAddress()
 }
 
-const disabled = computed(() => {
-  return form.value.depositNum.length === 0 ||
-    form.value.depositNum / 1 < 10
-})
-
 const loading = ref(false)
 const onSubmit = () => {
   loading.value = true
+  apiPlayerWalletOperation(form.value).then(res => {
+    loading.value = false
+    console.log(res);
+    ElMessage.success('提现信息已提交')
+
+    form.value = {
+      depositNum: '',
+      informationcode: '',
+      opreateType: 7,
+      fundpassword: '',
+      usdtype: 'USDT',
+    }
+
+    console.log(form.value);
+  }).catch(err => {
+    loading.value = false
+  })
 }
 
 const {

@@ -20,7 +20,7 @@
         </div>
       </div>
       <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
-      <Cryptocurrency v-if="currentBtn === '提款至虚拟币'"/>
+      <Cryptocurrency v-show="currentBtn === '提款至虚拟币'"/>
       <Record v-if="currentBtn === '记录'"/>
     </el-card>
   </div>

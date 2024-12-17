@@ -23,8 +23,8 @@ export function useTableList(ajaxFn, params, key = 'rows', immediate = true) {
     }
 
     const argObj = {
-      // pageNum: pageNum.value,
-      // pageSize: pageSize.value,
+      pageNum: pageNum.value,
+      pageSize: pageSize.value,
       ...params,
       ...paramsRef.value,
       ...arg

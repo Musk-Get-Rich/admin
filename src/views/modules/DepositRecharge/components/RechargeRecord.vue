@@ -41,7 +41,7 @@ const {
 } = useTableList(apiMoneyLog, {
   startDate,
   endDate,
-  opreatetype: 1
+  opreatetype: 3
 })
 
 // 搜索
