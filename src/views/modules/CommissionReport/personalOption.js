@@ -1,4 +1,6 @@
 import {globalOption} from "@/config/tabOption.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 export default {
   ...globalOption,
@@ -8,15 +10,15 @@ export default {
   menu: false,
   column: [
     {
-      label: '新增有效',
+      label: t('新增有效'),
       prop: 'newplayvalid',
     },
     {
-      label: '取款金额',
+      label: t('取款金额'),
       prop: 'withdrawall',
     },
     {
-      label: '净输赢',
+      label: t('净输赢'),
       prop: 'profit',
     },
     // {
@@ -28,23 +30,23 @@ export default {
     //   prop: 'depositFee',
     // },
     {
-      label: '游戏输赢',
+      label: t('游戏输赢'),
       prop: 'winlose',
     },
     {
-      label: '返水',
+      label: t('返水'),
       prop: 'fs',
     },
     {
-      label: '可结佣金',
+      label: t('可结佣金'),
       prop: 'commissionday',
     },
     {
-      label: '红利',
+      label: t('红利'),
       prop: 'proamount',
     },
     {
-      label: '平台费',
+      label: t('平台费'),
       prop: 'otherfee',
     },
     // {

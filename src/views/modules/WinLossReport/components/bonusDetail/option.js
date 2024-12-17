@@ -1,4 +1,6 @@
 import {globalOption} from "@/config/tabOption.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 export default {
   ...globalOption,
@@ -16,11 +18,11 @@ export default {
     //   prop: 'redPacket',
     // },
     {
-      label: '活动优惠',
+      label: t('活动优惠'),
       prop: 'agentBonus',
     },
     {
-      label: '邀请有奖',
+      label: t('邀请有奖'),
       prop: 'inviteMoney',
     },
     // {
@@ -32,7 +34,7 @@ export default {
     //   prop: 'platFee',
     // },
     {
-      label: 'VIP系统',
+      label: t('VIP系统'),
       prop: 'bonusSystem',
     },
     // {
@@ -40,7 +42,7 @@ export default {
     //   prop: 'depositBonus',
     // },
     {
-      label: '返水',
+      label: t('返水'),
       prop: 'fs',
     }
   ]

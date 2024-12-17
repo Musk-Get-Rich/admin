@@ -1,6 +1,6 @@
 <template>
   <el-card>
-    <Title name="输赢报表" />
+    <Title :name="$t('输赢报表')" />
     <TimeSelect
       @search="onSearch"
       @clear="onRefresh"
@@ -49,7 +49,7 @@
       </template>
     </avue-crud>
     <div class="mt-15 text-red text-12">
-      <span>此表只做日常参考，不做结算依据，结算请在每月的7号查看</span><span @click="$router.push('/report/commissionReport')" class="text-green cursor-pointer">佣金报表</span>
+      <span>{{ $t('此表只做日常参考，不做结算依据，结算请在每月的7号查看') }}</span> <span @click="$router.push('/report/commissionReport')" class="text-green cursor-pointer">{{ $t('佣金报表') }}</span>
     </div>
   </el-card>
 </template>
@@ -110,37 +110,6 @@ const onRefresh = () => {
     endDate,
   })
 }
-
-const level = 2
-
-const list = [
-  {
-    title: '菜单一',
-    children: [
-      {
-        title: 'test1',
-        auth: 1
-      },
-      {
-        title: 'test2',
-        auth: 3
-      },
-    ]
-  },
-  {
-    title: '菜单一',
-    children: [
-      {
-        title: 'test4',
-        auth: 2
-      },
-      {
-        title: 'test5',
-        auth: 2
-      },
-    ]
-  },
-]
 </script>
 
 <style lang="scss" scoped>

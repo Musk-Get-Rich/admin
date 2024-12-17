@@ -1,10 +1,13 @@
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
+
 export const globalOption = {
-  searchBtnText: '查询',
-  emptyBtnText: '重置',
+  searchBtnText: t('查询'),
+  emptyBtnText: t('重置'),
   // maxHeight: window.innerHeight - 380,
   searchMenuPosition: "left",
   gridBtn: false,
-  menuTitle: '操作',
+  menuTitle: t('操作'),
   menuWidth: 220,
   stripe: true, // 斑马线表格样式
   editBtn: false, // 表格列编辑按钮
@@ -14,4 +17,5 @@ export const globalOption = {
   searchLabelWidth: 10,
   align: "center",
   searchSpan: 6,
+  searchShowBtn: false
 }

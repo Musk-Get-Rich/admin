@@ -13,7 +13,7 @@
           <div class="flex items-center cursor-pointer mr-20">
             <img class="w-24 mr-8" src="@/assets/images/header/moneys.png" alt="">
             <div class="flex items-center">
-              代理余额
+              {{ $t('代理余额') }}
               <div class="ml-16 mr-8 text-16 text-green">${{ userInfo.balance || 0 }}</div>
               <img @click="onRefreshUserInfo" class="w-16" src="@/assets/images/header/Swap3.png" alt="">
             </div>
@@ -21,11 +21,11 @@
           <div class="flex items-center cursor-pointer mr-20">
             <img class="w-24 mr-8" src="@/assets/images/header/dollar-circle.png" alt="">
             <div class="flex items-center">
-              彩金余额
+              {{ $t('彩金余额') }}
               <el-tooltip
                 class="box-item"
                 effect="dark"
-                content="彩金余额-根据代理上个月的有效会员发放，只能用于活动，不能用于非法提现。"
+                :content="$t('彩金余额-根据代理上个月的有效会员发放，只能用于活动，不能用于非法提现。')"
                 placement="top"
               >
                 <img class="w-16 ml-8" src="@/assets/images/header/Infocircle.png" alt="">
@@ -37,11 +37,11 @@
           <div class="flex items-center cursor-pointer mr-20">
             <img class="w-24 mr-8" src="@/assets/images/header/monitor-mobbile.png" alt="">
             <div class="flex items-center">
-              会员登录
+              {{ $t('会员登录') }}
               <el-tooltip
                 class="box-item"
                 effect="dark"
-                content="登录会员-当前登录人数"
+                :content="$t('登录会员-当前登录人数')"
                 placement="top"
               >
                 <img class="w-16 ml-8" src="@/assets/images/header/Infocircle.png" alt="">
@@ -54,7 +54,7 @@
             @click="logout"
           >
             <img class="w-24 mr-8" src="@/assets/images/header/logout.png" alt="">
-            <div>安全退出</div>
+            <div>{{ $t('安全退出') }}</div>
           </div>
         </div>
         <div class="flex items-center ml-24">
@@ -142,6 +142,8 @@ const changeLanguage = (val) => {
   locale.value = val.value
 
   localStorage.setItem(LANGUAGE, locale.value)
+
+  location.reload()
 }
 </script>
 

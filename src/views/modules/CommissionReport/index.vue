@@ -1,6 +1,6 @@
 <template>
   <el-card>
-    <Title name="佣金报表"/>
+    <Title :name="$t('佣金报表')"/>
     <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
     <PersonalCommission v-if="currentBtn === '个人佣金'"></PersonalCommission>
     <TeamCommission v-if="currentBtn === '团队业绩查明'"></TeamCommission>

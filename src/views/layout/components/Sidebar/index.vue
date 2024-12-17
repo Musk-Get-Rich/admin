@@ -7,7 +7,7 @@
         <div class="mb-10 h-1 w-185 mx-auto bg-#F4F5F9"></div>
       </template>
       <template v-else>
-        <div v-if="_.meta && (_.meta?.auth ? _.meta.auth.includes(userStore.userInfo.agentlevel / 1) : true)" class="pl-21 mb-10 text-#868D88 text-12">{{ _.meta.title }}</div>
+        <div v-if="_.meta && (_.meta?.auth ? _.meta.auth.includes(userStore.userInfo.agentlevel / 1) : true)" class="pl-21 mb-10 text-#868D88 text-12">{{ $t(_.meta.title) }}</div>
         <template v-for="item in _.children">
           <div
             class="relative mb-10 cursor-pointer"
@@ -43,7 +43,7 @@
                 :class="[
                 route.path === `${_.path}/${item.path}` ? 'text-green' : 'text-black'
               ]"
-              >{{ item.meta.name }}
+              >{{ $t(item.meta.name) }}
               </div>
             </div>
           </div>

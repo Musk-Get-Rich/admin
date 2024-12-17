@@ -23,8 +23,8 @@
         :disabled-date="selectLastThreeMonth"
       />
       <div class="flex-1 shrink-0 flex items-center ml-20">
-        <el-button type="primary" icon="search" @click="onSearch">查询</el-button>
-        <el-button icon="delete" @click="onClear">重置</el-button>
+        <el-button type="primary" icon="search" @click="onSearch">{{ $t('查询') }}</el-button>
+        <el-button icon="delete" @click="onClear">{{ $t('重置') }}</el-button>
       </div>
     </div>
   </div>

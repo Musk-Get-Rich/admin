@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row class="pb-30 border-b-1 border-b-solid border-gray-200 mt-60 mb-20">
-      <el-button v-for="(tab,index) in tabs" :key="index" :type="tab === currentBtn ? 'primary' : ''" @click="handleClick(tab)">{{ tab }}</el-button>
+      <el-button v-for="(tab,index) in tabs" :key="index" :type="tab === currentBtn ? 'primary' : ''" @click="handleClick(tab)">{{ $t(tab) }}</el-button>
     </el-row>
   </div>
 </template>
