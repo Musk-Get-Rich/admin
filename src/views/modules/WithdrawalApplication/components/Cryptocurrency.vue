@@ -1,6 +1,29 @@
 <template>
   <div>
-    <usdtList/>
+    <avue-crud
+      ref="tableRef"
+      :table-loading="tableLoading"
+      :data="tableData"
+      :option="option"
+      v-model:page="pageObj"
+      @refresh-change="getTableData"
+      @size-change="sizeChange"
+      @current-change="currentChange"
+      @row-click="rowClick"
+    >
+      <template #empty>
+        <div>暂无数据</div>
+      </template>
+      <template #radio="{ row }">
+        <el-radio
+          v-model="form.usdtAccount"
+          :value="row.paymentaccount"
+        />
+      </template>
+      <template #menu="{ row }">
+        <img class="w-20" src="@/assets/images/delete.png" alt="">
+      </template>
+    </avue-crud>
     <div
       @click="handleAddUSDTAddress"
       class="w-150px h-36px flex items-center justify-center rounded-30px text-14 cursor-pointer border-1 border-solid border-#25D55B mt-30 mb-40 text-#25D55B">
@@ -31,14 +54,23 @@
 
 <script setup>
 import { useAddUSDTAddress } from "@/views/modules/WithdrawalApplication/hook/useAddUSDTAddress.js";
-import usdtList from "./usdtList/index.vue"
+import option from "./option.js";
+import {useTableList} from "@/hook/useTableList.js";
+import {apiUserUSDTList} from "@/service/api/api.js";
 
 const form = ref({
-  depositNum: ''
+  depositNum: '',
+  usdtAccount: ''
 })
 
+const rowClick = (row) => {
+  console.log(row);
+  form.value.usdtAccount = row.paymentaccount;
+  console.log(form.value);
+};
+
 const handleAddUSDTAddress = () => {
-  useAddUSDTAddress().addAddress()
+  useAddUSDTAddress(getTableData).addAddress()
 }
 
 const disabled = computed(() => {
@@ -50,8 +82,26 @@ const loading = ref(false)
 const onSubmit = () => {
   loading.value = true
 }
+
+const {
+  tableRef,
+  tableLoading,
+  pageObj,
+  tableData,
+  getTableData,
+  sizeChange,
+  currentChange
+} = useTableList(apiUserUSDTList, {
+  parentemployeecode: undefined
+}, 'record')
 </script>
 
 <style lang="scss" scoped>
+:deep(.el-radio__label) {
+  display: none;
+}
 
+:deep(.avue-crud__empty) {
+  padding: 20px 0;
+}
 </style>

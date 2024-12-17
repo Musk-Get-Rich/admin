@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import option from "./option.js";
+import option from "../option.js";
 import {useTableList} from "@/hook/useTableList.js";
 import {apiUserUSDTList} from "@/service/api/api.js";
 
@@ -27,6 +27,8 @@ const {
 } = useTableList(apiUserUSDTList, {
   parentemployeecode: undefined
 }, 'record')
+
+
 </script>
 
 <style lang="scss" scoped>

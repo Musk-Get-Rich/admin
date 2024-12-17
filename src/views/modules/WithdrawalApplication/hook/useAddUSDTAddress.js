@@ -5,13 +5,11 @@ import {useDeviceStore} from "@/store/modules/device.store.js";
 import { useUserStore } from "@/store/modules/user.store.js";
 import {apiAddUSDTWallet, apiChangePaymentPassword} from "@/service/api/user.js";
 
-export const useAddUSDTAddress = () => {
+export const useAddUSDTAddress = (refresh) => {
   const addAddress = () => {
     const userStore = useUserStore()
 
     const { isMobile } = storeToRefs(useDeviceStore())
-
-    let password1 = ''
 
     const option = {
       labelWidth: '0',
@@ -22,13 +20,7 @@ export const useAddUSDTAddress = () => {
           prop: 'openningbank',
           span: 24,
           placeholder: '加密货币钱包名称',
-          rules: [
-            {
-              required: true,
-              message: "请输入加密货币钱包名称",
-              trigger: "blur"
-            },
-          ],
+          readonly: true
         },
         {
           label: '加密货币地址',
@@ -45,16 +37,16 @@ export const useAddUSDTAddress = () => {
         },
         {
           label: '协议',
-          prop: 'opreateChannel',
+          prop: 'accountname',
           type: 'select',
           span: 24,
           placeholder: '协议',
           dicData: [{
-            label: 'TRC',
-            value: 0
+            label: 'TRC20',
+            value: 'TRC20'
           }, {
-            label: 'ERC',
-            value: 1
+            label: 'ERC20',
+            value: 'ERC20'
           }],
           rules: [
             {
@@ -67,12 +59,17 @@ export const useAddUSDTAddress = () => {
       ]
     }
 
+    const data = {
+      openningbank: 'USDT'
+    }
+
     useDialogFormStore().showDialog({
       dialog: {
         title: `添加加密钱包`,
         width: isMobile.value ? '90%' : '40%'
       },
       option,
+      data,
       submit(formData, done, cancel) {
         console.log(formData);
 
@@ -80,10 +77,11 @@ export const useAddUSDTAddress = () => {
           ...formData,
           bankcode: 'B000',
           opreateChannel: 3,
-          accountname: 'USDT'
         }).then(res => {
           done()
-          ElMessage.success('修改成功')
+          ElMessage.success('添加成功')
+
+          refresh && refresh()
         }).catch(err => {
           cancel()
         })

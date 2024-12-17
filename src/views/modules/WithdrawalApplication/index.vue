@@ -9,7 +9,7 @@
         </div>
         <div class="!w-full h-127px flex items-center justify-center">
           <div class="w-49% flex flex-col items-center">
-              <span class="text-28px mb-10">0</span>
+              <span class="text-28px mb-10">{{ userStore.userInfo.balance || 0 }}</span>
               <span>可用余额(HKD)</span>
           </div>
           <div class="w-2px h-67px bg-#F4F5F9"></div>
@@ -31,21 +31,13 @@ import Title from "@/components/Title/index.vue";
 import Cryptocurrency from './components/Cryptocurrency.vue';
 import Record from './components/Record.vue';
 import Tabs from "@/components/Tabs";
+import {useUserStore} from "@/store/modules/user.store.js";
+
+const userStore = useUserStore()
 
 const currentBtn = ref('提款至虚拟币')
 
 const btns = ref(['提款至虚拟币','记录'])
-
-const tableData = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
-  }
-]
 
 const handleClick = (btn) => {
   console.log(btn)
