@@ -11,24 +11,24 @@ export default {
   menu: false,
   column: [
     {
-      label: '会员账号',
-      prop: 'employeepaymentaccount',
+      label: '类型',
+      prop: 'employeepaymentname',
+    },
+    {
+      label: '时间',
+      prop: 'orderdate',
     },
     {
       label: '单号',
       prop: 'ordernumber',
     },
     {
-      label: '金额',
+      label: '提款金额',
       prop: 'orderamount',
     },
     {
       label: '状态',
       prop: 'orderstatus',
-    },
-    {
-      label: '备注',
-      prop: 'employeepaymentname',
     },
   ]
 }

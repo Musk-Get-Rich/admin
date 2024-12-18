@@ -11,9 +11,21 @@
       @size-change="sizeChange"
       @current-change="currentChange"
     >
+      <template #orderstatus="{ row }">
+        <el-button type="success" v-if="row.orderstatus == 2">成功</el-button>
+        <el-button v-else color="#32acff">
+          <span class="text-white">待审核</span>
+        </el-button>
+      </template>
+      <template #employeepaymentname="{ row }">
+        <div>{{ row.employeepaymentaccount }}-{{ row.employeepaymentname }}</div>
+      </template>
       <template #search>
         <div class="flex mb-10">
-          <Search @search="onSearch" @refresh="onRefresh"/>
+          <TimeSelect
+            @search="onSearch"
+            @clear="onRefresh"
+          />
         </div>
       </template>
     </avue-crud>
@@ -26,6 +38,7 @@ import {useTableList} from "@/hook/useTableList.js";
 import Search from "./Search.vue";
 import searchTime from "@/config/time.js";
 import {apiMoneyLog} from "@/service/api/agent.js";
+import TimeSelect from "@/components/TimeSelect/index.vue";
 
 const { startDate, endDate } = searchTime
 
@@ -41,7 +54,8 @@ const {
 } = useTableList(apiMoneyLog, {
   startDate,
   endDate,
-  opreatetype: 3
+  opreatetype: 3,
+  parentemployeecode: undefined
 })
 
 // 搜索

@@ -66,6 +66,9 @@ import {useTableList} from "@/hook/useTableList.js";
 import {apiUserUSDTList} from "@/service/api/api.js";
 import {apiPlayerWalletOperation} from "@/service/api/agent.js";
 import {ElMessage} from "element-plus";
+import {useUserStore} from "@/store/modules/user.store.js";
+
+const userStore = useUserStore()
 
 const form = ref({
   depositNum: '',
@@ -97,6 +100,8 @@ const onSubmit = () => {
     loading.value = false
     console.log(res);
     ElMessage.success('提现信息已提交')
+
+    userStore.changeUserInfo()
 
     form.value = {
       depositNum: '',

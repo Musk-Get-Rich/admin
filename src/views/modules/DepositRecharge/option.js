@@ -12,27 +12,27 @@ export default {
   column: [
     {
       label: '日期',
-      prop: 'loginaccount',
+      prop: 'orderdate',
     },
     {
       label: '代理账号',
-      prop: 'depositMoney',
+      prop: 'agentthreelevelname',
     },
     {
       label: '单号',
-      prop: 'withdrawMoney',
+      prop: 'ordernumber',
     },
     {
       label: '金额(HKD)',
-      prop: 'computeMoney',
+      prop: 'orderamount',
     },
     {
       label: '状态',
-      prop: 'betmoney',
+      prop: 'orderstatus',
     },
     {
       label: '备注',
-      prop: 'betmoney',
+      prop: 'employeepaymentname',
     },
   ]
 }
