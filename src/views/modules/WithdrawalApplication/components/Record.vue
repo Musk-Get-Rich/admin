@@ -1,21 +1,42 @@
 <template>
   <div>
-    <Search />
-    <el-row class="mt-20">
-      <el-table :data="tableData" :header-cell-style="{background:'#E7F4EB',height: '60px'}">
-        <el-table-column prop="date" label="请选择" />
-        <el-table-column prop="name" label="加密货币名称" />
-        <el-table-column prop="state" label="加密货币地址" />
-        <el-table-column prop="city" label="协议" />
-        <el-table-column prop="address" label="操作" />
-      </el-table>
-    </el-row>
+    <avue-crud
+      ref="tableRef"
+      :table-loading="tableLoading"
+      :data="tableData"
+      :option="option"
+      v-model:page="pageObj"
+      @refresh-change="getTableData"
+      @size-change="sizeChange"
+      @current-change="currentChange"
+    >
+
+    </avue-crud>
   </div>
 </template>
 
 <script setup>
-import Search from './Search.vue';
+import {apiMoneyLog} from "@/service/api/agent.js";
+import {useTableList} from "@/hook/useTableList.js";
+import searchTime from "@/config/time.js";
+import option from "@/views/modules/PlayerDeposit/option.js";
 
+const { startDate, endDate } = searchTime
+
+const {
+  tableRef,
+  tableLoading,
+  pageObj,
+  tableData,
+  originData,
+  getTableData,
+  sizeChange,
+  currentChange
+} = useTableList(apiMoneyLog, {
+  startDate,
+  endDate,
+  opreatetype: 2,
+})
 </script>
 
 <style lang="scss" scoped>

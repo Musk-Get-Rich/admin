@@ -23,9 +23,11 @@ export const encryptApiParams = (params, noCrypto = false) => {
 		enterprisecode: ENTERPRISE_CODE,
 	});
 
+	console.log(stringParams);
+
 	console.log({
 		employeecode: userStore.userInfo.employeecode,
-		parentemployeecode: userStore.userInfo.employeecode, // 用户编码
+		// parentemployeecode: userStore.userInfo.employeecode, // 用户编码
 		...params,
 		brandcode: BRANDCODE,
 		enterprisecode: ENTERPRISE_CODE,
