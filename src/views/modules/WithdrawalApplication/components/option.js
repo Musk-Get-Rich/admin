@@ -1,4 +1,6 @@
 import {globalOption} from "@/config/tabOption.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 export default {
   ...globalOption,
@@ -10,15 +12,15 @@ export default {
   column: [
     { label: '', prop: 'radio', width: 60, hide: false },
     {
-      label: '加密货币名称',
+      label: t('加密货币名称'),
       prop: 'openningbank',
     },
     {
-      label: '加密货币地址',
+      label: t('加密货币地址'),
       prop: 'paymentaccount',
     },
     {
-      label: '协议',
+      label: t('协议'),
       prop: 'accountname',
     },
   ]

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="text-#3A3541 text-16px">付款账户</div>
+    <div class="text-#3A3541 text-16px">{{ $t('付款账户') }}</div>
     <div
       class="w-188px h-126px bg-#25D55B rounded-8px mt-30 text-#FFFFFF flex flex-col justify-center box-border pl-20">
-      <span class="text-16px mb-10">付款账户</span>
+      <span class="text-16px mb-10">{{ $t('付款账户') }}</span>
       <span class="text-28px">HKD:{{ userInfo.balance }}</span>
     </div>
 <!--    <div class="text-#3A3541 text-16px mt-30">会员账号</div>-->
@@ -26,7 +26,7 @@
 <!--      >会员管理</span> 输入账号进行处理-->
 <!--      </div>-->
 <!--    </div>-->
-    <div class="text-#3A3541 text-16px mt-40">协议类型</div>
+    <div class="text-#3A3541 text-16px mt-40">{{ $t('协议类型') }}</div>
     <div class="flex items-center mt-15">
       <div
         class="transition-400ms cursor-pointer w-115px h-46px text-16px mr-10 border-1 border-solid rounded-8px flex items-center justify-center"
@@ -52,17 +52,17 @@
       </div>
     </div>
     <div class="flex flex-col mt-15">
-      <span>存款个数</span>
+      <span>{{ $t('存款个数') }}</span>
       <div class="flex items-center mt-15">
         <el-input
           type="number"
           class="!w-280"
           size="large"
           v-model="form.depositNum"
-          placeholder="请输入存入个数"
+          :placeholder="$t('请输入存入个数')"
           min="0"
         />
-        <span class="ml-10">预计到账{{ fullAmount }}</span>
+        <span class="ml-10">{{$t('预计到账')}}{{ fullAmount }}</span>
       </div>
     </div>
     <div class="flex items-center mt-15 rounded-8px">
@@ -80,10 +80,10 @@
       />
     </div>
     <div class="flex flex-col">
-      <span class="text-#3A3541 mt-15">最低存款{{ Math.ceil(100 / currentUSDTRechargeAddress?.echrate) }}USDT</span>
-      <span class="text-#3A3541 my-10">当前参考汇率：1USDT={{ currentUSDTRechargeAddress?.echrate }}</span>
-      <span class="text-#F93131">注：</span>
-      <span class="text-#F93131 my-10">请使用您的USDT钱包扫描二维码</span>
+      <span class="text-#3A3541 mt-15">{{$t('最低存款')}}{{ Math.ceil(100 / currentUSDTRechargeAddress?.echrate) }}USDT</span>
+      <span class="text-#3A3541 my-10">{{$t('当前参考汇率')}}：1USDT={{ currentUSDTRechargeAddress?.echrate }}</span>
+      <span class="text-#F93131">{{ $t('注：') }}</span>
+      <span class="text-#F93131 my-10">{{ $t('请使用您的USDT钱包扫描二维码') }}</span>
     </div>
     <el-button
       class="w-300px !h-46px mt-30 mb-50"
@@ -93,16 +93,16 @@
       @click="onSubmit"
       :loading="loading"
     >
-      <span class="text-white">提交申请</span>
+      <span class="text-white">{{ $t('提交申请') }}</span>
     </el-button>
-    <div class="text-#F93131 mt-30 mb-15">代存规则</div>
+    <div class="text-#F93131 mt-30 mb-15">{{ $t('代存规则') }}</div>
     <el-row>
       <el-col class="flex items-center mt-5" :span="24" v-for="(item,index) in textList" :key="item">
         <div class="w-20 h-20 bg-#25D55B rounded-full text-white flex items-center justify-center mr-5">{{
             index + 1
           }}
         </div>
-        <div class="text-#868D88">{{ item }}</div>
+        <div class="text-#868D88">{{ $t(item) }}</div>
       </el-col>
     </el-row>
   </div>

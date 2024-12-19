@@ -18,7 +18,7 @@
       <template #menu="{ row }">
         <el-tooltip
           effect="dark"
-          content="游戏记录"
+          :content="$t('游戏记录')"
           placement="top"
         >
           <img

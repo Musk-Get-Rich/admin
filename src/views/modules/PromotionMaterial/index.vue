@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card>
-      <Title name="推广素材" />
+      <Title :name="$t('推广素材')" />
       <div class="flex pb-20 mb-20 border-b-1 border-b-solid border-gray-200">
         <Search />
       </div>
@@ -14,22 +14,22 @@
         <el-col :span="12" class="h-full flex flex-col items-center justify-center">
           <div class="w-300px text-left">
             <div class="mb-20">
-              <span class="text-#868D88">所属平台：</span>
-              <span>马来西亚</span>
+              <span class="text-#868D88">{{$t('所属平台')}}：</span>
+              <span>{{ $t('马来西亚') }}</span>
             </div>
             <div class="mb-20">
-              <span class="text-#868D88">更新日期：</span>
+              <span class="text-#868D88">{{$t('更新日期')}}：</span>
               <span>2024-12-31 00:00:00</span>
             </div>
             <div class="flex mb-20">
-              <span class="text-#868D88">图片尺寸：</span>
+              <span class="text-#868D88">{{$t('图片尺寸')}}：</span>
               <span>1080x566</span>
               <div class="flex ml-10">
                 <img class="w-20 h-20 mr-5" src="@/assets/images/promotion/import.png" alt="">
-                <span class="text-#25D55B">立即下载</span>
+                <span class="text-#25D55B">{{ $t('立即下载') }}</span>
               </div>
             </div>
-            <div class="w-124px h-46px bg-#25D55B text-white rounded-50px flex items-center justify-center">生成图片</div>
+            <div class="w-124px h-46px bg-#25D55B text-white rounded-50px flex items-center justify-center">{{ $t('生成图片') }}</div>
           </div>
         </el-col>
       </el-row>

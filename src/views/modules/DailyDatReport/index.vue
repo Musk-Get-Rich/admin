@@ -10,7 +10,7 @@
       @current-change="currentChange"
     >
       <template #search>
-        <Title name="每日数据报表" />
+        <Title :name="$t('每日数据报表')" />
 <!--        <div class="flex mb-10">-->
 <!--          <Search />-->
 <!--        </div>-->

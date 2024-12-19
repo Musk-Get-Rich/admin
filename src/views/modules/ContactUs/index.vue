@@ -1,21 +1,21 @@
 <template>
   <div>
     <el-card>
-      <Title name="联系我们" />
-      <div class="text-16px text-#3A3541 mb-20">在线客服</div>
+      <Title :name="$t('联系我们')" />
+      <div class="text-16px text-#3A3541 mb-20">{{ $t('在线客服') }}</div>
       <el-row class="mb-50">
-        <div class="border-1 border-solid border-#25D55B text-#25D55B px-10px py-5px mr-10 rounded-4px">主线客服1</div>
-        <div class="border-1 border-solid border-#25D55B text-#25D55B px-10px py-5px rounded-4px">主线客服2</div>
+        <div class="border-1 border-solid border-#25D55B text-#25D55B px-10px py-5px mr-10 rounded-4px">{{$t('主线客服')}}1</div>
+        <div class="border-1 border-solid border-#25D55B text-#25D55B px-10px py-5px rounded-4px">{{$t('主线客服')}}2</div>
       </el-row>
-      <div class="text-16px text-#3A3541 mb-20">投诉箱</div>
+      <div class="text-16px text-#3A3541 mb-20">{{$t('投诉箱')}}</div>
       <el-row class="!w-full items-center mb-20">
-        <span class="mr-10 block w-80px text-right">意见类型</span>
-        <el-select v-model="value" class="!w-571px" placeholder="请选择问题类型" size="large">
+        <span class="mr-10 block w-80px text-right">{{$t('意见类型')}}</span>
+        <el-select v-model="value" class="!w-571px" :placeholder="$t('请选择问题类型')" size="large">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
         </el-select>
       </el-row>
       <el-row class="!w-full items-center">
-        <span class="mr-10 block w-80px text-right">描述</span>
+        <span class="mr-10 block w-80px text-right">{{ $t('描述') }}</span>
         <el-input
           v-model="value"
           class="!w-571px !h-92px"
@@ -37,47 +37,47 @@
         </el-upload>
       </el-row>
       <el-row class="pl-90 mt-20">
-        <el-button class="!w-300px !h-46px !rounded-40px !bg-#25D55B" type="success">确认</el-button>
+        <el-button class="!w-300px !h-46px !rounded-40px !bg-#25D55B" type="success">{{ $t('确认') }}</el-button>
       </el-row>
-      <div class="text-16px text-#3A3541 mb-20 mt-50">回电服务</div>
-      <div class="mt-20 text-14px text-#3A3541 mb-40">本公司提供24小时全天候的高素质客户服务热线，及多种语言选择，包括中文、台语及英语，如有任何疑问请与我们联系。</div>
+      <div class="text-16px text-#3A3541 mb-20 mt-50">{{ $t('回电服务') }}</div>
+      <div class="mt-20 text-14px text-#3A3541 mb-40">{{ $t('本公司提供24小时全天候的高素质客户服务热线，及多种语言选择，包括中文、台语及英语，如有任何疑问请与我们联系。') }}</div>
       <el-row class="!w-full items-center mb-20">
-        <span class="mr-10 block w-80px text-right">问题类型</span>
-        <el-select v-model="value" class="!w-571px" placeholder="请选择问题类型" size="large">
+        <span class="mr-10 block w-80px text-right">{{ $t('问题类型') }}</span>
+        <el-select v-model="value" class="!w-571px" :placeholder="$t('请选择问题类型')" size="large">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
         </el-select>
       </el-row>
       <el-row class="!w-full items-center mb-20">
-        <span class="mr-10 block w-80px text-right">语言</span>
-        <el-select v-model="value" class="!w-571px" placeholder="请选择语言" size="large">
+        <span class="mr-10 block w-80px text-right">{{ $t('语言') }}</span>
+        <el-select v-model="value" class="!w-571px" :placeholder="$t('请选择语言')" size="large">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
         </el-select>
       </el-row>
       <el-row class="!w-full items-center mb-20">
-        <span class="mr-10 block w-80px text-right">手机号码</span>
-        <el-select v-model="value" class="!w-571px" placeholder="+请加上区域码 例如大陆地区+86 台湾地区+886" size="large">
+        <span class="mr-10 block w-80px text-right">{{ $t('手机号码') }}</span>
+        <el-select v-model="value" class="!w-571px" :placeholder="$t('+请加上区域码，例如大陆地区+86，台湾地区+886')" size="large">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
         </el-select>
       </el-row>
       <el-row class="flex flex-col">
-        <div class="text-16px text-#3A3541 mb-20 mt-30">回电服务</div>
-        <div class="text-14px text-#3A3541 mb-30 my-10">本公司提供24小时全天候的高素质客户服务热线，及多种语言选择，包括中文、台语及英语，如有任何疑问请与我们联系。
+        <div class="text-16px text-#3A3541 mb-20 mt-30">{{ $t('回电服务') }}</div>
+        <div class="text-14px text-#3A3541 mb-30 my-10">{{ $t('本公司提供24小时全天候的高素质客户服务热线，及多种语言选择，包括中文、台语及英语，如有任何疑问请与我们联系。') }}
         </div>
         <div class="w-300px h-46px border-1 border-solid border-#25D55B text-#25D55B px-10px mr-10 rounded-8px flex items-center justify-center">
           0063 9615728888
         </div>
       </el-row>
       <el-row class="flex flex-col mt-30">
-        <div class="text-16px text-#3A3541 mb-20 mt-30">回电服务</div>
-        <div class="text-14px text-#3A3541 mb-30 my-10">本公司提供24小时全天候的高素质客户服务热线，及多种语言选择，包括中文、台语及英语，如有任何疑问请与我们联系。
+        <div class="text-16px text-#3A3541 mb-20 mt-30">{{ $t('回电服务') }}</div>
+        <div class="text-14px text-#3A3541 mb-30 my-10">{{ $t('本公司提供24小时全天候的高素质客户服务热线，及多种语言选择，包括中文、台语及英语，如有任何疑问请与我们联系。') }}
         </div>
         <div class="w-300px h-46px border-1 border-solid border-#25D55B text-#25D55B px-10px mr-10 rounded-8px flex items-center justify-center">
           0063 2-2-2-32662-1
         </div>
       </el-row>
       <el-row class="flex flex-col mt-30">
-        <div class="text-16px text-#3A3541 mb-20 mt-30">回电服务</div>
-        <div class="text-14px text-#3A3541 mb-30 my-10">本公司提供24小时全天候的高素质客户服务热线，及多种语言选择，包括中文、台语及英语，如有任何疑问请与我们联系。
+        <div class="text-16px text-#3A3541 mb-20 mt-30">{{ $t('回电服务') }}</div>
+        <div class="text-14px text-#3A3541 mb-30 my-10">{{ $t('本公司提供24小时全天候的高素质客户服务热线，及多种语言选择，包括中文、台语及英语，如有任何疑问请与我们联系。') }}
         </div>
         <div class="w-300px h-46px border-1 border-solid border-#25D55B text-#25D55B px-10px mr-10 rounded-8px flex items-center justify-center">
           BA88dsnhdfvs$@gmail.com

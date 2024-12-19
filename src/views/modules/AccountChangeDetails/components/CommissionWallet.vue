@@ -27,22 +27,22 @@
       </div>
     </template>
     <template #canLink="{ row }">
-      <el-button v-if="+row.canLink === 1" type="success">是</el-button>
-      <el-button v-else type="danger">否</el-button>
+      <el-button v-if="+row.canLink === 1" type="success">{{ $t('是') }}</el-button>
+      <el-button v-else type="danger">{{ $t('否') }}</el-button>
     </template>
     <template #menu="{ row }">
       <el-button
         icon="el-icon-edit"
         @click="handleEdit(row)"
       >
-        编辑
+        {{ $t('编辑') }}
       </el-button>
       <el-button
         type="primary"
         icon="el-icon-delete"
         @click="handleDelete(row.id)"
       >
-        删除
+        {{ $t('删除') }}
       </el-button>
     </template>
   </avue-crud>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-#3A3541 text-16px mt-30 mb-30">总计：${{ originData?.sumorderamount ?? 0 }}</div>
+    <div class="text-#3A3541 text-16px mt-30 mb-30">{{$t('总计') + '：$' + originData?.sumorderamount ?? 0 }}</div>
     <avue-crud
       ref="tableRef"
       :table-loading="tableLoading"
@@ -12,9 +12,9 @@
       @current-change="currentChange"
     >
       <template #orderstatus="{ row }">
-        <el-button type="success" v-if="row.orderstatus == 2">成功</el-button>
+        <el-button type="success" v-if="row.orderstatus == 2">{{ $t('成功') }}</el-button>
         <el-button v-else color="#32acff">
-          <span class="text-white">待审核</span>
+          <span class="text-white">{{ $t('待审核') }}</span>
         </el-button>
       </template>
       <template #search>
@@ -31,7 +31,6 @@ import option from "../option.js"
 import {useTableList} from "@/hook/useTableList.js";
 import Search from "./Search.vue";
 import searchTime from "@/config/time.js";
-import Other from "@/views/modules/WinLossReport/components/other/index.vue";
 import {apiMoneyLog} from "@/service/api/agent.js";
 
 const { startDate, endDate } = searchTime

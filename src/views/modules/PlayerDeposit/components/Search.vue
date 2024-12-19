@@ -4,7 +4,7 @@
       <el-input
         class="max-w-280"
         v-model="form.employeepaymentaccount"
-        placeholder="会员账号"
+        :placeholder="$t('会员账号')"
       />
     </div>
     <TimeSelect

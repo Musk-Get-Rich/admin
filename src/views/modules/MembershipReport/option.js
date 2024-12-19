@@ -1,4 +1,6 @@
 import {globalOption} from "@/config/tabOption.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 export default {
   ...globalOption,
@@ -16,35 +18,35 @@ export default {
   rowKey: 'loginaccount',
   column: [
     {
-      label: '会员账号',
+      label: t('会员账号'),
       prop: 'loginaccount',
     },
     {
-      label: '存款金额',
+      label: t('存款金额'),
       prop: 'depositMoney',
     },
     {
-      label: '取款金额',
+      label: t('取款金额'),
       prop: 'withdrawMoney',
     },
     {
-      label: '净输赢',
+      label: t('净输赢'),
       prop: 'computeMoney',
     },
     {
-      label: '投注金额',
+      label: t('投注金额'),
       prop: 'betmoney',
     },
     {
-      label: '有效投注额',
+      label: t('有效投注额'),
       prop: 'validbet',
     },
     {
-      label: '其他',
+      label: t('其他'),
       prop: 'other',
     },
     {
-      label: '会员代存',
+      label: t('会员代存'),
       prop: 'escrow',
     },
   ]

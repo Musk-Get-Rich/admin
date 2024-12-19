@@ -1,4 +1,6 @@
 import {globalOption} from "@/config/tabOption.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 export default {
   ...globalOption,
@@ -9,31 +11,31 @@ export default {
   emptyBtn: false,
   column: [
     {
-      label: '转出账户',
+      label: t('转出账户'),
       prop: 'loginaccount',
     },
     {
-      label: '转入账户',
+      label: t('转入账户'),
       prop: 'depositMoney',
     },
     {
-      label: '转入玩家',
+      label: t('转入玩家'),
       prop: 'withdrawMoney',
     },
     {
-      label: '订单号',
+      label: t('订单号'),
       prop: 'computeMoney',
     },
     {
-      label: '账变类型',
+      label: t('账变类型'),
       prop: 'betmoney',
     },
     {
-      label: '账变金额',
+      label: t('账变金额'),
       prop: 'validbet',
     },
     {
-      label: '账变时间',
+      label: t('账变时间'),
       prop: 'reviseMoney',
     },
   ]

@@ -1,12 +1,12 @@
 <template>
   <div class="text-14">
-    <div class="text-#3A3541 text-16px">付款账户</div>
+    <div class="text-#3A3541 text-16px">{{ $t('付款账户') }}</div>
     <div
       class="w-188px h-126px bg-#25D55B rounded-8px mt-20 text-#FFFFFF flex flex-col justify-center box-border pl-20">
-      <span class="mb-10">付款账户</span>
+      <span class="mb-10">{{ $t('付款账户') }}</span>
       <span class="text-28px">HKD: {{ userInfo.giftUsd }}</span>
     </div>
-    <div class="text-#3A3541 mt-30">会员账号</div>
+    <div class="text-#3A3541 mt-30">{{ $t('会员账号') }}</div>
     <div class="mt-12">
       <el-input
         class="!w-280"
@@ -20,13 +20,13 @@
         v-show="!(form.loginaccount)"
         class="text-#868D88"
       >
-        请从 <span
+        {{ $t('请从') }} <span
         class="text-#25D55B cursor-pointer"
         @click="$router.push('/managementCenter/membershipManagement')"
-      >会员管理</span> 输入账号进行处理
+      >{{ $t('会员管理') }}</span> {{ $t('输入账号进行处理') }}
       </div>
     </div>
-    <div class="text-#3A3541 mt-40">存款金额</div>
+    <div class="text-#3A3541 mt-40">{{ $t('存款金额') }}</div>
     <div class="flex items-center mt-12">
       <div
         class="transition-400ms w-110px h-46px text-16px mr-10 border-1 cursor-pointer border-solid rounded-8px flex items-center justify-center"
@@ -41,29 +41,29 @@
       </div>
     </div>
     <div class="flex flex-col mt-20">
-      <span>自定义金额</span>
+      <span>{{ $t('自定义金额') }}</span>
       <div class="flex items-center mt-12">
-        <el-input size="large" type="number" class="!w-280" v-model="form.money" placeholder="请输入存款金额"/>
-        <span class="text-#F93131 ml-10">此处金额为会员(所属地区)当地法币</span>
+        <el-input size="large" type="number" class="!w-280" v-model="form.money" :placeholder="$t('请输入存款金额')"/>
+        <span class="text-#F93131 ml-10">{{ $t('此处金额为会员(所属地区)当地法币') }}</span>
       </div>
     </div>
     <div class="flex flex-col mt-20">
-      <span>流水限制</span>
+      <span>{{ $t('流水限制') }}</span>
       <div class="flex items-center mt-12">
-        <el-input size="large" type="number" class="!w-280" v-model="form.lsbs" placeholder="请输入流水限制"/>
-        <span class="text-#F93131 ml-10">按倍数算，输入2就是2倍流水</span>
+        <el-input size="large" type="number" class="!w-280" v-model="form.lsbs" :placeholder="$t('请输入流水限制')"/>
+        <span class="text-#F93131 ml-10">{{ $t('按倍数算，输入2就是2倍流水') }}</span>
       </div>
     </div>
     <div class="flex flex-col mt-20">
-      <span class="mb-12">备注</span>
-      <el-input size="large" maxlength="20" class="!w-280" v-model="form.desc" placeholder="20个字"/>
+      <span class="mb-12">{{ $t('备注') }}</span>
+      <el-input size="large" maxlength="20" class="!w-280" v-model="form.desc" :placeholder="$t('20个字')"/>
     </div>
     <div class="flex flex-col mt-20 w-300px">
-      <span class="mb-12">支付密码</span>
+      <span class="mb-12">{{ $t('支付密码') }}</span>
       <el-input size="large" maxlength="6" type="password" class="!w-280" v-model="form.fundpassword"
-                placeholder="请输入支付密码"/>
+                :placeholder="$t('请输入支付密码')"/>
       <div @click="$router.push('/personalCenter/personalData')"
-           class="w-100% text-right mt-20 text-#25D55B cursor-pointer">忘记密码?
+           class="w-100% text-right mt-20 text-#25D55B cursor-pointer">{{$t('忘记密码')}}?
       </div>
     </div>
     <el-button
@@ -74,16 +74,16 @@
       @click="onSubmit"
       :loading="loading"
     >
-      <span class="text-white">确认赠送</span>
+      <span class="text-white">{{ $t('确认赠送') }}</span>
     </el-button>
-    <div class="text-#F93131 mt-30 mb-20">代存规则</div>
+    <div class="text-#F93131 mt-30 mb-20">{{ $t('代存规则') }}</div>
     <el-row>
       <el-col class="flex items-center mt-5" :span="24" v-for="(item,index) in textList" :key="item">
         <div class="w-20 h-20 bg-#25D55B rounded-full text-white flex items-center justify-center mr-5">{{
             index + 1
           }}
         </div>
-        <div class="text-#868D88">{{ item }}</div>
+        <div class="text-#868D88">{{ $t(item) }}</div>
       </el-col>
     </el-row>
   </div>
@@ -126,7 +126,7 @@ const onSubmit = () => {
   loading.value = true
   apiBonus(form.value).then(res => {
     loading.value = false
-    ElMessage.success(res || '赠送成功')
+    ElMessage.success(res || t('赠送成功'))
 
     changeUserInfo()
 

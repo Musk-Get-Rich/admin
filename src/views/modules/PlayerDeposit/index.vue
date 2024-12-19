@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card>
-      <Title name="玩家代存" />
+      <Title :name="$t('玩家代存')" />
       <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
       <PlayerDeposit v-show="currentBtn === '玩家代存'"></PlayerDeposit>
       <DepositRecords v-if="currentBtn === '代存记录'"></DepositRecords>

@@ -18,9 +18,9 @@
         <div>{{ row.enterprisepaymentaccount }}-{{ row.employeepaymentname }}</div>
       </template>
       <template #orderstatus="{ row }">
-        <el-button type="success" v-if="row.orderstatus == 2">成功</el-button>
+        <el-button type="success" v-if="row.orderstatus == 2">{{ $t('成功') }}</el-button>
         <el-button v-else color="#32acff">
-          <span class="text-white">待审核</span>
+          <span class="text-white">{{ $t('待审核') }}</span>
         </el-button>
       </template>
     </avue-crud>

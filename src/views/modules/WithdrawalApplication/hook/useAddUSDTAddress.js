@@ -4,6 +4,8 @@ import {storeToRefs} from "pinia";
 import {useDeviceStore} from "@/store/modules/device.store.js";
 import { useUserStore } from "@/store/modules/user.store.js";
 import {apiAddUSDTWallet, apiChangePaymentPassword} from "@/service/api/user.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 export const useAddUSDTAddress = (refresh) => {
   const addAddress = () => {
@@ -16,31 +18,31 @@ export const useAddUSDTAddress = (refresh) => {
       labelPosition: 'top',
       column: [
         {
-          label: '加密货币钱包名称',
+          label: t('加密货币钱包名称'),
           prop: 'openningbank',
           span: 24,
-          placeholder: '加密货币钱包名称',
+          placeholder: t('加密货币钱包名称'),
           readonly: true
         },
         {
-          label: '加密货币地址',
+          label:  t('加密货币地址'),
           prop: 'paymentaccount',
           span: 24,
-          placeholder: '加密货币地址',
+          placeholder:  t('加密货币地址'),
           rules: [
             {
               required: true,
-              message: "请输入加密货币地址",
+              message:  t("请输入加密货币地址"),
               trigger: "blur"
             },
           ],
         },
         {
-          label: '协议',
+          label:  t('协议'),
           prop: 'accountname',
           type: 'select',
           span: 24,
-          placeholder: '协议',
+          placeholder:  t('协议'),
           dicData: [{
             label: 'TRC20',
             value: 'TRC20'
@@ -51,7 +53,7 @@ export const useAddUSDTAddress = (refresh) => {
           rules: [
             {
               required: true,
-              message: "请选择协议",
+              message:  t("请选择协议"),
               trigger: "blur"
             },
           ],
@@ -65,7 +67,7 @@ export const useAddUSDTAddress = (refresh) => {
 
     useDialogFormStore().showDialog({
       dialog: {
-        title: `添加加密钱包`,
+        title:  t(`添加加密钱包`),
         width: isMobile.value ? '90%' : '40%'
       },
       option,
@@ -79,7 +81,7 @@ export const useAddUSDTAddress = (refresh) => {
           opreateChannel: 3,
         }).then(res => {
           done()
-          ElMessage.success('添加成功')
+          ElMessage.success(t('添加成功'))
 
           refresh && refresh()
         }).catch(err => {

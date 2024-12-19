@@ -13,8 +13,8 @@
           :value="item.value"
         />
       </el-select>
-      <el-button type="primary" icon="search" @click="onSearch">查询</el-button>
-      <el-button icon="delete" @click="onRefresh">重置</el-button>
+      <el-button type="primary" icon="search" @click="onSearch">{{ $t('查询') }}</el-button>
+      <el-button icon="delete" @click="onRefresh">{{ $t('重置') }}</el-button>
     </div>
   </div>
 </template>

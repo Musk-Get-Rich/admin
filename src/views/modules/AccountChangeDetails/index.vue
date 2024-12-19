@@ -1,6 +1,6 @@
 <template>
   <el-card>
-    <Title name="账变明细"/>
+    <Title :name="$t('账变明细')"/>
     <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
     <CommissionWallet v-if="currentBtn === '佣金钱包'"></CommissionWallet>
     <LotteryWallet v-if="currentBtn === '彩金钱包'"></LotteryWallet>

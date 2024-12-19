@@ -11,7 +11,7 @@
       @current-change="currentChange"
     >
       <template #search>
-        <Title name="会员报表"/>
+        <Title :name="$t('会员报表')"/>
         <div class="flex mb-10">
           <Search @search="onSearch" @refresh="onRefresh"/>
         </div>
@@ -19,7 +19,7 @@
       <template #menu="{ row }">
         <el-tooltip
           effect="dark"
-          content="游戏记录"
+          :content="$t('游戏记录')"
           placement="top"
         >
           <img

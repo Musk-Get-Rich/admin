@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col">
     <div class="mb-30">
-      <el-input class="mr-20 !w-240px" v-model="input" placeholder="会员账号" />
+      <el-input class="mr-20 !w-240px" v-model="input" :placeholder="$t('会员账号')" />
       <el-select
       class="!w-240px"
         v-model="value"
-        placeholder="请选择代理"
+        :placeholder="$t('请选择代理')"
       >
         <el-option
           v-for="item in options"

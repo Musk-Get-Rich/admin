@@ -1,4 +1,6 @@
 import {globalOption} from "@/config/tabOption.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 export default {
   ...globalOption,
@@ -9,11 +11,11 @@ export default {
   refreshBtn: false,
   column: [
     {
-      label: '注单笔数',
+      label: t('注单笔数'),
       prop: 'betcounts',
     },
     {
-      label: '返水',
+      label: t('返水'),
       prop: 'fs',
     }
     // {
