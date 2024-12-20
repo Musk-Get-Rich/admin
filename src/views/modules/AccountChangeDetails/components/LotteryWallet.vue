@@ -2,7 +2,7 @@
   <avue-crud
     ref="tableRef"
     :table-loading="tableLoading"
-    :data="list"
+    :data="tableData"
     :option="option"
     v-model:page="pageObj"
     @refresh-change="getTableData"
@@ -55,16 +55,7 @@ import {useTableSearch} from "@/hook/useTableSearch.js";
 import {_getMemberReport} from "@/service/api/agent.js";
 import {useMaterialType} from "../hook/useMaterialType.js";
 import Search from "../components/Search.vue";
-import {apiMembershipReport} from "@/service/api/api.js";
-
-const list = [
-  {
-    title: 'test',
-    sort: '1',
-    canLink: '1',
-    createTime: '2024-12-02 00:00:00',
-  }
-]
+import {_giftRecord} from "@/service/api/finance.js";
 
 // 编辑
 const handleEdit = (data) => {
@@ -87,8 +78,6 @@ const handleDelete = (id) => {
   })
 }
 
-const tableSearch = useTableSearch()
-
 const {
   tableRef,
   tableLoading,
@@ -97,7 +86,7 @@ const {
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(apiMembershipReport, {
+} = useTableList(_giftRecord, {
 
 })
 

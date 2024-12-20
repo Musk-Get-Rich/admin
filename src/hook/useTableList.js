@@ -36,7 +36,13 @@ export function useTableList(ajaxFn, params, key = 'rows', immediate = true) {
 
         tableData.value = Array.isArray(res) ? res : res[key];
 
-        pageTotal.value = res.total || res.results
+        if(typeof res.total == 'number'){
+          pageTotal.value = res.total
+        }else if(typeof res.results == 'number'){
+          pageTotal.value = res.results
+        }else if(typeof res.rows == 'number'){
+          pageTotal.value = res.rows
+        }
         tableLoading.value = false
       })
       .catch(() => {

@@ -12,8 +12,11 @@
 
 <script setup>
 import TimeSelect from "@/components/TimeSelect";
+import { useUserStore } from "@/store/modules/user.store.js";
 
 const emit = defineEmits(['search', 'refresh'])
+
+const userStore = useUserStore()
 
 const username = ref('')
 
@@ -22,7 +25,9 @@ const onSearch = (val) => {
   // getTableData(val)
   emit('search', {
     ...val,
-    loginaccount: username.value
+    loginaccount: username.value,
+    parentemployeecode: userStore.userInfo.employeecode,
+    employeecode: ''
   })
 }
 

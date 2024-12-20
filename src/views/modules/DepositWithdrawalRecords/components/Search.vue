@@ -1,19 +1,7 @@
 <template>
   <div class="flex flex-col">
     <div class="mb-30">
-      <el-input class="mr-20 !w-240px" v-model="input" :placeholder="$t('会员账号')" />
-      <el-select
-      class="!w-240px"
-        v-model="value"
-        :placeholder="$t('请选择代理')"
-      >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
+      <el-input class="mr-20 !w-240px" v-model="username" :placeholder="$t('会员账号')" />
     </div>
     <TimeSelect
       @search="onSearch"
@@ -23,9 +11,12 @@
 </template>
 
 <script setup>
-import TimeSelect from "@/components/TimeSelect"
+import TimeSelect from "@/components/TimeSelect";
+import { useUserStore } from "@/store/modules/user.store.js";
 
 const emit = defineEmits(['search', 'refresh'])
+
+const userStore = useUserStore()
 
 const username = ref('')
 
@@ -34,7 +25,9 @@ const onSearch = (val) => {
   // getTableData(val)
   emit('search', {
     ...val,
-    loginaccount: username.value
+    loginaccount: username.value,
+    parentemployeecode: userStore.userInfo.employeecode,
+    employeecode: ''
   })
 }
 

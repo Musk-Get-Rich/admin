@@ -11,19 +11,19 @@ export default {
   emptyBtn: false,
   menu: false,
   column: {
-    depositAmount: {
+    ordernumber: {
       label: t('编号'),
     },
-    withdrawalAmount: {
+    loginaccount: {
       label: t('会员账号'),
     },
-    winLoss:{
+    orderamount:{
       label: t('金额'),
     },
-    totalBonusAmount:{
+    ordertype:{
       label: t('资金类型'),
     },
-    fee:{
+    handleovertime:{
       label: t('完成时间'),
     },
   }

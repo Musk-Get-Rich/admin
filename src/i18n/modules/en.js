@@ -250,4 +250,11 @@ export default {
   '本月净输赢：-40000（会员亏损），新增有效会员81，活跃会员5，佣金比例,55%':'This months net win and loss: -40000 (member loss), new effective members 81, active members 5, commission ratio 55%',
   '7.佣金将在每月3号-5号发放账单，每月6号-10号发放佣金，佣金可当地银行提款，可加密货币提款，提款时间无限制；':'7. Commissions will be issued between the 3rd and 5th of each month, and commissions will be paid between the 6th and 10th of each month. Commissions can be withdrawn to local banks and can be withdrawn in cryptocurrency, with no restrictions on withdrawal time.',
   '8.对账单存在疑问或其他争议请在佣金未发放时，在Telegram服务群组联系官方代理专员，佣金发放后将不受理账单问题':'8. If there are questions or disputes regarding the statement, please contact the official agent in the Telegram service group before the commission is issued. After the commission is issued, statement issues will not be accepted.',
+  '存款':'',
+  '提款':'',
+  '代理充值':'',
+  '代存':'',
+  '转账':'',
+  '会员存款':'',
+  '会员取款':'',
 };

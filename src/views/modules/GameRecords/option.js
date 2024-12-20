@@ -11,19 +11,19 @@ export default {
   emptyBtn: false,
   menu: false,
   column: {
-    depositAmount: {
+    gamebigtype: {
       label: t('比赛类型'),
     },
-    withdrawalAmount: {
+    betCount: {
       label: t('注单笔数'),
     },
-    winLoss:{
+    betMoney:{
       label: t('投注金额'),
     },
-    totalBonusAmount:{
+    loginacount:{
       label: t('会员'),
     },
-    fee:{
+    validMoney:{
       label: t('有效投注额'),
     }
   }

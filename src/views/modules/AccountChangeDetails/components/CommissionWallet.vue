@@ -55,7 +55,7 @@ import {useTableSearch} from "@/hook/useTableSearch.js";
 import {useMaterialType} from "../hook/useMaterialType.js";
 import Search from "../components/Search.vue";
 import searchTime from "@/config/time.js";
-import {apiAccountChangeRecords} from "@/service/api/user.js";
+import {_doTransLog} from "@/service/api/finance.js";
 
 const { startDate, endDate } = searchTime
 
@@ -67,22 +67,10 @@ const {
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(apiAccountChangeRecords, {
+} = useTableList(_doTransLog, {
   startDate,
   endDate,
-  employeecode: undefined,
-  loginaccount: '',
-  ordertype: ''
 }, 'rows')
-
-const list = [
-  {
-    title: 'test',
-    sort: '1',
-    canLink: '1',
-    createTime: '2024-12-02 00:00:00',
-  }
-]
 
 // 编辑
 const handleEdit = (data) => {
