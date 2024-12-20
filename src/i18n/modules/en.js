@@ -422,4 +422,13 @@ export default {
   '输入需转线的会员账号。':'Input the member account to be transferred.',
   '输入发给会员的注册链接。':'Input the registration link sent to the member.',
   '选择会员设备类型（此项可以随意选择）完成以上步骤后即可提交申请':'Select the member device type (this can be chosen freely) and complete the above steps to submit the application.',
+
+  "helper1Title": "Agent Proxy Deposit Explanation",  
+  "helper2Title": "Cancellation Instructions",  
+  "helper3Title": "Commission Explanation",  
+  "helper4Title": "Commission Withdrawal",  
+  "helper5Title": "Gift Bonus Explanation",  
+  "helper6Title": "Privacy Protection Rules",  
+  "helper7Title": "Promotion URL Explanation",  
+  "helper8Title": "Transfer Line Explanation" 
 };

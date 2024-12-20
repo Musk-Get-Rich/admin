@@ -73,16 +73,9 @@ export const useAgent = () => {
           type: 'password',
           rules: [
             {
-              required: true,
-              message: t('请输入密码'),
-              trigger: "blur"
-            },
-            {
               validator: (rule, value, callback) => {
                 const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?!.*\s)[a-zA-Z\d]{6,16}$/;
-                if (value === '') {
-                  callback(new Error(t('请输入密码')));
-                } else {
+                if (value) {
                   if (!passwordRegex.test(value)) {
                     callback(new Error(t('密码必须包含字母，最少6位')));
                   } else {
