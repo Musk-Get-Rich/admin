@@ -9,38 +9,35 @@ export default {
   searchSpan: 6,
   searchBtn: false,
   emptyBtn: false,
+  menu: false,
   column: [
     {
-      label: t('会员账号'),
+      label: t('转出账户'),
       prop: 'loginaccount',
     },
     {
-      label: t('存款金额'),
+      label: t('转入账户'),
       prop: 'depositMoney',
     },
     {
-      label: t('取款金额'),
+      label: t('转入玩家'),
       prop: 'withdrawMoney',
     },
     {
-      label: t('净输赢'),
-      prop: 'computeMoney',
+      label: t('订单号'),
+      prop: 'ordernumber',
     },
     {
-      label: t('投注金额'),
-      prop: 'betmoney',
+      label: t('账变类型'),
+      prop: 'ordertype',
     },
     {
-      label: t('有效投注额'),
-      prop: 'validbet',
+      label: t('账变金额'),
+      prop: 'orderamount',
     },
     {
-      label: t('其他'),
-      prop: 'reviseMoney',
-    },
-    {
-      label: t('会员代存'),
-      prop: 'escrow',
+      label: t('账变时间'),
+      prop: 'orderdate',
     },
   ]
 }

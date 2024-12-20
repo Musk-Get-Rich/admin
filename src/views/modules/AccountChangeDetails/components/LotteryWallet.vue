@@ -55,7 +55,10 @@ import {useTableSearch} from "@/hook/useTableSearch.js";
 import {_getMemberReport} from "@/service/api/agent.js";
 import {useMaterialType} from "../hook/useMaterialType.js";
 import Search from "../components/Search.vue";
+import searchTime from "@/config/time.js";
 import {_giftRecord} from "@/service/api/finance.js";
+
+const { startDate, endDate } = searchTime
 
 // 编辑
 const handleEdit = (data) => {
@@ -87,7 +90,9 @@ const {
   sizeChange,
   currentChange
 } = useTableList(_giftRecord, {
-
+  startDate,
+  endDate,
+  opreatetype: 2
 })
 
 // 搜索

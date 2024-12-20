@@ -14,37 +14,6 @@
         <Search @search="onSearch" @refresh="onRefresh"/>
       </div>
     </template>
-    <template #title-header="{column}">
-      <div class="flex items-center justify-center">
-        {{ column.label }}
-        <img class="w-20" src="@/assets/images/Sidebar/2User-1.png" alt="">
-      </div>
-    </template>
-    <template #title="{ row }">
-      <div>
-        {{ row.title }}
-        <img class="w-20" src="@/assets/images/Sidebar/2User-1.png" alt="">
-      </div>
-    </template>
-    <template #canLink="{ row }">
-      <el-button v-if="+row.canLink === 1" type="success">{{ $t('是') }}</el-button>
-      <el-button v-else type="danger">{{ $t('否') }}</el-button>
-    </template>
-    <template #menu="{ row }">
-      <el-button
-        icon="el-icon-edit"
-        @click="handleEdit(row)"
-      >
-        {{ $t('编辑') }}
-      </el-button>
-      <el-button
-        type="primary"
-        icon="el-icon-delete"
-        @click="handleDelete(row.id)"
-      >
-        {{ $t('删除') }}
-      </el-button>
-    </template>
   </avue-crud>
 </template>
 
@@ -70,30 +39,8 @@ const {
 } = useTableList(_doTransLog, {
   startDate,
   endDate,
+  opreatetype: 2
 }, 'rows')
-
-// 编辑
-const handleEdit = (data) => {
-  useMaterialType().changeMaterialType({
-    type: 'edit',
-    data,
-    done() {
-      getTableData()
-    }
-  })
-}
-
-// 删除
-const handleDelete = (id) => {
-  useMaterialType().deleteMaterialType({
-    id,
-    done() {
-      getTableData()
-    }
-  })
-}
-
-const tableSearch = useTableSearch()
 
 // 搜索
 const onSearch = (val) => {
