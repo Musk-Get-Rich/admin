@@ -70,6 +70,9 @@ const {
 } = useTableList(apiAccountChangeRecords, {
   startDate,
   endDate,
+  employeecode: undefined,
+  loginaccount: '',
+  ordertype: ''
 }, 'rows')
 
 const list = [
