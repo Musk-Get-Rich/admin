@@ -57,7 +57,7 @@
 import option from "../option.js"
 import {useTableList} from "@/hook/useTableList.js";
 import Search from "./Search.vue";
-import {apiMembershipReport} from "@/service/api/api.js";
+import {apiBonusRecord, apiMembershipReport} from "@/service/api/api.js";
 import searchTime from "@/config/time.js";
 import Other from "@/views/modules/WinLossReport/components/other/index.vue";
 
@@ -71,10 +71,13 @@ const {
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(apiMembershipReport, {
+} = useTableList(apiBonusRecord, {
   startDate,
   endDate,
-})
+  loginaccount: '',
+  brandcode: undefined,
+  parentemployeecode: undefined,
+}, 'record')
 
 // 搜索
 const onSearch = (val) => {

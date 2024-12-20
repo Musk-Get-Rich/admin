@@ -144,3 +144,10 @@ export const apiUserUSDTList = (params) => {
     ...params,
   })
 }
+
+// 彩金记录
+export const apiBonusRecord = (params) => {
+  return requestFunc('/AgentNew/GiftRecord', {
+    ...params,
+  })
+}

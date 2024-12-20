@@ -12,33 +12,33 @@ export default {
   menuWidth: 80,
   menu: false,
   column: [
+    // {
+    //   label: t('转出账户'),
+    //   prop: 'depositMoney',
+    // },
+    // {
+    //   label: t('转入账户'),
+    //   prop: 'depositMoney',
+    // },
     {
-      label: t('转出账户'),
+      label: t('转入玩家'),
       prop: 'loginaccount',
     },
     {
-      label: t('转入账户'),
-      prop: 'depositMoney',
-    },
-    {
-      label: t('转入玩家'),
-      prop: 'withdrawMoney',
-    },
-    {
       label: t('订单号'),
-      prop: 'computeMoney',
+      prop: 'lsh',
     },
-    {
-      label: t('账变类型'),
-      prop: 'betmoney',
-    },
+    // {
+    //   label: t('账变类型'),
+    //   prop: 'betmoney',
+    // },
     {
       label: t('账变金额'),
-      prop: 'betmoney',
+      prop: 'paymoneyreal',
     },
     {
       label: t('账变时间'),
-      prop: 'betmoney',
+      prop: 'createtime',
     },
   ]
 }

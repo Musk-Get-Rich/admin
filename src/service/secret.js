@@ -18,9 +18,9 @@ export const encryptApiParams = (params, noCrypto = false) => {
 	const stringParams = qs.stringify({
 		employeecode: userStore.userInfo.employeecode,
 		parentemployeecode: userStore.userInfo.employeecode, // 用户编码
-		...params,
 		brandcode: BRANDCODE,
 		enterprisecode: ENTERPRISE_CODE,
+		...params,
 	});
 
 	console.log(stringParams);
