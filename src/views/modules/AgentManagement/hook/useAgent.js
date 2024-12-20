@@ -1,3 +1,5 @@
+import { globalOption } from "@/config/tabOption.js";
+import i18n from "@/i18n/index.js";
 import { useDialogFormStore } from "@/components/DialogForm/store/dialogForm.store.js";
 import {
   apiRegisterAgent,
@@ -10,10 +12,10 @@ import { useDeviceStore } from "@/store/modules/device.store.js";
 import { computed } from "vue";
 import { useUserStore } from "@/store/modules/user.store.js";
 
-export const useAgent = () => {
+const t = i18n.global.t
 
+export const useAgent = () => {
   const userStore = useUserStore()
-  console.log(userStore.userInfo.dividend);
 
   const changeDetail = (config) => {
     const { isMobile } = storeToRefs(useDeviceStore())
@@ -22,7 +24,7 @@ export const useAgent = () => {
 
     const method = type === "add" ? 'add' : 'update'
 
-    const title = type === "add" ? '新增' : '编辑'
+    const title = type === "add" ? t('新增') : t('编辑')
 
     const prependName = computed(() => {
       return {
@@ -32,13 +34,13 @@ export const useAgent = () => {
     })
 
     const option = {
-      labelWidth: '110',
+      labelWidth: '140',
       labelPosition: 'right',
       column: [
         {
-          label: '代理账号',
+          label: t('代理账号'),
           prop: 'loginaccount',
-          placeholder: '请输入代理账号',
+          placeholder: t('请输入代理账号'),
           span: 24,
           autocomplete: "new-password",
           prepend: prependName.value,
@@ -49,51 +51,66 @@ export const useAgent = () => {
               asyncValidator: async (rule, value) => {
                 if (value) {
                   await apiCheckAgentAccount({ loginaccount: `${prependName.value}${value}` }).catch(() => {
-                    return Promise.reject('代理账号已存在')
+                    return Promise.reject(t('代理账号已存在'))
                   })
 
                   if (/[^0-9a-zA-Z]/.test(value)) {
-                    return Promise.reject('代理账号只支持字母数字')
+                    return Promise.reject(t('代理账号只支持字母数字'))
                   }
                   return true
                 }
-                return Promise.reject('请输入代理账号')
+                return Promise.reject(t('请输入代理账号'))
               },
             }
           ]
         },
         {
-          label: '密码',
+          label: t('密码'),
           prop: 'loginpassword',
-          placeholder: '请输入密码',
+          placeholder: t('请输入密码'),
           span: 24,
           autocomplete: "new-password",
           type: 'password',
           rules: [
             {
               required: true,
-              message: "请输入密码",
+              message: t('请输入密码'),
               trigger: "blur"
             },
+            {
+              validator: (rule, value, callback) => {
+                const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?!.*\s)[a-zA-Z\d]{6,16}$/;
+                if (value === '') {
+                  callback(new Error(t('请输入密码')));
+                } else {
+                  if (!passwordRegex.test(value)) {
+                    callback(new Error(t('密码必须包含字母，最少6位')));
+                  } else {
+                    callback();
+                  }
+                }
+              },
+              trigger: 'blur'
+            }
           ],
         },
         {
-          label: '姓名',
+          label: t('姓名'),
           prop: 'displayalias',
-          placeholder: '请输入姓名',
+          placeholder: t('请输入姓名'),
           span: 24,
           rules: [
             {
               required: true,
-              message: "请输入姓名",
+              message: t('请输入姓名'),
               trigger: "blur"
             },
           ],
         },
         {
-          label: '佣金比例',
+          label: t('佣金比例'),
           prop: 'dividend',
-          placeholder: `请输入佣金比例(不能大于${userStore.userInfo.dividend})`,
+          placeholder: `${t('请输入佣金比例')}(${t('不能大于')}${userStore.userInfo.dividend})`,
           span: 24,
           type: 'number',
           max: 1,
@@ -101,7 +118,7 @@ export const useAgent = () => {
           rules: [
             {
               required: true,
-              message: `请输入佣金比例`,
+              message: t('请输入佣金比例'),
               trigger: "blur"
             },
           ],
@@ -109,20 +126,20 @@ export const useAgent = () => {
         {
           label: 'Telegram',
           prop: 'otherimname1',
-          placeholder: '请输入Telegram',
+          placeholder: t('请输入Telegram'),
           span: 24,
         },
         {
-          label: '备注',
+          label: t('备注'),
           prop: 'remark',
-          placeholder: '请输备注',
+          placeholder: t('请输备注'),
           span: 24,
           type: 'textarea'
         },
         {
-          label: '其他联系方式',
+          label: t('其他联系方式'),
           prop: 'otherimno1',
-          placeholder: '请输入其他联系方式',
+          placeholder: t('请输入其他联系方式'),
           span: 24,
         },
       ]
@@ -134,13 +151,12 @@ export const useAgent = () => {
 
     useDialogFormStore().showDialog({
       dialog: {
-        title: `${title}下级`,
+        title: `${title}${t('下级')}`,
         width: isMobile.value ? '90%' : '40%'
       },
       data,
       option,
       submit(formData, done, cancel) {
-        console.log(userStore.userInfo, 'userStore.userInfouserStore.userInfo')
         const api = type === 'add' ? apiRegisterAgent : apiEditAgent
         api({
           ...formData,
@@ -148,7 +164,7 @@ export const useAgent = () => {
           parentemployeecode: userStore.userInfo.employeecode,
           employeecode: data?.employeecode,
         }, method).then(res => {
-          ElMessage.success(`${title}成功`)
+          ElMessage.success(`${title}${t('下级')}${t('成功')}`)
 
           done()
 
@@ -161,22 +177,7 @@ export const useAgent = () => {
   }
 
   const onDelete = ({ id, done }) => {
-    // ElMessageBox.confirm(
-    //   '您确定要删除吗?',
-    //   'Warning',
-    //   {
-    //     confirmButtonText: '确定',
-    //     cancelButtonText: '取消',
-    //     type: 'warning',
-    //   }
-    // )
-    //   .then(async () => {
-    //     apiDeleteMaterialType(id).then(res => {
-    //       ElMessage.success(`删除成功`)
-    //       done && done()
-    //     })
-    //   })
-    ElMessageBox.alert('敬请期待', '温馨提示', {
+    ElMessageBox.alert(t('敬请期待'), t('温馨提示'), {
       confirmButtonText: 'OK',
       callback: (action) => {
       },

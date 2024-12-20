@@ -6,7 +6,7 @@
         @current-change="currentChange">
         <template #header>
           <el-row justify="space-between">
-            <Title name="下级管理" />
+            <Title :name="$t('下级管理')" />
             <el-button v-if="agentLevel < 3" type="primary" icon="el-icon-plus" @click="handleAdd">
               {{ createAgentBtnText }}
             </el-button>
@@ -15,40 +15,35 @@
             <div class="grid grid-cols-4">
               <div class="flex flex-col justify-center items-center">
                 <div class="font-bold text-8xl color-green">{{ agentInfo.agentlinecode }}</div>
-                <div class="text-6xl text-gray-500 mt-5">主线账户</div>
+                <div class="text-6xl text-gray-500 mt-5">{{ $t('主线账户') }}</div>
               </div>
               <div class="flex flex-col justify-center items-center">
                 <div class="font-bold text-8xl">{{ agentInfo.loginaccount }}</div>
-                <div class="text-6xl text-gray-500 mt-5">团队名称</div>
+                <div class="text-6xl text-gray-500 mt-5">{{ $t('团队名称') }}</div>
               </div>
               <div class="flex flex-col justify-center items-center">
                 <div class="font-bold text-8xl">{{ agentInfo.countAgent || 0 }}</div>
-                <div class="text-6xl text-gray-500 mt-5">下线代理</div>
+                <div class="text-6xl text-gray-500 mt-5">{{ $t('下线代理') }}</div>
               </div>
               <div class="flex flex-col justify-center items-center">
                 <div class="font-bold text-8xl">{{ agentInfo.countMember || 0 }}</div>
-                <div class="text-6xl text-gray-500 mt-5">下线会员</div>
+                <div class="text-6xl text-gray-500 mt-5">{{ $t('下线会员') }}</div>
               </div>
             </div>
           </div>
         </template>
         <template #title="{ row }">
           <div class="overflow-auto h-150" v-html="row.title">
-
           </div>
         </template>
         <template #content="{ row }">
           <div class="overflow-auto h-150" v-html="row.title">
-
           </div>
         </template>
         <template #menu="{ row }">
           <el-button icon="el-icon-edit" @click="handleEdit(row)">
-            编辑
+            {{ $t('编辑') }}
           </el-button>
-          <!-- <el-button type="primary" icon="el-icon-delete" @click="handleDelete(row.id)">
-            删除
-          </el-button> -->
         </template>
       </avue-crud>
     </el-card>
@@ -64,20 +59,24 @@ import { useAgent } from "@/views/modules/AgentManagement/hook/useAgent.js";
 import { computed, ref } from "vue";
 import Title from "@/components/Title/index.vue";
 import { useUserStore } from "@/store/modules/user.store.js";
+import i18n from "@/i18n/index.js";
 
 const agentInfo = ref({})
-
+const t = i18n.global.t
 const userStore = useUserStore()
 
-// 当前账号代理级别
+// 当前账号代理级别  
 const agentLevel = computed(() => Number(agentInfo.value?.agentlevel || 3))
 const createAgentBtnText = computed(() => {
-  const chars = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
-  const text = chars[agentLevel.value + 1]
-  return `创建${text}级代理`
+  const map = {
+    2: t('创建二级代理'),
+    3: t('创建三级代理'),
+    4: t('创建四级代理'),
+  }
+  return map[agentLevel.value + 1] || map[3]
 })
 
-// 编辑
+// 编辑  
 const handleEdit = (data) => {
   useAgent().changeDetail({
     type: 'edit',
@@ -92,7 +91,7 @@ const handleEdit = (data) => {
   })
 }
 
-// 新增
+// 新增  
 const handleAdd = () => {
   useAgent().changeDetail({
     type: 'add',
@@ -106,7 +105,7 @@ const handleAdd = () => {
   })
 }
 
-// 删除
+// 删除  
 const handleDelete = (id) => {
   useAgent().onDelete({
     id,
@@ -118,7 +117,7 @@ const handleDelete = (id) => {
 
 const tableSearch = useTableSearch()
 
-const getAgentInfo = async () =>{
+const getAgentInfo = async () => {
   agentInfo.value = await apiGetAgentInfo()
   console.log('agentInfores', agentInfo.value);
 }
@@ -144,12 +143,12 @@ const {
 
 })
 
-// 搜索
+// 搜索  
 const onSearch = (form, done) => {
   tableSearch.search(form, getTableData, done)
 }
 
 const onSearchReset = () => {
   tableSearch.reset(getTableData)
-}
+}  
 </script>
