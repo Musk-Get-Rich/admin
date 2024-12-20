@@ -1,4 +1,6 @@
 import { globalOption } from "@/config/tabOption.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 const levelOptions = Array.from({ length: 12 }).map((_, i) => ({
   label: `VIP${i + 1}`,
@@ -7,26 +9,26 @@ const levelOptions = Array.from({ length: 12 }).map((_, i) => ({
 
 export const isnormalOptions = [
   {
-    "label": "静止户",
+    "label": t("静止户"),
     "value": 0
   },
   {
-    "label": "正常户",
+    "label": t("正常户"),
     "value": 1
   }
 ]
 
 export const reasonTypes = [
   {
-    "label": "注册未充值",
+    "label": t("注册未充值"),
     "value": "REGISTERNODEPOSIT "
   },
   {
-    "label": "超过1周没登录",
+    "label": t("超过1周没登录"),
     "value": "NOLOGINWEEK"
   },
   {
-    "label": "超过1周未充值的",
+    "label": t("超过1周未充值的"),
     "value": "NODEPOSITWEEK"
   }
 ]
@@ -47,84 +49,84 @@ export default {
   rowKey: 'loginaccount',
   column: [
     {
-      label: '等级',
+      label: t('等级'),
       prop: 'employeelevelcode',
       search: true,
       searchLabel: '',
-      placeholder: '请选择等级',
+      placeholder: t('请选择等级'),
       type: 'select',
       searchOrder: 3,
       dicData: levelOptions
     },
     {
-      label: '账号姓名',
+      label: t('账号姓名'),
       prop: 'loginaccount',
       search: true,
       searchLabel: '',
-      placeholder: '请输入会员账号',
+      placeholder: t('请输入会员账号'),
       searchOrder: 4
     },
     {
-      label: '存款/提款',
+      label: t('存款/提款'),
       prop: 'hasDeposit',
       search: true,
       searchLabel: '',
-      placeholder: '是否存款',
+      placeholder: t('是否存款'),
       type: 'select',
       searchOrder: 1,
       dicData: [
         {
-          label: '是',
+          label: t('是'),
           value: 1
         },
         {
-          label: '否',
+          label: t('否'),
           value: 0
         }
       ]
     },
     {
-      label: '净输赢',
+      label: t('净输赢'),
       prop: 'winlose',
     },
     {
-      label: '手机号/邮箱',
+      label: t('手机号/邮箱'),
       prop: 'phoneOrEmail',
     },
     {
-      label: '创建时间',
+      label: t('创建时间'),
       prop: 'logindatetime',
     },
     {
-      label: '最后登录',
+      label: t('最后登录'),
       prop: 'lastlogintime',
     },
     {
-      label: '状态',
+      label: t('状态'),
       prop: 'isnormal',
       type: 'select',
       search: true,
       searchLabel: '',
-      placeholder: '状态',
+      placeholder: t('状态'),
       searchOrder: 2,
       dicData: isnormalOptions
     },
     {
-      label: '维护原因',
+      label: t('维护原因'),
       prop: 'reasontype',
       search: true,
       searchLabel: '',
-      placeholder: '维护原因',
+      placeholder: t('维护原因'),
       type: 'select',
       searchOrder: 1,
       dicData: reasonTypes
     },
     {
-      label: '操作',
+      label: t('操作'),
       prop: '_actions',
     },
     {
-      label: '其它参考',
+      label: t('其它参考'),
       prop: 'other',
     },
   ]

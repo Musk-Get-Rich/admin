@@ -1,4 +1,6 @@
 import { globalOption } from "@/config/tabOption.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 export default {
   ...globalOption,
@@ -10,22 +12,22 @@ export default {
   menu: false,
   column: [
     {
-      label: '推广员(会员)',
+      label: t('推广员(会员)'),
       prop: 'loginaccount',
       search: true,
       searchLabel: '',
-      placeholder: '会员账号',
+      placeholder: t('会员账号'),
     },
     {
-      label: '裂变人数',
+      label: t('裂变人数'),
       prop: 'playcount',
     },
     {
-      label: '状态',
+      label: t('状态'),
       prop: 'employeestatus',
     },
     {
-      label: '加入时间',
+      label: t('加入时间'),
       prop: 'logindate',
     },
   ]

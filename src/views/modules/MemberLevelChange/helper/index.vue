@@ -1,24 +1,24 @@
 <template>
-    <el-dialog v-model="dialogVisible" :close-on-click-modal="false" width="800" :append-to-body="true" title="调级说明">
+    <el-dialog v-model="dialogVisible" :close-on-click-modal="false" width="800" :append-to-body="true" :title="$t('调级说明')">
 
         <!-- 表格部分 -->
         <el-table :data="levelData" border class="w-full bg-green">
-            <el-table-column prop="level" label="等级" align="center" />
+            <el-table-column prop="level" :label="$t('等级')" align="center" />
             <el-table-column prop="hk" label="HK(HKD)" align="center" />
             <el-table-column prop="my" label="MY(MYR)" align="center" />
-            <el-table-column prop="levelRange" label="等级" align="center" />
+            <el-table-column prop="levelRange" :label="$t('等级')" align="center" />
             <el-table-column prop="vn" label="VN(KD)" align="center" />
         </el-table>
 
         <!-- 说明部分 -->
         <div class="space-y-20 mt-20">
             <section v-for="section in describeData" :key="section.key" class="section">
-                <div class="font-bold mb-10">{{ section.title }}</div>
+                <div class="font-bold mb-10">{{ $t(section.title) }}</div>
                 <div class="space-y-5 text-gray-700 list-none text-justify">
                     <div v-for="(content, index) in section.content" :key="index" class="flex">
                         <div class="w-15 h-15 flex justify-center items-center flex-shrink-0 rounded-full text-white bg-green">{{ index + 1 }}</div>
                         <div class="ml-5">
-                            {{ content }}
+                            {{ $t(content) }}
                         </div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@ const describeData = [
     },
     {
         key: 'levelAdjustmentExample',
-        title: 'PP88等级+1调整范例 ',
+        title: 'PP88等级+1调整范例',
         content: [
             "VIP7以下（包含VIP7）在申请调级时可在原有基础等级上加一级；最高可调整VIP8。比如会员在某平台等级为VIP3，在申请调级时备注填写等级+1，我方专员就会在调级时为您的会员等级再加一级，即是VIP4。（如会员出现上述实际对应等级情况，那么也会在最终调整的等级上+1级，最高VIP8）"
         ]

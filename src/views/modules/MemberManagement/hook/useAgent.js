@@ -6,6 +6,8 @@ import {
 import { ElMessage, ElMessageBox } from "element-plus";
 import { storeToRefs } from "pinia";
 import { useDeviceStore } from "@/store/modules/device.store.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 export const useAgent = () => {
   const changeDatail = (config) => {
@@ -15,70 +17,70 @@ export const useAgent = () => {
 
     const method = type === "add" ? 'add' : 'update'
 
-    const title = type === "add" ? '新增' : '编辑'
+    const title = type === "add" ? t('新增') : t('编辑')
 
     const option = {
       labelWidth: '110',
       labelPosition: 'right',
       column: [
         {
-          label: '代理账号',
+          label: t('代理账号'),
           prop: 'account',
-          placeholder: '请输入代理账号',
+          placeholder: t('请输入代理账号'),
           span: 24,
           autocomplete: "new-password"
         },
         {
-          label: '密码',
+          label: t('密码'),
           prop: 'password',
-          placeholder: '请输入密码',
+          placeholder: t('请输入密码'),
           span: 24,
           autocomplete: "new-password",
           type: 'password',
           rules: [
             {
               required: true,
-              message: "请输入密码",
+              message: t("请输入密码"),
               trigger: "blur"
             },
           ],
         },
         {
-          label: '姓名',
+          label: t('姓名'),
           prop: 'name',
-          placeholder: '请输入姓名',
+          placeholder: t('请输入姓名'),
           span: 24,
           rules: [
             {
               required: true,
-              message: "请输入姓名",
+              message: t("请输入姓名"),
               trigger: "blur"
             },
           ],
         },
         {
-          label: '佣金比例',
+          label: t('佣金比例'),
           prop: 'rate',
-          placeholder: '请输入佣金比例',
+          placeholder: t('请输入佣金比例'),
           span: 24,
         },
         {
           label: 'Telegram',
           prop: 'telegram',
-          placeholder: '请输入Telegram',
+          placeholder: t('请输入Telegram'),
           span: 24,
         },
         {
-          label: '备注',
+          label: t('备注'),
           prop: 'remark',
-          placeholder: '请输备注',
+          placeholder: t('请输备注'),
           span: 24,
           type: 'textarea'
         },
         {
-          label: '其他联系方式',
+          label: t('其他联系方式'),
           prop: 'contract',
-          placeholder: '请输入其他联系方式',
+          placeholder: t('请输入其他联系方式'),
           span: 24,
         },
       ]
@@ -90,7 +92,7 @@ export const useAgent = () => {
 
     useDialogFormStore().showDialog({
       dialog: {
-        title: `${title}下级`,
+        title: `${title}${t('下级')}`,
         width: isMobile.value ? '90%' : '30%'
       },
       data,
@@ -99,7 +101,7 @@ export const useAgent = () => {
         apiChangeMaterialType({
           ...formData,
         }, method).then(res => {
-          ElMessage.success(`${title}成功`)
+          ElMessage.success(`${title}${t('成功')}`)
 
           done()
 
@@ -113,17 +115,17 @@ export const useAgent = () => {
 
   const onDelete = ({id, done}) => {
     ElMessageBox.confirm(
-      '您确定要删除吗?',
+      t('您确定要删除吗?'),
       'Warning',
       {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+        confirmButtonText: t('确定'),
+        cancelButtonText: t('取消'),
         type: 'warning',
       }
     )
       .then(async () => {
         apiDeleteMaterialType(id).then(res => {
-          ElMessage.success(`删除成功`)
+          ElMessage.success(t(`删除成功`))
 
           done && done()
         })

@@ -1,12 +1,12 @@
 <template>
   <el-card>
     <div>
-      <span class="mr-10 cursor-pointer" @click="goBack">< 返回</span>
-      <span class="pl-10 border border-l-solid border-grey">注销记录</span>
+      <span class="mr-10 cursor-pointer" @click="goBack">< {{ $t('返回') }}</span>
+      <span class="pl-10 border border-l-solid border-grey">{{ $t('注销记录') }}</span>
     </div>
     <div class="flex my-5xl w-[50%]">
-      <el-input v-model="formData.loginaccount" placeholder="会员账号" class="mr-10" clearable></el-input>
-      <el-select v-model="formData.status" placeholder="全部" clearable>
+      <el-input v-model="formData.loginaccount" :placeholder="$t('会员账号')" class="mr-10" clearable></el-input>
+      <el-select v-model="formData.status" :placeholder="$t('全部')" clearable>
         <el-option
             v-for="item in statusOptions"
             :key="item.value"

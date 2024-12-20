@@ -1,16 +1,18 @@
 import { globalOption } from "@/config/tabOption.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 export const statusOptions = [
   {
-    label: '审核中',
+    label: t('审核中'),
     value: 0
   },
   {
-    label: '已注销',
+    label: t('已注销'),
     value: 1
   },
   {
-    label: '已拒绝',
+    label: t('已拒绝'),
     value: 2
   }
 ]
@@ -24,28 +26,28 @@ export default {
   menu: false,
   column: [
     {
-      label: '提交时间',
+      label: t('提交时间'),
       prop: 'createtime',
     },
     {
-      label: '用户名',
+      label: t('用户名'),
       prop: 'loginaccount',
     },
     {
-      label: '昵称',
+      label: t('昵称'),
       prop: 'uppercode',
     },
     {
-      label: '注册时间',
+      label: t('注册时间'),
       prop: 'updatetime',
     },
     {
-      label: '状态',
+      label: t('状态'),
       prop: 'status',
       dicData: statusOptions
     },
     {
-      label: '审核备注',
+      label: t('审核备注'),
       prop: 'remark',
     }
   ]

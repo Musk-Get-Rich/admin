@@ -6,7 +6,7 @@
       @expand-change="expandChange">
       <template #search>
         <el-row justify="space-between">
-          <Title name="会员管理" />
+          <Title :name="$t('会员管理')" />
         </el-row>
         <div class="border border-b-solid border-gray-300 py-6xl my-6xl">
           <el-button v-for="t in types" :key="t.value" :type="t.value === type ? 'primary' : ''"
@@ -27,8 +27,8 @@
               </span>
             </template>
             <div>
-              <div>主账户：代表用户主账户的所剩余额，不包含场馆内的余额</div>
-              <div>邀请账户：代表用户的分享钱包余额，不包含已提取的分享佣金</div>
+              <div>{{ $t('主账户：代表用户主账户的所剩余额，不包含场馆内的余额') }}</div>
+              <div>{{$t('邀请账户：代表用户的分享钱包余额，不包含已提取的分享佣金')}}</div>
             </div>
           </el-popover>
         </div>
@@ -45,11 +45,11 @@
               </span>
             </template>
             <div>
-              <div>静止户-只是注册，未完善好手机，银行卡和身份证资料。</div>
-              <div>正常户-手机，银行卡，身份证资料已完善好。</div>
-              <div>注销-该客户达到一定条件，要求注销自己账号。</div>
-              <div>停权户-涉及会员风控，对会员进行停权，登陆不上平台。</div>
-              <div>密码锁定-连续5次输错密码，系统进行锁定。</div>
+              <div>{{ $t('静止户-只是注册，未完善好手机，银行卡和身份证资料。') }}</div>
+              <div>{{ $t('正常户-手机，银行卡，身份证资料已完善好。') }}</div>
+              <div>{{ $t('注销-该客户达到一定条件，要求注销自己账号。') }}</div>
+              <div>{{ $t('停权户-涉及会员风控，对会员进行停权，登陆不上平台。') }}</div>
+              <div>{{ $t('密码锁定-连续5次输错密码，系统进行锁定。') }}</div>
             </div>
           </el-popover>
         </div>
@@ -68,7 +68,7 @@
         <div>
           <div>{{ isnormalOptions.find(a => String(a.value) === String(scope.row.isnormal))?.label }}</div>
           <div class="text-4xl">
-            <span>上级：</span>
+            <span>{{$t('上级：')}}</span>
             <span class="color-green">{{ scope.row.parentemployeeaccount ? scope.row.parentemployeeaccount : '无' }}</span>
           </div>
         </div>
@@ -128,12 +128,14 @@ import { ElMessageBox } from "element-plus";
 import { useUserStore } from "@/store/modules/user.store.js";
 import Other from "./components/other/index.vue"
 import {useRouter} from "vue-router";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 const router = useRouter()
 
 const menuList = [
-  { id: 1, icon: dollarCircle, tooltip: '玩家代存', path: '/report/playerDeposit' },
-  { id: 2, icon: coins, tooltip: '彩金赠送', path: '/report/bonus' },
+  { id: 1, icon: dollarCircle, tooltip: t('玩家代存'), path: '/report/playerDeposit' },
+  { id: 2, icon: coins, tooltip: t('彩金赠送'), path: '/report/bonus' },
   { id: 3, icon: shieldTick },
   { id: 4, icon: chart },
   { id: 5, icon: note },
@@ -143,11 +145,11 @@ const menuList = [
 const types = [
   {
     value: 1,
-    label: '会员管理'
+    label: t('会员管理')
   },
   {
     value: 0,
-    label: '需要维护'
+    label: t('需要维护')
   }
 ]
 
@@ -231,7 +233,7 @@ const menuClick = (item, data) => {
       })
     }
   } else {
-    ElMessageBox.alert('敬请期待', '温馨提示', {
+    ElMessageBox.alert(t('敬请期待'), t('温馨提示'), {
       confirmButtonText: 'OK',
       callback: (action) => {
       },

@@ -6,25 +6,25 @@
         @current-change="currentChange">
         <template #search>
           <el-row justify="space-between">
-              <Title name="下级管理" />
+              <Title :name="$t('下级管理')" />
           </el-row>
           <div class="border border-solid border-gray-300 py-8xl rounded-3xl my-5xl">
             <div class="grid grid-cols-4">
               <div class="flex flex-col justify-center items-center">
                 <div class="font-bold text-8xl color-green">{{ agentInfo.agentlinecode }}</div>
-                <div class="text-6xl text-gray-500 mt-5">主线账户</div>
+                <div class="text-6xl text-gray-500 mt-5">{{ $t('主线账户') }}</div>
               </div>
               <div class="flex flex-col justify-center items-center">
                 <div class="font-bold text-8xl">{{ agentInfo.loginaccount }}</div>
-                <div class="text-6xl text-gray-500 mt-5">团队名称</div>
+                <div class="text-6xl text-gray-500 mt-5">{{ $t('团队名称') }}</div>
               </div>
               <div class="flex flex-col justify-center items-center">
                 <div class="font-bold text-8xl">{{ agentInfo.countAgent || 0 }}</div>
-                <div class="text-6xl text-gray-500 mt-5">推广人数</div>
+                <div class="text-6xl text-gray-500 mt-5">{{ $t('推广人数') }}</div>
               </div>
               <div class="flex flex-col justify-center items-center">
                 <div class="font-bold text-8xl color-green">19/{{ agentInfo.countMember || 0 }}</div>
-                <div class="text-6xl text-gray-500 mt-5">裂变人数</div>
+                <div class="text-6xl text-gray-500 mt-5">{{ $t('裂变人数') }}</div>
               </div>
             </div>
           </div>
@@ -36,7 +36,7 @@
         </template>
         <template #menu-right>
           <el-button type="primary" icon="el-icon-plus" @click="handleAdd">
-            创建内部推广号
+            {{ $t('创建内部推广号') }}
           </el-button>
         </template>
         <template #playcount="{ row }">
@@ -47,10 +47,10 @@
         </template>
         <!-- <template #menu="{ row }">
           <el-button text type="warning" @click="handleChangePwd(row)">
-            修改密码
+            {{ $t('修改密码') }}
           </el-button>
           <el-button text type="primary" @click="handleQueryTeamResult(row.id)">
-            团队业绩查询
+            {{ $t('团队业绩查询') }}
           </el-button>
         </template> -->
       </avue-crud>
@@ -69,6 +69,8 @@ import { computed, ref } from "vue";
 import Title from "@/components/Title/index.vue";
 import { useUserStore } from "@/store/modules/user.store.js";
 import {useRouter} from "vue-router";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 const agentInfo = ref({})
 const router = useRouter()
@@ -80,15 +82,15 @@ const type = ref('')
 const types = [
   {
     value: '1',
-    label: '已开通推广员'
+    label: t('已开通推广员')
   },
   {
     value: '2',
-    label: '备选推广员'
+    label: t('备选推广员')
   },
   {
     value: '',
-    label: '全部'
+    label: t('全部')
   }
 ]
 
@@ -100,7 +102,7 @@ const handleChangePwd = () => {
   //     getTableData()
   //   }
   // })
-  ElMessageBox.alert('敬请期待', '温馨提示', {
+  ElMessageBox.alert(t('敬请期待'), t('温馨提示'), {
     confirmButtonText: 'OK',
     callback: (action) => {
     },
@@ -109,7 +111,7 @@ const handleChangePwd = () => {
 
 // 新增
 const handleAdd = () => {
-  ElMessageBox.alert('敬请期待', '温馨提示', {
+  ElMessageBox.alert(t('敬请期待'), t('温馨提示'), {
     confirmButtonText: 'OK',
     callback: (action) => {
     },
