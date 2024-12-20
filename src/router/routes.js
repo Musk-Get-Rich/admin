@@ -94,7 +94,7 @@ export const routes = [
         name: 'memberDeleteApply',
         component: () => import("@/views/modules/MemberDeleteApply/index.vue"),
         meta: {
-          auth: [1, 2, 3],
+          auth: [3],
           name: '会员注销申请',
           inactiveIcon: 'Sidebar/ProfileDelete-2.png',
           activeIcon: 'Sidebar/ProfileDelete-3.png'
@@ -106,7 +106,7 @@ export const routes = [
         component: () => import("@/views/modules/MemberDeleteApply/records/index.vue"),
         meta: {
           hidden: true,
-          auth: [1, 2, 3],
+          auth: [3],
           name: '会员注销申请记录',
           inactiveIcon: 'Sidebar/ProfileDelete-2.png',
           activeIcon: 'Sidebar/ProfileDelete-3.png'
@@ -117,7 +117,7 @@ export const routes = [
         name: 'memberLineChange',
         component: () => import("@/views/modules/MemberLineChange/index.vue"),
         meta: {
-          auth: [1, 2, 3],
+          auth: [3],
           name: '会员转线申请',
           inactiveIcon: 'Sidebar/user-square.png',
           activeIcon: 'Sidebar/user-square-1.png'
@@ -129,7 +129,7 @@ export const routes = [
         component: () => import("@/views/modules/MemberLineChange/records/index.vue"),
         meta: {
           hidden: true,
-          auth: [1, 2, 3],
+          auth: [3],
           name: '会员转线申请记录',
           inactiveIcon: 'Sidebar/user-square.png',
           activeIcon: 'Sidebar/user-square-1.png'
@@ -140,7 +140,7 @@ export const routes = [
         name: 'memberLevelChange',
         component: () => import("@/views/modules/MemberLevelChange/index.vue"),
         meta: {
-          auth: [1, 2, 3],
+          auth: [3],
           name: '会员调级申请',
           inactiveIcon: 'Sidebar/ProfileAdd-1.png',
           activeIcon: 'Sidebar/ProfileAdd-2.png'
@@ -152,7 +152,7 @@ export const routes = [
         component: () => import("@/views/modules/MemberLevelChange/records/index.vue"),
         meta: {
           hidden: true,
-          auth: [1, 2, 3],
+          auth: [3],
           name: '会员调级申请记录',
           inactiveIcon: 'Sidebar/ProfileAdd-1.png',
           activeIcon: 'Sidebar/ProfileAdd-2.png'
