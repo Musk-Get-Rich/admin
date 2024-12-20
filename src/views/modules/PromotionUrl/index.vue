@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card>
-      <Title name="推广网址" />
+      <Title :name="$t('推广网址')" />
 <!--      <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>-->
       <el-row>
 <!--        <DedicatedDomainMonitoring v-if="currentBtn === '专属域名监控'"></DedicatedDomainMonitoring>-->

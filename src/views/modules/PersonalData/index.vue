@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card>
-      <Title name="个人资料" />
+      <Title :name="$t('个人资料')" />
       <el-row v-for="(item,index) in list" :key="index">
         <el-col class="mt-20" :span="24">{{ item.title }}</el-col>
         <el-col
@@ -20,23 +20,23 @@
             type="success"
             color="#25D55B"
             @click="handleChange(i)"
-          >修改</el-button>
+          >{{ $t('修改') }}</el-button>
           <el-button
             v-if="i.isReset"
             class="ml-20 !border-double !border-gray-200 !px-30"
             round
             type="danger"
-            color="#fff">重置</el-button>
+            color="#fff">{{ $t('重置') }}</el-button>
         </el-col>
       </el-row>
       <el-row>
-        <el-col class="mt-20" :span="24">联系信息</el-col>
+        <el-col class="mt-20" :span="24">{{ $t('联系信息') }}</el-col>
         <el-col :span="24">
           <div class="mt-20 flex flex-col items-center border-t-1 border-r-1 border-t-solid border-l-1 border-l-solid border-r-solid border-gray-200">
             <div class="w-full h-70px bg-#E7F4EB flex items-center justify-center">
-              <div class="w-33% flex justify-center">联系方式</div>
-              <div class="w-33% flex justify-center">联系号码</div>
-              <div class="w-33% flex justify-center">操作</div>
+              <div class="w-33% flex justify-center">{{ $t('联系方式') }}</div>
+              <div class="w-33% flex justify-center">{{ $t('联系号码') }}</div>
+              <div class="w-33% flex justify-center">{{ $t('操作') }}</div>
             </div>
             <div
               class="w-full h-46px flex justify-center items-center border-b-1 border-b-solid border-gray-200 text-14"
@@ -45,7 +45,7 @@
             >
               <div class="w-33% flex justify-center">{{ item.contactDetails }}</div>
               <div class="w-33% flex justify-center">{{ item.phone }}</div>
-              <div @click="handleChange(item)" class="w-33% flex justify-center text-#25D55B cursor-pointer">编辑</div>
+              <div @click="handleChange(item)" class="w-33% flex justify-center text-#25D55B cursor-pointer">{{ $t('编辑') }}</div>
             </div>
           </div>
         </el-col>
@@ -61,6 +61,8 @@ import {useChangePassword} from "@/views/modules/PersonalData/hook/changePasswor
 import {useChangeOtherContacts} from "@/views/modules/PersonalData/hook/changeOtherContacts.js";
 import {useChangeTelegram} from "@/views/modules/PersonalData/hook/changeTelegram.js";
 import {useUserStore} from "@/store/modules/user.store.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 const userStore = useUserStore()
 
@@ -94,22 +96,22 @@ const handleChange = (data) => {
 
 const list = computed(() => [
   {
-    title: '个人资料',
+    title: t('个人资料'),
     items: [
       {
-        label: '姓名',
+        label: t('姓名'),
         value: userStore.userInfo.displayalias,
         isEdit: false,
         isReset: false
       },
       {
-        label: '代理账号',
+        label: t('代理账号'),
         value: userStore.userInfo.displayalias,
         isEdit: false,
         isReset: false
       },
       {
-        label: '登录密码',
+        label: t('登录密码'),
         value: '*******',
         isEdit: true,
         isReset: false,
@@ -118,17 +120,17 @@ const list = computed(() => [
     ]
   },
   {
-    title: '安全信息',
+    title: t('安全信息'),
     items: [
       {
-        label: '邮箱地址',
-        value: userStore.userInfo.email || '未设置邮箱',
+        label: t('邮箱地址'),
+        value: userStore.userInfo.email || t('未设置邮箱'),
         isEdit: false,
         isReset: false
       },
       {
-        label: '支付密码',
-        value: userStore.userInfo.fundpassword === 'false' ? '未设置支付密码' : '******',
+        label: t('支付密码'),
+        value: userStore.userInfo.fundpassword === 'false' ? t('未设置支付密码') : '******',
         isEdit: true,
         isReset: false,
         type: 'fundPassword'
@@ -144,7 +146,7 @@ const tableData = ref([
     type: 'telegram'
   },
   {
-    contactDetails: '其他联系方式',
+    contactDetails: t('其他联系方式'),
     phone: userStore.userInfo.otherimno1 || '--',
     type: 'other'
   }

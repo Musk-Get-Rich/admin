@@ -4,7 +4,7 @@
       <el-select
         class="!w-240px mr-10"
         v-model="value"
-        placeholder="请选择类型"
+        :placeholder="$t('请选择类型')"
       >
         <el-option
           v-for="item in options"
@@ -16,7 +16,7 @@
       <el-select
         class="!w-240px mr-10"
         v-model="value"
-        placeholder="请选择标题"
+        :placeholder="$t('请选择标题')"
       >
         <el-option
           v-for="item in options"
@@ -28,7 +28,7 @@
       <el-select
         class="!w-240px mr-10"
         v-model="value"
-        placeholder="请选择尺寸"
+        :placeholder="$t('请选择尺寸')"
       >
         <el-option
           v-for="item in options"
@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import TimeSelect from "./TimeSelect.vue"
+import TimeSelect from "@/components/TimeSelect"
 
 const emit = defineEmits(['search', 'refresh'])
 

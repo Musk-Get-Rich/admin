@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col">
     <div class="mb-30 w-700 pt-5px">
-      <el-input class="!w-240 mr-10" v-model="form.username" placeholder="请输入用户名" />
+      <el-input class="!w-240 mr-10" v-model="form.username" :placeholder="$t('请输入用户名')" />
       <el-select
         v-model="form.value"
-        placeholder="请选择"
+        :placeholder="$t('请选择')"
         style="width: 240px"
       >
         <el-option

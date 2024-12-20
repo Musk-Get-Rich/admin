@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
     <div class="mb-30">
-      <el-input v-model="username" style="width: 240px" placeholder="会员账号" />
+      <el-input v-model="username" style="width: 240px" :placeholder="$t('会员账号')" />
     </div>
     <TimeSelect
       @search="onSearch"

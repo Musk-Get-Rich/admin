@@ -1,4 +1,6 @@
 import {globalOption} from "@/config/tabOption.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 export default {
   ...globalOption,
@@ -10,31 +12,31 @@ export default {
   menu: false,
   column: {
     reportday: {
-      label: '日期',
+      label: t('日期'),
     },
     newplay: {
-      label: '注册人数',
+      label: t('注册人数'),
     },
     liveplay:{
-      label: '活跃人数',
+      label: t('活跃人数'),
     },
     betamount:{
-      label: '投注金额',
+      label: t('投注金额'),
     },
     betnum: {
-      label: '投注人数',
+      label: t('投注人数'),
     },
     newplayvalid: {
-      label: '新增有效',
+      label: t('新增有效'),
     },
     firstwithdrawalnum:{
-      label: '首提人数',
+      label: t('首提人数'),
     },
     firstbetnum: {
-      label: '首投人数',
+      label: t('首投人数'),
     },
     betnetamount: {
-      label: '首投金额',
+      label: t('首投金额'),
     }
   }
 }

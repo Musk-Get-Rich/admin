@@ -11,7 +11,7 @@
       @current-change="currentChange"
     >
       <template #search>
-        <Title name="游戏记录" />
+        <Title :name="$t('游戏记录')" />
         <div class="flex mb-10">
           <Search @search="onSearch" @refresh="onRefresh"/>
         </div>
@@ -29,8 +29,8 @@
         </div>
       </template>
       <template #canLink="{ row }">
-        <el-button v-if="+row.canLink === 1" type="success">是</el-button>
-        <el-button v-else type="danger">否</el-button>
+        <el-button v-if="+row.canLink === 1" type="success">{{ $t('是') }}</el-button>
+        <el-button v-else type="danger">{{ $t('否') }}</el-button>
       </template>
     </avue-crud>
   </el-card>

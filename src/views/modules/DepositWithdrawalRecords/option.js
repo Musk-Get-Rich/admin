@@ -1,4 +1,6 @@
 import {globalOption} from "@/config/tabOption.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 export default {
   ...globalOption,
@@ -10,19 +12,19 @@ export default {
   menu: false,
   column: {
     depositAmount: {
-      label: '编号',
+      label: t('编号'),
     },
     withdrawalAmount: {
-      label: '会员账号',
+      label: t('会员账号'),
     },
     winLoss:{
-      label: '金额',
+      label: t('金额'),
     },
     totalBonusAmount:{
-      label: '资金类型',
+      label: t('资金类型'),
     },
     fee:{
-      label: '完成时间',
+      label: t('完成时间'),
     },
   }
 }

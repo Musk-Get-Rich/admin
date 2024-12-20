@@ -1,4 +1,6 @@
 import {globalOption} from "@/config/tabOption.js";
+import i18n from "@/i18n/index.js";
+const t = i18n.global.t
 
 export default {
   ...globalOption,
@@ -11,27 +13,27 @@ export default {
   menu: false,
   column: [
     {
-      label: '日期',
+      label: t('日期'),
       prop: 'orderdate',
     },
     {
-      label: '代理账号',
+      label: t('代理账号'),
       prop: 'agentthreelevelname',
     },
     {
-      label: '单号',
+      label: t('单号'),
       prop: 'ordernumber',
     },
     {
-      label: '金额(HKD)',
+      label: t('金额(HKD)'),
       prop: 'orderamount',
     },
     {
-      label: '状态',
+      label: t('状态'),
       prop: 'orderstatus',
     },
     {
-      label: '备注',
+      label: t('备注'),
       prop: 'employeepaymentname',
     },
   ]

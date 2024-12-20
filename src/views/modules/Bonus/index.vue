@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card>
-      <Title name="彩金赠送" />
+      <Title :name="$t('彩金赠送')" />
       <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
       <Bonus v-show="currentBtn === '彩金'"></Bonus>
       <BonusRecords v-if="currentBtn === '彩金记录'"></BonusRecords>

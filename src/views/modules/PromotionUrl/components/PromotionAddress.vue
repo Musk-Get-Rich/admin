@@ -9,7 +9,7 @@
       <el-col :span="24" class="h-full flex flex-col items-center justify-center">
         <el-row class="!w-full">
           <el-col :span="24" class="mb-10 text-#25D55B">
-            链接{{ index + 1 }}：
+            {{$t('链接')+ index + 1}}：
           </el-col>
           <el-row class="!w-full py-12 flex justify-between items-center  bg-#25D55B1A px-20px rounded-8px">
             <div class="w-80% text-overflow-1">{{ item.domainlink }}</div>
@@ -18,7 +18,7 @@
                 type="success"
                 round
                 @click="copy(item.domainlink)"
-              >复制
+              >{{ $t('复制') }}
                 <el-icon class="el-icon--right">
                   <Connection/>
                 </el-icon>

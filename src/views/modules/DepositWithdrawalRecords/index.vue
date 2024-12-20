@@ -11,7 +11,7 @@
       @current-change="currentChange"
     >
       <template #search>
-        <Title name="存提款记录" />
+        <Title :name="$t('存提款记录')" />
         <div class="flex mb-10">
           <Search @search="onSearch" @refresh="onRefresh"/>
         </div>
