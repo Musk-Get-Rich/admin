@@ -47,7 +47,8 @@ export const useChangeTelegram = () => {
       option,
       submit(formData, done, cancel) {
         apiEditAgent({
-          ...formData
+          ...formData,
+          parentemployeecode: userStore.userInfo.employeecode,
         }).then(res => {
           done()
           userStore.changeUserInfo()

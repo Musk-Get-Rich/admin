@@ -45,14 +45,14 @@
         <template #employeestatus="{ row }">
           <!-- <span class="color-green">已开通</span> -->
         </template>
-        <template #menu="{ row }">
+        <!-- <template #menu="{ row }">
           <el-button text type="warning" @click="handleChangePwd(row)">
             修改密码
           </el-button>
           <el-button text type="primary" @click="handleQueryTeamResult(row.id)">
             团队业绩查询
           </el-button>
-        </template>
+        </template> -->
       </avue-crud>
     </el-card>
   </div>

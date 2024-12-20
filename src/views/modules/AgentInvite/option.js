@@ -7,6 +7,7 @@ export default {
   index: true,
   refreshBtn: false,
   columnBtn: false,
+  menu: false,
   column: [
     {
       label: '推广员(会员)',

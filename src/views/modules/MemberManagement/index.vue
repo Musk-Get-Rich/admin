@@ -84,7 +84,7 @@
           <Other :tableData="row.otherList" />
         </div>
       </template>
-      <template #_actions="{ row }">
+      <!-- <template #_actions="{ row }">
         <div class="grid grid-cols-2 gap-4 w-full">
           <div v-for="item in menuList" :key="item.id" class="p-4">
             <template v-if="item.tooltip">
@@ -104,7 +104,7 @@
             </div>
           </div>
         </div>
-      </template>
+      </template> -->
     </avue-crud>
   </el-card>
 </template>
