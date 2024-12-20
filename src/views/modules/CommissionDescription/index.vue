@@ -2,7 +2,7 @@
   <div>
     <el-card>
       <Title :name="$t('佣金说明')"/>
-      <el-row>
+      <!-- <el-row>
         <el-select
           v-model="value"
           placeholder="Select"
@@ -16,7 +16,7 @@
             :value="item.value"
           />
         </el-select>
-      </el-row>
+      </el-row> -->
       <el-row class="mt-20">
         <el-col :span="25" class="mt-20">
           <el-table :data="tableData" style="width: 100%" :header-cell-style="{background:'#E7F4EB'}">
