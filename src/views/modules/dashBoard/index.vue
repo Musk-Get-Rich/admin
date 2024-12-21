@@ -93,7 +93,7 @@
               <div class="flex items-center justify-center flex-col">
                 <img class="w-48" src="@/assets/images/home/Group1597886563.png" alt="">
                 <div class="mt-15 mb-8">净输赢</div>
-                <div class="text-#04d5f1 text-16">{{ info.winlose ?? 0 }}</div>
+                <div class="text-#04d5f1 text-16">{{ info.profit ?? 0 }}</div>
               </div>
               <div class="flex items-center justify-center flex-col">
                 <img class="w-48" src="@/assets/images/home/Group1597886566.png" alt="">
