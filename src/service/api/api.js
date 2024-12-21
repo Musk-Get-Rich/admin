@@ -151,3 +151,10 @@ export const apiBonusRecord = (params) => {
     ...params,
   })
 }
+
+// 获取推广素材
+export const apiListActivityData = (params) => {
+  return requestFunc('/ActivityInfo/ListActivityData', {
+    ...params,
+  })
+}

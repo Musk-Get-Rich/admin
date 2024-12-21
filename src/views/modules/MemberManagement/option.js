@@ -125,9 +125,9 @@ export default {
       label: t('操作'),
       prop: '_actions',
     },
-    {
-      label: t('其它参考'),
-      prop: 'other',
-    },
+    // {
+    //   label: t('其它参考'),
+    //   prop: 'other',
+    // },
   ]
 }
