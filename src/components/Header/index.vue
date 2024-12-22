@@ -91,6 +91,9 @@ import {storeToRefs} from "pinia";
 import {useI18n} from "vue-i18n";
 import {LANGUAGE} from "@/config/storageKey.js";
 import {imageSrc} from "@/utils/index.js";
+import zhCn from 'element-plus/es/locale/lang/zh-cn';
+import en from 'element-plus/es/locale/lang/en';
+import App from "@/App.vue";
 
 const {locale} = useI18n()
 

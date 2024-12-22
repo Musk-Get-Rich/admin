@@ -4,7 +4,7 @@
       <Title :name="$t('联系我们')" />
       <div class="text-16px text-#3A3541 mb-20 font-600">{{$t('投诉箱')}}</div>
       <el-row class="!w-full items-center mb-20">
-        <span class="mr-10 block w-80px text-right">{{$t('意见类型')}}</span>
+        <span class="mr-10 block w-120px text-right">{{$t('意见类型')}}</span>
         <el-select
           v-model="formDataComplaintBox.questiontype"
           class="!w-571px"
@@ -20,7 +20,7 @@
         </el-select>
       </el-row>
       <el-row class="!w-full items-center">
-        <span class="mr-10 block w-80px text-right">{{ $t('描述') }}</span>
+        <span class="mr-10 block w-120px text-right">{{ $t('描述') }}</span>
         <el-input
           v-model="formDataComplaintBox.Description"
           class="!w-571px !h-92px"
@@ -29,10 +29,10 @@
           :placeholder="$t('请输入您的描述')"
         />
       </el-row>
-      <el-row class="pl-90 mt-20">
+      <el-row class="pl-130 mt-20">
         <Upload v-model:images="formDataComplaintBox.piclink"/>
       </el-row>
-      <el-row class="pl-90 mt-20">
+      <el-row class="pl-130 mt-20">
         <el-button
           class="!w-300px !h-46px !rounded-40px !bg-#25D55B"
           type="success"
@@ -45,7 +45,7 @@
       <div class="text-16px text-#3A3541 mb-20 mt-50 font-600">{{ $t('回电服务') }}</div>
       <div class="mt-20 text-14px text-#3A3541 mb-40">{{ $t('本公司提供24小时全天候的高素质客户服务热线，及多种语言选择，包括中文、台语及英语，如有任何疑问请与我们联系。') }}</div>
       <el-row class="!w-full items-center mb-20">
-        <span class="mr-10 block w-80px text-right">{{ $t('问题类型') }}</span>
+        <span class="mr-10 block w-120px text-right">{{ $t('问题类型') }}</span>
         <el-select
           v-model="formDataCallbackService.questiontype"
           class="!w-571px"
@@ -61,7 +61,7 @@
         </el-select>
       </el-row>
       <el-row class="!w-full items-center mb-20">
-        <span class="mr-10 block w-80px text-right">{{ $t('语言') }}</span>
+        <span class="mr-10 block w-120px text-right">{{ $t('语言') }}</span>
         <el-select
           v-model="formDataCallbackService.language"
           class="!w-571px"
@@ -77,7 +77,7 @@
         </el-select>
       </el-row>
       <el-row class="!w-full items-center mb-20">
-        <span class="mr-10 block w-80px text-right">{{ $t('手机号码') }}</span>
+        <span class="mr-10 block w-120px text-right">{{ $t('手机号码') }}</span>
         <el-input
           v-model="formDataCallbackService.phonenumber"
           size="large"
@@ -85,7 +85,7 @@
           :placeholder="$t('+请加上区域码，例如大陆地区+86，台湾地区+886')"
         />
       </el-row>
-      <el-row class="pl-90 mt-20">
+      <el-row class="pl-130 mt-20">
         <el-button
           class="!w-300px !h-46px !rounded-40px !bg-#25D55B"
           type="success"

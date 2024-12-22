@@ -67,6 +67,10 @@ const onSearch = (val) => {
 }
 
 const onRefresh = () => {
+  form.value = {
+    username: '',
+    selectVal: 2
+  }
   emit('refresh')
   // getTableData({})
 }

@@ -33,7 +33,7 @@
     </avue-crud>
     <div
       @click="handleAddUSDTAddress"
-      class="w-150px h-36px flex items-center justify-center rounded-30px text-14 cursor-pointer border-1 border-solid border-#25D55B mt-30 mb-40 text-#25D55B">
+      class="w-220px h-36px flex items-center justify-center rounded-30px text-14 cursor-pointer border-1 border-solid border-#25D55B mt-30 mb-40 text-#25D55B">
       <img class="w-20" src="@/assets/images/finance/add.png" alt="">
       <span>{{ $t('添加加密钱包') }}</span>
     </div>
