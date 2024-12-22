@@ -32,5 +32,6 @@ export const apiAddUSDTWallet = (params) => {
 
 // 联系我们
 export const apiContactUs = (params) => {
+  console.log(params);
   return requestFunc('/AgentNew/addComplaint', params)
 }
