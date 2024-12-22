@@ -37,9 +37,20 @@ export const routes = [
       {
         path: 'announcement',
         name: 'announcement',
-        component: () => import("@/views/modules/dashBoard/index.vue"),
+        component: () => import("@/views/modules/Announcement/index.vue"),
         meta: {
           name: '公告',
+          inactiveIcon: 'Sidebar/Message24.png',
+          activeIcon: 'Sidebar/Message25.png'
+        },
+      },
+      {
+        path: 'announcement/detail',
+        name: 'announcementDetail',
+        component: () => import("@/views/modules/Announcement/detail.vue"),
+        meta: {
+          hidden: true,
+          name: '公告详情',
           inactiveIcon: 'Sidebar/Message24.png',
           activeIcon: 'Sidebar/Message25.png'
         },

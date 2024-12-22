@@ -108,12 +108,12 @@ const language = {
     icon: imageSrc('nation/zh_CN.png')
   },
   'zh-TW': {
-    title: '繁体中文',
+    title: '繁體中文',
     value: 'zh-TW',
     icon: imageSrc('nation/zh_TW.png')
   },
   'en': {
-    title: '英语',
+    title: 'English',
     value: 'en',
     icon: imageSrc('nation/en.png')
   },
