@@ -11,17 +11,21 @@ export default {
   emptyBtn: false,
   column: [
     {
-      label: t('转出账户'),
+      label: t('代理账号'),
       prop: 'loginaccount',
     },
-    {
-      label: t('转入账户'),
-      prop: 'depositMoney',
-    },
-    {
-      label: t('转入玩家'),
-      prop: 'withdrawMoney',
-    },
+    // {
+    //   label: t('转出账户'),
+    //   prop: 'loginaccount',
+    // },
+    // {
+    //   label: t('转入账户'),
+    //   prop: 'depositMoney',
+    // },
+    // {
+    //   label: t('转入玩家'),
+    //   prop: 'withdrawMoney',
+    // },
     {
       label: t('订单号'),
       prop: 'computeMoney',
