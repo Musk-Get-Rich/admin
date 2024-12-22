@@ -29,3 +29,8 @@ export const apiAddUSDTWallet = (params) => {
   console.log(params);
   return requestFunc('/AgentNew/AddUWallet', params)
 }
+
+// 联系我们
+export const apiContactUs = (params) => {
+  return requestFunc('/AgentNew/addComplaint', params)
+}
