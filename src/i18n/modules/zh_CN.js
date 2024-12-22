@@ -466,4 +466,11 @@ export default {
   '请输入您的描述': '请输入您的描述',
   '如您有任何相关问题，希望通过电子邮件与我们联系，请发邮件到下方地址，我们专业的客服人员，将尽速回复您的疑问，谢谢!': '如您有任何相关问题，希望通过电子邮件与我们联系，请发邮件到下方地址，我们专业的客服人员，将尽速回复您的疑问，谢谢!',
   '电子邮件客服': '电子邮件客服',
+
+  '平台公告':'Platform Announcement',
+  '会员信息':'Member Information',
+  '体育公告':'Sports Announcement',
+  '真人公告':'Live Announcement',
+  '彩票公告':'Lottery Announcement',
+  '代理取款':'Agent Withdrawal',
 };
