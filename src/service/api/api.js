@@ -158,3 +158,10 @@ export const apiListActivityData = (params) => {
     ...params,
   })
 }
+
+// 获取Vip专享详情
+export const apiListActivityInfo = (params) => {
+  return requestFunc('/ActivityInfo/info', {
+    ...params,
+  })
+}

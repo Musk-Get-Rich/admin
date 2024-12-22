@@ -421,6 +421,17 @@ export const routes = [
         },
       },
       {
+        path: 'vipExclusive/detail',
+        name: 'vipExclusiveDetail',
+        component: () => import("@/views/modules/VipExclusive/detail.vue"),
+        meta: {
+          hidden: true,
+          name: '活动详情',
+          inactiveIcon: 'Sidebar/Message24.png',
+          activeIcon: 'Sidebar/Message25.png'
+        },
+      },
+      {
         path: 'commissionDescription',
         name: 'commissionDescription',
         component: () => import("@/views/modules/CommissionDescription"),
