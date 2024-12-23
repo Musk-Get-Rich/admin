@@ -37,7 +37,8 @@ const toRouter = (item) => {
 }
 
 const handleClick = (btn) => {
-  currentBtn.value = btn
+  currentBtn.value = btn;
+  list.value = []
   // 根据字符串在数组中查找下标
   const index = btns.value.indexOf(btn)
   getList(index + 1)
@@ -47,9 +48,9 @@ const list = ref([])
 
 const getList = (index = 1) => {
   apiNotic({
-    isroll: 0,
-    type: index,
-    notictype: 3
+    isroll: 0 + '',
+    notickind: index + '',
+    notictype: '3'
   }).then(res => {
     console.log(res)
     list.value = res.list
