@@ -165,3 +165,10 @@ export const apiListActivityInfo = (params) => {
     ...params,
   })
 }
+
+// 获取公告
+export const apiNotic = (params) => {
+  return requestFunc('/Notic/Notic', {
+    ...params,
+  })
+}

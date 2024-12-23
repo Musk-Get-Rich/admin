@@ -4,48 +4,61 @@
       <Title :name="$t('公告')" />
      <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
       <el-row>
-        <Item @click="toRouter" />
+        <Item @click="toRouter(item)" v-for="(item,index) in list" :key="index" :item="item"/>
       </el-row>
     </el-card>
   </div>
 </template>
 
 <script setup>
+import {ref,onMounted} from "vue";
 import {useRouter} from "vue-router";
 import Title from "@/components/Title/index.vue";
 import Item from './components/Item.vue';
 import Tabs from "@/components/Tabs";
-import {apiPromotionWebsite} from "@/service/api/api.js";
+import {apiNotic} from "@/service/api/api.js";
 
 const router = useRouter()
 
-const currentBtn = ref('平台公告')
+const currentBtn = ref('资讯')
 
-const btns = ref(['平台公告','会员信息','体育公告','真人公告','彩票公告'])
+// const btns = ref(['平台公告','会员信息','体育公告','真人公告','彩票公告'])
+const btns = ref(['资讯','维护','活动','其他'])
 
 const toRouter = (item) => {
   router.push({
     path: '/top/announcement/detail',
     query: {
-      id: item.id
+      title: item.title,
+      content: item.content,
+      time: item.createtime,
     }
   })
 }
 
 const handleClick = (btn) => {
-  console.log(btn)
   currentBtn.value = btn
+  // 根据字符串在数组中查找下标
+  const index = btns.value.indexOf(btn)
+  getList(index + 1)
 }
 
 const list = ref([])
 
-apiPromotionWebsite({
-  parentemployeecode: null
-}).then(res => {
-  list.value = res
-  console.log(res);
-})
+const getList = (index = 1) => {
+  apiNotic({
+    isroll: 0,
+    type: index,
+    notictype: 3
+  }).then(res => {
+    console.log(res)
+    list.value = res.list
+  })
+}
 
+onMounted(() => {
+  getList()
+})
 </script>
 
 <style lang="scss" scoped>
