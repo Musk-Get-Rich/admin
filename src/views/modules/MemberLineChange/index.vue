@@ -109,7 +109,7 @@ const submitForm = (formEl) => {
                   },
                 ]"
             >
-              <el-input v-model="formData.loginaccount" />
+              <el-input v-model="formData.loginaccount" :placeholder="$t('请输入会员账号')" />
             </el-form-item>
 <!--            <el-form-item-->
 <!--                prop="link"-->
@@ -126,22 +126,29 @@ const submitForm = (formEl) => {
 <!--            </el-form-item>-->
             <el-form-item
                 prop="terminal"
-                :label="$t('终端')"
+                :label="$t('需转代理线')"
                 :rules="[
                   {
                     required: true,
-                    message: $t('请输入终端'),
+                    message: $t('请输入代理引荐码'),
                     trigger: 'blur',
                   },
                 ]"
             >
-              <el-input v-model="formData.terminal" />
+              <el-input v-model="formData.terminal" :placeholder="$t('请输入代理引荐码')" />
             </el-form-item>
             <el-form-item
                 prop="remark"
-                :label="$t('备注')"
+                :label="$t('情况说明')"
+                :rules="[
+                  {
+                    required: true,
+                    message: $t('请输入情况说明'),
+                    trigger: 'blur',
+                  },
+                ]"
             >
-              <el-input v-model="formData.remark" />
+              <el-input v-model="formData.remark" :placeholder="$t('请输入情况说明')" />
             </el-form-item>
             <el-form-item class="pl-80">
               <el-button type="primary" @click="submitForm(formRef)">{{ $t('提交申请') }}</el-button>

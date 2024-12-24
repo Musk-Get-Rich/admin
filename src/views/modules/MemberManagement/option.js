@@ -68,7 +68,7 @@ export default {
     },
     {
       label: t('存款/提款'),
-      prop: 'hasDeposit',
+      prop: 'accumulateddeposit_accumulatedwithdraw',
       search: true,
       searchLabel: '',
       placeholder: t('是否存款'),
@@ -83,23 +83,27 @@ export default {
           label: t('否'),
           value: 0
         }
-      ]
+      ],
+      sortable: true
     },
     {
       label: t('净输赢'),
       prop: 'winlose',
+      sortable: true
     },
-    {
-      label: t('手机号/邮箱'),
-      prop: 'phoneOrEmail',
-    },
+    // {
+    //   label: t('手机号/邮箱'),
+    //   prop: 'phoneOrEmail',
+    // },
     {
       label: t('创建时间'),
       prop: 'logindatetime',
+      sortable: true
     },
     {
       label: t('最后登录'),
       prop: 'lastlogintime',
+      sortable: true
     },
     {
       label: t('状态'),

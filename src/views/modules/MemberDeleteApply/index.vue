@@ -108,7 +108,7 @@ const submitForm = async (formEl) => {
                   },
                 ]"
             >
-              <el-input v-model="formData.loginaccount" />
+              <el-input v-model="formData.loginaccount" :placeholder="$t('请输入会员账号')" />
             </el-form-item>
             <el-form-item
                 prop="remark"
@@ -121,7 +121,7 @@ const submitForm = async (formEl) => {
                   },
                 ]"
             >
-              <el-input v-model="formData.remark" />
+              <el-input v-model="formData.remark" :placeholder="$t('请输入原因说明')" />
             </el-form-item>
             <el-form-item class="pl-80">
               <el-button type="primary" @click="submitForm(formRef)">{{ $t('提交申请') }}</el-button>

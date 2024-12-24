@@ -6,11 +6,13 @@ import { useRouter } from "vue-router";
 import { apiAgentLevelChange, apiAgentLevelStatistics } from "@/service/api/api.js";
 import { ElMessage } from "element-plus";
 import Helper from './helper/index.vue'
+import {useRoute} from "vue-router";
 
 const router = useRouter()
 const info = ref({})
 const formRef = ref();
 const helperRef = ref();
+const route = useRoute()
 
 const formData = reactive({
   picurl: '',
@@ -20,6 +22,7 @@ const formData = reactive({
   platformusername: '',
   remark: ''
 })
+formData.loginaccount = route.query.loginaccount || ''
 
 onMounted(() => {
   apiAgentLevelStatistics().then(res => {
@@ -108,7 +111,7 @@ const submitForm = (formEl) => {
                   },
                 ]"
             >
-              <el-input v-model="formData.loginaccount" />
+              <el-input v-model="formData.loginaccount" :placeholder="$t('请输入会员账号')" />
             </el-form-item>
             <el-form-item
                 prop="platformuserlevel"
@@ -121,7 +124,7 @@ const submitForm = (formEl) => {
                   },
                 ]"
             >
-              <el-input v-model="formData.platformuserlevel" />
+              <el-input v-model="formData.platformuserlevel" :placeholder="$t('请输入其他平台等级')" />
             </el-form-item>
             <el-form-item
                 prop="platformlinkurl"
@@ -134,7 +137,7 @@ const submitForm = (formEl) => {
                   },
                 ]"
             >
-              <el-input v-model="formData.platformlinkurl" />
+              <el-input v-model="formData.platformlinkurl" :placeholder="$t('请输入其他平台链接')" />
             </el-form-item>
             <el-form-item
                 prop="platformusername"
@@ -147,13 +150,13 @@ const submitForm = (formEl) => {
                   },
                 ]"
             >
-              <el-input v-model="formData.platformusername" />
+              <el-input v-model="formData.platformusername" :placeholder="$t('请输入其他平台账号')" />
             </el-form-item>
             <el-form-item
                 prop="remark"
                 :label="$t('备注')"
             >
-              <el-input v-model="formData.remark" />
+              <el-input v-model="formData.remark" :placeholder="$t('请输入备注')" />
             </el-form-item>
             <el-form-item class="pl-80">
               <el-button type="primary" @click="submitForm(formRef)">{{ $t('提交申请') }}</el-button>

@@ -3,7 +3,7 @@
     <avue-crud ref="tableRef" :key="JSON.stringify(customOptions)" :table-loading="tableLoading" :data="tableData"
       :option="customOptions" v-model:page="pageObj" @refresh-change="getTableData" @search-change="onSearch"
       @search-reset="onSearchReset" @size-change="sizeChange" @current-change="currentChange"
-      @expand-change="expandChange">
+      @expand-change="expandChange" @sort-change="sortChange">
       <template #search>
         <el-row justify="space-between">
           <Title :name="$t('会员管理')" />
@@ -28,7 +28,7 @@
             </template>
             <div>
               <div>{{ $t('主账户：代表用户主账户的所剩余额，不包含场馆内的余额') }}</div>
-              <div>{{$t('邀请账户：代表用户的分享钱包余额，不包含已提取的分享佣金')}}</div>
+              <div>{{ $t('邀请账户：代表用户的分享钱包余额，不包含已提取的分享佣金') }}</div>
             </div>
           </el-popover>
         </div>
@@ -61,20 +61,25 @@
       <template #loginaccount="scope">
         <div class="flex justify-center items-center">
           <div>{{ scope.row.loginaccount }}</div>
-          <img class="w-20 h-20 object-cover" src="@/assets/images/login/shield-tick.png" alt="">
+          <img class="w-20 h-20 object-cover" :src="getImg(scope.row)" alt="">
         </div>
       </template>
       <template #isnormal="scope">
         <div>
           <div>{{ isnormalOptions.find(a => String(a.value) === String(scope.row.isnormal))?.label }}</div>
           <div class="text-4xl">
-            <span>{{$t('上级：')}}</span>
-            <span class="color-green">{{ scope.row.parentemployeeaccount ? scope.row.parentemployeeaccount : '无' }}</span>
+            <span>{{ $t('上级：') }}</span>
+            <span class="color-green">{{ scope.row.parentemployeeaccount ? scope.row.parentemployeeaccount : '无'
+              }}</span>
           </div>
         </div>
       </template>
-      <template #hasDeposit="scope">
-        <span>{{ scope.row.accumulateddeposit || 0 }} / {{ scope.row.accumulatedwithdraw }}</span>
+      <template #accumulateddeposit_accumulatedwithdraw="scope">
+        <div>{{ scope.row.accumulateddeposit || 0 }}</div>
+        <div>{{ scope.row.accumulatedwithdraw || 0 }}</div>
+      </template>
+      <template #winlose="scope">
+        <div :class="+scope.row.winlose >= 0 ? 'color-red' : 'color-green'">{{ scope.row.winlose }}</div>
       </template>
       <template #other="{ row }">
         <img @click="toggleExpand(row, 'other')" class="w-24" src="@/assets/images/add-circle.png" alt="">
@@ -84,16 +89,11 @@
           <Other :tableData="row.otherList" />
         </div>
       </template>
-      <!-- <template #_actions="{ row }">
+      <template #_actions="{ row }">
         <div class="grid grid-cols-2 gap-4 w-full">
           <div v-for="item in menuList" :key="item.id" class="p-4">
             <template v-if="item.tooltip">
-              <el-tooltip
-                class="box-item"
-                effect="dark"
-                :content="item.tooltip"
-                placement="top"
-              >
+              <el-tooltip class="box-item" effect="dark" :content="item.tooltip" placement="top">
                 <div class="p-3 cursor-pointer" @click="menuClick(item, row)">
                   <img class="w-20 h-20 object-cover" :src="item.icon" :alt="item.name">
                 </div>
@@ -104,7 +104,7 @@
             </div>
           </div>
         </div>
-      </template> -->
+      </template>
     </avue-crud>
   </el-card>
 </template>
@@ -127,8 +127,11 @@ import addCircle from '@/assets/images/login/add-circle.png'
 import { ElMessageBox } from "element-plus";
 import { useUserStore } from "@/store/modules/user.store.js";
 import Other from "./components/other/index.vue"
-import {useRouter} from "vue-router";
+import { useRouter } from "vue-router";
 import i18n from "@/i18n/index.js";
+import tick from "@/assets/images/login/shield-tick.png";
+import blackTick from "@/assets/images/login/shield-tick-black.png";
+import yellowTick from "@/assets/images/login/shield-tick-yellow.png";
 const t = i18n.global.t
 
 const router = useRouter()
@@ -136,10 +139,10 @@ const router = useRouter()
 const menuList = [
   { id: 1, icon: dollarCircle, tooltip: t('玩家代存'), path: '/report/playerDeposit' },
   { id: 2, icon: coins, tooltip: t('彩金赠送'), path: '/report/bonus' },
-  { id: 3, icon: shieldTick },
-  { id: 4, icon: chart },
-  { id: 5, icon: note },
-  { id: 6, icon: addCircle }
+  // { id: 3, icon: shieldTick },
+  { id: 4, icon: chart, tooltip: t('存提款记录'), path: '/member/depositWithdrawalRecords' },
+  { id: 5, icon: note, tooltip: t('游戏记录'), path: '/member/gameRecords' },
+  { id: 6, icon: addCircle, tooltip: t('会员调级申请'), path: '/managementCenter/memberLevelChange' }
 ]
 
 const types = [
@@ -166,10 +169,16 @@ const tableSearch = useTableSearch()
 
 const userStore = useUserStore()
 
+const page = reactive({
+  orderBy: '',
+  order: ''
+})
+
 const fetchList = (params) => {
   if (type.value === 1) {
     return apiGetVipList({
       ...params,
+      ...page,
       employeecode: undefined,
       parentemployeecode: userStore.userInfo.employeecode
     })
@@ -205,6 +214,14 @@ const toggleExpand = (row) => {
   tableRef.value.toggleRowExpansion(row);
 }
 
+const sortChange = ({ prop, order }) => {
+  // prop: 排序字段  
+  // order: 排序方式 ascending/descending  
+  page.orderBy = prop
+  page.order = order ? order === 'ascending' ? 'asc' : 'desc' : undefined
+  getTableData();
+}
+
 const expandChange = (row) => {
   row.expandStatus = !row.expandStatus
   console.log(row.expandStatus);
@@ -217,21 +234,12 @@ const onTypeChange = (value) => {
 
 const menuClick = (item, data) => {
   if (item.path) {
-    if (item.id === 2) { // 彩金赠送
-      router.push({
-        path: item.path,
-        query: {
-          loginaccount: data.loginaccount
-        }
-      })
-    } else if (item.id === 1) {
-      router.push({
-        path: item.path,
-        query: {
-          loginaccount: data.loginaccount
-        }
-      })
-    }
+    router.push({
+      path: item.path,
+      query: {
+        loginaccount: data.loginaccount
+      }
+    })
   } else {
     ElMessageBox.alert(t('敬请期待'), t('温馨提示'), {
       confirmButtonText: 'OK',
@@ -239,6 +247,13 @@ const menuClick = (item, data) => {
       },
     })
   }
+}
+
+const getImg = (row) => {
+  if (+row.isvalid === 1) {
+    return +row.isnormal === 1 ? tick : yellowTick
+  }
+  return blackTick
 }
 
 // 搜索

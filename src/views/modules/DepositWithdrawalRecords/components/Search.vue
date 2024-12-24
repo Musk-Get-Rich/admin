@@ -13,12 +13,14 @@
 <script setup>
 import TimeSelect from "@/components/TimeSelect";
 import { useUserStore } from "@/store/modules/user.store.js";
+import {useRoute} from "vue-router";
 
 const emit = defineEmits(['search', 'refresh'])
 
 const userStore = useUserStore()
+const route = useRoute()
 
-const username = ref('')
+const username = ref(route.query.loginaccount || '')
 
 // 搜索
 const onSearch = (val) => {
