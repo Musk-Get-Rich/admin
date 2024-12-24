@@ -472,4 +472,8 @@ export default {
   '资讯':'Information',
   '维护':'Maintenance',
   '活动':'Activities',
+  '代理奖金狂欢高达299,998元': 'Agent bonus carnival up to 299,998 yuan',
+  '新人提成直达55%': 'Newcomer commission up to 55%',
+  '专属豪礼·重磅放送': 'Exclusive gifts · Grand release',
+  '首存复存·双礼加倍': 'First deposit and re-deposit · Double gifts',
 };
