@@ -2,7 +2,7 @@
   <div>
     <el-card>
       <Title :name="$t('公告')" />
-     <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/>
+     <!-- <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/> -->
       <el-row>
         <Item @click="toRouter(item)" v-for="(item,index) in list" :key="index" :item="item"/>
       </el-row>
