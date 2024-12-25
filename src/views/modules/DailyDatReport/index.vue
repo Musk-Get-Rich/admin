@@ -11,9 +11,12 @@
     >
       <template #search>
         <Title :name="$t('每日数据报表')" />
-<!--        <div class="flex mb-10">-->
-<!--          <Search />-->
-<!--        </div>-->
+        <div class="flex mb-10">
+          <TimeSelect
+            @search="onSearch"
+            @clear="onRefresh"
+          />
+        </div>
       </template>
     </avue-crud>
   </el-card>
@@ -22,10 +25,10 @@
 <script setup>
 import option from "./option.js"
 import {useTableList} from "@/hook/useTableList.js";
-import Search from "./components/Search.vue";
 import Title from "@/components/Title/index.vue";
 import {apiAgentDailyReport} from "@/service/api/api.js";
 import searchTime from "@/config/time.js";
+import TimeSelect from "@/components/TimeSelect/index.vue";
 
 const { startDate, endDate } = searchTime
 
@@ -43,6 +46,19 @@ const {
   startDate,
   endDate,
 }, 'results')
+
+// 搜索
+const onSearch = (val) => {
+  console.log(val);
+  getTableData(val)
+}
+
+const onRefresh = () => {
+  getTableData({
+    startDate,
+    endDate,
+  })
+}
 </script>
 
 <style lang="scss" scoped>

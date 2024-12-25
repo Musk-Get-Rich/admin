@@ -79,6 +79,7 @@ const {
 } = useTableList(apiMembershipReport, {
   startDate,
   endDate,
+  brandcode: undefined
 }, 'rows')
 
 // 搜索
