@@ -32,18 +32,11 @@
             </div>
           </div>
         </template>
-        <template #title="{ row }">
-          <div class="overflow-auto h-150" v-html="row.title">
-          </div>
-        </template>
-        <template #content="{ row }">
-          <div class="overflow-auto h-150" v-html="row.title">
-          </div>
+        <template #loginaccount="{ row }">
+          <div class="color-green">{{ row.loginaccount }}</div>
         </template>
         <template #menu="{ row }">
-          <el-button icon="el-icon-edit" @click="handleEdit(row)">
-            {{ $t('编辑') }}
-          </el-button>
+          <el-icon class="cursor-pointer" @click="handleEdit(row)"><EditPen /></el-icon>
         </template>
       </avue-crud>
     </el-card>
@@ -60,6 +53,7 @@ import { computed, ref } from "vue";
 import Title from "@/components/Title/index.vue";
 import { useUserStore } from "@/store/modules/user.store.js";
 import i18n from "@/i18n/index.js";
+import { EditPen } from "@element-plus/icons-vue";
 
 const agentInfo = ref({})
 const t = i18n.global.t

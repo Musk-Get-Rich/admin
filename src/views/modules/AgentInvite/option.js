@@ -10,6 +10,7 @@ export default {
   refreshBtn: false,
   columnBtn: false,
   menu: false,
+  // showSummary: true,
   column: [
     {
       label: t('推广员(会员)'),

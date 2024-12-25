@@ -31,7 +31,8 @@
         </template>
         <template #menu-left>
           <el-button v-for="t in types" :key="t.value" :type="t.value === type ? 'primary' : ''" @click="clickType(t.value)">
-            {{ t.label }}
+            <span>{{ t.label }}</span>
+            <el-icon v-if="!!t.value"><InfoFilled /></el-icon>
           </el-button>
         </template>
         <template #menu-right>
@@ -70,6 +71,7 @@ import Title from "@/components/Title/index.vue";
 import { useUserStore } from "@/store/modules/user.store.js";
 import {useRouter} from "vue-router";
 import i18n from "@/i18n/index.js";
+import { InfoFilled } from "@element-plus/icons-vue";
 const t = i18n.global.t
 
 const agentInfo = ref({})

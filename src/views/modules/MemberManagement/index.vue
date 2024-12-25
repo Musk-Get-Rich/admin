@@ -3,7 +3,7 @@
     <avue-crud ref="tableRef" :key="JSON.stringify(customOptions)" :table-loading="tableLoading" :data="tableData"
       :option="customOptions" v-model:page="pageObj" @refresh-change="getTableData" @search-change="onSearch"
       @search-reset="onSearchReset" @size-change="sizeChange" @current-change="currentChange"
-      @expand-change="expandChange" @sort-change="sortChange">
+      @expand-change="expandChange" @sort-change="sortChange" :summary-method="summaryMethod">
       <template #search>
         <el-row justify="space-between">
           <Title :name="$t('会员管理')" />
@@ -207,6 +207,36 @@ const {
 } = useTableList(fetchList, {
 
 })
+
+const summaryMethod = ({ columns, ...rest }) => {
+  const sums = [];
+  console.log(tableData.value, 'restrestrest')
+  if (columns.length > 0) {
+    columns.forEach((column, index) => {
+      let prop = column.property;
+      if (['winlose', 'accumulateddeposit_accumulatedwithdraw'].includes(prop)) {
+        if (prop === 'winlose') {
+          const num = tableData.value?.reduce((prev, current) => current[prop] + prev, 0);
+          sums[index] = h('div', { class: num < 0 ? 'color-green' : 'color-red' }, num);
+        }
+        if (prop === 'accumulateddeposit_accumulatedwithdraw') {
+          const accumulateddeposit = tableData.value?.reduce((prev, current) => (+current['accumulateddeposit'] || 0) + prev, 0);
+          const accumulatedwithdraw = tableData.value?.reduce((prev, current) => (+current['accumulatedwithdraw'] || 0) + prev, 0);
+          sums[index] = h('div', [  
+            h('div', { class: accumulateddeposit < 0 ? 'color-green' : 'color-red' }, accumulateddeposit),  
+            h('div', { class: accumulatedwithdraw < 0 ? 'color-green' : 'color-red' }, accumulatedwithdraw)  
+          ])  
+        }
+      } else {
+        sums[index] = '';
+      }
+      if (['employeelevelcode'].includes(prop)) {
+        sums[index] = '小计'
+      }
+    });
+  }
+  return sums;
+};
 
 const toggleExpand = (row) => {
   row.otherList = [{}];

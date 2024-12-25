@@ -47,6 +47,7 @@ export default {
   expandClassName: 'invisible',
   expandLabelClassName: 'invisible',
   rowKey: 'loginaccount',
+  showSummary: true,
   column: [
     {
       label: t('等级'),
