@@ -27,6 +27,7 @@ export default {
     {
       label: t('提款金额'),
       prop: 'orderamount',
+      // sortable: true,
     },
     {
       label: t('状态'),

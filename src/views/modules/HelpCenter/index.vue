@@ -1,23 +1,24 @@
 <template>
   <div className="common-layout bg-#f4f5f9">
-    <div className="max-w-1430 mx-auto h-screen flex">
+    <div className="max-w-1430 mx-auto h-full main-wrapper overflow-auto flex">
       <div class="sidebar-wrapper w-218 bg-white h-full overflow-auto py-30 box-border">
         <div v-for="h in helpers" :key="h.code" class="relative pl-12 mb-20 text-#3A3541 text-6xl"
           @click="activeCode = h.code">
-          <div v-if="activeCode === h.code"
-            class="transition-400ms w-6 h-full absolute left-0 top-0 bg-green rounded-tr-20 rounded-br-20 opacity-100">
+          <div
+            class="transition-400ms w-6 h-full absolute left-0 top-0 bg-green rounded-tr-20 rounded-br-20 opacity-0"
+            :class="{ 'opacity-100': activeCode === h.code }">
           </div>
-          <div class="transition-400ms flex items-center h-40 w-195 rounded-8 px-5 box-border"
+          <div class="transition-400ms flex items-center h-40 w-195 rounded-8 px-5 box-border cursor-pointer"
             :class="{ 'bg-#e9fbef': activeCode === h.code }">
             {{ h.title }}
           </div>
         </div>
       </div>
       <div className="flex-1">
-        <div className="p-20 box-border h-full main-wrapper overflow-auto" ref="mainRef">
+        <div className="p-20 box-border h-full" ref="mainRef">
           <Announcement />
-          <div class="w-full h-max bg-white rounded-8">
-            <div class="flex pl-15 pt-15 text-7xl">
+          <div class="w-full h-max bg-white rounded-8 pb-4">
+            <div class="flex pl-15 pt-18 text-7xl">
               <div @click="goBack" class="flex items-center mr-10 cursor-pointer">
                 <el-icon>
                   <ArrowLeft />
@@ -109,3 +110,13 @@ const CurrentComponent = computed(() => {
 })
 
 </script>
+
+<style lang="scss" scoped>
+.common-layout {
+  height: calc(100vh - 70px);
+}
+
+.main-wrapper::-webkit-scrollbar {
+  display: none;
+}
+</style>

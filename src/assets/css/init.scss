@@ -7,6 +7,21 @@
   --el-table-tr-bg-color: #e7f4eb;
 }
 
+@font-face {
+  font-family: 'PingFang';
+  src: url('../font/PingFang\ Medium.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+  font-family: 'PingFang';
+}
+
+.theme-font {
+  font-family: 'PingFang';
+}
+
 .transition-400ms {
   transition: all ease .4s;
 }
