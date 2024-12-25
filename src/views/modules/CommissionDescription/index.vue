@@ -21,7 +21,7 @@
         <el-col :span="25" class="mt-20">
           <el-table :data="tableData" style="width: 100%" :header-cell-style="{background:'#E7F4EB'}">
             <el-table-column prop="level" :label="$t('级别')" width="200" align="center"/>
-            <el-table-column :label="$t('完成任一条件(越南)')" align="center" >
+            <el-table-column :label="$t('完成任一条件')" align="center" >
               <el-table-column min-width="300" prop="winLose" :label="$t('本月净输赢')" align="center" />
               <el-table-column min-width="300" prop="efficient" :label="$t('本月新增有效会员')" align="center" />
             </el-table-column>
@@ -126,5 +126,9 @@ const tableData = [
 </script>
 
 <style lang="scss" scoped>
-
+:deep(.el-table) {
+  thead {
+    @apply text-black;
+  }
+}
 </style>

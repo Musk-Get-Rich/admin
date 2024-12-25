@@ -25,6 +25,9 @@ export default {
     },
     validMoney:{
       label: t('有效投注额'),
-    }
+    },
+    test:{
+      label: t('总输赢'),
+    },
   }
 }

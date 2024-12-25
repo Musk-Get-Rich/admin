@@ -16,6 +16,14 @@
       @current-change="currentChange"
       @expand-change="expandChange"
     >
+      <template #profitLoss="{ row }">
+        <div v-if="row.profitLoss.profitLoss > 0" class="text-green">
+          {{ row.profitLoss }}
+        </div>
+        <div v-else class="text-red">
+          {{ row.profitLoss }}
+        </div>
+      </template>
       <template #bonusDetail="{ row }">
         <div class="flex items-center justify-around">
           <div>{{ row.bonusDetail.agentBonus }}</div>

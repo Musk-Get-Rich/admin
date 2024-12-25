@@ -10,6 +10,9 @@
       @size-change="sizeChange"
       @current-change="currentChange"
     >
+      <!-- <template #gamebigtype="{row}">
+        {{ $t(title[row.gamebigtype]) }}
+      </template> -->
       <template #search>
         <Title :name="$t('游戏记录')" />
         <div class="flex mb-10">
@@ -55,6 +58,16 @@ const onRefresh = () => {
   })
 }
 
+const title = {
+  'SX': '真人',
+  'TY': '体育',
+  'DJ': '电竞',
+  'DZ': '电子',
+  'RH': '动物',
+  'BY': '捕鱼',
+  'CP': '彩票',
+  'QP': '棋牌',
+}
 </script>
 
 <style lang="scss" scoped>

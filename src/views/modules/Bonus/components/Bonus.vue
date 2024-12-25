@@ -76,16 +76,97 @@
     >
       <span class="text-white">{{ $t('确认赠送') }}</span>
     </el-button>
-    <div class="text-#F93131 mt-30 mb-20">{{ $t('代存规则') }}</div>
-    <el-row>
-      <el-col class="flex items-center mt-5" :span="24" v-for="(item,index) in textList" :key="item">
-        <div class="w-20 h-20 bg-#25D55B rounded-full text-white flex items-center justify-center mr-5">{{
-            index + 1
-          }}
-        </div>
-        <div class="text-#868D88">{{ $t(item) }}</div>
-      </el-col>
-    </el-row>
+    <div class="bonus-rules" v-if="locale === 'zh-CN'">
+      <h2 class="text-red text-16">彩金规则</h2>
+      <ul class="numbered-list text-14 text-#868D88 lh-22">
+        <li>赠送规则
+          <ul class="disc-list">
+            <li>未绑定提款信息会员不能赠送彩金。</li>
+            <li>注：设备重复用户不允许赠送。</li>
+            <li>绑定提款信息后无存款的用户彩金赠送上限：200。</li>
+            <li>每次赠送彩金只能赠送该会员最后一笔存款金额的30%。</li>
+            <li>注：如该会员最后一笔存款为1000，赠送彩金最多能赠送300，更新下一次存款后将重新可以赠送30%。</li>
+          </ul>
+        </li>
+        <li>彩金单位为本地货币；</li>
+        <li>每月根据上个月有效会员数量发放彩金额度，1有效=300彩金，不叠加当月清零；</li>
+        <li>有效会员判定标准：存款金额大于或等于2000；</li>
+        <li>代理彩金额度使用完无法申请，只能等下月根据活跃会员数量发放，发放时间：每月1号；</li>
+        <li>代理彩金赠送时自由调整打码量倍数，不设置则无需打码量；</li>
+        <li>会员每月彩金赠送上限（当地货币）：
+          <ul class="disc-list">
+            <li>VIP1：1500</li>
+            <li>VIP2：2000</li>
+            <li>VIP3：3000</li>
+            <li>VIP4：5000</li>
+            <li>VIP5：10000</li>
+            <li>VIP6：以上不限额</li>
+          </ul>
+        </li>
+        <li>注：赠送上限的会员可以通过自然升级提升额度，当月上限无法再次赠送，营销部关闭代赠申请。</li>
+      </ul>
+    </div>
+    <div class="bonus-rules" v-else-if="locale === 'zh-TW'">
+      <h2 class="text-red text-16">彩金規則</h2>
+      <ul class="numbered-list text-14 text-#868D88 lh-22">
+        <li>贈送規則
+          <ul class="disc-list">
+            <li>未綁定提款信息會員不能贈送彩金。</li>
+            <li>註：設備重複用戶不允許贈送。</li>
+            <li>綁定提款信息後無存款的用戶彩金贈送上限：200。</li>
+            <li>每次贈送彩金只能贈送該會員最後一筆存款金額的30%。</li>
+            <li>註：如該會員最後一筆存款為1000，贈送彩金最多能贈送300，更新下一次存款後將重新可以贈送30%。</li>
+          </ul>
+        </li>
+        <li>彩金單位為本地貨幣；</li>
+        <li>每月根據上個月有效會員數量發放彩金額度，1有效=300彩金，不疊加當月清零；</li>
+        <li>有效會員判定標準：存款金額大於或等於2000；</li>
+        <li>代理彩金額度使用完無法申請，只能等下月根據活躍會員數量發放，發放時間：每月1號；</li>
+        <li>代理彩金贈送時自由調整打碼量倍數，不設置則無需打碼量；</li>
+        <li>會員每月彩金贈送上限（當地貨幣）：
+          <ul class="disc-list">
+            <li>VIP1：1500</li>
+            <li>VIP2：2000</li>
+            <li>VIP3：3000</li>
+            <li>VIP4：5000</li>
+            <li>VIP5：10000</li>
+            <li>VIP6：以上不限額</li>
+          </ul>
+        </li>
+        <li>註：贈送上限的會員可以通過自然升級提升額度，當月上限無法再次贈送，營銷部關閉代贈申請。</li>
+      </ul>
+    </div>
+    <div class="bonus-rules" v-else>
+      <h2 class="text-red text-16">Bonus Rules</h2>
+      <ul class="numbered-list text-14 text-#868D88 lh-22">
+        <li>Bonus Rules
+          <ul class="disc-list">
+            <li>Members without withdrawal information cannot receive bonus gifts.</li>
+            <li>Note: Duplicate device users are not allowed to receive gifts.</li>
+            <li>The bonus gift limit for users without deposits after binding withdrawal information is 200.</li>
+            <li>Each bonus gift can only be 30% of the member's last deposit amount.</li>
+            <li>Note: If the member's last deposit is 1000, the maximum bonus gift is 300. After updating the next deposit, 30% can be gifted again.</li>
+          </ul>
+        </li>
+        <li>The bonus is in local currency;</li>
+        <li>The bonus amount is issued monthly based on the number of active members from the previous month, 1 active = 300 bonus, not cumulative, cleared monthly;</li>
+        <li>Active member criteria: deposit amount greater than or equal to 2000;</li>
+        <li>Once the agent's bonus quota is used up, it cannot be reapplied. It can only be issued next month based on the number of active members, issued on the 1st of each month;</li>
+        <li>When giving agent bonuses, the multiplier of the turnover can be freely adjusted. If not set, no turnover is required;</li>
+        <li>Monthly bonus gift limit for members (local currency):
+          <ul class="disc-list">
+            <li>VIP1: 1500</li>
+            <li>VIP2: 2000</li>
+            <li>VIP3: 3000</li>
+            <li>VIP4: 5000</li>
+            <li>VIP5: 10000</li>
+            <li>VIP6: No limit above</li>
+          </ul>
+        </li>
+        <li>Note: Members with a gift limit can increase their quota through natural upgrades. The monthly limit cannot be gifted again, and the marketing department closes the proxy gift application.</li>
+      </ul>
+    </div>
+    
   </div>
 </template>
 
@@ -95,11 +176,14 @@ import {storeToRefs} from "pinia";
 import {useUserStore} from "@/store/modules/user.store.js";
 import {apiBonus} from "@/service/api/agent.js";
 import {ElMessage} from "element-plus";
+import {useI18n} from "vue-i18n";
 
 const {userInfo} = storeToRefs(useUserStore())
 const {changeUserInfo} = useUserStore()
 
-const numList = [18, 50, 100, 200, 500]
+const {locale} = useI18n()
+
+const numList = [500, 1000, 3000, 5000, 10000]
 
 const route = useRoute()
 
@@ -153,5 +237,14 @@ const textList = [
 </script>
 
 <style lang="scss" scoped>
+.numbered-list {
+  list-style-type: decimal;
+  margin-left: 0;
+  padding-left: 18px;
+}
 
+.disc-list {
+  list-style-type: disc; 
+  padding-left: 10px; 
+}
 </style>

@@ -100,7 +100,7 @@ const {changeUserInfo} = useUserStore()
 
 const route = useRoute()
 
-const numList = [18, 50, 100, 200, 500]
+const numList = [500, 1000, 3000, 5000, 10000]
 
 const form = ref({
   loginaccount: '',

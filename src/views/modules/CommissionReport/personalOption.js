@@ -13,10 +13,10 @@ export default {
       label: t('新增有效'),
       prop: 'newplayvalid',
     },
-    {
-      label: t('取款金额'),
-      prop: 'withdrawall',
-    },
+    // {
+    //   label: t('取款金额'),
+    //   prop: 'withdrawall',
+    // },
     {
       label: t('净输赢'),
       prop: 'profit',
@@ -30,7 +30,7 @@ export default {
     //   prop: 'depositFee',
     // },
     {
-      label: t('游戏输赢'),
+      label: t('总输赢'),
       prop: 'winlose',
     },
     {
