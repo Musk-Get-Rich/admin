@@ -11,7 +11,7 @@ export default {
   emptyBtn: false,
   menu: false,
   column: {
-    reportday: {
+    reportdaystr: {
       label: t('日期'),
     },
     newplay: {

@@ -10,6 +10,10 @@ export default {
   menu: false,
   column: [
     {
+      label: t('月份'),
+      prop: 'month',
+    },
+    {
       label: t('新增有效'),
       prop: 'newplayvalid',
     },
@@ -18,8 +22,8 @@ export default {
     //   prop: 'withdrawall',
     // },
     {
-      label: t('净输赢'),
-      prop: 'profit',
+      label: t('游戏输赢'),
+      prop: 'netamount',
     },
     // {
     //   label: '上月结余',
@@ -30,24 +34,28 @@ export default {
     //   prop: 'depositFee',
     // },
     {
-      label: t('总输赢'),
-      prop: 'winlose',
-    },
-    {
       label: t('返水'),
       prop: 'fs',
-    },
-    {
-      label: t('可结佣金'),
-      prop: 'commissionday',
     },
     {
       label: t('红利'),
       prop: 'proamount',
     },
     {
-      label: t('平台费'),
+      label: t('游戏费用'),
       prop: 'otherfee',
+    },
+    {
+      label: t('支付费用'),
+      prop: 'payfee',
+    },
+    {
+      label: t('净输赢'),
+      prop: 'profit',
+    },
+    {
+      label: t('佣金'),
+      prop: 'commissionday',
     },
     // {
     //   label: '存提手续费',

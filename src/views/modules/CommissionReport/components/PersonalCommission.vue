@@ -12,9 +12,9 @@
       <template #profit="{ row }">
         <div :class="[row.profit > 0 ? 'green': 'red']">{{ row.profit}}</div>
       </template>
-      <template #winlose="{ row }">
-        <div :class="[row.winlose > 0 ? 'green': 'red']">{{ row.winlose}}</div>
-      </template>
+      <!-- <template #netamount="{ row }">
+        <div :class="[row.netamount > 0 ? 'green': 'red']">{{ row.netamount}}</div>
+      </template> -->
     </avue-crud>
 </template>
 

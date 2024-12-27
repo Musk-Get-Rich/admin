@@ -513,4 +513,9 @@ export default {
   '可参与活动时长': 'Participation Duration',
   '未结算': 'Unsettled',
   '已结算': 'Settled',
+  '月份': 'Month',
+  '游戏费用': 'Game Fees',
+  '佣金': 'Commission',
+  '今日活跃': 'Active Today',
+  '今日投注': 'Bets Today',
 };

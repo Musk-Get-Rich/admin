@@ -29,7 +29,7 @@ export default {
     },
     {
       label: t('红利总计'),
-      prop: 'bonusDetail',
+      prop: 'activityMoney',
     },
     {
       label: t('存取手续费'),
