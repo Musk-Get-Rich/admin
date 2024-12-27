@@ -11,23 +11,29 @@ export default {
   emptyBtn: false,
   menu: false,
   column: {
-    gamebigtype: {
-      label: t('比赛类型'),
-    },
-    betCount: {
-      label: t('注单笔数'),
-    },
-    betMoney:{
-      label: t('投注金额'),
+    gametypename: {
+      label: t('游戏商'),
     },
     loginacount:{
-      label: t('会员'),
+      label: t('会员账号'),
     },
-    validMoney:{
-      label: t('有效投注额'),
+    betmoney:{
+      label: t('投注金额'),
+    },
+    validbet:{
+      label: t('有效投注金额'),
     },
     netmoney:{
-      label: t('总输赢'),
+      label: t('输赢金额'),
+    },
+    platformid:{
+      label: t('注单号'),
+    },
+    bettime:{
+      label: t('游戏时间'),
+    },
+    status:{
+      label: t('状态'),
     },
   }
 }

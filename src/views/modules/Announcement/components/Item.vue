@@ -1,5 +1,5 @@
 <template>
-  <div class="item !w-full h-46px bg-white rounded-8px flex items-center justify-between pl-15 pr-100">
+  <div class="item h-46px bg-white rounded-8px flex items-center justify-between px-15">
     <div class="flex items-center">
       <div class="w-8px h-8px bg-red rounded-50%"></div>
       <span class="ml-10 text-14px">{{ item.title }}</span>

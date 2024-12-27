@@ -195,9 +195,20 @@ export const routes = [
         },
       },
       {
-        path: 'gameRecords',
-        name: 'gameRecords',
-        component: () => import("@/views/modules/GameRecords"),
+        path: 'gameReport',
+        name: 'gameReport',
+        component: () => import("@/views/modules/GameReport"),
+        meta: {
+          auth: [3],
+          name: '游戏报表',
+          inactiveIcon: 'Sidebar/game.png',
+          activeIcon: 'Sidebar/game-1.png'
+        },
+      },
+      {
+        path: 'gameRecord',
+        name: 'gameRecord',
+        component: () => import("@/views/modules/GameRecord"),
         meta: {
           auth: [3],
           name: '游戏记录',

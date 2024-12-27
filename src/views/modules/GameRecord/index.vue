@@ -26,7 +26,7 @@
 <script setup>
 import option from "./option.js"
 import {useTableList} from "@/hook/useTableList.js";
-import {_getGameReport} from "@/service/api/game.js";
+import {_getGameRecord, _getGameReport} from "@/service/api/game.js";
 import Search from "./components/Search.vue";
 import Title from "@/components/Title/index.vue";
 import searchTime from "@/config/time.js";
@@ -41,9 +41,10 @@ const {
   getTableData,
   sizeChange,
   currentChange
-} = useTableList(_getGameReport, {
+} = useTableList(_getGameRecord, {
   startDate,
   endDate,
+  brandcode: undefined,
 }, 'results')
 
 // 搜索

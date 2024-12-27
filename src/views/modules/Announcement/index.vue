@@ -4,7 +4,14 @@
       <Title :name="$t('公告')" />
      <!-- <Tabs :tabs="btns" :currentBtn="currentBtn" @tabClick="handleClick"/> -->
       <el-row>
-        <Item @click="toRouter(item)" v-for="(item,index) in list" :key="index" :item="item"/>
+        <div class="flex flex-1" v-if="list.length > 0">
+          <Item class="flex-1" @click="toRouter(item)" v-for="(item,index) in list" :key="index" :item="item"/>
+        </div>
+        <div class="flex-1" v-else>
+          <div class="text-center text-16 text-gray-500">
+            {{ $t('暂无数据') }}
+          </div>
+        </div>
       </el-row>
     </el-card>
   </div>
