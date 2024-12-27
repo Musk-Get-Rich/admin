@@ -17,12 +17,7 @@
       @expand-change="expandChange"
     >
       <template #profitLoss="{ row }">
-        <div v-if="row.profitLoss.profitLoss > 0" class="text-green">
-          {{ row.profitLoss }}
-        </div>
-        <div v-else class="text-red">
-          {{ row.profitLoss }}
-        </div>
+        <div :class="[row.profitLoss > 0 ? 'green': 'red']">{{ row.profitLoss}}</div>
       </template>
       <template #bonusDetail="{ row }">
         <div class="flex items-center justify-around">
