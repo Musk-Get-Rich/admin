@@ -2,7 +2,7 @@
     <el-row
         class="!w-full h-344px border-double border-gray-200 border-1 rounded-3xl shadow-gray-500 py-20 px-20 mb-20">
         <el-col :span="12" class="w-full h-full flex items-center justify-center p-10">
-            <img class="w-100% h-100%" :src="data.url" alt="">
+            <img crossOrigin="Anonymous" class="w-100% h-100%" :src="data.url" alt="">
             <canvas ref="mergeCanvas" class="w-100% h-100% hidden" :width="imageSize.width"
                 :height="imageSize.height"></canvas>
         </el-col>
@@ -20,7 +20,7 @@
                     <span class="text-#868D88">{{ $t('图片尺寸') }}：</span>
                     <span>{{ imageSize.width }}x{{ imageSize.height }}</span>
                     <div class="flex ml-10 cursor-pointer">
-                        <img class="w-20 h-20 mr-5" src="@/assets/images/promotion/import.png" alt="">
+                        <img crossOrigin="" class="w-20 h-20 mr-5" src="@/assets/images/promotion/import.png" alt="">
                         <span class="text-#25D55B" @click="downloadImage(data.url)">{{ $t('立即下载') }}</span>
                     </div>
                 </div>
@@ -60,6 +60,7 @@ const { downloadImage } = useImageDownload()
 const getImageSize = (url) => {
     return new Promise((resolve, reject) => {
         const img = new Image()
+        img.crossOrigin = 'Anonymous'
         img.onload = () => {
             resolve({
                 width: img.width,

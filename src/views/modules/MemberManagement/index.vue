@@ -3,7 +3,7 @@
     <avue-crud ref="tableRef" :key="JSON.stringify(customOptions)" :table-loading="tableLoading" :data="tableData"
       :option="customOptions" v-model:page="pageObj" @refresh-change="getTableData" @search-change="onSearch"
       @search-reset="onSearchReset" @size-change="sizeChange" @current-change="currentChange"
-      @expand-change="expandChange" @sort-change="sortChange" :summary-method="summaryMethod">
+      @expand-change="expandChange" :summary-method="summaryMethod">
       <template #search>
         <el-row justify="space-between">
           <Title :name="$t('会员管理')" />
@@ -61,7 +61,7 @@
       <template #loginaccount="scope">
         <div class="flex justify-center items-center">
           <div>{{ scope.row.loginaccount }}</div>
-          <img class="w-20 h-20 object-cover" :src="getImg(scope.row)" alt="">
+          <!-- <img class="w-20 h-20 object-cover" :src="getImg(scope.row)" alt=""> -->
         </div>
       </template>
       <template #isnormal="scope">
