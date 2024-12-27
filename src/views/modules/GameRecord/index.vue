@@ -24,6 +24,9 @@
           <Search @search="onSearch" @refresh="onRefresh"/>
         </div>
       </template>
+      <template #netmoney="{ row }">
+          <div :class="[row.netmoney > 0 ? 'green': 'red']">{{ row.netmoney}}</div>
+      </template>
     </avue-crud>
   </el-card>
 </template>

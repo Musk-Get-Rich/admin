@@ -9,7 +9,12 @@
       @size-change="sizeChange"
       @current-change="currentChange"
     >
-
+      <template #profit="{ row }">
+        <div :class="[row.profit > 0 ? 'green': 'red']">{{ row.profit}}</div>
+      </template>
+      <template #winlose="{ row }">
+        <div :class="[row.winlose > 0 ? 'green': 'red']">{{ row.winlose}}</div>
+      </template>
     </avue-crud>
 </template>
 

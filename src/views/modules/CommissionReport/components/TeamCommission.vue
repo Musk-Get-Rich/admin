@@ -9,7 +9,9 @@
     @size-change="sizeChange"
     @current-change="currentChange"
   >
-
+    <template #fs="{ row }">
+        <div :class="[row.fs > 0 ? 'green': 'red']">{{ row.fs}}</div>
+      </template>
   </avue-crud>
 </template>
 
