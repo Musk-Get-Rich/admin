@@ -2,9 +2,9 @@
   <div>
     <el-card>
       <Title :name="$t('VIP专享')" />
-      <el-row v-for="(item,index) in images" :key="index" class="!w-full h-1000px border-double border-gray-200 border-1 rounded-3xl shadow-gray-500 py-20 px-20 mb-20">
-        <el-col :span="17" class="h-full">
-          <img class="w-full h-full" :src="item.url" alt="" />
+      <el-row v-for="(item,index) in images" :key="index" class="!w-full border-double border-gray-200 border-1 rounded-3xl shadow-gray-500 py-20 px-20 mb-20">
+        <el-col :span="17" class="">
+          <img class="w-full" :src="item.url" alt="" />
         </el-col>
         <el-col :offset="1" :span="6" class="h-full flex flex-col items-center justify-center">
           <span class="font-size-34 font-500">{{ $t(item.name) }}</span>
@@ -13,8 +13,8 @@
         </el-col>
       </el-row>
     </el-card>
-    <el-dialog v-model="overlayVisible" title="Shipping address" width="1000">
-      <img class="!w-full !h-full" :src="imageSrc" alt="展示图片" />
+    <el-dialog v-model="overlayVisible" width="600">
+      <img class="mt-10 w-full" :src="imageSrc" alt="展示图片" />
     </el-dialog>
   </div>
 </template>

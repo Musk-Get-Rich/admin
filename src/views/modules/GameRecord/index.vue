@@ -10,6 +10,11 @@
       @size-change="sizeChange"
       @current-change="currentChange"
     >
+      <template #status="{row}">
+        <div>
+          {{ row.status == 0 ? $t('未结算') : $t('已结算') }}
+        </div>
+      </template>
       <!-- <template #gamebigtype="{row}">
         {{ $t(title[row.gamebigtype]) }}
       </template> -->
@@ -30,6 +35,9 @@ import {_getGameRecord, _getGameReport} from "@/service/api/game.js";
 import Search from "./components/Search.vue";
 import Title from "@/components/Title/index.vue";
 import searchTime from "@/config/time.js";
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
 
 const { startDate, endDate } = searchTime
 
