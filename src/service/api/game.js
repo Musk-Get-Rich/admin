@@ -16,3 +16,8 @@ export const _getGameReport = (params) => {
 export const _getGameRecord = (params) => {
   return requestFunc('/AgentNew/GetGameDetails', params)
 }
+
+// 游戏平台
+export const _getGameType = (params) => {
+  return requestFunc('/AgentNew/GetGameType', params)
+}
