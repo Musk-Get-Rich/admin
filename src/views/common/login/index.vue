@@ -126,6 +126,8 @@ const login = debounce(async () => {
       loginpassword: dataForm.password,
     })
 
+    await router.push('/')
+
     if(remember.value){
       localStorage.setItem(key, JSON.stringify(dataForm))
     } else {
@@ -133,8 +135,6 @@ const login = debounce(async () => {
     }
 
     await useStore.changeUserInfo()
-
-    await router.push('/')
   } catch (err) {
     console.log(err);
   }
