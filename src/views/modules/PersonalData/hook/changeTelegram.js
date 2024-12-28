@@ -4,6 +4,10 @@ import {storeToRefs} from "pinia";
 import {useDeviceStore} from "@/store/modules/device.store.js";
 import { useUserStore } from "@/store/modules/user.store.js";
 import {apiEditAgent} from "@/service/api/api.js";
+import i18n from "@/i18n/index.js";
+
+const t = i18n.global.t
+
 
 export const useChangeTelegram = () => {
   const change = () => {
@@ -26,12 +30,12 @@ export const useChangeTelegram = () => {
           prop: 'otherimname1',
           maxlength: 6,
           span: 24,
-          placeholder: '请输入其他联系方式',
+          placeholder: t('请输入其他联系方式'),
           value: userInfo.value.otherimname1,
           rules: [
             {
               required: true,
-              message: "请输入其他联系方式",
+              message: t('请输入其他联系方式'),
               trigger: "blur"
             },
           ],
@@ -52,7 +56,7 @@ export const useChangeTelegram = () => {
         }).then(res => {
           done()
           userStore.changeUserInfo()
-          ElMessage.success('修改成功')
+          ElMessage.success(t('修改成功'))
         }).catch(err => {
           cancel()
         })

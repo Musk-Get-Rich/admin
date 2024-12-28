@@ -114,13 +114,20 @@ import { ElMessage } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import { apiContactUs } from '@/service/api/user.js'
 import Upload from "@/components/Upload/index.vue"
+import { useI18n } from "vue-i18n";
 
-const questionTypeOptions = {
-  1: ['建议', '投诉'],
-  2: ['点数问题', '球赛问题', '彩球问题', '现场游戏问题', '会员注册问题', '电子游戏问题']
-}
+const { t } = useI18n()
 
-const languageOptions = ['英文', '繁体中文', '简体中文']
+const questionTypeOptions = computed(() => {
+  return {
+    1: [t('建议'), t('投诉')],
+    2: [t('点数问题'), t('球赛问题'), t('彩球问题'), t('现场游戏问题'), t('会员注册问题'), t('电子游戏问题')]
+  }
+})
+
+const languageOptions = computed(() => {
+  return ['English', '繁体中文', '简体中文']
+})
 
 const formDataComplaintBox = ref({
   questiontype: '',
@@ -139,7 +146,7 @@ const loadingCallbackService = ref(false)
 
 const handleSubmitComplaintBox = async () => {
   if (!formDataComplaintBox.value.questiontype || !formDataComplaintBox.value.Description) {
-    ElMessage.error('请填写所有必填字段')
+    ElMessage.error(t('请填写所有必填字段'))
     return
   }
   loadingComplaintBox.value = true
@@ -150,7 +157,7 @@ const handleSubmitComplaintBox = async () => {
       Description: formDataComplaintBox.value.Description,
       piclink: formDataComplaintBox.value.piclink
     })
-    ElMessage.success('投诉箱提交成功')
+    ElMessage.success(t('投诉箱提交成功'))
     // 清空投诉箱表单
     formDataComplaintBox.value = {
       questiontype: '',
@@ -158,7 +165,7 @@ const handleSubmitComplaintBox = async () => {
       piclink: ''
     }
   } catch (error) {
-    ElMessage.error('投诉箱提交失败')
+    ElMessage.error(t('投诉箱提交失败'))
   } finally {
     loadingComplaintBox.value = false
   }
@@ -166,7 +173,7 @@ const handleSubmitComplaintBox = async () => {
 
 const handleSubmitCallbackService = async () => {
   if (!formDataCallbackService.value.questiontype || !formDataCallbackService.value.language || !formDataCallbackService.value.phonenumber) {
-    ElMessage.error('请填写所有必填字段')
+    ElMessage.error(t('请填写所有必填字段'))
     return
   }
   loadingCallbackService.value = true
@@ -177,7 +184,7 @@ const handleSubmitCallbackService = async () => {
       language: formDataCallbackService.value.language,
       phonenumber: formDataCallbackService.value.phonenumber
     })
-    ElMessage.success('回电服务提交成功')
+    ElMessage.success(t('回电服务提交成功'))
     // 清空回电服务表单
     formDataCallbackService.value = {
       questiontype: '',
@@ -185,34 +192,16 @@ const handleSubmitCallbackService = async () => {
       phonenumber: ''
     }
   } catch (error) {
-    ElMessage.error('回电服务提交失败')
+    ElMessage.error(t('回电服务提交失败'))
   } finally {
     loadingCallbackService.value = false
   }
 }
 
-const handleAvatarSuccess = (response, uploadFile) => {
-  const url = URL.createObjectURL(uploadFile.raw)
-  formDataComplaintBox.value.piclink = formDataComplaintBox.value.piclink
-    ? formDataComplaintBox.value.piclink + ',' + url
-    : url
-}
-
-const beforeAvatarUpload = (rawFile) => {
-  if (rawFile.type !== 'image/jpeg') {
-    ElMessage.error('Avatar picture must be JPG format!')
-    return false
-  } else if (rawFile.size / 1024 / 1024 > 2) {
-    ElMessage.error('Avatar picture size can not exceed 2MB!')
-    return false
-  }
-  return true
-}
-
 const handleEmailSupport = () => {
-  const email = 'support@example.com' // 替换为实际的客服邮箱
-  const subject = encodeURIComponent('客户支持请求')
-  const body = encodeURIComponent('您好，我需要帮助...')
+  const email = 'gg88hk88@gmail.com' // 替换为实际的客服邮箱
+  const subject = encodeURIComponent(t('客户支持请求'))
+  const body = encodeURIComponent(t('您好，我需要帮助...'))
   window.location.href = `mailto:${email}?subject=${subject}&body=${body}`
 }
 

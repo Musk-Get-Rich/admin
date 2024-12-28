@@ -13,6 +13,11 @@
       <!-- <template #gamebigtype="{row}">
         {{ $t(title[row.gamebigtype]) }}
       </template> -->
+      <template #gametypename="{ row }">
+        <div>
+          {{ locale === 'zh-CN' ? row.gametypename : row.gametype }}
+        </div>
+      </template>
       <template #search>
         <Title :name="$t('游戏报表')" />
         <div class="flex mb-10">
@@ -33,8 +38,11 @@ import {_getGameReport} from "@/service/api/game.js";
 import Search from "./components/Search.vue";
 import Title from "@/components/Title/index.vue";
 import searchTime from "@/config/time.js";
+import {useI18n} from "vue-i18n";
 
 const { startDate, endDate } = searchTime
+
+const { locale } = useI18n()
 
 const {
   tableRef,

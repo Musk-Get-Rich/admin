@@ -8,6 +8,7 @@ export const globalOption = {
   searchMenuPosition: "left",
   gridBtn: false,
   menuTitle: t('操作'),
+  emptyText: t('暂无数据'),
   menuWidth: 220,
   stripe: true, // 斑马线表格样式
   editBtn: false, // 表格列编辑按钮

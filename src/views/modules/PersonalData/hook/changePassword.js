@@ -4,6 +4,10 @@ import {storeToRefs} from "pinia";
 import {useDeviceStore} from "@/store/modules/device.store.js";
 import { useUserStore } from "@/store/modules/user.store.js";
 import { apiEditAgent } from "@/service/api/api.js";
+import i18n from "@/i18n/index.js";
+
+const t = i18n.global.t
+
 
 export const useChangePassword = () => {
   const change = () => {
@@ -23,11 +27,11 @@ export const useChangePassword = () => {
           type: 'password',
           maxlength: 6,
           span: 24,
-          placeholder: '请填写旧密码',
+          placeholder: t('请填写旧密码')  ,
           rules: [
             {
               required: true,
-              message: "请填写旧密码",
+              message: t('请填写旧密码'),
               trigger: "blur"
             },
           ],
@@ -38,12 +42,12 @@ export const useChangePassword = () => {
           type: 'password',
           span: 24,
           maxlength: 6,
-          placeholder: '请输入密码',
+          placeholder: t('请输入密码'),
           rules: [
             {
               validator: (rule, value, callback) => {
                 if (value === '') {
-                  callback(new Error('请输入密码'));
+                  callback(new Error(t('请输入密码')));
                 } else {
                   password1 = value
                   console.log(password1);
@@ -60,16 +64,16 @@ export const useChangePassword = () => {
           type: 'password',
           span: 24,
           maxlength: 6,
-          placeholder: '请再次输入新密码',
+          placeholder: t('请再次输入新密码'),
           rules: [
             {
               validator: (rule, value, callback) => {
                 if (value === '') {
-                  callback(new Error('请再次输入新密码'));
+                    callback(new Error(t('请再次输入新密码')));
                 } else {
 
                   if (value !== password1) {
-                    callback(new Error('两次密码不一致'));
+                    callback(new Error(t('两次密码不一致')));
                   } else {
                     callback();
                   }
@@ -88,7 +92,7 @@ export const useChangePassword = () => {
 
     useDialogFormStore().showDialog({
       dialog: {
-        title: `修改登录密码`,
+        title: t('修改登录密码'),
         width: isMobile.value ? '90%' : '40%'
       },
       option,
@@ -96,7 +100,7 @@ export const useChangePassword = () => {
         apiEditAgent(formData).then(res => {
           done()
           userStore.changeUserInfo()
-          ElMessage.success('修改成功')
+          ElMessage.success(t('修改成功'))
         }).catch(err => {
           cancel()
         })

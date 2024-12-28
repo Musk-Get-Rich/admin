@@ -27,6 +27,7 @@
 <script setup>
 import {ElDialog} from "element-plus"
 import { useDialogFormStore } from "@/components/DialogForm/store/dialogForm.store.js";
+import { useI18n } from "vue-i18n";
 
 const props = defineProps({
   params: {
@@ -35,13 +36,16 @@ const props = defineProps({
   }
 })
 
+const { t } = useI18n()
+
 const formRef = ref(null)
 
 const option = {
   ...props.params.option,
   // submitBtn: false,
   // emptyBtn: false
-  emptyText: "取消"
+  submitText: t('提交'),
+  emptyText: t('取消')
 }
 
 const dialogVisible = ref(true)

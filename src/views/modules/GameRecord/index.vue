@@ -10,6 +10,11 @@
       @size-change="sizeChange"
       @current-change="currentChange"
     >
+      <template #gametypename="{ row }">
+        <div>
+          {{ locale === 'zh-CN' ? row.gametypename : row.gametype }}
+        </div>
+      </template>
       <template #status="{row}">
         <div>
           {{ row.status == 0 ? $t('未结算') : $t('已结算') }}

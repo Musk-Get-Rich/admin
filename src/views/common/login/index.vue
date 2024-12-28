@@ -4,8 +4,8 @@
       <div class="max-md:flex-col bg-white p-20 rounded-30 shadow flex items-center">
         <img class="max-lg:w-50% lg:w-520 max-md:w-full" src="@/assets/images/login/image.png" alt="">
         <div class="flex-1 md:ml-5% md:pr-3% max-md:w-full max-md:mt-20">
-          <div class="text-28 font-600 text-black">登录</div>
-          <div class="mt-6 text-12 text-#868D88">您好，欢迎您！</div>
+          <div class="text-28 font-600 text-black">{{ $t('登录') }}</div>
+          <div class="mt-6 text-12 text-#868D88">{{ $t('您好，欢迎您！') }}</div>
           <div class="mt-20">
             <el-form
               :model="dataForm"
@@ -18,7 +18,7 @@
                 <el-input
                   class="info h-40"
                   v-model="dataForm.userName"
-                  placeholder="请输入您的用户名"
+                  :placeholder="$t('请输入您的用户名')"
                 >
                   <template #prefix>
                     <img class="w-20" src="@/assets/images/login/user.png" alt="">
@@ -30,14 +30,14 @@
                   class="info h-40"
                   v-model="dataForm.password"
                   type="password"
-                  placeholder="请输入您的密码"
+                  :placeholder="$t('请输入您的密码')"
                 >
                   <template #prefix>
                     <img class="w-20" src="@/assets/images/login/lock.png" alt="">
                   </template>
                 </el-input>
               </el-form-item>
-              <el-checkbox class="mb-18" v-model="remember">记住账号</el-checkbox>
+              <el-checkbox class="mb-18" v-model="remember">{{ $t('记住账号') }}</el-checkbox>
               <el-form-item>
                 <el-button
                   class="w-full !h-46 !rounded-8"
@@ -45,7 +45,7 @@
                   @click="submitForm"
                   :loading="loading"
                 >
-                  <div class="text-16">登录</div>
+                  <div class="text-16">{{ $t('登录') }}</div>
                 </el-button>
               </el-form-item>
             </el-form>
@@ -58,6 +58,9 @@
 <script setup>
 import {useUserStore} from "@/store/modules/user.store.js";
 import {useRouter} from "vue-router";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n()
 
 const router = useRouter()
 
@@ -82,10 +85,10 @@ if(rememberAccount){
 
 const dataRule = {
   userName: [
-    {required: true, message: '请输入您的用户名', trigger: 'blur'}
+    {required: true, message: t('请输入您的用户名'), trigger: 'blur'}
   ],
   password: [
-    {required: true, message: '请输入您的密码', trigger: 'blur'}
+    {required: true, message: t('请输入您的密码'), trigger: 'blur'}
   ],
 }
 
