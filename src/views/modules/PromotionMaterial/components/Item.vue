@@ -56,7 +56,7 @@ const qrcodeUrl = ref('')
 
 const { downloadImage } = useImageDownload()
 
-// 获取图片尺寸  
+// 获取图片尺寸
 const getImageSize = (url) => {
     return new Promise((resolve, reject) => {
         const img = new Image()
@@ -72,7 +72,7 @@ const getImageSize = (url) => {
     })
 }
 
-// 生成二维码  
+// 生成二维码
 const generateQRCode = async () => {
     if (!props.inviteUrl) {
         return null;
@@ -96,9 +96,9 @@ const generateBackground = async (qrcodeDataUrl = '') => {
     // 清空画布
     const canvas = mergeCanvas.value
     const ctx = canvas.getContext('2d')
-    // 清空画布  
+    // 清空画布
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    // 创建背景图片  
+    // 创建背景图片
     backgroundImage.value = new Image()
     backgroundImage.value.crossOrigin = 'Anonymous'
     backgroundImage.value.src = props.data.url
@@ -107,15 +107,15 @@ const generateBackground = async (qrcodeDataUrl = '') => {
         backgroundImage.value.onload = resolve
     })
 
-    // 绘制背景图片  
+    // 绘制背景图片
     ctx.drawImage(backgroundImage.value, 0, 0, canvas.width, canvas.height)
 
     if (qrcodeDataUrl) {
 
-        // 创建并绘制二维码  
+        // 创建并绘制二维码
         const qrcodeImage = new Image()
         qrcodeImage.onload = () => {
-            // 在右下角绘制二维码  
+            // 在右下角绘制二维码
             ctx.drawImage(
                 qrcodeImage,
                 canvas.width - 200,
@@ -128,47 +128,47 @@ const generateBackground = async (qrcodeDataUrl = '') => {
     }
 }
 
-// 生成带背景的二维码图片  
+// 生成带背景的二维码图片
 const generateQRCodeWithBackground = async () => {
     const qrcodeDataUrl = await generateQRCode()
-    // 创建背景图片  
+    // 创建背景图片
     generateBackground(qrcodeDataUrl);
 }
 
-// 下载合并后的图片  
+// 下载合并后的图片
 const downloadMergedImage = async () => {
     await generateQRCodeWithBackground()
     await nextTick()
     setTimeout(() => {
         const canvas = mergeCanvas.value
-        try {  
-            // 将 canvas 转换为 Blob  
-            canvas.toBlob((blob) => {  
-                if (!blob) return  
+        try {
+            // 将 canvas 转换为 Blob
+            canvas.toBlob((blob) => {
+                if (!blob) return
 
-                // 创建下载链接  
-                const link = document.createElement('a')  
-                link.download = `Invite-image-${Date.now()}.png`  
-                link.href = URL.createObjectURL(blob)  
-                
-                // 触发下载  
-                link.click()  
+                // 创建下载链接
+                const link = document.createElement('a')
+                link.download = `Invite-image-${Date.now()}.png`
+                link.href = URL.createObjectURL(blob)
 
-                // 释放资源  
-                URL.revokeObjectURL(link.href)  
+                // 触发下载
+                link.click()
+
+                // 释放资源
+                URL.revokeObjectURL(link.href)
                 generateBackground()
-            }, 'image/png')  
-        } catch (error) {  
-            console.error('下载失败', error)  
-            ElMessage.error('图片下载失败')  
+            }, 'image/png')
+        } catch (error) {
+            console.error('下载失败', error)
+            ElMessage.error('图片下载失败')
         }
     }, 1000);
 }
 
-// 页面挂载时获取图片尺寸  
+// 页面挂载时获取图片尺寸
 onMounted(async () => {
     const size = await getImageSize(props.data.url)
     imageSize.value = size
     generateBackground()
-})  
+})
 </script>

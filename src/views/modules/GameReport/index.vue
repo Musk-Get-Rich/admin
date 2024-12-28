@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import option from "../GameRecord/option.js"
+import option from "./option.js"
 import {useTableList} from "@/hook/useTableList.js";
 import {_getGameReport} from "@/service/api/game.js";
 import Search from "./components/Search.vue";

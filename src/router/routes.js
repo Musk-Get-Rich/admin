@@ -375,17 +375,17 @@ export const routes = [
           activeIcon: 'Sidebar/link-1.png'
         },
       },
-      // {
-      //   path: 'promotionMaterial',
-      //   name: 'promotionMaterial',
-      //   component: () => import("@/views/modules/PromotionMaterial"),
-      //   meta: {
-      //     auth: [3],
-      //     name: '推广素材',
-      //     inactiveIcon: 'Sidebar/gallery.png',
-      //     activeIcon: 'Sidebar/gallery-1.png'
-      //   },
-      // }
+      {
+        path: 'promotionMaterial',
+        name: 'promotionMaterial',
+        component: () => import("@/views/modules/PromotionMaterial"),
+        meta: {
+          auth: [3],
+          name: '推广素材',
+          inactiveIcon: 'Sidebar/gallery.png',
+          activeIcon: 'Sidebar/gallery-1.png'
+        },
+      }
     ]
   },
   {
