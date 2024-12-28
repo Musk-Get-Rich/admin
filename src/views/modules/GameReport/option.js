@@ -14,9 +14,9 @@ export default {
     gametypename: {
       label: t('游戏商'),
     },
-    loginacount: {
-      label: t('会员账号'),
-    },
+    // loginacount: {
+    //   label: t('会员账号'),
+    // },
     betmoney:{
       label: t('投注金额'),
     },
