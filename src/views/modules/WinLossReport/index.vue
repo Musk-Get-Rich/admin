@@ -22,9 +22,9 @@
       <template #netMoney="{ row }">
         <div :class="[row.netMoney > 0 ? 'green': 'red']">{{ row.netMoney}}</div>
       </template>
-      <template #bonusDetail="{ row }">
+      <template #activityMoney="{ row }">
         <div class="flex items-center justify-around">
-          <div>{{ row.bonusDetail.agentBonus }}</div>
+          <div>{{ row.activityMoney }}</div>
           <img
             @click="toggleExpand(row, 'bonusDetail')"
             class="w-24"
