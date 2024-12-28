@@ -566,4 +566,5 @@ export default {
   '退出成功': 'Logout Success',
   '登录成功': 'Login Success',
   '请稍后重试': 'Please try again later',
+  '注单笔数': 'Bet Count',
 };

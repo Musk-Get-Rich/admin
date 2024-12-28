@@ -17,10 +17,10 @@ export default {
     betCount: {
       label: t('注单笔数'),
     },
-    betMoney:{
+    betmoney:{
       label: t('投注金额'),
     },
-    validMoney:{
+    validbet:{
       label: t('有效投注'),
     },
     netmoney:{

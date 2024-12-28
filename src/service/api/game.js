@@ -9,7 +9,7 @@ export const _getDepositRecord = (params) => {
 
 // 获取游戏平台报表
 export const _getGameReport = (params) => {
-  return requestFunc('/AgentNew/GetGameReport', params)
+  return requestFunc('/AgentNew/GetGameTypeDetails', params)
 }
 
 // 获取游戏记录
