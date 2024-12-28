@@ -14,13 +14,13 @@ export default {
     gametypename: {
       label: t('游戏商'),
     },
-    // loginacount: {
-    //   label: t('会员账号'),
-    // },
-    betmoney:{
+    betCount: {
+      label: t('注单笔数'),
+    },
+    betMoney:{
       label: t('投注金额'),
     },
-    validbet:{
+    validMoney:{
       label: t('有效投注'),
     },
     netmoney:{
