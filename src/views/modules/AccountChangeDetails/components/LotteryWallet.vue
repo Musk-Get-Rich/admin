@@ -9,6 +9,9 @@
     @size-change="sizeChange"
     @current-change="currentChange"
   >
+    <template #validbet="{ row }">
+      <div :class="row.validbet > 0 ? 'text-green' : 'text-red'">{{ row.validbet }}</div>
+    </template>
     <template #search>
       <div class="flex mb-10">
         <Search @search="onSearch" @refresh="onRefresh"/>

@@ -43,6 +43,9 @@
           alt=""
         >
       </template>
+      <template #computeMoney="{ row }">
+        <div :class="[row.computeMoney > 0 ? 'green': 'red']">{{ row.computeMoney}}</div>
+      </template>
       <template #expand="{ row }">
         <div class="px-10">
           <Page1 :tableData="otherList"/>

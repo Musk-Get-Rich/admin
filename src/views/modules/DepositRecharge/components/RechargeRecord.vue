@@ -28,6 +28,9 @@
           />
         </div>
       </template>
+      <template #orderamount="{ row }">
+        <div :class="row.orderamount > 0 ? 'text-green' : 'text-red'">{{ row.orderamount }}</div>
+      </template>
     </avue-crud>
   </div>
 </template>

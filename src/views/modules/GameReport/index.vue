@@ -10,22 +10,25 @@
       @size-change="sizeChange"
       @current-change="currentChange"
     >
-      <!-- <template #gamebigtype="{row}">
-        {{ $t(title[row.gamebigtype]) }}
-      </template> -->
       <template #gametypename="{ row }">
         <div>
           {{ locale === 'zh-CN' ? row.gametypename : row.gametype }}
         </div>
       </template>
       <template #search>
-        <Title :name="$t('游戏报表')" />
+        <Title :name="$t('游戏报表')"/>
         <div class="flex mb-10">
           <Search @search="onSearch" @refresh="onRefresh"/>
         </div>
       </template>
       <template #netmoney="{ row }">
-          <div :class="[row.netmoney > 0 ? 'green': 'red']">{{ row.netmoney}}</div>
+        <div :class="[row.netmoney > 0 ? 'green': 'red']">{{ row.netmoney }}</div>
+      </template>
+      <template #betmoney="{ row }">
+        <div :class="row.betmoney > 0 ? 'text-green' : 'text-red'">{{ row.betmoney }}</div>
+      </template>
+      <template #validbet="{ row }">
+        <div :class="row.validbet > 0 ? 'text-green' : 'text-red'">{{ row.validbet }}</div>
       </template>
     </avue-crud>
   </el-card>
@@ -40,9 +43,9 @@ import Title from "@/components/Title/index.vue";
 import searchTime from "@/config/time.js";
 import {useI18n} from "vue-i18n";
 
-const { startDate, endDate } = searchTime
+const {startDate, endDate} = searchTime
 
-const { locale } = useI18n()
+const {locale} = useI18n()
 
 const {
   tableRef,

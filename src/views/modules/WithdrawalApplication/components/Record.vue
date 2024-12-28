@@ -23,6 +23,9 @@
           <span class="text-white">{{ $t('待审核') }}</span>
         </el-button>
       </template>
+      <template #orderamount="{ row }">
+        <div :class="row.orderamount > 0 ? 'text-green' : 'text-red'">{{ row.orderamount }}</div>
+      </template>
     </avue-crud>
   </div>
 </template>

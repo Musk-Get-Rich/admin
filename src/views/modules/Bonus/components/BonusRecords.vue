@@ -15,6 +15,9 @@
           <Search @search="onSearch" @refresh="onRefresh"/>
         </div>
       </template>
+      <template #paymoneyreal="{ row }">
+        <div :class="row.paymoneyreal > 0 ? 'text-green' : 'text-red'">{{ row.paymoneyreal }}</div>
+      </template>
       <template #menu="{ row }">
         <el-tooltip
           effect="dark"
@@ -33,21 +36,6 @@
           })"
           >
         </el-tooltip>
-      </template>
-      <template #other="{ row }">
-        <img
-          @click="toggleExpand(row, 'other')"
-          class="w-24"
-          src="@/assets/images/add-circle.png"
-          alt=""
-        >
-      </template>
-      <template #expand="{ row }">
-        <div class="px-10">
-          <Other
-            :tableData="row.otherList"
-          />
-        </div>
       </template>
     </avue-crud>
   </div>

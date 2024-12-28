@@ -19,6 +19,9 @@
       <template #profitLoss="{ row }">
         <div :class="[row.profitLoss > 0 ? 'green': 'red']">{{ row.profitLoss}}</div>
       </template>
+      <template #netMoney="{ row }">
+        <div :class="[row.netMoney > 0 ? 'green': 'red']">{{ row.netMoney}}</div>
+      </template>
       <template #bonusDetail="{ row }">
         <div class="flex items-center justify-around">
           <div>{{ row.bonusDetail.agentBonus }}</div>

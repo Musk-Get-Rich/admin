@@ -9,6 +9,9 @@
     @size-change="sizeChange"
     @current-change="currentChange"
   >
+    <template #orderamount="{ row }">
+      <div :class="row.orderamount > 0 ? 'text-green' : 'text-red'">{{ row.orderamount }}</div>
+    </template>
     <template #search>
       <div class="flex mb-10">
         <Search @search="onSearch" @refresh="onRefresh"/>

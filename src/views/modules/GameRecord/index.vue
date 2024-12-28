@@ -20,17 +20,20 @@
           {{ row.status == 0 ? $t('未结算') : $t('已结算') }}
         </div>
       </template>
-      <!-- <template #gamebigtype="{row}">
-        {{ $t(title[row.gamebigtype]) }}
-      </template> -->
       <template #search>
-        <Title :name="$t('游戏记录')" />
+        <Title :name="$t('游戏记录')"/>
         <div class="flex mb-10">
           <Search @search="onSearch" @refresh="onRefresh"/>
         </div>
       </template>
       <template #netmoney="{ row }">
-          <div :class="[row.netmoney > 0 ? 'green': 'red']">{{ row.netmoney}}</div>
+        <div :class="[row.netmoney > 0 ? 'green': 'red']">{{ row.netmoney }}</div>
+      </template>
+      <template #betmoney="{ row }">
+        <div :class="row.betmoney > 0 ? 'text-green' : 'text-red'">{{ row.betmoney }}</div>
+      </template>
+      <template #validbet="{ row }">
+        <div :class="row.validbet > 0 ? 'text-green' : 'text-red'">{{ row.validbet }}</div>
       </template>
     </avue-crud>
   </el-card>
@@ -43,11 +46,11 @@ import {_getGameRecord, _getGameReport} from "@/service/api/game.js";
 import Search from "./components/Search.vue";
 import Title from "@/components/Title/index.vue";
 import searchTime from "@/config/time.js";
-import { useI18n } from 'vue-i18n'
+import {useI18n} from 'vue-i18n'
 
-const { locale } = useI18n()
+const {locale} = useI18n()
 
-const { startDate, endDate } = searchTime
+const {startDate, endDate} = searchTime
 
 const {
   tableRef,

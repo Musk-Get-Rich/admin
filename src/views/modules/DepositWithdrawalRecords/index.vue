@@ -19,6 +19,9 @@
       <template #ordertype="{ row }">
         <span>{{ row.ordertype === 1 ? '存款' : '取款' }}</span>
       </template>
+      <template #orderamount="{ row }">
+        <div :class="row.orderamount > 0 ? 'text-green' : 'text-red'">{{ row.orderamount }}</div>
+      </template>
     </avue-crud>
   </el-card>
 </template>
