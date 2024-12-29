@@ -19,14 +19,14 @@
                 <div class="flex mb-20">
                     <span class="text-#868D88">{{ $t('图片尺寸') }}：</span>
                     <span>{{ imageSize.width }}x{{ imageSize.height }}</span>
-                    <div class="flex ml-10 cursor-pointer">
+                    <!-- <div class="flex ml-10 cursor-pointer">
                         <img crossOrigin="" class="w-20 h-20 mr-5" src="@/assets/images/promotion/import.png" alt="">
                         <span class="text-#25D55B" @click="downloadImage(data.url)">{{ $t('立即下载') }}</span>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="w-124px h-46px bg-#25D55B text-white rounded-50px flex items-center justify-center cursor-pointer"
+                <div class="bg-#25D55B text-white rounded-50px inline-flex items-center justify-center cursor-pointer py-10 px-20"
                     @click="downloadMergedImage">
-                    {{ $t('生成二维码') }}
+                    {{ $t('生成二维码并下载') }}
                 </div>
             </div>
         </el-col>

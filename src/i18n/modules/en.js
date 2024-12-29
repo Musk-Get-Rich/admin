@@ -567,4 +567,5 @@ export default {
   '登录成功': 'Login Success',
   '请稍后重试': 'Please try again later',
   '注单笔数': 'Bet Count',
+  '生成二维码并下载': 'Generate QR Code and Download'
 };
