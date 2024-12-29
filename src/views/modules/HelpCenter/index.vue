@@ -90,16 +90,16 @@ const helpers = [
     "titleKey": "helper6Title",
     "component": Helper6
   },
-  {
-    "code": 7,
-    "titleKey": "helper7Title",
-    "component": Helper7
-  },
-  {
-    "code": 8,
-    "titleKey": "helper8Title",
-    "component": Helper8
-  }
+  // {
+  //   "code": 7,
+  //   "titleKey": "helper7Title",
+  //   "component": Helper7
+  // },
+  // {
+  //   "code": 8,
+  //   "titleKey": "helper8Title",
+  //   "component": Helper8
+  // }
 ].map(a => ({
   ...a,
   title: t(a.titleKey)

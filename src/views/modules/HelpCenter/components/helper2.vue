@@ -1,197 +1,108 @@
 <template>
   <div class="mx-auto px-20 py-6 space-y-8">
     <template v-if="$i18n.locale === 'en'">
-      <!-- Title Section -->
-      <div>
-        <h1 class="font-semibold text-gray-800 mb-2 text-7xl">Cancellation Instructions</h1>
-      </div>
+      <h1 class="font-semibold mb-2 text-7xl">Promotion URL Instructions</h1>
 
-      <!-- Instructions List -->
-      <div class="space-y-4">
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            1. Enter the member account to be canceled and the system will identify whether it meets the cancellation
-            conditions (a checkmark indicates the conditions are met, an X indicates they are not).
-          </p>
-        </div>
+      <div class="space-y-6 text-gray-700 text-lg leading-relaxed">
+        <p class="text-6xl leading-snug m-0 mt-10">1. All websites share a single link, and members can only select the
+          corresponding website for registration.</p>
+        <p class="text-6xl leading-snug">2. The shared link is only for accessing GG88 products.</p>
+        <p class="text-6xl leading-snug">3. Users who register through the shared link will become the corresponding
+          subordinate members.</p>
 
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            2. Members who meet the cancellation criteria need to provide conversation records with the member,
-            including at least two screenshots of the member's bound information (name, last digits of the bound
-            bank/cryptocurrency address, email, last digits of mobile number).
-          </p>
-        </div>
+        <p class="text-6xl leading-snug mb-5 !mt-15">Overview</p>
+        <p class="text-6xl leading-snug">H5: Mobile Web Version<br>
+          Copy the link and access it via a mobile browser. Users can log in normally, and registered users will belong
+          to the corresponding agent.
+        </p>
+        <p class="text-6xl leading-snug">PC: Desktop Web Version<br>
+          Copy the link and access it via a desktop browser. Users can log in normally, and registered users will belong
+          to the corresponding agent.
+        </p>
 
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            3. Once the application is initiated, the application status can be viewed in the cancellation record.
-          </p>
-        </div>
+        <p class="text-6xl leading-snug mb-5 !mt-15">Common Issues with Promotion URLs</p>
+        <p class="text-6xl leading-snug">1. Why hasn't my subordinate registered as a member?<br>
+          Members may not have registered on your subordinate URL for the following reasons:
+        </p>
+        <ul class="text-6xl leading-snug list-none pl-8">
+          <li>A. The member has removed the dealership code from the URL.</li>
+          <li>B. The link was opened in a third-party application and returned without confirming the browser, resulting
+            in the registration not being tracked.</li>
+          <li>C. During registration on certain devices, the registration process may cause the browser to refresh
+            automatically, leading to the inability to track the registration.</li>
+          <li>D. The member has already registered (you can contact customer service to check the registration time of
+            the member).</li>
+        </ul>
 
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            4. After approval by the relevant department, members need to log in to their account, go to the "My" page,
-            and click "One-Click Cancellation" below the logout button to complete the account cancellation.
-          </p>
-        </div>
-
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            5. Members who have completed the cancellation can re-register and bind the information of the canceled
-            account.
-          </p>
-        </div>
-
-        <!-- Cancellation Conditions Section -->
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">6. Cancellation conditions:</p>
-
-          <div class="space-y-4">
-            <p class="text-gray-500 text-6xl my-3xl leading-snug">
-              A. Users who have not made any deposits within one week of registration (including those who received gift
-              bonuses but did not deposit) can apply for cancellation.
-            </p>
-
-            <p class="text-gray-500 text-6xl my-3xl leading-snug">
-              B. Users who have not logged in for 20 days can apply for cancellation.
-            </p>
-
-            <p class="text-gray-500 text-6xl my-3xl leading-snug">
-              C. Users who have not made any deposits or played any games for 30 days can apply for cancellation.
-            </p>
-
-            <p class="text-gray-500 text-6xl my-3xl leading-snug">
-              D. Users who have made deposits but have not played any games for 45 days can apply for cancellation.
-            </p>
-          </div>
-        </div>
+        <p class="text-6xl leading-snug mt-5">
+          Regarding the above issues, except for D, which doesn’t lead to registration tracking, cases A, B, and C can
+          all be resolved by submitting chat screenshots (including links, dates, times) through the agent backend.
+        </p>
       </div>
     </template>
 
     <template v-else-if="$i18n.locale === 'zh-CN'">
-      <!-- 标题部分 -->
-      <div>
-        <h1 class="font-semibold text-gray-800 mb-2 text-7xl">注销说明</h1>
-      </div>
+      <h1 class="font-semibold mb-2 text-7xl">推广网址说明</h1>
 
-      <!-- 说明列表 -->
-      <div class="space-y-4">
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            1. 输入要注销的会员账号，系统将识别是否符合注销条件（对勾表示符合条件，叉号表示不符合）。
-          </p>
-        </div>
+      <div class="space-y-6 text-gray-700 text-lg leading-relaxed">
+        <p class="text-6xl leading-snug m-0 mt-10">1. 所有网站共享一个链接，会员只能选择对应网站进行注册即可。</p>
+        <p class="text-6xl leading-snug">2. 分享的链接仅用于访问GG88产品。</p>
+        <p class="text-6xl leading-snug">3. 通过分享的链接注册的用户将成为相应的下属会员。</p>
 
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            2. 符合注销条件的会员需提供与会员的对话记录，包括至少两张会员绑定信息的截图（姓名、绑定的银行/加密货币地址末尾数字、邮箱、手机号末尾数字）。
-          </p>
-        </div>
+        <p class="text-6xl leading-snug mb-5 !mt-15">概述</p>
+        <p class="text-6xl leading-snug">H5: 手机网页版<br>
+          复制链接，通过手机浏览器访问，可以正常登录，注册的用户属于相应代理。
+        </p>
+        <p class="text-6xl leading-snug">PC: 电脑网页版<br>
+          复制链接，用电脑浏览器访问，可以正常登录，注册的用户会归属到相应的代理下。
+        </p>
 
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            3. 发起申请后，可在注销记录中查看申请状态。
-          </p>
-        </div>
+        <p class="text-6xl leading-snug mb-5 !mt-15">推广网址常见问题</p>
+        <p class="text-6xl leading-snug">1. 为什么我的下属没有成为会员注册？<br>
+          成员没有在您的下属网址注册可能有以下几种原因：
+        </p>
+        <ul class="text-6xl leading-snug list-none pl-8">
+          <li>A. 会员未通过 URL 删除掉经销编码。</li>
+          <li>B. 该链接在第三方应用程序中打开，然后返回时未确认浏览器，导致注册未被追踪。</li>
+          <li>C. 由于某些设备型号，注册过程中切换应用并返回注册浏览器会导致自动刷新，刷新后再注册会导致无法追踪注册。</li>
+          <li>D.该会员已经注册过（可以联系客服查询该会员的注册时间）。</li>
+        </ul>
 
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            4. 经相关部门批准后，会员需登录账号，进入"我的"页面，点击注销按钮下方的"一键注销"完成账号注销。
-          </p>
-        </div>
-
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            5. 完成注销的会员可以重新注册并绑定已注销账号的信息。
-          </p>
-        </div>
-
-        <!-- 注销条件部分 -->
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">6. 注销条件：</p>
-
-          <div class="space-y-4">
-            <p class="text-gray-500 text-6xl my-3xl leading-snug">
-              A. 注册后一周内未进行任何充值的用户（包括已收到礼金但未充值的用户）可申请注销。
-            </p>
-
-            <p class="text-gray-500 text-6xl my-3xl leading-snug">
-              B. 20天未登录的用户可申请注销。
-            </p>
-
-            <p class="text-gray-500 text-6xl my-3xl leading-snug">
-              C. 30天未充值或未玩游戏的用户可申请注销。
-            </p>
-
-            <p class="text-gray-500 text-6xl my-3xl leading-snug">
-              D. 已充值但45天未玩游戏的用户可申请注销。
-            </p>
-          </div>
-        </div>
+        <p class="text-6xl leading-snug mt-5">
+          针对以上问题，除D之外，导致注册无法追踪的A、B、C情况，都可以通过代理后台提交聊天截图（包含链接、日期、时间）申请转移解决。
+        </p>
       </div>
     </template>
 
     <template v-else-if="$i18n.locale === 'zh-TW'">
-      <!-- 標題部分 -->
-      <div>
-        <h1 class="font-semibold text-gray-800 mb-2 text-7xl">註銷說明</h1>
-      </div>
+      <h1 class="font-semibold mb-2 text-7xl">推廣網址說明</h1>
+      <div class="space-y-6 text-gray-700 text-lg leading-relaxed">
+        <p class="text-6xl leading-snug m-0 mt-10">1. 所有網站共享一個鏈接，會員只能選擇對應網站進行註冊即可。</p>
+        <p class="text-6xl leading-snug">2. 分享的鏈接僅用於訪問GG88產品。</p>
+        <p class="text-6xl leading-snug">3. 通過分享的鏈接註冊的用戶將成為相應的下屬會員。</p>
 
-      <!-- 說明列表 -->
-      <div class="space-y-4">
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            1. 輸入要註銷的會員賬號，系統將識別是否符合註銷條件（對勾表示符合條件，叉號表示不符合）。
-          </p>
-        </div>
+        <p class="text-6xl leading-snug mb-5 !mt-15">概述</p>
+        <p class="text-6xl leading-snug">H5: 手機網頁版<br>
+          複製鏈接，通過手機瀏覽器訪問，可以正常登錄，註冊的用戶屬於相應代理。
+        </p>
+        <p class="text-6xl leading-snug">PC: 電腦網頁版<br>
+          複製鏈接，用電腦瀏覽器訪問，可以正常登錄，註冊的用戶會歸屬到相應的代理下。
+        </p>
 
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            2. 符合註銷條件的會員需提供與會員的對話記錄，包括至少兩張會員綁定資訊的截圖（姓名、綁定的銀行/加密貨幣地址末尾數字、郵箱、手機號末尾數字）。
-          </p>
-        </div>
+        <p class="text-6xl leading-snug mb-5 !mt-15">推廣網址常見問題</p>
+        <p class="text-6xl leading-snug">1. 為什麼我的下屬沒有成為會員註冊？<br>
+          成員沒有在您的下屬網址註冊可能有以下幾種原因：
+        </p>
+        <ul class="text-6xl leading-snug list-none pl-8">
+          <li>A. 會員未通過 URL 刪除掉經銷編碼。</li>
+          <li>B. 該鏈接在第三方應用程序中打開，然後返回時未確認瀏覽器，導致註冊未被追蹤。</li>
+          <li>C. 中某些設備註冊時，註冊過程可能會導致註冊瀏覽器會導致自動刷新，刷新後註冊會導致無法追蹤註冊。</li>
+          <li>D. 該會員已經註冊過（可以聯繫客服查詢該會員的註冊時間）。</li>
+        </ul>
 
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            3. 發起申請後，可在註銷記錄中查看申請狀態。
-          </p>
-        </div>
-
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            4. 經相關部門批准後，會員需登錄賬號，進入"我的"頁面，點擊註銷按鈕下方的"一鍵註銷"完成賬號註銷。
-          </p>
-        </div>
-
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">
-            5. 完成註銷的會員可以重新註冊並綁定已註銷賬號的資訊。
-          </p>
-        </div>
-
-        <!-- 註銷條件部分 -->
-        <div>
-          <p class="text-gray-500 text-6xl my-3xl leading-snug">6. 註銷條件：</p>
-
-          <div class="space-y-4">
-            <p class="text-gray-500 text-6xl my-3xl leading-snug">
-              A. 註冊後一週內未進行任何充值的用戶（包括已收到禮金但未充值的用戶）可申請註銷。
-            </p>
-
-            <p class="text-gray-500 text-6xl my-3xl leading-snug">
-              B. 20天未登錄的用戶可申請註銷。
-            </p>
-
-            <p class="text-gray-500 text-6xl my-3xl leading-snug">
-              C. 30天未充值或未玩遊戲的用戶可申請註銷。
-            </p>
-
-            <p class="text-gray-500 text-6xl my-3xl leading-snug">
-              D. 已充值但45天未玩遊戲的用戶可申請註銷。
-            </p>
-          </div>
-        </div>
+        <p class="text-6xl leading-snug mt-5">
+          對於以上問題，除D之外，導致註冊無法追蹤的A、B、C情況，都可以通過代理後台提交聊天截圖（包含鏈接、日期、時間）申請轉移解決。
+        </p>
       </div>
     </template>
   </div>

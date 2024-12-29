@@ -1,189 +1,120 @@
-<template>
-  <div class="mx-auto px-20 py-6 space-y-8">
-    <template v-if="$i18n.locale === 'en'">
-      <!-- Title Section -->
-      <div>
-        <h1 class="font-semibold text-gray-800 mb-2 text-7xl">Agent Proxy Deposit Explanation</h1>
-        <p class="text-gray-500 text-6xl my-3xl leading-snug">
-          Agents can use their agent balance to make proxy deposits for their subordinate members. The minimum amount
-          for a single proxy deposit is 1 MYR, and the maximum is 10,000 MYR.
-        </p>
+<template>  
+  <div class="mx-auto px-20 py-6 space-y-8 text-gray-800">  
+    <template v-if="$i18n.locale === 'en'">  
+      <h1 class="font-semibold mb-2 text-7xl">Bonus Rules</h1>  
+
+      <div class="space-y-6 text-gray-700 text-lg leading-relaxed">  
+        <p class="text-6xl leading-snug mb-5">1. Distribution Rules</p>  
+        <ul class="text-6xl leading-snug list-none pl-25 !mt-0">  
+          <li>Members without linked withdrawal information cannot distribute bonuses.</li>  
+          <li>Note: Users with device reset are not allowed to distribute.</li>  
+          <li>The limit for bonuses after binding withdrawal information: 200.</li>  
+          <li>Active members can only distribute 30% of their last deposit amount each time.</li>  
+          <li>Note: If the last deposit is 1000, the maximum bonus can be 300. After updating the next deposit, the 30% distribution will resume.</li>  
+        </ul>  
+
+        <p class="text-6xl leading-snug">2. Bonuses are in local currency.</p>  
+
+        <p class="text-6xl leading-snug">3. The monthly distribution is based on the number of active members: 1 active member = 300 bonuses, not including the current month’s reset.</p>  
+
+        <p class="text-6xl leading-snug">4. Standard: Deposit amount must be greater than or equal to 2000.</p>  
+
+        <p class="text-6xl leading-snug">5. Agent bonus limits can only be applied after use, and can only be distributed based on the next month’s number of active members. Distribution time: 1st of each month.</p>  
+
+        <p class="text-6xl leading-snug">6. Agents can adjust the bonus distribution multiplier; if not set, there will be no wagering requirement.</p>  
+
+        <p class="text-6xl leading-snug mb-5">7. Each member has a monthly bonus distribution limit (local currency).</p>  
+        <ul class="text-6xl leading-snug list-none pl-25 !mt-0">  
+          <li>VIP1: 1500</li>  
+          <li>VIP2: 2000</li>  
+          <li>VIP3: 3000</li>  
+          <li>VIP4: 5000</li>  
+          <li>VIP5: 10000</li>  
+          <li>VIP6: Unlimited</li>  
+        </ul>  
+
+        <p class="text-6xl leading-snug">8. Note: Members with a bonus limit can apply for an upgrade through natural means. The monthly limit cannot be distributed again; the marketing department will close the proxy donation application.</p>  
+      </div>  
+    </template>  
+
+    <template v-else-if="$i18n.locale === 'zh-CN'"> 
+      <h1 class="font-semibold mb-2 text-7xl">彩金规则</h1>  
+    
+      <div class="space-y-6 text-gray-700 text-lg leading-relaxed">  
+        <p class="text-6xl leading-snug mb-5">1、赠送规则</p>  
+        <ul class="text-6xl leading-snug list-none pl-25 !mt-0">  
+          <li>未绑定提款信息的会员不能赠送彩金</li>  
+          <li>注：设备重置用户不允许赠送</li>  
+          <li>绑定提款信息后所赠用户彩金赠送上限：200</li>  
+          <li>正常活跃会员每次赠送彩金只能赠送该会员最后一笔款金额的30%</li>  
+          <li>注：如该会员最后一笔款为1000，赠送彩金最多赠送300，更新下一次存款后将重新可以赠送30%</li>  
+        </ul>  
+
+        <p class="text-6xl leading-snug">2、彩金单位为本地货币</p>  
+
+        <p class="text-6xl leading-snug">3、每月根据上个有有效会员数量放彩金额度，1有效=300彩金，不算加当月清零</p>  
+
+        <p class="text-6xl leading-snug">4、有效会判定标准：存款金额大于或等于2000</p>  
+
+        <p class="text-6xl leading-snug">5、代理彩金额度使用完完申请，只能等下月根据有效会员数量发放，发放时间：每月1号</p>  
+
+        <p class="text-6xl leading-snug">6、代理彩金赠送时可自行调整倍率，不设定则无需打码量</p>  
+
+        <p class="text-6xl leading-snug mb-5">7、会每月彩金赠送上限（当地货币）</p>  
+        <ul class="text-6xl leading-snug list-none pl-25 !mt-0">  
+          <li>VIP1: 1500</li>  
+          <li>VIP2: 2000</li>  
+          <li>VIP3: 3000</li>  
+          <li>VIP4: 5000</li>  
+          <li>VIP5: 10000</li>  
+          <li>VIP6: 以上不限</li>  
+        </ul>  
+        
+        <p class="text-6xl leading-snug">8、注：赠送上限的会员可以通过自然升级提升额度，当月上限无法再次赠送，营销部门关闭代赠申请。</p>  
+      </div> 
+    </template>  
+
+    <template v-else-if="$i18n.locale === 'zh-TW'">  
+      <h1 class="font-semibold mb-2 text-7xl">彩金規則</h1>  
+
+      <div class="space-y-6 text-gray-700 text-lg leading-relaxed">  
+        <p class="text-6xl leading-snug mb-5">1. 贈送規則</p>  
+        <ul class="text-6xl leading-snug list-none pl-25 !mt-0">  
+          <li>未綁定提款資訊的會員不能贈送彩金</li>  
+          <li>注：設備重置用戶不允許贈送</li>  
+          <li>綁定提款資訊後所贈用戶彩金贈送上限：200</li>  
+          <li>正常活躍會員每次贈送彩金只能贈送該會員最後一筆款項金額的30%</li>  
+          <li>注：如該會員最後一筆款為1000，贈送的彩金最多贈送300，更新下一次存款後將可以重新贈送30%</li>  
+        </ul>  
+
+        <p class="text-6xl leading-snug">2. 彩金單位為本地貨幣</p>  
+
+        <p class="text-6xl leading-snug">3. 每月根據上個有效會員數量放彩金額度，1有效=300彩金，不算加當月清零</p>  
+
+        <p class="text-6xl leading-snug">4. 有效會判定標準：存款金額大於或等於2000</p>  
+
+        <p class="text-6xl leading-snug">5. 代理彩金額度使用完後申請，只能等下月根據有效會員數量發放，發放時間：每月1號</p>  
+
+        <p class="text-6xl leading-snug">6. 代理彩金贈送時可自行調整倍率，不設定則無需打碼量</p>  
+
+        <p class="text-6xl leading-snug mb-5">7. 會員每月彩金贈送上限（當地貨幣）</p>  
+        <ul class="text-6xl leading-snug list-none pl-25 !mt-0">  
+          <li>VIP1: 1500</li>  
+          <li>VIP2: 2000</li>  
+          <li>VIP3: 3000</li>  
+          <li>VIP4: 5000</li>  
+          <li>VIP5: 10000</li>  
+          <li>VIP6: 以上不限</li>  
+        </ul>  
+
+        <p class="text-6xl leading-snug">8. 注：贈送上限的會員可以通過自然升級提升額度，當月上限無法再次贈送，營銷部門關閉代贈申請。</p>  
       </div>
+    </template>  
+  </div>  
+</template>  
 
-      <!-- How to Recharge Section -->
-      <div>
-        <h2 class="font-semibold text-gray-800 mb-2 text-7xl">How to Recharge</h2>
-        <p class="text-gray-500 text-6xl my-3xl leading-snug">
-          Proxy Deposit – Choose the corresponding USDT protocol for transfer. Recharges are only accepted in
-          TRC20/ERC20, starting from 10U, with no upper limit.
-        </p>
-      </div>
-
-      <!-- How to Proxy Deposit Section -->
-      <div>
-        <h2 class="font-semibold text-gray-800 mb-2 text-7xl">How to Proxy Deposit</h2>
-        <p class="text-gray-500 mb-2 text-6xl my-3xl leading-snug">Member Management – Operation – Player Proxy Deposit.
-        </p>
-        <p class="text-gray-500 text-6xl my-3xl leading-snug">
-          Please set a payment password before proxy deposit. Steps to set a payment password: Agent Backend – Personal
-          Center – Personal Profile – Set Payment Password in Security Information
-          <span class="text-red">(can be set through the bound email address; if unable to set the payment password
-            yourself, please contact service group customer service)</span>.
-        </p>
-      </div>
-
-      <!-- Common Transfer Questions Section -->
-      <div>
-        <h2 class="font-semibold text-gray-800 mb-4 text-7xl">Common Transfer Questions</h2>
-
-        <div class="space-y-4">
-          <!-- Question 1 -->
-          <div>
-            <h3 class="text-gray-500 font-medium mb-1 text-6xl">1. Where can I view my proxy deposit records?</h3>
-            <p class="text-gray-500 my-3xl text-6xl leading-snug">Go to Financial Center – Member Proxy Deposit – Proxy
-              Deposit Records to view historical proxy deposit records.</p>
-          </div>
-
-          <!-- Question 2 -->
-          <div>
-            <h3 class="text-gray-500 font-medium mb-1 text-6xl">2. What to do if I transfer to the wrong member?</h3>
-            <p class="text-gray-500 my-3xl text-6xl leading-snug">Transfers to the wrong member cannot be deducted and
-              recovered, please confirm the member account is correct before transferring.</p>
-          </div>
-
-          <!-- Question 3 -->
-          <div>
-            <h3 class="text-gray-500 font-medium mb-1 text-6xl">3. How to check records?</h3>
-            <p class="text-gray-500 my-3xl text-6xl leading-snug">For recharge records, please check under "Proxy
-              Deposit Recharge," and for proxy deposit records, check under "Player Proxy Deposit."</p>
-          </div>
-
-          <!-- Question 4 -->
-          <div>
-            <h3 class="text-gray-500 font-medium mb-1 text-6xl">4. Why is the recharge address different from the actual
-              transfer address?</h3>
-            <p class="text-gray-500 my-3xl text-6xl leading-snug">Computer viruses may cause the page address to differ
-              from the actual transfer address. Please do not transfer and first contact service group customer service
-              to verify if the recharge address is correct.</p>
-          </div>
-        </div>
-      </div>
-    </template>
-    <template v-else-if="$i18n.locale === 'zh-CN'">
-      <!-- 标题部分 -->
-      <div>
-        <h1 class="font-semibold text-gray-800 mb-2 text-7xl">代理商代充值说明</h1>
-        <p class="text-gray-500 text-6xl my-3xl leading-snug">
-          代理商可以使用其代理余额为下级会员进行代充值。单次代充值的最低金额为1马来西亚令吉（MYR），最高金额为10,000马来西亚令吉（MYR）。
-        </p>
-      </div>
-
-      <!-- 充值方式部分 -->
-      <div>
-        <h2 class="font-semibold text-gray-800 mb-2 text-7xl">充值方式</h2>
-        <p class="text-gray-500 text-6xl my-3xl leading-snug">
-          代充值 - 选择对应的USDT协议进行转账。充值仅接受TRC20/ERC20协议，起始金额为10U，无上限。
-        </p>
-      </div>
-
-      <!-- 如何代充值部分 -->
-      <div>
-        <h2 class="font-semibold text-gray-800 mb-2 text-7xl">如何进行代充值</h2>
-        <p class="text-gray-500 mb-2 text-6xl my-3xl leading-snug">会员管理 - 操作 - 玩家代充值。</p>
-        <p class="text-gray-500 text-6xl my-3xl leading-snug">
-          请在进行代充值前设置支付密码。设置支付密码的步骤：代理商后台 - 个人中心 - 个人资料 - 在安全信息中设置支付密码
-          <span class="text-red">（可通过绑定的邮箱地址设置；如无法自行设置支付密码，请联系客服）</span>。
-        </p>
-      </div>
-
-      <!-- 常见转账问题部分 -->
-      <div>
-        <h2 class="font-semibold text-gray-800 mb-4 text-7xl">常见转账问题</h2>
-
-        <div class="space-y-4">
-          <!-- 问题1 -->
-          <div>
-            <h3 class="text-gray-500 font-medium mb-1 text-6xl">1. 我在哪里可以查看代充值记录？</h3>
-            <p class="text-gray-500 my-3xl text-6xl leading-snug">进入财务中心 - 会员代充值 - 代充值记录，可查看历史代充值记录。</p>
-          </div>
-
-          <!-- 问题2 -->
-          <div>
-            <h3 class="text-gray-500 font-medium mb-1 text-6xl">2. 如果转错会员怎么办？</h3>
-            <p class="text-gray-500 my-3xl text-6xl leading-snug">转账给错误的会员无法扣除和恢复，请在转账前确认会员账号正确。</p>
-          </div>
-
-          <!-- 问题3 -->
-          <div>
-            <h3 class="text-gray-500 font-medium mb-1 text-6xl">3. 如何查看记录？</h3>
-            <p class="text-gray-500 my-3xl text-6xl leading-snug">充值记录请在"代充值充值"下查看，代充值记录请在"玩家代充值"下查看。</p>
-          </div>
-
-          <!-- 问题4 -->
-          <div>
-            <h3 class="text-gray-500 font-medium mb-1 text-6xl">4. 为什么充值地址与实际转账地址不同？</h3>
-            <p class="text-gray-500 my-3xl text-6xl leading-snug">电脑病毒可能导致页面地址与实际转账地址不同。请勿转账，并首先联系客服核实充值地址是否正确。</p>
-          </div>
-        </div>
-      </div>
-    </template>
-    <template v-else-if="$i18n.locale === 'zh-TW'">
-      <!-- 標題部分 -->
-      <div>
-        <h1 class="font-semibold text-gray-800 mb-2 text-7xl">代理商代充值說明</h1>
-        <p class="text-gray-500 text-6xl my-3xl leading-snug">
-          代理商可以使用其代理餘額為下級會員進行代充值。單次代充值的最低金額為1馬來西亞令吉（MYR），最高金額為10,000馬來西亞令吉（MYR）。
-        </p>
-      </div>
-
-      <!-- 充值方式部分 -->
-      <div>
-        <h2 class="font-semibold text-gray-800 mb-2 text-7xl">充值方式</h2>
-        <p class="text-gray-500 text-6xl my-3xl leading-snug">
-          代充值 - 選擇對應的USDT協議進行轉賬。充值僅接受TRC20/ERC20協議，起始金額為10U，無上限。
-        </p>
-      </div>
-
-      <!-- 如何代充值部分 -->
-      <div>
-        <h2 class="font-semibold text-gray-800 mb-2 text-7xl">如何進行代充值</h2>
-        <p class="text-gray-500 mb-2 text-6xl my-3xl leading-snug">會員管理 - 操作 - 玩家代充值。</p>
-        <p class="text-gray-500 text-6xl my-3xl leading-snug">
-          請在進行代充值前設置支付密碼。設置支付密碼的步驟：代理商後台 - 個人中心 - 個人資料 - 在安全信息中設置支付密碼
-          <span class="text-red">（可通過綁定的郵箱地址設置；如無法自行設置支付密碼，請聯繫客服）</span>。
-        </p>
-      </div>
-
-      <!-- 常見轉賬問題部分 -->
-      <div>
-        <h2 class="font-semibold text-gray-800 mb-4 text-7xl">常見轉賬問題</h2>
-
-        <div class="space-y-4">
-          <!-- 問題1 -->
-          <div>
-            <h3 class="text-gray-500 font-medium mb-1 text-6xl">1. 我在哪裡可以查看代充值記錄？</h3>
-            <p class="text-gray-500 my-3xl text-6xl leading-snug">進入財務中心 - 會員代充值 - 代充值記錄，可查看歷史代充值記錄。</p>
-          </div>
-
-          <!-- 問題2 -->
-          <div>
-            <h3 class="text-gray-500 font-medium mb-1 text-6xl">2. 如果轉錯會員怎麼辦？</h3>
-            <p class="text-gray-500 my-3xl text-6xl leading-snug">轉賬給錯誤的會員無法扣除和恢復，請在轉賬前確認會員賬號正確。</p>
-          </div>
-
-          <!-- 問題3 -->
-          <div>
-            <h3 class="text-gray-500 font-medium mb-1 text-6xl">3. 如何查看記錄？</h3>
-            <p class="text-gray-500 my-3xl text-6xl leading-snug">充值記錄請在"代充值充值"下查看，代充值記錄請在"玩家代充值"下查看。</p>
-          </div>
-
-          <!-- 問題4 -->
-          <div>
-            <h3 class="text-gray-500 font-medium mb-1 text-6xl">4. 為什麼充值地址與實際轉賬地址不同？</h3>
-            <p class="text-gray-500 my-3xl text-6xl leading-snug">電腦病毒可能導致頁面地址與實際轉賬地址不同。請勿轉賬，並首先聯繫客服核實充值地址是否正確。</p>
-          </div>
-        </div>
-      </div>
-    </template>
-  </div>
-</template>
+<script>  
+export default {  
+  name: 'BonusRules',  
+}  
+</script>  
