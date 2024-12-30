@@ -27,12 +27,12 @@
               <div class="flex items-center justify-center flex-col">
                 <img class="w-48" src="@/assets/images/home/Group1597886560.png" alt="">
                 <div class="mt-15 mb-8">{{ $t('今日活跃') }}</div>
-                <div class="text-green text-16">{{ info.liveplay ?? 0 }}</div>
+                <div class="text-green text-16">{{ info.daylive ?? 0 }}</div>
               </div>
               <div class="flex items-center justify-center flex-col">
                 <img class="w-48" src="@/assets/images/home/Group1597886559.png" alt="">
                 <div class="mt-15 mb-8">{{ $t('今日投注') }}</div>
-                <div class="text-green text-16">{{ info.betnum ?? 0 }}</div>
+                <div class="text-green text-16">{{ info.daybet ?? 0 }}</div>
               </div>
               <div class="flex items-center justify-center flex-col">
                 <img class="w-48" src="@/assets/images/home/Group1597886557.png" alt="">
