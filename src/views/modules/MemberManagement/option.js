@@ -88,7 +88,7 @@ export default {
       sortable: true
     },
     {
-      label: t('净输赢'),
+      label: t('存取差'),
       prop: 'winlose',
       sortable: true
     },

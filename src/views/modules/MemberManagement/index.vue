@@ -79,7 +79,7 @@
         <div>{{ scope.row.accumulatedwithdraw || 0 }}</div>
       </template>
       <template #winlose="scope">
-        <div :class="+scope.row.winlose >= 0 ? 'color-red' : 'color-green'">{{ scope.row.winlose }}</div>
+        <div :class="+scope.row.winlose < 0 ? 'color-red' : 'color-green'">{{ scope.row.winlose }}</div>
       </template>
       <template #other="{ row }">
         <img @click="toggleExpand(row, 'other')" class="w-24" src="@/assets/images/add-circle.png" alt="">
@@ -217,14 +217,14 @@ const summaryMethod = ({ columns, ...rest }) => {
       if (['winlose', 'accumulateddeposit_accumulatedwithdraw'].includes(prop)) {
         if (prop === 'winlose') {
           const num = tableData.value?.reduce((prev, current) => current[prop] + prev, 0);
-          sums[index] = h('div', { class: num < 0 ? 'color-green' : 'color-red' }, num);
+          sums[index] = h('div', { class: num >= 0 ? 'color-green' : 'color-red' }, num);
         }
         if (prop === 'accumulateddeposit_accumulatedwithdraw') {
           const accumulateddeposit = tableData.value?.reduce((prev, current) => (+current['accumulateddeposit'] || 0) + prev, 0);
           const accumulatedwithdraw = tableData.value?.reduce((prev, current) => (+current['accumulatedwithdraw'] || 0) + prev, 0);
           sums[index] = h('div', [  
-            h('div', { class: accumulateddeposit < 0 ? 'color-green' : 'color-red' }, accumulateddeposit),  
-            h('div', { class: accumulatedwithdraw < 0 ? 'color-green' : 'color-red' }, accumulatedwithdraw)  
+            h('div', { class: accumulateddeposit >= 0 ? 'color-green' : 'color-red' }, accumulateddeposit),  
+            h('div', { class: accumulatedwithdraw >= 0 ? 'color-green' : 'color-red' }, accumulatedwithdraw)  
           ])  
         }
       } else {
