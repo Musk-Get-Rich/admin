@@ -259,7 +259,9 @@ const expandChange = (row) => {
 
 const onTypeChange = (value) => {
   type.value = value;
-  getTableData();
+  getTableData({
+    maintainReason: value === 0 ? 'REGISTERNODEPOSIT' : undefined
+  });
 }
 
 const menuClick = (item, data) => {
@@ -288,6 +290,8 @@ const getImg = (row) => {
 
 // 搜索
 const onSearch = (form, done) => {
+  form.maintainReason = form.reasontype
+  delete form.reasontype
   tableSearch.search(form, getTableData, done)
 }
 

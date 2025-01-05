@@ -21,7 +21,7 @@ export const isnormalOptions = [
 export const reasonTypes = [
   {
     "label": t("注册未充值"),
-    "value": "REGISTERNODEPOSIT "
+    "value": "REGISTERNODEPOSIT"
   },
   {
     "label": t("超过1周没登录"),
@@ -124,7 +124,8 @@ export default {
       placeholder: t('维护原因'),
       type: 'select',
       searchOrder: 1,
-      dicData: reasonTypes
+      dicData: reasonTypes,
+      searchValue: reasonTypes[0].value
     },
     {
       label: t('操作'),
