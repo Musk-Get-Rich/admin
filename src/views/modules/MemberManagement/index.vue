@@ -260,7 +260,7 @@ const expandChange = (row) => {
 const onTypeChange = (value) => {
   type.value = value;
   getTableData({
-    maintainReason: value === 0 ? 'REGISTERNODEPOSIT' : undefined
+    maintainReason: value === 0 ? 'REGISTERNODEPOSIT' : undefined,
   });
 }
 
@@ -291,7 +291,9 @@ const getImg = (row) => {
 // 搜索
 const onSearch = (form, done) => {
   form.maintainReason = form.reasontype
+  form.hasDeposit = form.accumulateddeposit_accumulatedwithdraw
   delete form.reasontype
+  delete form.accumulateddeposit_accumulatedwithdraw
   tableSearch.search(form, getTableData, done)
 }
 
