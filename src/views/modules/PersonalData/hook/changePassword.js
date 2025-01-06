@@ -3,7 +3,7 @@ import {ElMessage, ElMessageBox} from "element-plus";
 import {storeToRefs} from "pinia";
 import {useDeviceStore} from "@/store/modules/device.store.js";
 import { useUserStore } from "@/store/modules/user.store.js";
-import { apiEditAgent } from "@/service/api/api.js";
+import { apiUpdatepwd } from "@/service/api/api.js";
 import i18n from "@/i18n/index.js";
 
 const t = i18n.global.t
@@ -23,9 +23,9 @@ export const useChangePassword = () => {
       column: [
         {
           label: '',
-          prop: 'oldfundpassword',
+          prop: 'oldloginpassword',
           type: 'password',
-          maxlength: 6,
+          maxlength: 15,
           span: 24,
           placeholder: t('请填写旧密码')  ,
           rules: [
@@ -38,10 +38,10 @@ export const useChangePassword = () => {
         },
         {
           label: '',
-          prop: 'newfundpassword',
+          prop: 'newloginpassword',
           type: 'password',
           span: 24,
-          maxlength: 6,
+          maxlength: 15,
           placeholder: t('请输入密码'),
           rules: [
             {
@@ -60,10 +60,10 @@ export const useChangePassword = () => {
         },
         {
           label: '',
-          prop: 'newfundpassword2',
+          prop: 'newloginpassword2',
           type: 'password',
           span: 24,
-          maxlength: 6,
+          maxlength: 15,
           placeholder: t('请再次输入新密码'),
           rules: [
             {
@@ -86,9 +86,9 @@ export const useChangePassword = () => {
       ]
     }
 
-    if (userStore.userInfo.fundpassword === 'false') {
-      option.column.shift()
-    }
+    // if (userStore.userInfo.fundpassword === 'false') {
+    //   option.column.shift()
+    // }
 
     useDialogFormStore().showDialog({
       dialog: {
@@ -97,7 +97,7 @@ export const useChangePassword = () => {
       },
       option,
       submit(formData, done, cancel) {
-        apiEditAgent(formData).then(res => {
+        apiUpdatepwd(formData).then(res => {
           done()
           userStore.changeUserInfo()
           ElMessage.success(t('修改成功'))

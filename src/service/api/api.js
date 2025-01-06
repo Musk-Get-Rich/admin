@@ -172,3 +172,11 @@ export const apiNotic = (params) => {
     ...params,
   })
 }
+
+// 修改登录密码
+export const apiUpdatepwd = (params) => {
+  return requestFunc('/User/updatepwd', {
+    ...params,
+  })
+}
+
