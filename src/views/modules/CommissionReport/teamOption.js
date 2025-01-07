@@ -1,5 +1,6 @@
 import {globalOption} from "@/config/tabOption.js";
 import i18n from "@/i18n/index.js";
+
 const t = i18n.global.t
 
 export default {
@@ -37,14 +38,17 @@ export default {
     {
       label: t('净输赢'),
       prop: 'fs',
+      sortable: true,
     },
     {
       label: t('上月结余'),
       prop: 'commissionday',
+      sortable: true,
     },
     {
       label: t('结算参考'),
       prop: 'proamount',
+      sortable: true,
     },
   ]
 }

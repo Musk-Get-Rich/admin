@@ -37,6 +37,7 @@ export default {
     {
       label: t('账变金额'),
       prop: 'validbet',
+      sortable: true,
     },
     {
       label: t('账变时间'),

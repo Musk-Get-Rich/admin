@@ -38,6 +38,7 @@ export default {
     {
       label: t('账变金额'),
       prop: 'orderamount',
+      sortable: true,
     },
     {
       label: t('账变时间'),

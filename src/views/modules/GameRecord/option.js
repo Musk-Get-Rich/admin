@@ -1,5 +1,6 @@
 import {globalOption} from "@/config/tabOption.js";
 import i18n from "@/i18n/index.js";
+
 const t = i18n.global.t
 
 export default {
@@ -14,25 +15,28 @@ export default {
     gametypename: {
       label: t('游戏商'),
     },
-    loginacount:{
+    loginacount: {
       label: t('会员账号'),
     },
-    betmoney:{
+    betmoney: {
       label: t('投注金额'),
+      sortable: true
     },
-    validbet:{
+    validbet: {
       label: t('有效投注金额'),
+      sortable: true
     },
-    netmoney:{
+    netmoney: {
       label: t('输赢金额'),
+      sortable: true
     },
-    platformid:{
+    platformid: {
       label: t('注单号'),
     },
-    bettime:{
+    bettime: {
       label: t('游戏时间'),
     },
-    status:{
+    status: {
       label: t('状态'),
     },
   }

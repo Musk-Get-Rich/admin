@@ -47,8 +47,11 @@ import Search from "./components/Search.vue";
 import Title from "@/components/Title/index.vue";
 import searchTime from "@/config/time.js";
 import {useI18n} from 'vue-i18n'
+import {useRoute} from "vue-router";
 
 const {locale} = useI18n()
+
+const route = useRoute()
 
 const {startDate, endDate} = searchTime
 

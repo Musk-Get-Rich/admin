@@ -19,6 +19,7 @@ export default {
     },
     orderamount:{
       label: t('金额'),
+      sortable: true
     },
     ordertype:{
       label: t('资金类型'),

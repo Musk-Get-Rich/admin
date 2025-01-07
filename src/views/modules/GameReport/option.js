@@ -1,5 +1,6 @@
 import {globalOption} from "@/config/tabOption.js";
 import i18n from "@/i18n/index.js";
+
 const t = i18n.global.t
 
 export default {
@@ -17,14 +18,17 @@ export default {
     betCount: {
       label: t('注单笔数'),
     },
-    betmoney:{
+    betmoney: {
       label: t('投注金额'),
+      sortable: true
     },
-    validbet:{
+    validbet: {
       label: t('有效投注'),
+      sortable: true
     },
-    netmoney:{
+    netmoney: {
       label: t('总输赢'),
+      sortable: true
     },
   }
 }

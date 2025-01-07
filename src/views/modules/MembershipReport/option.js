@@ -1,5 +1,6 @@
 import {globalOption} from "@/config/tabOption.js";
 import i18n from "@/i18n/index.js";
+
 const t = i18n.global.t
 
 export default {
@@ -24,22 +25,27 @@ export default {
     {
       label: t('存款金额'),
       prop: 'depositMoney',
+      sortable: true,
     },
     {
       label: t('取款金额'),
       prop: 'withdrawMoney',
+      sortable: true,
     },
     {
       label: t('净输赢'),
       prop: 'computeMoney',
+      sortable: true,
     },
     {
       label: t('投注金额'),
       prop: 'betmoney',
+      sortable: true,
     },
     {
       label: t('有效投注额'),
       prop: 'validbet',
+      sortable: true,
     },
     {
       label: t('其他'),

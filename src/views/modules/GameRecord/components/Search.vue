@@ -49,7 +49,7 @@ const emit = defineEmits(['search', 'refresh'])
 const userStore = useUserStore()
 const route = useRoute()
 
-const username = ref(route.query.loginaccount || '')
+const username = ref(route.query.name || '')
 const selectedOption = ref('')
 const selectedGameType = ref('')
 const selectedCategory = ref('')
@@ -94,6 +94,7 @@ const onSearch = (val) => {
     employeecode: ''
   })
 }
+onSearch()
 
 const onRefresh = () => {
   username.value = ''

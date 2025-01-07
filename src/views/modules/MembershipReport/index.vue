@@ -27,7 +27,7 @@
             src="@/assets/images/login/note.png"
             alt=""
             @click="$router.push({
-            path: '/member/gameRecords',
+            path: '/member/gameRecord',
             query: {
               name: row.loginaccount
             }

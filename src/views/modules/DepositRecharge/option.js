@@ -27,6 +27,7 @@ export default {
     {
       label: t('金额(HKD)'),
       prop: 'orderamount',
+      sortable: true,
     },
     {
       label: t('状态'),
