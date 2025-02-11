@@ -101,7 +101,7 @@
         </div>
         <div class="cursor-pointer w-300px h-46px border-1 border-solid border-#25D55B text-#25D55B px-10px mr-10 rounded-8px flex items-center justify-center"
         @click="handleEmailSupport">
-          gg88hk88@gmail.com
+          盛乐体育hk88@gmail.com
         </div>
       </el-row>
     </el-card>
@@ -199,7 +199,7 @@ const handleSubmitCallbackService = async () => {
 }
 
 const handleEmailSupport = () => {
-  const email = 'gg88hk88@gmail.com' // 替换为实际的客服邮箱
+  const email = '盛乐体育hk88@gmail.com' // 替换为实际的客服邮箱
   const subject = encodeURIComponent(t('客户支持请求'))
   const body = encodeURIComponent(t('您好，我需要帮助...'))
   window.location.href = `mailto:${email}?subject=${subject}&body=${body}`

@@ -6,7 +6,7 @@
       <div class="space-y-6 text-gray-700 text-lg leading-relaxed">
         <p class="text-6xl leading-snug m-0 mt-10">1. All websites share a single link, and members can only select the
           corresponding website for registration.</p>
-        <p class="text-6xl leading-snug">2. The shared link is only for accessing GG88 products.</p>
+        <p class="text-6xl leading-snug">2. The shared link is only for accessing 盛乐体育 products.</p>
         <p class="text-6xl leading-snug">3. Users who register through the shared link will become the corresponding
           subordinate members.</p>
 
@@ -46,7 +46,7 @@
 
       <div class="space-y-6 text-gray-700 text-lg leading-relaxed">
         <p class="text-6xl leading-snug m-0 mt-10">1. 所有网站共享一个链接，会员只能选择对应网站进行注册即可。</p>
-        <p class="text-6xl leading-snug">2. 分享的链接仅用于访问GG88产品。</p>
+        <p class="text-6xl leading-snug">2. 分享的链接仅用于访问盛乐体育产品。</p>
         <p class="text-6xl leading-snug">3. 通过分享的链接注册的用户将成为相应的下属会员。</p>
 
         <p class="text-6xl leading-snug mb-5 !mt-15">概述</p>
@@ -78,7 +78,7 @@
       <h1 class="font-semibold mb-2 text-7xl">推廣網址說明</h1>
       <div class="space-y-6 text-gray-700 text-lg leading-relaxed">
         <p class="text-6xl leading-snug m-0 mt-10">1. 所有網站共享一個鏈接，會員只能選擇對應網站進行註冊即可。</p>
-        <p class="text-6xl leading-snug">2. 分享的鏈接僅用於訪問GG88產品。</p>
+        <p class="text-6xl leading-snug">2. 分享的鏈接僅用於訪問盛乐体育產品。</p>
         <p class="text-6xl leading-snug">3. 通過分享的鏈接註冊的用戶將成為相應的下屬會員。</p>
 
         <p class="text-6xl leading-snug mb-5 !mt-15">概述</p>
