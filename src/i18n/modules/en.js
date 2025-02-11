@@ -462,7 +462,7 @@ export default {
   '会员净输赢：净输赢数接近会员"总存款—总提款"，计算方式为，游戏输赢—各项实际支出费用而得出。': 'Member Net Win/Loss: Net win/loss amount is close to "Total Deposits - Total Withdrawals", calculated as game win/loss minus actual expenses.',
   '会员返水：根据会员的游戏有效返注而计算的奖励，此项为了会员粘性，一直保持在平台游戏。': 'Member Rebate: Rewards calculated based on members valid bets, designed to maintain member loyalty and platform engagement.',
   '优惠／红利：会员参加平台各项优惠活动，红利申请而产生的实际费用，优惠是吸引会员注册与活跃的重要方式。': 'Promotions/Bonus: Actual costs from members participating in platform promotions and bonus applications, an important way to attract registrations and activity.',
-  '邀请有奖：为鼓励您的会员道请朋友注册而设计的营销，您下线会员所邀请的会员均自动在您的下线，属盛乐体育创新业务，为您的输真报表业务开展带来无限可能。': 'Referral Rewards: Marketing designed to encourage your members to invite friends to register. Members invited by your downline automatically become your downline, a 盛乐体育 innovation bringing unlimited possibilities to your business.',
+  '邀请有奖：为鼓励您的会员道请朋友注册而设计的营销，您下线会员所邀请的会员均自动在您的下线，属盛乐创新业务，为您的输真报表业务开展带来无限可能。': 'Referral Rewards: Marketing designed to encourage your members to invite friends to register. Members invited by your downline automatically become your downline, a Shengle innovation bringing unlimited possibilities to your business.',
   '对接费用：平台每个游戏厂商的对接费用，按对接所产生的实际费用计算。': 'Integration Fee: Connection fees for each game provider on the platform, calculated based on actual costs incurred.',
   '支付费用：每个通道的支付费率不同，按会员充值支付所产生的实际费用计算会员报表。': 'Payment Fee: Different payment channels have different rates, member reports are calculated based on actual costs from member recharge payments.',
   '请输入您的描述': 'Please enter your description',
