@@ -17,7 +17,7 @@ const formData = reactive({
   loginaccount: '',
   remark: '',
   terminal: '',
-  opreatetype: '1'
+  opreatetype: '2'
 })
 
 onMounted(() => {
