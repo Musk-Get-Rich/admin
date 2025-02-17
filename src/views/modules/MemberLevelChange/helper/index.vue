@@ -4,7 +4,7 @@
         <!-- 表格部分 -->
         <el-table :data="levelData" border class="w-full bg-green">
             <el-table-column prop="level" :label="$t('等级')" align="center" />
-            <el-table-column prop="hk" label="HK(HKD)" align="center" />
+            <el-table-column prop="hk" label="HK(CNY)" align="center" />
             <el-table-column prop="my" label="MY(MYR)" align="center" />
             <el-table-column prop="levelRange" :label="$t('等级')" align="center" />
             <el-table-column prop="vn" label="VN(KD)" align="center" />

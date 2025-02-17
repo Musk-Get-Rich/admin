@@ -4,28 +4,28 @@
     <div
       class="w-188px h-126px bg-#25D55B rounded-8px mt-30 text-#FFFFFF flex flex-col justify-center box-border pl-20">
       <span class="text-16px mb-10">{{ $t('付款账户') }}</span>
-      <span class="text-28px">HKD:{{ userInfo.balance }}</span>
+      <span class="text-28px">CNY:{{ userInfo.balance }}</span>
     </div>
-<!--    <div class="text-#3A3541 text-16px mt-30">会员账号</div>-->
-<!--    <div class="mt-12">-->
-<!--      <el-input-->
-<!--        class="!w-280"-->
-<!--        v-show="form.loginaccount"-->
-<!--        v-model="form.loginaccount"-->
-<!--        disabled-->
-<!--        placeholder="Please input"-->
-<!--        size="large"-->
-<!--      />-->
-<!--      <div-->
-<!--        v-show="!(form.loginaccount)"-->
-<!--        class="text-#868D88"-->
-<!--      >-->
-<!--        请从 <span-->
-<!--        class="text-#25D55B cursor-pointer"-->
-<!--        @click="$router.push('/managementCenter/membershipManagement')"-->
-<!--      >会员管理</span> 输入账号进行处理-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--    <div class="text-#3A3541 text-16px mt-30">会员账号</div>-->
+    <!--    <div class="mt-12">-->
+    <!--      <el-input-->
+    <!--        class="!w-280"-->
+    <!--        v-show="form.loginaccount"-->
+    <!--        v-model="form.loginaccount"-->
+    <!--        disabled-->
+    <!--        placeholder="Please input"-->
+    <!--        size="large"-->
+    <!--      />-->
+    <!--      <div-->
+    <!--        v-show="!(form.loginaccount)"-->
+    <!--        class="text-#868D88"-->
+    <!--      >-->
+    <!--        请从 <span-->
+    <!--        class="text-#25D55B cursor-pointer"-->
+    <!--        @click="$router.push('/managementCenter/membershipManagement')"-->
+    <!--      >会员管理</span> 输入账号进行处理-->
+    <!--      </div>-->
+    <!--    </div>-->
     <div class="text-#3A3541 text-16px mt-40">{{ $t('协议类型') }}</div>
     <div class="flex items-center mt-15">
       <div
@@ -41,7 +41,8 @@
       </div>
     </div>
     <div class="flex">
-      <div class="h-46px border-1 border-solid border-#DBDEDC bg-#F4F9F5 rounded-8px flex items-center justify-between mt-20 px-20">
+      <div
+        class="h-46px border-1 border-solid border-#DBDEDC bg-#F4F9F5 rounded-8px flex items-center justify-between mt-20 px-20">
         <span class="text-16px mr-12">{{ currentUSDTRechargeAddress.waddress }}</span>
         <img
           @click="copy(currentUSDTRechargeAddress.waddress)"
@@ -60,13 +61,30 @@
           size="large"
           v-model="form.depositNum"
           :placeholder="$t('请输入存入个数')"
+          @blur="handleBlur"
+        >
+          <template #append>CNY</template>
+        </el-input>
+      </div>
+    </div>
+    <div class="flex flex-col mt-15">
+      <span>{{ $t('需要付款') }}</span>
+      <div class="flex items-center mt-15">
+        <el-input
+          type="number"
+          class="!w-280"
+          size="large"
+          readonly
+          v-model="fullAmount"
+          :placeholder="$t('请输入存入个数')"
           min="0"
-        />
-        <span class="ml-10">{{$t('预计到账')}}{{ fullAmount }}</span>
+        >
+          <template #append>USDT</template>
+        </el-input>
       </div>
     </div>
     <div class="flex items-center mt-15 rounded-8px">
-<!--      <img class="w-142px h-142px" src="@/assets/images/finance/code.png" alt="">-->
+      <!--      <img class="w-142px h-142px" src="@/assets/images/finance/code.png" alt="">-->
       <QRCodeVue3
         :width="152"
         :height="152"
@@ -80,8 +98,8 @@
       />
     </div>
     <div class="flex flex-col">
-      <span class="text-#3A3541 mt-15">{{$t('最低存款')}}{{ Math.ceil(100 / currentUSDTRechargeAddress?.echrate) }}USDT</span>
-      <span class="text-#3A3541 my-10">{{$t('当前参考汇率')}}：1USDT={{ currentUSDTRechargeAddress?.echrate }}</span>
+      <span class="text-#3A3541 mt-15">{{ $t('最低存款') }}{{ min_deposit }}CNY</span>
+      <span class="text-#3A3541 my-10">{{ $t('当前参考汇率') }}：1USDT={{ currentUSDTRechargeAddress?.echrate }}</span>
       <span class="text-#F93131">{{ $t('注：') }}</span>
       <span class="text-#F93131 my-10">{{ $t('请使用您的USDT钱包扫描二维码') }}</span>
     </div>
@@ -116,6 +134,11 @@ import {copy} from "@/utils/index.js";
 import QRCodeVue3 from 'qrcode-vue3'
 import {apiPlayerWalletOperation} from "@/service/api/agent.js";
 import {ElMessage} from "element-plus";
+import {useI18n} from "vue-i18n";
+
+const { t } = useI18n()
+
+const min_deposit = 100
 
 const numList = [
   {
@@ -141,11 +164,11 @@ const form = ref({
 })
 
 // 预计到账
-const fullAmount = computed(() => Math.floor(form.value.depositNum / 1 * currentUSDTRechargeAddress.value?.echrate / 1))
+const fullAmount = computed(() => Math.floor(form.value.depositNum / 1 / currentUSDTRechargeAddress.value?.echrate / 1))
 
 const disabled = computed(() => {
   return form.value.depositNum.length === 0 ||
-    form.value.depositNum / 1 < 10
+    form.value.depositNum / 1 < 100
 })
 
 const loading = ref(false)
@@ -153,14 +176,14 @@ const onSubmit = () => {
   loading.value = true
   apiPlayerWalletOperation({
     ...form.value,
-    depositNum: fullAmount.value,
+    depositNum: form.value.depositNum,
     opreateChannel: 3,
     usdtype: currentUSDTRechargeAddress.value.usdtype,
     walletId: currentUSDTRechargeAddress.value.walletId,
   }).then(res => {
     loading.value = false
     console.log(res);
-    ElMessage.success('充值信息已提交')
+    ElMessage.success(t('充值信息已提交'))
 
     changeUserInfo()
 
@@ -198,6 +221,15 @@ const textList = [
   '代存余额可向同属上级的其他代理转账，转账成功后无法追回'
 ]
 
+const handleBlur = () => {
+  if (form.value.depositNum / 1 < min_deposit) {
+    form.value.depositNum = ''
+    return ElMessage.error({
+      message: t(`最低充值{num}元`, { num: min_deposit }),
+      duration: 3000
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>

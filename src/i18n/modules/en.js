@@ -145,7 +145,7 @@ export default {
   '日期':'Date',
   '代理账号':'Agent account',
   '单号':'Order number',
-  '金额(HKD)':'Amount (HKD)',
+  '金额(CNY)':'Amount (CNY)',
   '状态':'Status',
   '备注':'Remarks',
   '付款账户':'Payment account',
@@ -568,5 +568,8 @@ export default {
   '请稍后重试': 'Please try again later',
   '注单笔数': 'Bet Count',
   '生成二维码并下载': 'Generate QR Code and Download',
-  '存取差': 'Deposit and withdrawal difference'
+  '存取差': 'Deposit and withdrawal difference',
+  '充值信息已提交': 'Deposit information submitted',
+  '最低充值{num}元': 'Minimum deposit {num} yuan',
+  '需要付款': 'Need to pay',
 };

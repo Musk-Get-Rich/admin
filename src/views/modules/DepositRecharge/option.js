@@ -25,7 +25,7 @@ export default {
       prop: 'ordernumber',
     },
     {
-      label: t('金额(HKD)'),
+      label: t('金额(CNY)'),
       prop: 'orderamount',
       sortable: true,
     },

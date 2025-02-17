@@ -4,7 +4,7 @@
     <div
       class="w-188px h-126px bg-#25D55B rounded-8px mt-30 text-#FFFFFF flex flex-col justify-center box-border pl-20">
       <span class="text-16px mb-10">{{ $t('付款账户') }}</span>
-      <span class="text-28px">HKD:{{ userInfo.balance }}</span>
+      <span class="text-28px">CNY:{{ userInfo.balance }}</span>
     </div>
     <div class="text-#3A3541 text-16px mt-30">{{ $t('会员账号') }}</div>
     <div class="mt-12">

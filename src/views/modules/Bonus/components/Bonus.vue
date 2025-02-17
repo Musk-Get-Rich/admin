@@ -4,7 +4,7 @@
     <div
       class="w-188px h-126px bg-#25D55B rounded-8px mt-20 text-#FFFFFF flex flex-col justify-center box-border pl-20">
       <span class="mb-10">{{ $t('付款账户') }}</span>
-      <span class="text-28px">HKD: {{ userInfo.giftUsd }}</span>
+      <span class="text-28px">CNY: {{ userInfo.giftUsd }}</span>
     </div>
     <div class="text-#3A3541 mt-30">{{ $t('会员账号') }}</div>
     <div class="mt-12">
@@ -166,7 +166,7 @@
         <li>Note: Members with a gift limit can increase their quota through natural upgrades. The monthly limit cannot be gifted again, and the marketing department closes the proxy gift application.</li>
       </ul>
     </div>
-    
+
   </div>
 </template>
 
@@ -244,7 +244,7 @@ const textList = [
 }
 
 .disc-list {
-  list-style-type: disc; 
-  padding-left: 10px; 
+  list-style-type: disc;
+  padding-left: 10px;
 }
 </style>
