@@ -41,3 +41,13 @@ export const apiPlayerWalletOperation = (params) => {
 export const apiMoneyLog = (params) => {
   return requestFunc('/AgentNew/DoTransLog', params)
 }
+
+// ebpay 通道
+export const apiEBPayList = (params) => {
+  return requestFunc('/TPayment/EThirdpartys', params)
+}
+
+// EbPay代存
+export const apiEBPaySaving = (params) => {
+  return requestFunc('/AgentNew/ESaving', params)
+}
