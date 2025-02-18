@@ -89,28 +89,52 @@ const { t } = useI18n()
 
 // 充值通道
 const ebPayList = ref([])
-apiEBPayList({agenttype: 1}).then(res => {
-  ebPayList.value = res
-  chain.value = ebPayList.value[0]
-  console.log(res);
-})
 
 const min_deposit = 100
 
-const numList = [
-  {
-    usdtype: 'USDT',
-    protocol: 'ERC20',
-    opreateChannel: 3
-  },
-  {
-    usdtype: 'USDT',
-    protocol: 'TRC20',
-    opreateChannel: 3
-  },
-]
+const chain = ref({})
 
-const chain = ref(numList[0])
+const getPayment = () => {
+  apiEBPayList({agenttype: 1}).then(res => {
+    let channels = []
+    res.forEach(item => {
+      if (item.name === '支付宝大额') {
+        // 解析吉祥支付的多个渠道
+        const types = JSON.parse(item.payChanneltype)
+        types.forEach(type => {
+          // 获取渠道ID和名称
+          const channelId = Object.keys(type)[0]
+          const name = type[channelId]
+          // 创建新的支付选项
+          channels.push({
+            ...item,
+            channelId,
+            name,
+            channelKey: channelId, // 使用新字段存储key值
+            originalName: item.name,
+            payChanneltype: JSON.stringify([{
+              amount: type.amount
+            }]),
+            originChannelId: item.channelId, // 父级 channelId
+          })
+        })
+      } else {
+        channels.push({
+          ...item,
+          originChannelId: item.channelId,
+        })
+      }
+    })
+
+    ebPayList.value = channels
+
+    // 获取数据后自动选择第一个支付通道
+    if (ebPayList.value.length > 0) {
+      chain.value = ebPayList.value[0]
+    }
+  })
+}
+getPayment()
 
 const {userInfo} = storeToRefs(useUserStore())
 const {changeUserInfo} = useUserStore()
@@ -130,11 +154,12 @@ const disabled = computed(() => {
 
 const loading = ref(false)
 const onSubmit = () => {
+
   loading.value = true
 
   apiEBPaySaving({
     orderamount: form.value.depositNum,
-    channelId: chain.value.channelId,
+    channelId: chain.value.originChannelId,
   }).then(res => {
     loading.value = false
 
