@@ -95,7 +95,7 @@ const min_deposit = 100
 const chain = ref({})
 
 const getPayment = () => {
-  apiEBPayList({agenttype: 1}).then(res => {
+  apiEBPayList({agenttype: 1, enterprisecode: undefined}).then(res => {
     let channels = []
     res.forEach(item => {
       if (item.name === '支付宝大额') {
