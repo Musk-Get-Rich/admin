@@ -128,19 +128,6 @@ const disabled = computed(() => {
     form.value.depositNum / 1 < 100
 })
 
-/**
- * {
-    "orderamount": 200,
-    "channelId": 10,
-    "token": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJFMDAwMVRYMiIsImlhdCI6MTczOTg0NTIwOSwic3ViIjoiYWFhYmJiMiIsImV4cCI6MTczOTg4ODQwOX0.YcZD66Nc2ycV7B_hDRPXMrC8QtomveWF790OhQR8lhs",
-    "language": "CN",
-    "employeecode": "E0001TX2",
-    "payChanneltype": "8306",
-    "brandcode": "EB00000T",
-    "enterprisecode": "EN001N"
-}
- */
-
 const loading = ref(false)
 const onSubmit = () => {
   loading.value = true
@@ -150,8 +137,12 @@ const onSubmit = () => {
     channelId: chain.value.channelId,
   }).then(res => {
     loading.value = false
-    console.log(res);
-    ElMessage.success(t('充值信息已提交'))
+
+    if (res.indexOf('http') !== -1) {
+      window.open(res)
+    } else {
+      ElMessage.error(t('获取支付链接失败，请稍后再试'))
+    }
 
     changeUserInfo()
 
@@ -164,9 +155,9 @@ const onSubmit = () => {
 }
 
 const textList = [
-  '代存余额需提前充值，只接收ERC20/TRC20充值，1USDT=1USD',
-  '最低充值10U，低于10U将无法到账，如遇区块链网络拥堵，可能会掉单，联系客服处理即',
-  '钱包金额为USD，代存金额则按国际汇率兑换会员所属地区的货币',
+  '代存余额需提前充值，可接收ERC20/TRC20/EBpay充值，1EB = 1CNY',
+  '最低充值100CNY，低于100CNY将无法到账，如遇区块链网络拥堵，可能会掉单，联系客服处理即可',
+  '钱包金额为CNY，代存金额则按国际汇率兑换会员所属地区的货币',
   '代存需1倍流水才能提款',
   '请注意代存金额以及会员账号，代存错误无法追回',
   '代存余额可向同属上级的其他代理转账，转账成功后无法追回'

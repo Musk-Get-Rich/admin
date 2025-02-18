@@ -572,4 +572,11 @@ export default {
   '充值信息已提交': 'Deposit information submitted',
   '最低充值{num}元': 'Minimum deposit {num} yuan',
   '需要付款': 'Need to pay',
+  '代存余额需提前充值，可接收ERC20/TRC20/EBpay充值，1EB = 1CNY': 'Deposit balance needs to be recharged in advance. ERC20/TRC20/EBpay deposits are accepted. 1EB = 1CNY',
+  '最低充值100CNY，低于100CNY将无法到账，如遇区块链网络拥堵，可能会掉单，联系客服处理即可': 'Minimum deposit is 100CNY. Deposits below 100CNY will not be credited. In case of blockchain network congestion, transactions may be dropped. Please contact customer service for assistance.',
+  '钱包金额为CNY，代存金额则按国际汇率兑换会员所属地区的货币': 'Wallet amount is in CNY. Deposit amount will be converted to member\'s regional currency based on international exchange rates',
+  '获取支付链接失败，请稍后再试': 'Failed to get payment link, please try again later',
+  '通道选择': 'Channel Selection',
+  'USDT充值': 'USDT Deposit',
+  'EBPay充值': 'EBPay Deposit',
 };

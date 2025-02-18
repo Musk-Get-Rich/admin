@@ -18,7 +18,7 @@ import EBPayRecharge from './components/EBPayRecharge.vue';
 import Tabs from "@/components/Tabs";
 import {apiEBPayList} from "@/service/api/agent.js";
 
-const currentBtn = ref('EBPay充值')
+const currentBtn = ref('USDT充值')
 
 const btns = ref(['USDT充值', 'EBPay充值', '充值记录'])
 
