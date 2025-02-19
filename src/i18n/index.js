@@ -6,6 +6,9 @@ import {LOCAL_STORAGE_NAME} from "@/config/index.js";
 import {LANGUAGE} from "@/config/storageKey.js";
 
 const lang = localStorage.getItem(LANGUAGE) || "zh-CN";
+
+localStorage.setItem(LANGUAGE, lang);
+
 export const langOptions = [
 	{
 		value: "en",

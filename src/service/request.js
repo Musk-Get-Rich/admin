@@ -25,7 +25,7 @@ service.interceptors.request.use(
     if (token) {
       config.headers["token"] = token;
     }
-    config.headers["lang"] = localStorage.getItem(LANGUAGE);
+    config.headers["lang"] = useUserStore();
     config.headers["Content-Type"] = "application/json";
     return config;
   },
