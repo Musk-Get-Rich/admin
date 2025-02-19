@@ -85,7 +85,7 @@ import {apiEBPayList, apiEBPaySaving} from "@/service/api/agent.js";
 import {ElMessage} from "element-plus";
 import {useI18n} from "vue-i18n";
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 // 充值通道
 const ebPayList = ref([])
@@ -136,7 +136,7 @@ const getPayment = () => {
 }
 getPayment()
 
-const {userInfo} = storeToRefs(useUserStore())
+const {userInfo, token} = storeToRefs(useUserStore())
 const {changeUserInfo} = useUserStore()
 
 const form = ref({
@@ -157,10 +157,23 @@ const onSubmit = () => {
 
   loading.value = true
 
-  apiEBPaySaving({
+  const data = {
     orderamount: form.value.depositNum,
     channelId: chain.value.originChannelId,
-  }).then(res => {
+    token: token.value,
+    language: locale.value,
+    employeecode: userInfo.value.employeecode,
+    agenttype: 1
+  }
+
+  // 如果是支付宝大额，添加payChanneltype字段
+  if (chain.value.originalName === '支付宝大额') {
+    data.payChanneltype = chain.value.channelKey
+  }
+
+  console.log(data);
+
+  apiEBPaySaving(data).then(res => {
     loading.value = false
 
     if (res.indexOf('http') !== -1) {
